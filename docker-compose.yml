@@ -1,0 +1,18 @@
+services:
+  backend:
+    container_name: bon-path-backend
+    build: ./bon-path-backend
+    volumes:
+      - ./bon-path-backend:/backend
+    command: bash -c "npm install && npm run dev"
+    ports:
+      - "8080:8080"
+  database:
+    container_name: bon-path-database
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: bonpath
+      POSTGRES_PASSWORD: bonpath
+      POSTGRES_DB: bonpath
+    ports:
+      - "5432:5432"
