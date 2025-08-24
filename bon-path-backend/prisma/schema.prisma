@@ -39,3 +39,13 @@ model ReceiptImage {
 
   receipt Receipt @relation(fields: [receiptId], references: [id], onDelete: Cascade)
 }
+
+model Store {
+  id            Int       @id @default(autoincrement())
+  name          String    @db.VarChar(100)
+  image         String?   @db.VarChar(255)
+  latitude      Float?
+  longitude     Float?
+  googleMapLink String?   @db.VarChar(255)
+  createdAt     DateTime  @default(now())
+}
