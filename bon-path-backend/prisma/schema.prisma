@@ -58,3 +58,13 @@ model Category {
   parents Category? @relation("CategoryNestRelation", fields: [parentId], references: [id], onDelete: Cascade)
   children Category[] @relation("CategoryNestRelation")
 }
+
+model Product {
+  id            Int       @id @default(autoincrement())
+  storeId       Int
+  categoryId    Int
+  name          String    @db.VarChar(100)
+  image         String?   @db.VarChar(255)
+  price         Int
+  createdAt     DateTime  @default(now())
+}
