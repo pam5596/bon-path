@@ -15,5 +15,6 @@
       "@models/*": ["models/*"],
       "@error": ["models/error"],
       "@valueObject": ["models/valueObject"],
+    }
   }
 }
