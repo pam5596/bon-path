@@ -15,4 +15,17 @@ model User {
   email     String    @unique
   password  String    @db.Char(32)
   createdAt DateTime  @default(now())
+
+  receipts Receipt[]
+}
+
+model Receipt {
+  id        Int       @id @default(autoincrement())
+  userId    Int
+  latitude  Float
+  longitude Float
+  isChecked Boolean   @default(false)
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id])
 }
