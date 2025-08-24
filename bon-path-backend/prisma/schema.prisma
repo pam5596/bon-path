@@ -27,5 +27,15 @@ model Receipt {
   isChecked Boolean   @default(false)
   createdAt DateTime  @default(now())
 
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  images ReceiptImage[]
+}
+
+model ReceiptImage {
+  id        Int      @id @default(autoincrement())
+  receiptId Int
+  url       String   @db.VarChar(255)
+  createdAt DateTime @default(now())
+
+  receipt Receipt @relation(fields: [receiptId], references: [id], onDelete: Cascade)
 }
