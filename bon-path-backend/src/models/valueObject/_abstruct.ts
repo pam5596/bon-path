@@ -22,5 +22,11 @@ export default abstract class BaseValueObject<T> {
         return parse_result.data;
     }
 
+    get value(): T {
+        return this._value;
+    }
 
+    equals(other: BaseValueObject<T>): boolean {
+        return this._value === other._value;
+    }
 }
