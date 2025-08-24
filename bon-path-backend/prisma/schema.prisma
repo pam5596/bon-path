@@ -48,6 +48,8 @@ model Store {
   longitude     Float?
   googleMapLink String?   @db.VarChar(255)
   createdAt     DateTime  @default(now())
+
+  products Product[]
 }
 
 model Category {
@@ -57,6 +59,7 @@ model Category {
 
   parents Category? @relation("CategoryNestRelation", fields: [parentId], references: [id], onDelete: Cascade)
   children Category[] @relation("CategoryNestRelation")
+  products Product[]
 }
 
 model Product {
@@ -67,4 +70,7 @@ model Product {
   image         String?   @db.VarChar(255)
   price         Int
   createdAt     DateTime  @default(now())
+  
+  store    Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 }
