@@ -8,3 +8,4 @@ export { default as UserPassword } from "./userPassword";
 export { default as UserHashPassword } from "./userHashPassword";
 
 export { default as ReceiptLatitude } from "./receiptLatitude";
+export { default as ReceiptLongitude } from "./receiptLongitude";
