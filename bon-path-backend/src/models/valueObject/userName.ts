@@ -1,9 +1,9 @@
 import { z } from "zod";
 import BaseValueObject from "./_abstruct";
 
-export default class userName extends BaseValueObject<string> {
+export default class UserName extends BaseValueObject<string> {
     constructor(value: string) {
-        super(value, userName.schema());
+        super(value, UserName.schema());
     }
 
     static schema() {
