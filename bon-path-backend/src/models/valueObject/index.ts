@@ -10,3 +10,5 @@ export { default as UserHashPassword } from "./userHashPassword";
 export { default as ReceiptLatitude } from "./receiptLatitude";
 export { default as ReceiptLongitude } from "./receiptLongitude";
 export { default as ReceiptIsChecked } from "./receiptIsChecked";
+
+export { default as ReceiptImageUrl } from "./receiptImageUrl";
