@@ -20,3 +20,5 @@ export { default as StoreLongitude } from "./storeLongitude";
 export { default as StoreGoogleMapLink } from "./storeGoogleMapLink";
 
 export { default as CategoryName } from "./categoryName";
+
+export { default as ProductName } from "./productName";
