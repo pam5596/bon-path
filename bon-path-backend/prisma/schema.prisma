@@ -36,7 +36,7 @@ model Receipt {
 model ReceiptImage {
   id        Int      @id @default(autoincrement())
   receiptId Int
-  url       String   @db.VarChar(255)
+  url       String
   createdAt DateTime @default(now())
 
   receipt Receipt @relation(fields: [receiptId], references: [id], onDelete: Cascade)
@@ -44,11 +44,11 @@ model ReceiptImage {
 
 model Store {
   id            Int       @id @default(autoincrement())
-  name          String    @db.VarChar(100)
-  image         String?   @db.VarChar(255)
+  name          String
+  image         String?
   latitude      Float?
   longitude     Float?
-  googleMapLink String?   @db.VarChar(255)
+  googleMapLink String?
   createdAt     DateTime  @default(now())
 
   products Product[]
@@ -58,7 +58,7 @@ model Store {
 model Category {
   id            Int       @id @default(autoincrement())
   parentId      Int?
-  name          String    @db.VarChar(50)
+  name          String
 
   parents Category? @relation("CategoryNestRelation", fields: [parentId], references: [id], onDelete: Cascade)
   children Category[] @relation("CategoryNestRelation")
@@ -69,8 +69,8 @@ model Product {
   id            Int       @id @default(autoincrement())
   storeId       Int
   categoryId    Int
-  name          String    @db.VarChar(100)
-  image         String?   @db.VarChar(255)
+  name          String
+  image         String?
   price         Int
   createdAt     DateTime  @default(now())
   
