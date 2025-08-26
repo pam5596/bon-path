@@ -14,3 +14,4 @@ export { default as ReceiptIsChecked } from "./receiptIsChecked";
 export { default as ReceiptImageUrl } from "./receiptImageUrl";
 
 export { default as StoreName } from "./storeName";
+export { default as StoreImage } from "./storeImage";
