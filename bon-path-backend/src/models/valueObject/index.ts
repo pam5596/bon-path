@@ -17,4 +17,6 @@ export { default as StoreName } from "./storeName";
 export { default as StoreImage } from "./storeImage";
 export { default as StoreLatitude } from "./storeLatitude";
 export { default as StoreLongitude } from "./storeLongitude";
-export { default as StoreGoogleMapLink } from "./storeGoogleMapLink"
+export { default as StoreGoogleMapLink } from "./storeGoogleMapLink";
+
+export { default as CategoryName } from "./categoryName";
