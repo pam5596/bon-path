@@ -26,3 +26,4 @@ export { default as ProductImage } from "./productImage";
 export { default as ProductPrice } from "./productPrice";
 
 export { default as PurchaseQuantity } from "./purchaseQuantity";
+export { default as PurchasePrice } from "./purchasePrice";
