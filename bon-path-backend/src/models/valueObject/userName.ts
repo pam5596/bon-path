@@ -1,5 +1,6 @@
 import { z } from "zod";
 import BaseValueObject from "./_abstruct";
+import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 export default class UserName extends BaseValueObject<string> {
     constructor(value: string) {
@@ -8,9 +9,9 @@ export default class UserName extends BaseValueObject<string> {
 
     static schema() {
         return z
-            .string({ error: "UserNameは文字列である必要があります" })
-            .min(1, { error: "UserNameは1文字以上である必要があります" })
-            .max(30, { error: "UserNameは30文字以下である必要があります" })
-            .refine((v) => v.trim().length > 0, { message: "UserNameは空白にすることはできません" });
+            .string({ error: ERROR_MESSAGES.valueObjects.userName.stringError })
+            .min(1, { error: ERROR_MESSAGES.valueObjects.userName.minError })
+            .max(30, { error: ERROR_MESSAGES.valueObjects.userName.maxError })
+            .refine((v) => v.trim().length > 0, { message: ERROR_MESSAGES.valueObjects.userName.emptyError });
     }
 }

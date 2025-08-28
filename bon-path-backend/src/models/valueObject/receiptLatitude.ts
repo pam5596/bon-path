@@ -1,5 +1,6 @@
 import { z } from "zod";
 import BaseValueObject from "./_abstruct";
+import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 export default class ReceiptLatitude extends BaseValueObject<number> {
     constructor(value: number) {
@@ -8,8 +9,8 @@ export default class ReceiptLatitude extends BaseValueObject<number> {
 
     static schema() {
         return z
-            .number({ error: "ReceiptLatitudeは数値である必要があります" })
-            .min(-90, { error: "ReceiptLatitudeは -90以上である必要があります" })
-            .max(90, { error: "ReceiptLatitudeは 90以下である必要があります" });
+            .number({ error: ERROR_MESSAGES.valueObjects.receiptLatitude.numberError })
+            .min(-90, { error: ERROR_MESSAGES.valueObjects.receiptLatitude.minError })
+            .max(90, { error: ERROR_MESSAGES.valueObjects.receiptLatitude.maxError });
     }
 }

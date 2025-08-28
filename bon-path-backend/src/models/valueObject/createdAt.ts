@@ -1,5 +1,6 @@
 import { z } from "zod";
 import BaseValueObject from "./_abstruct";
+import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 export default class CreatedAt extends BaseValueObject<Date> {
     constructor(value: Date) {
@@ -8,6 +9,6 @@ export default class CreatedAt extends BaseValueObject<Date> {
 
     static schema() {
         return z
-            .date({ error: "CreatedAtはタイムスタンプである必要があります"})
+            .date({ error: ERROR_MESSAGES.valueObjects.createdAt.dateError })
     }
 }

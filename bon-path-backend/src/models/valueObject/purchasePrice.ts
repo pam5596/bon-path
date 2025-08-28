@@ -1,5 +1,6 @@
 import { z } from "zod";
 import BaseValueObject from "./_abstruct";
+import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 export default class PurchasePrice extends BaseValueObject<number> {
     constructor(value: number) {
@@ -8,7 +9,7 @@ export default class PurchasePrice extends BaseValueObject<number> {
 
     static schema() {
         return z
-            .int({ error: "PurchasePriceは整数値である必要があります"})
-            .min(0, { error: "PurchasePriceは0以上である必要があります" })
+            .int({ error: ERROR_MESSAGES.valueObjects.purchasePrice.intError })
+            .min(0, { error: ERROR_MESSAGES.valueObjects.purchasePrice.minError })
     }
 }

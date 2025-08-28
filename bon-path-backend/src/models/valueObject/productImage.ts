@@ -1,5 +1,6 @@
 import { z } from "zod";
 import BaseValueObject from "./_abstruct";
+import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 export default class ProductImage extends BaseValueObject<string> {
     constructor(value: string) {
@@ -8,6 +9,6 @@ export default class ProductImage extends BaseValueObject<string> {
 
     static schema() {
         return z
-            .url({ error: "ProductImageはURL形式である必要があります" });
+            .url({ error: ERROR_MESSAGES.valueObjects.productImage.urlError });
     }
 }

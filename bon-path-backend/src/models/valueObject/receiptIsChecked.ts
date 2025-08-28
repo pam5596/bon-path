@@ -1,5 +1,6 @@
 import { z } from "zod";
 import BaseValueObject from "./_abstruct";
+import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 export default class ReceiptIsChecked extends BaseValueObject<boolean> {
     constructor(value: boolean) {
@@ -8,6 +9,6 @@ export default class ReceiptIsChecked extends BaseValueObject<boolean> {
 
     static schema() {
         return z
-            .boolean({error: "ReceiptIsCheckedは真偽値である必要があります"})
+            .boolean({error: ERROR_MESSAGES.valueObjects.receiptIsChecked.booleanError })
     }
 }

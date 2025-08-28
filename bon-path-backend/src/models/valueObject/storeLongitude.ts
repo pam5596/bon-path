@@ -1,5 +1,6 @@
 import { z } from "zod";
 import BaseValueObject from "./_abstruct";
+import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 export default class StoreLongitude extends BaseValueObject<number> {
     constructor(value: number) {
@@ -8,8 +9,8 @@ export default class StoreLongitude extends BaseValueObject<number> {
 
     static schema() {
         return z
-            .number({ error: "StoreLongitudeは数値である必要があります" })
-            .min(-180, { error: "StoreLongitudeは -180以上である必要があります" })
-            .max(180, { error: "StoreLongitudeは 180以下である必要があります" });
+            .number({ error: ERROR_MESSAGES.valueObjects.storeLongitude.numberError })
+            .min(-180, { error: ERROR_MESSAGES.valueObjects.storeLongitude.minError })
+            .max(180, { error: ERROR_MESSAGES.valueObjects.storeLongitude.maxError });
     }
 }

@@ -1,5 +1,6 @@
 import { z } from "zod";
 import BaseValueObject from "./_abstruct";
+import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 export default class UserEmail extends BaseValueObject<string> {
     constructor(value: string) {
@@ -8,6 +9,6 @@ export default class UserEmail extends BaseValueObject<string> {
 
     static schema() {
         return z
-            .email({ error: "UserEmailは有効なメールアドレス形式である必要があります" });
+            .email({ error: ERROR_MESSAGES.valueObjects.userEmail.emailError });
     }
 }
