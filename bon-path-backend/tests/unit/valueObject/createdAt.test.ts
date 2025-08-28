@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { CreatedAt } from "@valueObject";
+import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 describe("Id VOのテスト", () => {
     const value = new Date("2025-08-24T08:32:45.123Z")
@@ -9,7 +10,7 @@ describe("Id VOのテスト", () => {
     })
 
     it('非Dateが不正であること', () => {
-        expect(() => new CreatedAt(new Date("aaaaa"))).toThrowError();
+        expect(() => new CreatedAt(new Date("aaaaa"))).toThrowError(ERROR_MESSAGES.valueObjects.createdAt.dateError);
     })
 
     it('valueメソッドが与えられた値を返すこと', () => {

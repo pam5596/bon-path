@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { StoreGoogleMapLink } from "@valueObject";
+import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 describe("storeGoogleMapLink VOのテスト", () => {
     const value = "https://vitest.dev/"
@@ -9,7 +10,7 @@ describe("storeGoogleMapLink VOのテスト", () => {
     })
 
     it('非URL形式が不正であること', () => {
-        expect(() => new StoreGoogleMapLink("awrogniowr")).toThrowError();
+        expect(() => new StoreGoogleMapLink("awrogniowr")).toThrowError(ERROR_MESSAGES.valueObjects.storeGoogleMapLink.urlError);
     })
 
     it('valueメソッドが与えられた値を返すこと', () => {

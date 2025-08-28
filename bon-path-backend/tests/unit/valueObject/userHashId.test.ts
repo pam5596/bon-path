@@ -1,12 +1,13 @@
 import { describe, expect, it } from "vitest";
 import { UserHashId } from "@valueObject";
+import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 describe("userHashId VOのテスト", () => {
-    it('間違った形式のcuidが不正であること', () => {
-        expect(() => new UserHashId("invalid-cuid")).toThrowError();
+    it('非cuidが不正であること', () => {
+        expect(() => new UserHashId("invalid-cuid")).toThrowError(ERROR_MESSAGES.valueObjects.userHashId.cuidError);
     })
 
-    it('正しい形式のcuidが有効であること', () => {
+    it('cuid形式が正であること', () => {
         expect(() => new UserHashId("cjr4j6g6g0000qzrmn0g1v6xv")).not.toThrowError();
     })
 

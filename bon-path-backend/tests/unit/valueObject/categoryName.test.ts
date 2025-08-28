@@ -1,9 +1,14 @@
 import { describe, expect, it } from "vitest";
 import { CategoryName } from "@valueObject";
+import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 describe("categoryName VOのテスト", () => {
+    it('非文字列が不正であること', () => {
+        expect(() => new CategoryName(124)).toThrowError(ERROR_MESSAGES.valueObjects.categoryName.stringError);
+    })
+
     it('空文字が不正であること', () => {
-        expect(() => new CategoryName("")).toThrowError();
+        expect(() => new CategoryName("")).toThrowError(ERROR_MESSAGES.valueObjects.categoryName.minError);
     })
 
     it('1文字以上であること', () => {

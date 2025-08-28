@@ -1,19 +1,21 @@
 import { describe, expect, it } from "vitest";
 import { UserName } from "@valueObject";
+import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 describe("userName VOのテスト", () => {
-    it('空文字が不正であること', () => {
-        expect(() => new UserName("")).toThrowError();
+    it('非文字列が不正であること', () => {
+        expect(() => new UserName(123)).toThrowError(ERROR_MESSAGES.valueObjects.userName.stringError);
     })
 
     it('1文字以上30文字以下であること', () => {
-        expect(() => new UserName("a".repeat(31))).toThrowError();
+        expect(() => new UserName("a".repeat(31))).toThrowError(ERROR_MESSAGES.valueObjects.userName.maxError);
         expect(() => new UserName("a".repeat(30))).not.toThrowError();
         expect(() => new UserName("a".repeat(1))).not.toThrowError();
+        expect(() => new UserName("")).toThrowError(ERROR_MESSAGES.valueObjects.userName.minError);
     })
 
     it('空白文字が不正であること', () => {
-        expect(() => new UserName("   ")).toThrowError();
+        expect(() => new UserName("   ")).toThrowError(ERROR_MESSAGES.valueObjects.userName.emptyError);
     })
 
     it('valueメソッドが与えられた値を返すこと', () => {
