@@ -1,15 +1,96 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
+  output   = "./generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("DEVELOP_DATABASE_URL")
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  hashedId  String    @unique @default(cuid())
+  name      String    @db.VarChar(30)
+  email     String    @unique
+  password  String    @db.Char(32)
+  createdAt DateTime  @default(now())
+
+  receipts Receipt[]
+  purchases Purchase[]
+}
+
+model Receipt {
+  id        Int       @id @default(autoincrement())
+  userId    Int
+  latitude  Float
+  longitude Float
+  isChecked Boolean   @default(false)
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  images ReceiptImage[]
+  purchases Purchase[]
+}
+
+model ReceiptImage {
+  id        Int      @id @default(autoincrement())
+  receiptId Int
+  url       String
+  createdAt DateTime @default(now())
+
+  receipt Receipt @relation(fields: [receiptId], references: [id], onDelete: Cascade)
+}
+
+model Store {
+  id            Int       @id @default(autoincrement())
+  name          String
+  image         String?
+  latitude      Float?
+  longitude     Float?
+  googleMapLink String?
+  createdAt     DateTime  @default(now())
+
+  products Product[]
+  purchases Purchase[]
+}
+
+model Category {
+  id            Int       @id @default(autoincrement())
+  parentId      Int?
+  name          String
+
+  parents Category? @relation("CategoryNestRelation", fields: [parentId], references: [id], onDelete: Cascade)
+  children Category[] @relation("CategoryNestRelation")
+  products Product[]
+}
+
+model Product {
+  id            Int       @id @default(autoincrement())
+  storeId       Int
+  categoryId    Int
+  name          String
+  image         String?
+  price         Int
+  createdAt     DateTime  @default(now())
+  
+  store    Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  purchases Purchase[]
+}
+
+model Purchase {
+  id            Int       @id @default(autoincrement())
+  userId        Int
+  receiptId     Int
+  storeId       Int
+  productId     Int
+  quantity      Int       @default(1)
+  price         Int
+  createdAt     DateTime  @default(now())
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  receipt Receipt @relation(fields: [receiptId], references: [id], onDelete: Cascade)
+  store   Store   @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 }
