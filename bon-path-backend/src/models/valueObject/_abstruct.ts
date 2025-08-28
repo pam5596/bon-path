@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { ValidationError } from "@error";
+import { ValueObjectError } from "@error";
 
 export default abstract class BaseValueObject<T> {
     protected readonly _value: T;
@@ -13,7 +13,7 @@ export default abstract class BaseValueObject<T> {
 
         if (!parse_result.success) {
             const zod_error_issues = parse_result.error.issues
-            throw new ValidationError(
+            throw new ValueObjectError(
                 zod_error_issues.map((issue) => issue.message).join("\n"),
                 zod_error_issues.map((issue) => issue.message).join("\n"),
                 this.constructor.name
