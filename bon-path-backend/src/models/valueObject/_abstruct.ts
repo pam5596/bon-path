@@ -15,7 +15,7 @@ export default abstract class BaseValueObject<T> {
             const zod_error_issues = parse_result.error.issues
             throw new ValueObjectError(
                 zod_error_issues.map((issue) => issue.message).join("\n"),
-                zod_error_issues.map((issue) => issue.message).join("\n"),
+                zod_error_issues.map((issue) => issue.code).join("\n"),
                 this.constructor.name
             );
         }

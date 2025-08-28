@@ -88,5 +88,13 @@ export const ERROR_MESSAGES = {
             stringError: "CategoryNameは文字列である必要があります",
             minError: "CategoryNameは1文字以上である必要があります"
         }
+    },
+    entity: {
+        _abstruct: {
+            setIdError: {
+                detail: "Idの更新に失敗しました",
+                issue: "Cannot overwrite existing value"
+            }
+        }
     }
 }
