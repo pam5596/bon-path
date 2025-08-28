@@ -17,6 +17,7 @@
     "npm-run-all2": "^6.2.0",
     "prisma": "^6.14.0",
     "tsx": "^4.20.4",
+    "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4"
   },
   "dependencies": {

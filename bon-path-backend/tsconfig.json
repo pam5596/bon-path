@@ -10,5 +10,12 @@
     ],
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
+    "baseUrl": "./src",
+    "paths": {
+      "@constants/*": ["constants/*"],
+      "@models/*": ["models/*"],
+      "@error": ["models/error"],
+      "@valueObject": ["models/valueObject"],
+    }
   }
 }
