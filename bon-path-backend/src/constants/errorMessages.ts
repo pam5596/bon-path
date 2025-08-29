@@ -92,9 +92,18 @@ export const ERROR_MESSAGES = {
     entity: {
         _abstruct: {
             setIdError: {
-                detail: "Idの更新に失敗しました",
-                issue: "Cannot overwrite existing value"
+                detail: "IDを新しく更新することはできません",
+                issue: "Cannot assign to 'id' because it is a read-only property."
             }
+        },
+        _share: {
+            createdAt: "不正な登録日時の型を検知しました"
+        },
+        user: {
+            hashIdInstanceofError: "不正なユーザーハッシュIDの型を検知しました",
+            nameInstanceofError: "不正なユーザー名の型を検知しました",
+            emailInstanceofError: "不正なメールアドレスの型を検知しました",
+            passwordInstanceofError: "不正なパスワードの型を検出しました",
         }
     }
 }
