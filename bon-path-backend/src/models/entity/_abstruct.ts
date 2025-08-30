@@ -46,8 +46,6 @@ export default abstract class BaseEntity<T> {
         this._id = newId
     }
 
-    abstract set newValues(newValues: any)
-
     equals(other: BaseEntity<T>): boolean {
         return this._id === other._id;
     }

@@ -104,6 +104,12 @@ export const ERROR_MESSAGES = {
             nameInstanceofError: "不正なユーザー名の型を検知しました",
             emailInstanceofError: "不正なメールアドレスの型を検知しました",
             passwordInstanceofError: "不正なパスワードの型を検出しました",
+        },
+        receipt: {
+            userIdInstanceofError: "不正なユーザーIDの型を検知しました",
+            isCheckedInstanceofError: "不正なレシートの確認状態の型を検出しました",
+            latitudeInstanceofError: "不正な緯度の型を検出しました",
+            longitudeInstanceofError: "不正な軽度の型を検出しました",
         }
     }
 }
