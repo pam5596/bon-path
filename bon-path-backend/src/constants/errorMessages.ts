@@ -110,6 +110,10 @@ export const ERROR_MESSAGES = {
             isCheckedInstanceofError: "不正なレシートの確認状態の型を検出しました",
             latitudeInstanceofError: "不正な緯度の型を検出しました",
             longitudeInstanceofError: "不正な軽度の型を検出しました",
+        },
+        receiptImage: {
+            receiptIdInstanceofError: "不正なレシートIDの型を検知しましが",
+            urlInstanceofError: "不正なレシートURLの型を検知しました"
         }
     }
 }
