@@ -6,3 +6,6 @@ export type { ReceiptType } from "./receipt/type";
 
 export { default as ReceiptImageEntity } from "./receiptImage";
 export type { ReceiptImageType } from "./receiptImage/type";
+
+export { default as StoreEntity } from "./store";
+export type { StoreType } from "./store/type"

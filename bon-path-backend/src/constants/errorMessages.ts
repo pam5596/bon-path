@@ -114,6 +114,13 @@ export const ERROR_MESSAGES = {
         receiptImage: {
             receiptIdInstanceofError: "不正なレシートIDの型を検知しましが",
             urlInstanceofError: "不正なレシートURLの型を検知しました"
+        },
+        store: {
+            nameInstanceofError: "不正な店舗名の型を検知しました",
+            imageInstanceofError: "不正な店舗画像の型を検知しました",
+            latitudeInstanceofError: "不正な緯度の型を検知しました",
+            longitudeInstanceofError: "不正な軽度の型を検出しました",
+            googleMapLinkInstanceofError: "不正なGoogleマップリンクの型を検知しました"
         }
     }
 }
