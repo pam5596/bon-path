@@ -18,7 +18,6 @@ describe('ProductEntityのテスト', () => {
         expect(() => new ProductEntity({
             storeId: correct_values.storeId,
             categoryId: correct_values.categoryId,
-            image: correct_values.image,
             name: correct_values.name,
             price: correct_values.price
         })).not.toThrowError()

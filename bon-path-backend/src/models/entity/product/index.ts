@@ -14,7 +14,7 @@ export default class ProductEntity extends BaseEntity<ProductType> {
             storeId: z.instanceof(Id, { error: ERROR_MESSAGES.entity.product.storeIdInstanceofError }),
             categoryId: z.instanceof(Id, { error: ERROR_MESSAGES.entity.product.categoryIdInstanceofError }),
             name: z.instanceof(ProductName, { error: ERROR_MESSAGES.entity.product.nameInstanceofError }),
-            image: z.instanceof(ProductImage, { error: ERROR_MESSAGES.entity.product.imageInstanceofError }),
+            image: z.instanceof(ProductImage, { error: ERROR_MESSAGES.entity.product.imageInstanceofError }).optional(),
             price: z.instanceof(ProductPrice, { error: ERROR_MESSAGES.entity.product.priceInstanceofError }),
             createdAt: z.instanceof(CreatedAt, { error: ERROR_MESSAGES.entity._share.createdAt }).optional()
         })

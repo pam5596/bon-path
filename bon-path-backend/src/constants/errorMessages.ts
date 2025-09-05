@@ -132,6 +132,14 @@ export const ERROR_MESSAGES = {
             nameInstanceofError: "不正な商品名の型を検知しました",
             imageInstanceofError: "不正な商品画像の型を検知しました",
             priceInstanceofError: "不正な商品価格の型を検知しました"
+        },
+        purchase: {
+            userIdInstanceofError: "不正なユーザーIDの型を検知しました",
+            receiptIdInstanceofError: "不正なレシートIDの型を検知しました",
+            storeIdInstanceofError: "不正な店舗IDの型を検知しました",
+            productIdInstanceofError: "不正な商品IDの型を検知しました",
+            quantityInstanceofError: "不正な購入数量の型を検知しました",
+            priceInstanceofError: "不正な購入価格の型を検知しました",
         }
     }
 }

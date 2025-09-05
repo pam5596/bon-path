@@ -4,7 +4,7 @@ export type ProductType = {
     readonly storeId: Id,
     readonly categoryId: Id,
     name: ProductName,
-    image: ProductImage,
+    image?: ProductImage,
     price: ProductPrice,
     readonly createdAt?: CreatedAt
 }
