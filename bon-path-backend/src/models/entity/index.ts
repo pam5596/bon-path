@@ -12,3 +12,6 @@ export type { StoreType } from "./store/type";
 
 export { default as CategoryEntity } from "./category";
 export type { CategoryType } from "./category/type";
+
+export { default as ProductEntity } from "./product";
+export type { ProductType, ProductUpdatableType } from "./product/type"

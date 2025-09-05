@@ -107,7 +107,7 @@ export const ERROR_MESSAGES = {
         },
         receipt: {
             userIdInstanceofError: "不正なユーザーIDの型を検知しました",
-            isCheckedInstazcfnceofError: "不正なレシートの確認状態の型を検出しました",
+            isCheckedInstanceofError: "不正なレシートの確認状態の型を検出しました",
             latitudeInstanceofError: "不正な緯度の型を検出しました",
             longitudeInstanceofError: "不正な軽度の型を検出しました",
         },
@@ -125,6 +125,13 @@ export const ERROR_MESSAGES = {
         category: {
             parentIdInstanceofError: "不正な親カテゴリーIDの型を検知しました",
             nameInstanceofError: "不正なカテゴリー名の型を検知しました"
+        },
+        product: {
+            storeIdInstanceofError: "不正な店舗IDの型を検出しました",
+            categoryIdInstanceofError: "不正なカテゴリーIDの型を検出しました",
+            nameInstanceofError: "不正な商品名の型を検知しました",
+            imageInstanceofError: "不正な商品画像の型を検知しました",
+            priceInstanceofError: "不正な商品価格の型を検知しました"
         }
     }
 }
