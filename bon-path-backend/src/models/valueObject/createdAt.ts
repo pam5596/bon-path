@@ -9,6 +9,6 @@ export default class CreatedAt extends BaseValueObject<Date> {
 
     static schema() {
         return z
-            .date({ error: ERROR_MESSAGES.valueObjects.createdAt.dateError })
+            .date()
     }
 }

@@ -4,7 +4,7 @@ import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 describe("ProductName VOのテスト", () => {
     it('非文字列が不正であること', () => {
-        expect(() => new ProductName(123)).toThrowError(ERROR_MESSAGES.valueObjects.productName.stringError);
+        expect(() => new ProductName(123)).toThrowError();
     })
 
     it('空文字が不正であること', () => {

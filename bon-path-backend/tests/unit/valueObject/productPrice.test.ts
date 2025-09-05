@@ -1,14 +1,13 @@
 import { describe, expect, it } from "vitest";
 import { ProductPrice } from "@valueObject";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 describe("productPrice VOのテスト", () => {
     it('負の数が不正であること', () => {
-        expect(() => new ProductPrice(-1)).toThrowError(ERROR_MESSAGES.valueObjects.productPrice.minError);
+        expect(() => new ProductPrice(-1)).toThrowError();
     })
 
     it('小数が不正であること', () => {
-        expect(() => new ProductPrice(1.5)).toThrowError(ERROR_MESSAGES.valueObjects.productPrice.intError);
+        expect(() => new ProductPrice(1.5)).toThrowError();
     })
 
     it('0以上であること', () => {

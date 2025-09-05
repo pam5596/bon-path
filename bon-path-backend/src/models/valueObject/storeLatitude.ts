@@ -9,8 +9,8 @@ export default class StoreLatitude extends BaseValueObject<number> {
 
     static schema() {
         return z
-            .number({ error: ERROR_MESSAGES.valueObjects.storeLatitude.numberError })
-            .min(-90, { error: ERROR_MESSAGES.valueObjects.storeLatitude.minError })
-            .max(90, { error: ERROR_MESSAGES.valueObjects.storeLatitude.maxError });
+            .number()
+            .min(-90)
+            .max(90);
     }
 }

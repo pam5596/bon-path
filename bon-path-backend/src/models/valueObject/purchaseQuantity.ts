@@ -9,7 +9,7 @@ export default class PurchaseQuantity extends BaseValueObject<number> {
 
     static schema() {
         return z
-            .int({ error: ERROR_MESSAGES.valueObjects.purchaseQuantity.intError })
-            .min(1, { error: ERROR_MESSAGES.valueObjects.purchaseQuantity.minError })
+            .int({ error: ERROR_MESSAGES.valueObjects._tag + ERROR_MESSAGES.valueObjects.purchaseQuantity.intError })
+            .min(1, { error: ERROR_MESSAGES.valueObjects._tag + ERROR_MESSAGES.valueObjects.purchaseQuantity.minError })
     }
 }

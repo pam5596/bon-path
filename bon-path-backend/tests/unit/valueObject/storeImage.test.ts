@@ -1,6 +1,5 @@
 import { describe, expect, it } from "vitest";
 import { StoreImage } from "@valueObject";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 describe("storeImage VOのテスト", () => {
     const value = "https://vitest.dev/"
@@ -10,7 +9,7 @@ describe("storeImage VOのテスト", () => {
     })
 
     it('非URL形式が不正であること', () => {
-        expect(() => new StoreImage("awrogniowr")).toThrowError(ERROR_MESSAGES.valueObjects.storeImage.urlError);
+        expect(() => new StoreImage("awrogniowr")).toThrowError();
     })
 
     it('valueメソッドが与えられた値を返すこと', () => {

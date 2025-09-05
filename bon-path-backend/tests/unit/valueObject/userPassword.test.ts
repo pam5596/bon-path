@@ -4,7 +4,7 @@ import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 describe("userPassword VOのテスト", () => {
     it('非文字列が不正であること', () => {
-        expect(() => new UserPassword(123)).toThrowError(ERROR_MESSAGES.valueObjects.userPassword.stringError);
+        expect(() => new UserPassword(123)).toThrowError();
     })
 
     it('半角英数字の文字列が正であること', () => {

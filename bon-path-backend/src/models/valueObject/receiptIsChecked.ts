@@ -9,6 +9,6 @@ export default class ReceiptIsChecked extends BaseValueObject<boolean> {
 
     static schema() {
         return z
-            .boolean({error: ERROR_MESSAGES.valueObjects.receiptIsChecked.booleanError })
+            .boolean()
     }
 }

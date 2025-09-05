@@ -9,8 +9,8 @@ export default class ReceiptLatitude extends BaseValueObject<number> {
 
     static schema() {
         return z
-            .number({ error: ERROR_MESSAGES.valueObjects.receiptLatitude.numberError })
-            .min(-90, { error: ERROR_MESSAGES.valueObjects.receiptLatitude.minError })
-            .max(90, { error: ERROR_MESSAGES.valueObjects.receiptLatitude.maxError });
+            .number()
+            .min(-90)
+            .max(90);
     }
 }

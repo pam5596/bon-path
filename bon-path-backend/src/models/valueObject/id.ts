@@ -9,7 +9,7 @@ export default class Id extends BaseValueObject<number> {
 
     static schema() {
         return z
-            .int({ error: ERROR_MESSAGES.valueObjects.id.intError })
-            .min(1, { error: ERROR_MESSAGES.valueObjects.id.minError })
+            .int()
+            .min(1)
     }
 }

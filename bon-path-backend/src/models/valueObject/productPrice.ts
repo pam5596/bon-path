@@ -9,7 +9,7 @@ export default class ProductPrice extends BaseValueObject<number> {
 
     static schema() {
         return z
-            .int({ error: ERROR_MESSAGES.valueObjects.productPrice.intError })
-            .min(0, { error: ERROR_MESSAGES.valueObjects.productPrice.minError })
+            .int()
+            .min(0)
     }
 }

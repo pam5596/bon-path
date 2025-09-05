@@ -9,8 +9,8 @@ export default class StoreLongitude extends BaseValueObject<number> {
 
     static schema() {
         return z
-            .number({ error: ERROR_MESSAGES.valueObjects.storeLongitude.numberError })
-            .min(-180, { error: ERROR_MESSAGES.valueObjects.storeLongitude.minError })
-            .max(180, { error: ERROR_MESSAGES.valueObjects.storeLongitude.maxError });
+            .number()
+            .min(-180)
+            .max(180);
     }
 }

@@ -9,7 +9,7 @@ export default class CategoryName extends BaseValueObject<string> {
 
     static schema() {
         return z
-            .string({ error: ERROR_MESSAGES.valueObjects.categoryName.stringError })
-            .min(1, { error: ERROR_MESSAGES.valueObjects.categoryName.minError })
+            .string()
+            .min(1)
     }
 }

@@ -1,6 +1,5 @@
 import { describe, expect, it } from "vitest";
 import { ReceiptIsChecked } from "@valueObject";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 describe("receiptIsChecked VOのテスト", () => {
     it('真偽値が正であること', () => {
@@ -9,8 +8,8 @@ describe("receiptIsChecked VOのテスト", () => {
     })
 
     it('非真偽値が不正であること', () => {
-        expect(() => new ReceiptIsChecked("true")).toThrowError(ERROR_MESSAGES.valueObjects.receiptIsChecked.booleanError);
-        expect(() => new ReceiptIsChecked("false")).toThrowError(ERROR_MESSAGES.valueObjects.receiptIsChecked.booleanError);
+        expect(() => new ReceiptIsChecked("true")).toThrowError();
+        expect(() => new ReceiptIsChecked("false")).toThrowError();
     })
 
     it('valueメソッドが与えられた値を返すこと', () => {
