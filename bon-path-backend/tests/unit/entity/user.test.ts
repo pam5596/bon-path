@@ -25,32 +25,32 @@ describe('UserEntityのテスト', () => {
         expect(() => new UserEntity(correct_values, id)).not.toThrowError()
     })
 
-    test('各プロパティに対して適切なエラーメッセージを返すこと', () => {
+    test('各プロパティに対して適切なエラーを返すこと', () => {
         expect(() => new UserEntity({
             ...correct_values,
             hashedId: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity.user.hashIdInstanceofError)
+        })).toThrow()
 
         expect(() => new UserEntity({
             ...correct_values,
             name: ""
-        })).toThrow(ERROR_MESSAGES.entity.user.nameInstanceofError)
+        })).toThrow()
 
         expect(() => new UserEntity({
             ...correct_values,
             email: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity.user.emailInstanceofError)
+        })).toThrow()
 
 
         expect(() => new UserEntity({
             ...correct_values,
             password: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity.user.passwordInstanceofError)
+        })).toThrow()
 
         expect(() => new UserEntity({
             ...correct_values,
             createdAt: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity._share.createdAt)
+        })).toThrow()
     })
 
     test('各ゲッターメソッドが正しく値を返すこと', () => {

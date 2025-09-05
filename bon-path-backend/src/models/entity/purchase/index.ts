@@ -11,13 +11,13 @@ export default class PurchaseEntity extends BaseEntity<PurchaseType> {
 
     static schema() {
         return z.strictObject({
-            userId: z.instanceof(Id, { error: ERROR_MESSAGES.entity.purchase.userIdInstanceofError }),
-            receiptId: z.instanceof(Id, { error: ERROR_MESSAGES.entity.purchase.receiptIdInstanceofError }),
-            storeId: z.instanceof(Id, { error: ERROR_MESSAGES.entity.purchase.storeIdInstanceofError }),
-            productId: z.instanceof(Id, { error: ERROR_MESSAGES.entity.purchase.productIdInstanceofError }),
-            quantity: z.instanceof(PurchaseQuantity, { error: ERROR_MESSAGES.entity.purchase.quantityInstanceofError }),
-            price: z.instanceof(PurchasePrice, { error: ERROR_MESSAGES.entity.purchase.priceInstanceofError }),
-            createdAt: z.instanceof(CreatedAt, { error: ERROR_MESSAGES.entity._share.createdAt }).optional()
+            userId: z.instanceof(Id),
+            receiptId: z.instanceof(Id),
+            storeId: z.instanceof(Id),
+            productId: z.instanceof(Id),
+            quantity: z.instanceof(PurchaseQuantity),
+            price: z.instanceof(PurchasePrice),
+            createdAt: z.instanceof(CreatedAt).optional()
         })
     }
 

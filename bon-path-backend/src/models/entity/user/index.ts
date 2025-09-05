@@ -2,7 +2,6 @@ import { z } from "zod";
 import BaseEntity from "../_abstruct";
 import type { UserType, UserUpdatableType } from "./type";
 import { CreatedAt, Id, UserEmail, UserHashId, UserName, UserHashPassword } from "@models/valueObject";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 export default class UserEntity extends BaseEntity<UserType> {
     constructor(values: UserType, id?: Id) {
@@ -11,11 +10,11 @@ export default class UserEntity extends BaseEntity<UserType> {
 
     static schema() {
         return z.strictObject({
-            hashedId: z.instanceof(UserHashId, { error: ERROR_MESSAGES.entity.user.hashIdInstanceofError }).optional(),
-            name: z.instanceof(UserName, { error: ERROR_MESSAGES.entity.user.nameInstanceofError }),
-            email: z.instanceof(UserEmail, { error:ERROR_MESSAGES.entity.user.emailInstanceofError }),
-            password: z.instanceof(UserHashPassword, { error: ERROR_MESSAGES.entity.user.passwordInstanceofError }),
-            createdAt: z.instanceof(CreatedAt, { error:ERROR_MESSAGES.entity._share.createdAt }).optional()
+            hashedId: z.instanceof(UserHashId).optional(),
+            name: z.instanceof(UserName),
+            email: z.instanceof(UserEmail),
+            password: z.instanceof(UserHashPassword),
+            createdAt: z.instanceof(CreatedAt).optional()
         });
     }
 

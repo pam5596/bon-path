@@ -11,9 +11,9 @@ export default class CategoryEntity extends BaseEntity<CategoryType> {
 
     static schema() {
         return z.strictObject({
-            parentId: z.instanceof(Id, { error: ERROR_MESSAGES.entity.category.parentIdInstanceofError }),
-            name: z.instanceof(CategoryName, { error: ERROR_MESSAGES.entity.category.nameInstanceofError }),
-            createdAt: z.instanceof(CreatedAt, { error: ERROR_MESSAGES.entity._share.createdAt }).optional()
+            parentId: z.instanceof(Id),
+            name: z.instanceof(CategoryName),
+            createdAt: z.instanceof(CreatedAt).optional()
         })
     }
 

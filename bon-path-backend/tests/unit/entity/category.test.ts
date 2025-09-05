@@ -26,17 +26,17 @@ describe('CategoryEntityのテスト', () => {
         expect(() => new CategoryEntity({
             ...correct_values,
             parentId: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity.category.parentIdInstanceofError)
+        })).toThrow()
 
         expect(() => new CategoryEntity({
             ...correct_values,
             name: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity.category.nameInstanceofError)
+        })).toThrow()
 
         expect(() => new CategoryEntity({
             ...correct_values,
             createdAt: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity._share.createdAt)
+        })).toThrow()
     })
 
     test('各ゲッターメソッドが正しく値を返すこと', () => {

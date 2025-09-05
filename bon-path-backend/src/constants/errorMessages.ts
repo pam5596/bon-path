@@ -38,51 +38,6 @@ export const ERROR_MESSAGES = {
                 detail: "IDを新しく更新することはできません。",
                 issue: "Cannot assign to 'id' because it is a read-only property."
             }
-        },
-        _share: {
-            createdAt: "不正な登録日時の型を検知しました。"
-        },
-        user: {
-            hashIdInstanceofError: "不正なユーザーハッシュIDの型を検知しました。",
-            nameInstanceofError: "不正なユーザー名の型を検知しました。",
-            emailInstanceofError: "不正なメールアドレスの型を検知しました。",
-            passwordInstanceofError: "不正なパスワードの型を検出しました。",
-        },
-        receipt: {
-            userIdInstanceofError: "不正なユーザーIDの型を検知しました。",
-            isCheckedInstanceofError: "不正なレシートの確認状態の型を検出しました。",
-            latitudeInstanceofError: "不正な緯度の型を検出しました。",
-            longitudeInstanceofError: "不正な軽度の型を検出しました。",
-        },
-        receiptImage: {
-            receiptIdInstanceofError: "不正なレシートIDの型を検知しました。",
-            urlInstanceofError: "不正なレシートURLの型を検知しました。"
-        },
-        store: {
-            nameInstanceofError: "不正な店舗名の型を検知しました。",
-            imageInstanceofError: "不正な店舗画像の型を検知しました。",
-            latitudeInstanceofError: "不正な緯度の型を検知しました。",
-            longitudeInstanceofError: "不正な軽度の型を検出しました。",
-            googleMapLinkInstanceofError: "不正なGoogleマップリンクの型を検知しました。"
-        },
-        category: {
-            parentIdInstanceofError: "不正な親カテゴリーIDの型を検知しました。",
-            nameInstanceofError: "不正なカテゴリー名の型を検知しました。"
-        },
-        product: {
-            storeIdInstanceofError: "不正な店舗IDの型を検出しました。",
-            categoryIdInstanceofError: "不正なカテゴリーIDの型を検出しました。",
-            nameInstanceofError: "不正な商品名の型を検知しました。",
-            imageInstanceofError: "不正な商品画像の型を検知しました。",
-            priceInstanceofError: "不正な商品価格の型を検知しました。"
-        },
-        purchase: {
-            userIdInstanceofError: "不正なユーザーIDの型を検知しました。",
-            receiptIdInstanceofError: "不正なレシートIDの型を検知しました。",
-            storeIdInstanceofError: "不正な店舗IDの型を検知しました。",
-            productIdInstanceofError: "不正な商品IDの型を検知しました。",
-            quantityInstanceofError: "不正な購入数量の型を検知しました。",
-            priceInstanceofError: "不正な購入価格の型を検知しました。",
         }
     }
 }

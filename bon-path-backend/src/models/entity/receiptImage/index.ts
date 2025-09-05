@@ -11,9 +11,9 @@ export default class ReceiptImageEntity extends BaseEntity<ReceiptImageType> {
 
     static schema() {
         return z.strictObject({
-            receiptId: z.instanceof(Id, { error: ERROR_MESSAGES.entity.receiptImage.receiptIdInstanceofError }),
-            url: z.instanceof(ReceiptImageUrl, { error: ERROR_MESSAGES.entity.receiptImage.urlInstanceofError }),
-            createdAt: z.instanceof(CreatedAt, { error: ERROR_MESSAGES.entity._share.createdAt }).optional()
+            receiptId: z.instanceof(Id),
+            url: z.instanceof(ReceiptImageUrl),
+            createdAt: z.instanceof(CreatedAt).optional()
         })
     }
 

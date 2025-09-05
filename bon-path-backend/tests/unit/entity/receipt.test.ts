@@ -30,28 +30,28 @@ describe('ReceiptEntityのテスト', () => {
         expect(() => new ReceiptEntity({
             ...correct_values,
             userId: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity.receipt.userIdInstanceofError)
+        })).toThrow()
 
         expect(() => new ReceiptEntity({
             ...correct_values,
             isChecked: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity.receipt.isCheckedInstanceofError)
+        })).toThrow()
 
         expect(() => new ReceiptEntity({
             ...correct_values,
             latitude: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity.receipt.latitudeInstanceofError)
+        })).toThrow()
 
 
         expect(() => new ReceiptEntity({
             ...correct_values,
             longitude: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity.receipt.longitudeInstanceofError)
+        })).toThrow()
 
         expect(() => new ReceiptEntity({
             ...correct_values,
             createdAt: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity._share.createdAt)
+        })).toThrow()
     })
 
     test('各ゲッターメソッドが正しく値を返すこと', () => {

@@ -28,33 +28,33 @@ describe('StoreEntityのテスト', () => {
         expect(() => new StoreEntity({
             ...correct_values,
             name: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity.store.nameInstanceofError)
+        })).toThrow()
 
         expect(() => new StoreEntity({
             ...correct_values,
             image: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity.store.imageInstanceofError)
+        })).toThrow()
 
         expect(() => new StoreEntity({
             ...correct_values,
             latitude: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity.store.latitudeInstanceofError)
+        })).toThrow()
 
 
         expect(() => new StoreEntity({
             ...correct_values,
             longitude: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity.store.longitudeInstanceofError)
+        })).toThrow()
 
         expect(() => new StoreEntity({
             ...correct_values,
             googleMapLink: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity.store.googleMapLinkInstanceofError)
+        })).toThrow()
 
         expect(() => new StoreEntity({
             ...correct_values,
             createdAt: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity._share.createdAt)
+        })).toThrow()
     })
 
     test('各ゲッターメソッドが正しく値を返すこと', () => {

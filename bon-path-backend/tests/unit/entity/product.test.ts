@@ -31,33 +31,33 @@ describe('ProductEntityのテスト', () => {
         expect(() => new ProductEntity({
             ...correct_values,
             storeId: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity.product.storeIdInstanceofError)
+        })).toThrow()
 
         expect(() => new ProductEntity({
             ...correct_values,
             categoryId: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity.product.categoryIdInstanceofError)
+        })).toThrow()
 
         expect(() => new ProductEntity({
             ...correct_values,
             name: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity.product.nameInstanceofError)
+        })).toThrow()
 
 
         expect(() => new ProductEntity({
             ...correct_values,
             image: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity.product.imageInstanceofError)
+        })).toThrow()
 
         expect(() => new ProductEntity({
             ...correct_values,
             price: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity.product.priceInstanceofError)
+        })).toThrow()
 
         expect(() => new ProductEntity({
             ...correct_values,
             createdAt: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity._share.createdAt)
+        })).toThrow()
     })
 
     test('各ゲッターメソッドが正しく値を返すこと', () => {

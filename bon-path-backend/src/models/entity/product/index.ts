@@ -11,12 +11,12 @@ export default class ProductEntity extends BaseEntity<ProductType> {
 
     static schema() {
         return z.strictObject({
-            storeId: z.instanceof(Id, { error: ERROR_MESSAGES.entity.product.storeIdInstanceofError }),
-            categoryId: z.instanceof(Id, { error: ERROR_MESSAGES.entity.product.categoryIdInstanceofError }),
-            name: z.instanceof(ProductName, { error: ERROR_MESSAGES.entity.product.nameInstanceofError }),
-            image: z.instanceof(ProductImage, { error: ERROR_MESSAGES.entity.product.imageInstanceofError }).optional(),
-            price: z.instanceof(ProductPrice, { error: ERROR_MESSAGES.entity.product.priceInstanceofError }),
-            createdAt: z.instanceof(CreatedAt, { error: ERROR_MESSAGES.entity._share.createdAt }).optional()
+            storeId: z.instanceof(Id),
+            categoryId: z.instanceof(Id),
+            name: z.instanceof(ProductName),
+            image: z.instanceof(ProductImage).optional(),
+            price: z.instanceof(ProductPrice),
+            createdAt: z.instanceof(CreatedAt).optional()
         })
     }
 

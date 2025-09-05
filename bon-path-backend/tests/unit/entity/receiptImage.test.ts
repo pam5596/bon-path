@@ -26,17 +26,17 @@ describe('ReceiptImageEntityのテスト', () => {
         expect(() => new ReceiptImageEntity({
             ...correct_values,
             receiptId: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity.receiptImage.receiptIdInstanceofError)
+        })).toThrow()
 
         expect(() => new ReceiptImageEntity({
             ...correct_values,
             url: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity.receiptImage.urlInstanceofError)
+        })).toThrow()
 
         expect(() => new ReceiptImageEntity({
             ...correct_values,
             createdAt: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity._share.createdAt)
+        })).toThrow()
     })
 
     test('各ゲッターメソッドが正しく値を返すこと', () => {

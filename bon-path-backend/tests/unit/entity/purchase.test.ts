@@ -34,37 +34,37 @@ describe('PurchaseEntityのテスト', () => {
         expect(() => new PurchaseEntity({
             ...correct_values,
             userId: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity.purchase.userIdInstanceofError)
+        })).toThrow()
 
         expect(() => new PurchaseEntity({
             ...correct_values,
             receiptId: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity.purchase.receiptIdInstanceofError)
+        })).toThrow()
 
         expect(() => new PurchaseEntity({
             ...correct_values,
             storeId: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity.purchase.storeIdInstanceofError)
+        })).toThrow()
 
         expect(() => new PurchaseEntity({
             ...correct_values,
             productId: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity.purchase.productIdInstanceofError)
+        })).toThrow()
 
         expect(() => new PurchaseEntity({
             ...correct_values,
             quantity: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity.purchase.quantityInstanceofError)
+        })).toThrow()
 
         expect(() => new PurchaseEntity({
             ...correct_values,
             price: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity.purchase.priceInstanceofError)
+        })).toThrow()
 
         expect(() => new PurchaseEntity({
             ...correct_values,
             createdAt: "間違った値"
-        })).toThrow(ERROR_MESSAGES.entity._share.createdAt)
+        })).toThrow()
     })
 
     test('各ゲッターメソッドが正しく値を返すこと', () => {

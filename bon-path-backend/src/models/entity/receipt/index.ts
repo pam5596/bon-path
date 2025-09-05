@@ -11,11 +11,11 @@ export default class ReceiptEntity extends BaseEntity<ReceiptType> {
 
     static schema() {
         return z.strictObject({
-            userId: z.instanceof(Id, { error: ERROR_MESSAGES.entity.receipt.userIdInstanceofError }),
-            isChecked: z.instanceof(ReceiptIsChecked, { error: ERROR_MESSAGES.entity.receipt.isCheckedInstanceofError }),
-            latitude: z.instanceof(ReceiptLatitude, { error: ERROR_MESSAGES.entity.receipt.latitudeInstanceofError }),
-            longitude: z.instanceof(ReceiptLongitude, { error: ERROR_MESSAGES.entity.receipt.longitudeInstanceofError }),
-            createdAt: z.instanceof(CreatedAt, { error: ERROR_MESSAGES.entity._share.createdAt }).optional()
+            userId: z.instanceof(Id),
+            isChecked: z.instanceof(ReceiptIsChecked),
+            latitude: z.instanceof(ReceiptLatitude),
+            longitude: z.instanceof(ReceiptLongitude),
+            createdAt: z.instanceof(CreatedAt).optional()
         })
     }
 
