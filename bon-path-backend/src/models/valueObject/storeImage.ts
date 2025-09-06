@@ -9,6 +9,6 @@ export default class StoreImage extends BaseValueObject<string> {
 
     static schema() {
         return z
-            .url({ error: ERROR_MESSAGES.valueObjects.storeImage.urlError });
+            .url();
     }
 }

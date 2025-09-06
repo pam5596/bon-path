@@ -9,6 +9,6 @@ export default class UserEmail extends BaseValueObject<string> {
 
     static schema() {
         return z
-            .email({ error: ERROR_MESSAGES.valueObjects.userEmail.emailError });
+            .email({ error: ERROR_MESSAGES.valueObjects._tag + ERROR_MESSAGES.valueObjects.userEmail.emailError });
     }
 }

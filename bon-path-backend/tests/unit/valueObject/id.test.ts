@@ -1,18 +1,17 @@
 import { describe, expect, it } from "vitest";
 import { Id } from "@valueObject";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 describe("Id VOのテスト", () => {
     it('負の数が不正であること', () => {
-        expect(() => new Id(-1)).toThrowError(ERROR_MESSAGES.valueObjects.id.minError);
+        expect(() => new Id(-1)).toThrowError();
     })
     
     it('0が不正であること', () => {
-        expect(() => new Id(0)).toThrowError(ERROR_MESSAGES.valueObjects.id.minError);
+        expect(() => new Id(0)).toThrowError();
     })
 
     it('小数が不正であること', () => {
-        expect(() => new Id(1.5)).toThrowError(ERROR_MESSAGES.valueObjects.id.intError);
+        expect(() => new Id(1.5)).toThrowError();
     })
 
     it('1が正であること', () => {

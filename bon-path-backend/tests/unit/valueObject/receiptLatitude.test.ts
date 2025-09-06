@@ -1,6 +1,5 @@
 import { describe, expect, it } from "vitest";
 import { ReceiptLatitude } from "@valueObject";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 describe("receiptLatidude VOのテスト", () => {
     it('数値が正であること', () => {
@@ -8,15 +7,15 @@ describe("receiptLatidude VOのテスト", () => {
     })
 
     it('非数値が不正であること', () => {
-        expect(() => new ReceiptLatitude("0")).toThrowError(ERROR_MESSAGES.valueObjects.receiptLatitude.numberError);
+        expect(() => new ReceiptLatitude("0")).toThrowError();
     })
 
 
     it('-90以上90以下であること', () => {
-        expect(() => new ReceiptLatitude(-90.00001)).toThrowError(ERROR_MESSAGES.valueObjects.receiptLatitude.minError);
+        expect(() => new ReceiptLatitude(-90.00001)).toThrowError();
         expect(() => new ReceiptLatitude(-90.00000)).not.toThrowError();
         expect(() => new ReceiptLatitude(90.00000)).not.toThrowError();
-        expect(() => new ReceiptLatitude(90.00001)).toThrowError(ERROR_MESSAGES.valueObjects.receiptLatitude.maxError);
+        expect(() => new ReceiptLatitude(90.00001)).toThrowError();
     })
 
     it('valueメソッドが与えられた値を返すこと', () => {

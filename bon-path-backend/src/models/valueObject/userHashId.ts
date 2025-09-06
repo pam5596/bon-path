@@ -9,6 +9,6 @@ export default class UserHashId extends BaseValueObject<string> {
 
     static schema() {
         return z
-            .cuid({ error: ERROR_MESSAGES.valueObjects.userHashId.cuidError })
+            .cuid()
     }
 }

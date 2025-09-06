@@ -9,7 +9,7 @@ export default class StoreName extends BaseValueObject<string> {
 
     static schema() {
         return z
-            .string({ error: ERROR_MESSAGES.valueObjects.storeName.stringError })
-            .min(1, { error: ERROR_MESSAGES.valueObjects.storeName.minError })
+            .string()
+            .min(1, { error: ERROR_MESSAGES.valueObjects._tag + ERROR_MESSAGES.valueObjects.storeName.minError })
     }
 }

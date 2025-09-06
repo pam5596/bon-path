@@ -1,1 +1,2 @@
-export { default as ValidationError } from "./ValidationError"
+export { default as ValueObjectError } from "./valueObject";
+export { default as EntityError } from "./entity";

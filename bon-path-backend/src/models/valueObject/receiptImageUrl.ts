@@ -9,6 +9,6 @@ export default class ReceiptImageUrl extends BaseValueObject<string> {
 
     static schema() {
         return z
-            .url({ error: ERROR_MESSAGES.valueObjects.receiptImageUrl.urlError });
+            .url();
     }
 }

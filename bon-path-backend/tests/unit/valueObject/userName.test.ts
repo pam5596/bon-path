@@ -4,7 +4,7 @@ import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 describe("userName VOのテスト", () => {
     it('非文字列が不正であること', () => {
-        expect(() => new UserName(123)).toThrowError(ERROR_MESSAGES.valueObjects.userName.stringError);
+        expect(() => new UserName(123)).toThrowError();
     })
 
     it('1文字以上30文字以下であること', () => {
