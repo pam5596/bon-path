@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { EntityError } from "@models/error";
+import { EntityError } from "@error";
 import { Id } from "@models/valueObject";
 import { ERROR_MESSAGES } from "@constants/errorMessages";
 
