@@ -37,6 +37,10 @@ export const ERROR_MESSAGES = {
             newIdError: {
                 detail: "IDを新しく更新することはできません。",
                 issue: "Cannot assign to 'id' because it is a read-only property."
+            },
+            createdError: {
+                detail: "登録日時を更新することはできません。",
+                issue: "Cannot assign to 'createdAt' because it is a read-only property."
             }
         },
         user: {

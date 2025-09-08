@@ -6,8 +6,8 @@ import { CreatedAt, Id, UserEmail, UserHashId, UserName, UserHashPassword } from
 import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 export default class UserEntity extends BaseEntity<UserType> {
-    constructor(values: UserType, id?: Id) {
-        super(values, UserEntity.schema(), id)
+    constructor(values: UserType, id?: Id, createdAt?: CreatedAt) {
+        super(values, UserEntity.schema(), id, createdAt)
     }
 
     static schema() {
@@ -15,8 +15,7 @@ export default class UserEntity extends BaseEntity<UserType> {
             hashedId: z.instanceof(UserHashId).optional(),
             name: z.instanceof(UserName),
             email: z.instanceof(UserEmail),
-            password: z.instanceof(UserHashPassword),
-            createdAt: z.instanceof(CreatedAt).optional()
+            password: z.instanceof(UserHashPassword)
         });
     }
 

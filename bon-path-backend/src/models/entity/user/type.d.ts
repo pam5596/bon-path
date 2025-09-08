@@ -5,7 +5,6 @@ export type UserType = {
     name: UserName
     email: UserEmail
     password: UserHashPassword
-    readonly createdAt?: CreatedAt
 }
 
 export type UserUpdatableType = {
