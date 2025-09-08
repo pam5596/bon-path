@@ -34,10 +34,19 @@ export const ERROR_MESSAGES = {
     },
     entity: {
         _abstruct: {
-            setIdError: {
+            newIdError: {
                 detail: "IDを新しく更新することはできません。",
                 issue: "Cannot assign to 'id' because it is a read-only property."
             }
+        },
+        user: {
+            newHashIdError: {
+                detail: "ユーザーのハッシュIDを新しく更新することはできません。",
+                issue: "Cannot assign to 'hashedId' because it is a read-only property."
+            }
         }
+    },
+    repository: {
+        detail: "SQLクエリーの発行に失敗しました。開発者に問い合わせてください。"
     }
 }

@@ -73,7 +73,7 @@ describe('ReceiptEntityのテスト', () => {
         entity.newId = new Id(2)
         expect(entity.id).toEqual(new Id(2));
 
-        expect(() => entity.newId = new Id(3)).toThrowError(ERROR_MESSAGES.entity._abstruct.setIdError.detail)
+        expect(() => entity.newId = new Id(3)).toThrowError(ERROR_MESSAGES.entity._abstruct.newIdError.detail)
     })
 
     test('toggleIsCheckedが正しく機能すること', () => {

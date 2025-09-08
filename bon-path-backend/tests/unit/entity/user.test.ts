@@ -5,8 +5,8 @@ import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 describe('UserEntityのテスト', () => {
     const id = new Id(1)
+    const hashedId = new UserHashId("cjr4j6g6g0000qzrmn0g1v6xv")
     const correct_values = {
-        hashedId: new UserHashId("cjr4j6g6g0000qzrmn0g1v6xv"),
         name: new UserName("testuser"),
         email: new UserEmail("test@example.com"),
         password: new UserHashPassword("$argon2id$v=19$m=65536,t=3,p=4$FZej+Jwsm6aZfX9+Wf3p6A$7y0SxIB7U4HQfMF5g53s6XHLr6vErvP5PrdP8R+L0rc"),
@@ -72,7 +72,15 @@ describe('UserEntityのテスト', () => {
         entity.newId = new Id(2)
         expect(entity.id).toEqual(new Id(2));
 
-        expect(() => entity.newId = new Id(3)).toThrowError(ERROR_MESSAGES.entity._abstruct.setIdError.detail)
+        expect(() => entity.newId = new Id(3)).toThrowError(ERROR_MESSAGES.entity._abstruct.newIdError.detail)
+    })
+
+    test('hashedIdセッターが正しく機能すること', () => {
+        const entity = new UserEntity(correct_values)
+        entity.newHashedId = new UserHashId("cjr4j6g6g0000qzrmn0g1vya")
+        expect(entity.hashedId).toEqual(new UserHashId("cjr4j6g6g0000qzrmn0g1vya"));
+
+        expect(() => entity.newHashedId = new UserHashId("cjr4j6g6g0000qzrmn0g1111")).toThrowError(ERROR_MESSAGES.entity.user.newHashIdError.detail)
     })
 
     test('valuesセッターが正しく機能すること', () => {
