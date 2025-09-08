@@ -1,5 +1,9 @@
 import { PrismaClient } from "@prismaGeneratedClient";
 
 export default abstract class BaseRepository {
-    constructor(private client: PrismaClient) {}
+    protected client: PrismaClient;
+
+    constructor(client: PrismaClient) {
+        this.client = client
+    }
 }
