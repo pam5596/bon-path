@@ -1,7 +1,9 @@
 import { z } from "zod";
 import BaseEntity from "../_abstruct";
+import { EntityError } from "@error";
 import type { UserType, UserUpdatableType } from "./type";
 import { CreatedAt, Id, UserEmail, UserHashId, UserName, UserHashPassword } from "@models/valueObject";
+import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 export default class UserEntity extends BaseEntity<UserType> {
     constructor(values: UserType, id?: Id) {
@@ -22,7 +24,17 @@ export default class UserEntity extends BaseEntity<UserType> {
         return this._values.hashedId
     }
 
-    set newValues(newValues: UserUpdatableType) {
+    set newHashedId(newHashedId: UserHashId) {
+        if (this._values.hashedId) throw new EntityError(
+            409,
+            ERROR_MESSAGES.entity.user.newHashIdError.detail,
+            ERROR_MESSAGES.entity.user.newHashIdError.issue,
+            this.constructor.name
+        )
+        this._values.hashedId = newHashedId
+    }
+
+    set newValues(newValues: Partial<UserUpdatableType>) {
         this._values = this.validate({
             ... this._values, ...newValues
         }, UserEntity.schema())

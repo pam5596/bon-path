@@ -53,8 +53,8 @@ export default abstract class BaseEntity<T extends Record<string, BaseValueObjec
     set newId(newId: Id) {
         if (this._id) throw new EntityError(
             409,
-            ERROR_MESSAGES.entity._abstruct.setIdError.detail,
-            ERROR_MESSAGES.entity._abstruct.setIdError.issue,
+            ERROR_MESSAGES.entity._abstruct.newIdError.detail,
+            ERROR_MESSAGES.entity._abstruct.newIdError.issue,
             this.constructor.name
         )
         this._id = newId

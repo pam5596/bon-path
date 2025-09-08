@@ -1,7 +1,7 @@
 import { UserHashId, UserName, UserEmail, UserHashPassword, Id, CreatedAt } from "@models/valueObject";
 
 export type UserType = {
-    readonly hashedId?: UserHashId
+    hashedId?: UserHashId
     name: UserName
     email: UserEmail
     password: UserHashPassword
