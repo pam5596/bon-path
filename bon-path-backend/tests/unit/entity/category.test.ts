@@ -45,6 +45,12 @@ describe('CategoryEntityのテスト', () => {
         expect(new CategoryEntity(correct_values).getValues).toEqual(correct_values)
 
         expect(new CategoryEntity(correct_values).parentId).toEqual(correct_values.parentId)
+
+        expect(new CategoryEntity(correct_values).getRowValues).toEqual(
+            Object.fromEntries(
+                Object.entries(correct_values).map(([k,v]) => [k, v.value])
+            )
+        )
     })
 
     test('idセッターが正しく機能すること', () => {

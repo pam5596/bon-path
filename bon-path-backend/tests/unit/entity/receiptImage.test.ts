@@ -45,6 +45,12 @@ describe('ReceiptImageEntityのテスト', () => {
         expect(new ReceiptImageEntity(correct_values).getValues).toEqual(correct_values)
 
         expect(new ReceiptImageEntity(correct_values).receiptId).toEqual(correct_values.receiptId)
+
+        expect(new ReceiptImageEntity(correct_values).getRowValues).toEqual(
+            Object.fromEntries(
+                Object.entries(correct_values).map(([k,v]) => [k, v.value])
+            )
+        )
     })
 
     test('idセッターが正しく機能すること', () => {

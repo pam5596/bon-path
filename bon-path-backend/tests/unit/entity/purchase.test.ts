@@ -79,6 +79,12 @@ describe('PurchaseEntityのテスト', () => {
         expect(new PurchaseEntity(correct_values).storeId).toEqual(correct_values.storeId)
 
         expect(new PurchaseEntity(correct_values).productId).toEqual(correct_values.productId)
+
+        expect(new PurchaseEntity(correct_values).getRowValues).toEqual(
+            Object.fromEntries(
+                Object.entries(correct_values).map(([k,v]) => [k, v.value])
+            )
+        )
     })
 
     test('idセッターが正しく機能すること', () => {

@@ -60,6 +60,12 @@ describe('ReceiptEntityのテスト', () => {
         expect(new ReceiptEntity(correct_values).getValues).toEqual(correct_values)
 
         expect(new ReceiptEntity(correct_values).userId).toEqual(correct_values.userId)
+
+        expect(new ReceiptEntity(correct_values).getRowValues).toEqual(
+            Object.fromEntries(
+                Object.entries(correct_values).map(([k,v]) => [k, v.value])
+            )
+        )
     })
 
     test('idセッターが正しく機能すること', () => {
