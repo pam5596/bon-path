@@ -1,9 +1,10 @@
-import { z } from "zod";
+import { unknown, z } from "zod";
+import BaseValueObject from "@models/valueObject/_abstruct";
 import { EntityError } from "@error";
 import { Id } from "@models/valueObject";
 import { ERROR_MESSAGES } from "@constants/errorMessages";
 
-export default abstract class BaseEntity<T> {
+export default abstract class BaseEntity<T extends Record<string, BaseValueObject<unknown>>> {
     protected _id?: Id
     protected _values: T
 
@@ -35,6 +36,18 @@ export default abstract class BaseEntity<T> {
 
     get getValues() {
         return this._values
+    }
+
+    get getRowValues(): {
+        [K in keyof T]: NonNullable<T[K]> extends { value: infer V } ? V : never;
+    } {
+        return Object.fromEntries(
+            Object.entries(this._values).map(
+                ([key, valueObject]) => [key, valueObject.value]
+            )
+        ) as {
+            [K in keyof T]: NonNullable<T[K]> extends { value: infer V } ? V : never
+        };
     }
 
     set newId(newId: Id) {
