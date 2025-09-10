@@ -6,7 +6,6 @@ export type StoreType = {
     latitude?: StoreLatitude,
     longitude?: StoreLongitude,
     googleMapLink?: StoreGoogleMapLink,
-    readonly createdAt?: CreatedAt
 }
 
 export type StoreUpdatableType = {

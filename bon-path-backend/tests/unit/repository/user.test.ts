@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { CreatedAt, Id, UserEmail, UserHashId, UserHashPassword, UserName, UserPassword } from "@models/valueObject";
+import { CreatedAt, Id, UserEmail, UserHashId, UserHashPassword, UserName } from "@models/valueObject";
 import { UserEntity } from "@models/entity";
 import { UserRepository } from "@repository";
 import { PrismaMock } from "./_prisma";
