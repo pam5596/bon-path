@@ -14,5 +14,9 @@ export const PrismaMock = {
         findUnique: vi.fn(),
         update: vi.fn(),
         delete: vi.fn(),
+    },
+    category: {
+        create: vi.fn(),
+        findUnique: vi.fn()
     }
 };

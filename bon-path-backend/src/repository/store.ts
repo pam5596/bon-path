@@ -1,7 +1,7 @@
 import BaseRepository from "./_abstruct";
 import queryHandler from "./_queryHandler";
 import nullableMapper from "./_nullableMapper";
-import { Id, CreatedAt, StoreGoogleMapLink, StoreImage, StoreLatitude, StoreLongitude, StoreName} from "@models/valueObject";
+import { Id, CreatedAt, StoreGoogleMapLink, StoreImage, StoreLatitude, StoreLongitude, StoreName } from "@models/valueObject";
 import { StoreEntity } from "@models/entity";
 
 export default class StoreRepository extends BaseRepository {
