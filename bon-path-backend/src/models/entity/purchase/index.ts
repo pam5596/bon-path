@@ -2,11 +2,10 @@ import { z } from "zod";
 import BaseEntity from "../_abstruct";
 import type { PurchaseType } from "./type";
 import { CreatedAt, Id, PurchasePrice, PurchaseQuantity } from "@models/valueObject";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 export default class PurchaseEntity extends BaseEntity<PurchaseType> {
-    constructor(values: PurchaseType, id?: Id) {
-        super(values, PurchaseEntity.schema(), id)
+    constructor(values: PurchaseType, id?: Id, createdAt?: CreatedAt) {
+        super(values, PurchaseEntity.schema(), id, createdAt)
     }
 
     static schema() {
@@ -16,8 +15,7 @@ export default class PurchaseEntity extends BaseEntity<PurchaseType> {
             storeId: z.instanceof(Id),
             productId: z.instanceof(Id),
             quantity: z.instanceof(PurchaseQuantity),
-            price: z.instanceof(PurchasePrice),
-            createdAt: z.instanceof(CreatedAt).optional()
+            price: z.instanceof(PurchasePrice)
         })
     }
 
