@@ -2,11 +2,10 @@ import { z } from "zod";
 import BaseEntity from "../_abstruct";
 import type { ProductType, ProductUpdatableType } from "./type";
 import { CreatedAt, Id, ProductImage, ProductName, ProductPrice } from "@models/valueObject";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 export default class ProductEntity extends BaseEntity<ProductType> {
-    constructor(values: ProductType, id?: Id) {
-        super(values, ProductEntity.schema(), id)
+    constructor(values: ProductType, id?: Id, createdAt?: CreatedAt) {
+        super(values, ProductEntity.schema(), id, createdAt)
     }
 
     static schema() {
@@ -15,8 +14,7 @@ export default class ProductEntity extends BaseEntity<ProductType> {
             categoryId: z.instanceof(Id),
             name: z.instanceof(ProductName),
             image: z.instanceof(ProductImage).optional(),
-            price: z.instanceof(ProductPrice),
-            createdAt: z.instanceof(CreatedAt).optional()
+            price: z.instanceof(ProductPrice)
         })
     }
 
@@ -28,7 +26,7 @@ export default class ProductEntity extends BaseEntity<ProductType> {
         return this._values.categoryId
     }
 
-    set newValues(newValues: ProductUpdatableType) {
+    set newValues(newValues: Partial<ProductUpdatableType>) {
         this._values = this.validate({
             ...this._values, ...newValues
         }, ProductEntity.schema())
