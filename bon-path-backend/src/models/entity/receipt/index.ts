@@ -2,11 +2,10 @@ import { z } from "zod";
 import BaseEntity from "../_abstruct";
 import type { ReceiptType } from "./type";
 import { CreatedAt, Id, ReceiptIsChecked, ReceiptLatitude, ReceiptLongitude } from "@models/valueObject";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 export default class ReceiptEntity extends BaseEntity<ReceiptType> {
-    constructor(values: ReceiptType, id?: Id) {
-        super(values, ReceiptEntity.schema(), id)
+    constructor(values: ReceiptType, id?: Id, createdAt?: CreatedAt) {
+        super(values, ReceiptEntity.schema(), id, createdAt)
     }
 
     static schema() {
@@ -14,8 +13,7 @@ export default class ReceiptEntity extends BaseEntity<ReceiptType> {
             userId: z.instanceof(Id),
             isChecked: z.instanceof(ReceiptIsChecked),
             latitude: z.instanceof(ReceiptLatitude),
-            longitude: z.instanceof(ReceiptLongitude),
-            createdAt: z.instanceof(CreatedAt).optional()
+            longitude: z.instanceof(ReceiptLongitude)
         })
     }
 

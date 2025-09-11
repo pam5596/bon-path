@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { CreatedAt, Id, ProductImage, ProductName, ProductPrice, StoreGoogleMapLink, StoreImage, StoreLatitude, StoreLongitude, StoreName } from "@models/valueObject";
+import { CreatedAt, Id, ProductImage, ProductName, ProductPrice } from "@models/valueObject";
 import { ProductEntity } from "@models/entity";
 import { ProductRepository } from "@repository";
 import { PrismaMock } from "./_prisma";
