@@ -7,7 +7,7 @@ export default class UserRepository extends BaseRepository {
     @queryHandler
     async insert(user: UserEntity) {
         const create_result = await this.client.user.create({
-            data: user.getRowValues
+            data: user.toPrimitives
         });
         user.newId = new Id(create_result.id);
         user.newHashedId = new UserHashId(create_result.hashedId);
@@ -43,7 +43,7 @@ export default class UserRepository extends BaseRepository {
             where: {
                 id: user.id!.value
             },
-            data: user.getRowValues
+            data: user.toPrimitives
         })
     }
 

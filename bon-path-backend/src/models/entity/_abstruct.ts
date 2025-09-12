@@ -40,7 +40,7 @@ export default abstract class BaseEntity<T extends Record<string, BaseValueObjec
         return this._values
     }
 
-    get getRowValues(): {
+    get toPrimitives(): {
         [K in keyof T]: NonNullable<T[K]> extends { value: infer V } ? V : never;
     } {
         return Object.fromEntries(

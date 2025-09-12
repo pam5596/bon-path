@@ -8,7 +8,7 @@ export default class StoreRepository extends BaseRepository {
     @queryHandler
     async insert(store: StoreEntity) {
         const create_result = await this.client.store.create({
-            data: store.getRowValues
+            data: store.toPrimitives
         })
         store.newId = new Id(create_result.id);
         store.created = new CreatedAt(create_result.createdAt);
@@ -57,7 +57,7 @@ export default class StoreRepository extends BaseRepository {
             where: {
                 id: store.id!.value
             },
-            data: store.getRowValues
+            data: store.toPrimitives
         })
     }
 

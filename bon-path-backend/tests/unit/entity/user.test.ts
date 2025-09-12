@@ -60,7 +60,7 @@ describe('UserEntityのテスト', () => {
 
         expect(new UserEntity(correct_values).hashedId).toEqual(correct_values.hashedId)
 
-        expect(new UserEntity(correct_values).getRowValues).toEqual(
+        expect(new UserEntity(correct_values).toPrimitives).toEqual(
             Object.fromEntries(
                 Object.entries(correct_values).map(([k,v]) => [k, v.value])
             )

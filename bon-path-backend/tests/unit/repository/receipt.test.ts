@@ -93,7 +93,7 @@ describe('ReceiptRepositoryのMockテスト', () => {
             where: {
                 id: entity.id!.value
             },
-            data: entity.getRowValues
+            data: entity.toPrimitives
         });
     })
 

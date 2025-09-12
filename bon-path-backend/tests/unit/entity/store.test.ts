@@ -62,7 +62,7 @@ describe('StoreEntityのテスト', () => {
 
         expect(new StoreEntity(correct_values).getValues).toEqual(correct_values)
 
-        expect(new StoreEntity(correct_values).getRowValues).toEqual(
+        expect(new StoreEntity(correct_values).toPrimitives).toEqual(
             Object.fromEntries(
                 Object.entries(correct_values).map(([k,v]) => [k, v.value])
             )

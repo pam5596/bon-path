@@ -46,7 +46,7 @@ describe('CategoryEntityのテスト', () => {
 
         expect(new CategoryEntity(correct_values).parentId).toEqual(correct_values.parentId)
 
-        expect(new CategoryEntity(correct_values).getRowValues).toEqual(
+        expect(new CategoryEntity(correct_values).toPrimitives).toEqual(
             Object.fromEntries(
                 Object.entries(correct_values).map(([k,v]) => [k, v.value])
             )

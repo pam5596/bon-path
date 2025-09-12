@@ -8,7 +8,7 @@ export default class ProductRepository extends BaseRepository {
     @queryHandler
     async insert(product: ProductEntity) {
         const create_result = await this.client.product.create({
-            data: product.getRowValues
+            data: product.toPrimitives
         })
         product.newId = new Id(create_result.id);
         product.created = new CreatedAt(create_result.createdAt);
@@ -78,7 +78,7 @@ export default class ProductRepository extends BaseRepository {
             where: {
                 id: product.id!.value
             },
-            data: product.getRowValues
+            data: product.toPrimitives
         })
     }
 

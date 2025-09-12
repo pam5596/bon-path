@@ -76,7 +76,7 @@ describe('UserRepositoryのMockテスト', () => {
             where: {
                 id: entity.id!.value
             },
-            data: entity.getRowValues
+            data: entity.toPrimitives
         });
     })
 

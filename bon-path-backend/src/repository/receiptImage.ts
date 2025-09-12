@@ -7,7 +7,7 @@ export default class ReceiptImageRepository extends BaseRepository {
     @queryHandler
     async insert(receiptImage: ReceiptImageEntity) {
         const create_result = await this.client.receiptImage.create({
-            data: receiptImage.getRowValues
+            data: receiptImage.toPrimitives
         });
         receiptImage.newId = new Id(create_result.id);
         receiptImage.created = new CreatedAt(create_result.createdAt);

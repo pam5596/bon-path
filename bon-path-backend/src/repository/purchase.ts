@@ -7,7 +7,7 @@ export default class PurchaseRepository extends BaseRepository {
     @queryHandler
     async insert(purchase: PurchaseEntity) {
         const create_result = await this.client.purchase.create({
-            data: purchase.getRowValues
+            data: purchase.toPrimitives
         })
         purchase.newId = new Id(create_result.id)
         purchase.created = new CreatedAt(create_result.createdAt)

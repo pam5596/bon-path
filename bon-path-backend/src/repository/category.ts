@@ -8,7 +8,7 @@ export default class CategoryRepository extends BaseRepository {
     @queryHandler
     async insert(category: CategoryEntity) {
         const create_result = await this.client.category.create({
-            data: category.getRowValues
+            data: category.toPrimitives
         });
         category.newId = new Id(create_result.id);
 

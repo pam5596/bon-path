@@ -46,7 +46,7 @@ describe('ReceiptImageEntityのテスト', () => {
 
         expect(new ReceiptImageEntity(correct_values).receiptId).toEqual(correct_values.receiptId)
 
-        expect(new ReceiptImageEntity(correct_values).getRowValues).toEqual(
+        expect(new ReceiptImageEntity(correct_values).toPrimitives).toEqual(
             Object.fromEntries(
                 Object.entries(correct_values).map(([k,v]) => [k, v.value])
             )

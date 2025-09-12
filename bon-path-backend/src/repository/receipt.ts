@@ -7,7 +7,7 @@ export default class ReceiptRepository extends BaseRepository {
     @queryHandler
     async insert(receipt: ReceiptEntity) {
         const create_result = await this.client.receipt.create({
-            data: receipt.getRowValues
+            data: receipt.toPrimitives
         })
         receipt.newId = new Id(create_result.id);
         receipt.created = new CreatedAt(create_result.createdAt);
@@ -58,7 +58,7 @@ export default class ReceiptRepository extends BaseRepository {
             where: {
                 id: receipt.id!.value
             },
-            data: receipt.getRowValues
+            data: receipt.toPrimitives
         })
     }
 

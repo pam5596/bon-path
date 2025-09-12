@@ -80,7 +80,7 @@ describe('PurchaseEntityのテスト', () => {
 
         expect(new PurchaseEntity(correct_values).productId).toEqual(correct_values.productId)
 
-        expect(new PurchaseEntity(correct_values).getRowValues).toEqual(
+        expect(new PurchaseEntity(correct_values).toPrimitives).toEqual(
             Object.fromEntries(
                 Object.entries(correct_values).map(([k,v]) => [k, v.value])
             )
