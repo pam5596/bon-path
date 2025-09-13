@@ -1,10 +1,12 @@
 import { z } from "zod";
 import BaseEntity from "../_abstruct";
-import type { ProductType, ProductUpdatableType } from "./type";
+import { AsPrimitives } from "../_to_primitives";
+import type { ProductType } from "./type";
 import { CreatedAt, Id, ProductImage, ProductName, ProductPrice } from "@models/valueObject";
 
 export default class ProductEntity extends BaseEntity<ProductType> {
-    constructor(values: ProductType, id?: Id, createdAt?: CreatedAt) {
+    constructor(valueObjects: ProductType & { id?: Id, createdAt?: CreatedAt }) {        
+        const { id, createdAt, ...values } = valueObjects;
         super(values, ProductEntity.schema(), id, createdAt)
     }
 
@@ -18,6 +20,18 @@ export default class ProductEntity extends BaseEntity<ProductType> {
         })
     }
 
+    static fromPrimitives(primitives: AsPrimitives<ProductType> & { id?: number, createdAt?: Date }) {
+        return new ProductEntity({
+            id: primitives.id ? new Id(primitives.id) : undefined,
+            createdAt: primitives.createdAt ? new CreatedAt(primitives.createdAt) : undefined,
+            storeId: new Id(primitives.storeId),
+            categoryId: new Id(primitives.categoryId),
+            name: new ProductName(primitives.name),
+            image: primitives.image ? new ProductImage(primitives.image) : undefined,
+            price: new ProductPrice(primitives.price)
+        })
+    }
+
     get storeId() {
         return this._values.storeId
     }
@@ -26,7 +40,7 @@ export default class ProductEntity extends BaseEntity<ProductType> {
         return this._values.categoryId
     }
 
-    set newValues(newValues: Partial<ProductUpdatableType>) {
+    set newValues(newValues: Partial<Omit<ProductType, 'storeId'|'categoryId'>>) {
         this._values = this.validate({
             ...this._values, ...newValues
         }, ProductEntity.schema())
