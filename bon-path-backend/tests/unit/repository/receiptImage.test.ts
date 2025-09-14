@@ -12,9 +12,9 @@ describe('ReceiptImageRepositoryのMockテスト', () => {
         url: "https://vitest.dev/image"
     }
 
-    const testId = new Id(mockResolvedValue.id)
-    const testCreatedAt = new CreatedAt(mockResolvedValue.createdAt)
     const testValues = {
+        id: new Id(mockResolvedValue.id),
+        createdAt: new CreatedAt(mockResolvedValue.createdAt),
         receiptId: new Id(mockResolvedValue.receiptId),
         url: new ReceiptImageUrl(mockResolvedValue.url)
     }
@@ -24,14 +24,15 @@ describe('ReceiptImageRepositoryのMockテスト', () => {
     it('insertが正常に呼び出されること', async () => {
         PrismaMock.receiptImage.create.mockResolvedValue(mockResolvedValue);
 
-        const entity = new ReceiptImageEntity(testValues);
+        const { id: _id, createdAt: _ca, ...values } = testValues;
+        const entity = new ReceiptImageEntity(values);
         const result = await repository.insert(entity);
         
-        const { id, createdAt, ...calledData } = mockResolvedValue;
+        const { id: __id, createdAt: __ca, ...calledData } = mockResolvedValue;
         expect(PrismaMock.receiptImage.create).toHaveBeenCalledWith({
             data: calledData
         });
-        expect(result).toEqual(new ReceiptImageEntity(testValues, testId, testCreatedAt));
+        expect(result).toEqual(new ReceiptImageEntity(testValues));
     });
 
     it('selectByReceiptId正常に呼び出されること', async () => {
@@ -46,19 +47,16 @@ describe('ReceiptImageRepositoryのMockテスト', () => {
             }
         });
         expect(result).toEqual(
-            selectByReceiptIdmockResolvedValue.map((receiptImage) => new ReceiptImageEntity({
-                receiptId: new Id(receiptImage.receiptId),
-                url: new ReceiptImageUrl(receiptImage.url)
-            }, new Id(receiptImage.id), new CreatedAt(receiptImage.createdAt)))
+            selectByReceiptIdmockResolvedValue.map((receiptImage) => ReceiptImageEntity.fromPrimitives(receiptImage))
         )
     });
 
     it('deleteByIdが正常に呼び出されること', async () => {
-        await repository.deleteById(testId)
+        await repository.deleteById(testValues.id)
 
         expect(PrismaMock.receiptImage.delete).toHaveBeenCalledWith({
             where: {
-                id: testId.value
+                id: testValues.id.value
             }
         })
     })

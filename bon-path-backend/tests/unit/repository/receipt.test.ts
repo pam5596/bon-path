@@ -14,9 +14,9 @@ describe('ReceiptRepositoryのMockテスト', () => {
         longitude: 90.0000
     }
 
-    const testId = new Id(mockResolvedValue.id)
-    const testCreatedAt = new CreatedAt(mockResolvedValue.createdAt)
     const testValues = {
+        id: new Id(mockResolvedValue.id),
+        createdAt: new CreatedAt(mockResolvedValue.createdAt),
         userId: new Id(mockResolvedValue.userId),
         isChecked: new ReceiptIsChecked(mockResolvedValue.isChecked),
         latitude: new ReceiptLatitude(mockResolvedValue.latitude),
@@ -28,33 +28,34 @@ describe('ReceiptRepositoryのMockテスト', () => {
     it('insertが正常に呼び出されること', async () => {
         PrismaMock.receipt.create.mockResolvedValue(mockResolvedValue);
 
-        const entity = new ReceiptEntity(testValues);
+        const { id: _id, createdAt: _ca, ...values } = testValues;
+        const entity = new ReceiptEntity(values);
         const result = await repository.insert(entity);
         
-        const { id, createdAt, ...calledData } = mockResolvedValue;
+        const { id: __id, createdAt: __ca, ...calledData } = mockResolvedValue;
         expect(PrismaMock.receipt.create).toHaveBeenCalledWith({
             data: calledData
         });
-        expect(result).toEqual(new ReceiptEntity(testValues, testId, testCreatedAt));
+        expect(result).toEqual(new ReceiptEntity(testValues));
     });
 
     it('selectByIdがnullでないときでも正常に呼び出されること', async () => {
         PrismaMock.receipt.findUnique.mockResolvedValue(mockResolvedValue);
 
-        const result = await repository.selectById(testId);
+        const result = await repository.selectById(testValues.id);
 
         expect(PrismaMock.receipt.findUnique).toHaveBeenCalledWith({
             where: {
                 id: mockResolvedValue.id
             },
         });
-        expect(result).toEqual(new ReceiptEntity(testValues, testId, testCreatedAt));
+        expect(result).toEqual(new ReceiptEntity(testValues));
     });
 
     it('selectByIdがnullでも正常に呼び出されること', async () => {
         PrismaMock.receipt.findUnique.mockResolvedValue(null);
 
-        const result = await repository.selectById(testId)
+        const result = await repository.selectById(testValues.id)
 
         expect(PrismaMock.receipt.findUnique).toHaveBeenCalledWith({
             where: {
@@ -76,17 +77,12 @@ describe('ReceiptRepositoryのMockテスト', () => {
             }
         });
         expect(result).toEqual(
-            selectByUserIdmockResolvedValue.map((receipt) => new ReceiptEntity({
-                userId: new Id(receipt.userId),
-                isChecked: new ReceiptIsChecked(receipt.isChecked),
-                latitude: new ReceiptLatitude(receipt.latitude),
-                longitude: new ReceiptLongitude(receipt.longitude)
-            }, new Id(receipt.id), new CreatedAt(receipt.createdAt)))
+            selectByUserIdmockResolvedValue.map((receipt) => ReceiptEntity.fromPrimitives(receipt))
         )
     })
 
     it('updateが正常に呼び出されること', async () => {
-        const entity = new ReceiptEntity(testValues, testId)
+        const entity = new ReceiptEntity(testValues)
         await repository.update(entity);
 
         expect(PrismaMock.receipt.update).toHaveBeenCalledWith({
@@ -98,11 +94,11 @@ describe('ReceiptRepositoryのMockテスト', () => {
     })
 
     it('deleteByIdが正常に呼び出されること', async () => {
-        await repository.deleteById(testId)
+        await repository.deleteById(testValues.id)
 
         expect(PrismaMock.receipt.delete).toHaveBeenCalledWith({
             where: {
-                id: testId.value
+                id: testValues.id.value
             }
         })
     })

@@ -15,9 +15,9 @@ describe('StoreRepositoryのMockテスト', () => {
         id: 1
     }
 
-    const testId = new Id(mockResolvedValue.id)
-    const testCreatedAt = new CreatedAt(mockResolvedValue.createdAt)
     const testValues = {
+        id: new Id(mockResolvedValue.id),
+        createdAt: new CreatedAt(mockResolvedValue.createdAt),
         googleMapLink: new StoreGoogleMapLink(mockResolvedValue.googleMapLink),
         image: new StoreImage(mockResolvedValue.image),
         name: new StoreName(mockResolvedValue.name),
@@ -30,14 +30,15 @@ describe('StoreRepositoryのMockテスト', () => {
     it('insertが正常に呼び出されること', async () => {
         PrismaMock.store.create.mockResolvedValue(mockResolvedValue);
 
-        const entity = new StoreEntity(testValues);
+        const { id: _id, createdAt: _ca, ...values } = testValues;
+        const entity = new StoreEntity(values);
         const result = await repository.insert(entity);
         
-        const { id, createdAt, ...calledData } = mockResolvedValue;
+        const { id: __id, createdAt: __ca, ...calledData } = mockResolvedValue;
         expect(PrismaMock.store.create).toHaveBeenCalledWith({
             data: calledData
         });
-        expect(result).toEqual(new StoreEntity(testValues, testId, testCreatedAt));
+        expect(result).toEqual(new StoreEntity(testValues));
     });
 
     it('selectAllが正常に呼び出されること', async () => {
@@ -48,13 +49,7 @@ describe('StoreRepositoryのMockテスト', () => {
 
         expect(PrismaMock.store.findMany).toHaveBeenCalledWith();
         expect(result).toEqual(
-            selectAllMockResolvedValue.map((s) => new StoreEntity({
-                name: new StoreName(s.name),
-                image: new StoreImage(s.image),
-                latitude: new StoreLatitude(s.latitude),
-                longitude: new StoreLongitude(s.longitude),
-                googleMapLink: new StoreGoogleMapLink(s.googleMapLink)
-            }, new Id(s.id), new CreatedAt(s.createdAt)))
+            selectAllMockResolvedValue.map((s) => StoreEntity.fromPrimitives(s))
         )
     })
 
@@ -70,20 +65,20 @@ describe('StoreRepositoryのMockテスト', () => {
     it('selectByIdがnullでないときでも正常に呼び出されること', async () => {
         PrismaMock.store.findUnique.mockResolvedValue(mockResolvedValue);
 
-        const result = await repository.selectById(testId);
+        const result = await repository.selectById(testValues.id);
 
         expect(PrismaMock.store.findUnique).toHaveBeenCalledWith({
             where: {
                 id: mockResolvedValue.id
             },
         });
-        expect(result).toEqual(new StoreEntity(testValues, testId, testCreatedAt));
+        expect(result).toEqual(new StoreEntity(testValues));
     });
 
     it('selectByIdがnullでも正常に呼び出されること', async () => {
         PrismaMock.store.findUnique.mockResolvedValue(null);
 
-        const result = await repository.selectById(testId)
+        const result = await repository.selectById(testValues.id)
 
         expect(PrismaMock.store.findUnique).toHaveBeenCalledWith({
             where: {
@@ -94,7 +89,7 @@ describe('StoreRepositoryのMockテスト', () => {
     })
 
     it('updateが正常に呼び出されること', async () => {
-        const entity = new StoreEntity(testValues, testId)
+        const entity = new StoreEntity(testValues)
         await repository.update(entity);
 
         expect(PrismaMock.store.update).toHaveBeenCalledWith({
@@ -106,11 +101,11 @@ describe('StoreRepositoryのMockテスト', () => {
     })
 
     it('deleteByIdが正常に呼び出されること', async () => {
-        await repository.deleteById(testId)
+        await repository.deleteById(testValues.id)
 
         expect(PrismaMock.store.delete).toHaveBeenCalledWith({
             where: {
-                id: testId.value
+                id: mockResolvedValue.id
             }
         })
     })

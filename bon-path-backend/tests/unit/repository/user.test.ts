@@ -14,9 +14,9 @@ describe('UserRepositoryのMockテスト', () => {
         id: 1
     }
 
-    const testId = new Id(mockResolvedValue.id)
-    const testCreatedAt = new CreatedAt(mockResolvedValue.createdAt)
     const testValues = {
+        id: new Id(mockResolvedValue.id),
+        createdAt: new CreatedAt(mockResolvedValue.createdAt),
         hashedId: new UserHashId(mockResolvedValue.hashedId),
         name: new UserName(mockResolvedValue.name),
         email: new UserEmail(mockResolvedValue.email),
@@ -28,7 +28,7 @@ describe('UserRepositoryのMockテスト', () => {
     it('insertが正常に呼び出されること', async () => {
         PrismaMock.user.create.mockResolvedValue(mockResolvedValue);
 
-        const { hashedId, ...values } = testValues;
+        const { id, createdAt, hashedId, ...values } = testValues;
         const entity = new UserEntity(values);
         const result = await repository.insert(entity);
         
@@ -39,26 +39,26 @@ describe('UserRepositoryのMockテスト', () => {
                 password: mockResolvedValue.password,
             }
         });
-        expect(result).toEqual(new UserEntity(testValues, testId, testCreatedAt));
+        expect(result).toEqual(new UserEntity(testValues));
     });
 
     it('selectByIdがnullでないときでも正常に呼び出されること', async () => {
         PrismaMock.user.findUnique.mockResolvedValue(mockResolvedValue);
 
-        const result = await repository.selectById(testId);
+        const result = await repository.selectById(testValues.id);
 
         expect(PrismaMock.user.findUnique).toHaveBeenCalledWith({
             where: {
                 id: mockResolvedValue.id
             },
         });
-        expect(result).toEqual(new UserEntity(testValues, testId, testCreatedAt));
+        expect(result).toEqual(new UserEntity(testValues));
     });
 
     it('selectByIdがnullでも正常に呼び出されること', async () => {
         PrismaMock.user.findUnique.mockResolvedValue(null);
 
-        const result = await repository.selectById(testId)
+        const result = await repository.selectById(testValues.id)
 
         expect(PrismaMock.user.findUnique).toHaveBeenCalledWith({
             where: {
@@ -69,7 +69,7 @@ describe('UserRepositoryのMockテスト', () => {
     })
 
     it('updateが正常に呼び出されること', async () => {
-        const entity = new UserEntity(testValues, testId)
+        const entity = new UserEntity(testValues)
         await repository.update(entity);
 
         expect(PrismaMock.user.update).toHaveBeenCalledWith({
@@ -81,11 +81,11 @@ describe('UserRepositoryのMockテスト', () => {
     })
 
     it('deleteByIdが正常に呼び出されること', async () => {
-        await repository.deleteById(testId)
+        await repository.deleteById(testValues.id)
 
         expect(PrismaMock.user.delete).toHaveBeenCalledWith({
             where: {
-                id: testId.value
+                id: mockResolvedValue.id
             }
         })
     })
