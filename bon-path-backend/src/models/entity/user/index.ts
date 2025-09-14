@@ -1,6 +1,7 @@
 import { z } from "zod";
 import BaseEntity from "../_abstruct";
-import { AsPrimitives } from "../_to_primitives";
+import { AsPrimitives } from "../_asPrimitives";
+import { OptionalToNullable } from "../_optionalToNullable";
 import { EntityError } from "@error";
 import type { UserType } from "./type";
 import { CreatedAt, Id, UserEmail, UserHashId, UserName, UserHashPassword } from "@models/valueObject";
@@ -21,7 +22,7 @@ export default class UserEntity extends BaseEntity<UserType> {
         });
     }
 
-    static fromPrimitives(primitives: AsPrimitives<UserType> & { id?: number, createdAt?: Date }) {
+    static fromPrimitives(primitives: OptionalToNullable<AsPrimitives<UserType> & { id?: number, createdAt?: Date }>) {
         return new UserEntity({
             hashedId: primitives.hashedId ? new UserHashId(primitives.hashedId) : undefined,
             name: new UserName(primitives.name),

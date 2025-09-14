@@ -1,6 +1,7 @@
 import { z } from "zod";
 import BaseEntity from "../_abstruct";
-import { AsPrimitives } from "../_to_primitives";
+import { AsPrimitives } from "../_asPrimitives";
+import { OptionalToNullable } from "../_optionalToNullable";
 import type { StoreType } from "./type";
 import { CreatedAt, Id, StoreGoogleMapLink, StoreImage, StoreLatitude, StoreLongitude, StoreName } from "@models/valueObject";
 
@@ -20,7 +21,7 @@ export default class StoreEntity extends BaseEntity<StoreType> {
         })
     }
 
-    static fromPrimitives(primitives: AsPrimitives<StoreType> & { id?: number, createdAt?: Date }) {
+    static fromPrimitives(primitives: OptionalToNullable<AsPrimitives<StoreType> & { id?: number, createdAt?: Date }>) {
         return new StoreEntity({
             id: primitives.id ? new Id(primitives.id) : undefined,
             createdAt: primitives.createdAt ? new CreatedAt(primitives.createdAt) : undefined,

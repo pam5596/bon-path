@@ -1,6 +1,7 @@
 import { z } from "zod";
 import BaseEntity from "../_abstruct";
-import { AsPrimitives } from "../_to_primitives";
+import { AsPrimitives } from "../_asPrimitives";
+import { OptionalToNullable } from "../_optionalToNullable";
 import type { PurchaseType } from "./type";
 import { CreatedAt, Id, PurchasePrice, PurchaseQuantity } from "@models/valueObject";
 
@@ -21,7 +22,7 @@ export default class PurchaseEntity extends BaseEntity<PurchaseType> {
         })
     }
 
-    static fromPrimitives(primitives: AsPrimitives<PurchaseType> & { id?: number, createdAt?: Date }) {
+    static fromPrimitives(primitives: OptionalToNullable<AsPrimitives<PurchaseType> & { id?: number, createdAt?: Date }>) {
         return new PurchaseEntity({
             id: primitives.id ? new Id(primitives.id) : undefined,
             createdAt: primitives.createdAt ? new CreatedAt(primitives.createdAt) : undefined,

@@ -1,6 +1,7 @@
 import { z } from "zod";
 import BaseEntity from "../_abstruct";
-import { AsPrimitives } from "../_to_primitives";
+import { AsPrimitives } from "../_asPrimitives";
+import { OptionalToNullable } from "../_optionalToNullable";
 import type { ProductType } from "./type";
 import { CreatedAt, Id, ProductImage, ProductName, ProductPrice } from "@models/valueObject";
 
@@ -20,7 +21,7 @@ export default class ProductEntity extends BaseEntity<ProductType> {
         })
     }
 
-    static fromPrimitives(primitives: AsPrimitives<ProductType> & { id?: number, createdAt?: Date }) {
+    static fromPrimitives(primitives: OptionalToNullable<AsPrimitives<ProductType> & { id?: number, createdAt?: Date }>) {
         return new ProductEntity({
             id: primitives.id ? new Id(primitives.id) : undefined,
             createdAt: primitives.createdAt ? new CreatedAt(primitives.createdAt) : undefined,

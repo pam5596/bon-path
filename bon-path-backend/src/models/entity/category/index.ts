@@ -1,6 +1,7 @@
 import { z } from "zod";
 import BaseEntity from "../_abstruct";
-import { AsPrimitives } from "../_to_primitives";
+import { AsPrimitives } from "../_asPrimitives";
+import { OptionalToNullable } from "../_optionalToNullable";
 import type { CategoryType } from "./type";
 import { Id, CategoryName } from "@models/valueObject";
 
@@ -17,7 +18,7 @@ export default class CategoryEntity extends BaseEntity<CategoryType> {
         })
     }
 
-    static fromPrimitives(primitives: AsPrimitives<CategoryType> & { id?: number }) {
+    static fromPrimitives(primitives: OptionalToNullable<AsPrimitives<CategoryType> & { id?: number }>) {
         return new CategoryEntity({
             id: primitives.id ? new Id(primitives.id) : undefined,
             parentId: primitives.parentId ? new Id(primitives.parentId) : undefined,

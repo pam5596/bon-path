@@ -1,6 +1,7 @@
 import { z } from "zod";
 import BaseEntity from "../_abstruct";
-import { AsPrimitives } from "../_to_primitives";
+import { AsPrimitives } from "../_asPrimitives";
+import { OptionalToNullable } from "../_optionalToNullable";
 import type { ReceiptType } from "./type";
 import { CreatedAt, Id, ReceiptIsChecked, ReceiptLatitude, ReceiptLongitude } from "@models/valueObject";
 
@@ -19,7 +20,7 @@ export default class ReceiptEntity extends BaseEntity<ReceiptType> {
         })
     }
 
-    static fromPrimitives(primitives: AsPrimitives<ReceiptType> & { id?: number, createdAt?: Date }) {
+    static fromPrimitives(primitives: OptionalToNullable<AsPrimitives<ReceiptType> & { id?: number, createdAt?: Date }>) {
         return new ReceiptEntity({
             userId: new Id(primitives.userId),
             isChecked: new ReceiptIsChecked(primitives.isChecked),
