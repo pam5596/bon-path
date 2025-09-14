@@ -1,6 +1,6 @@
 import BaseRepository from "./_abstruct";
 import queryHandler from "./_queryHandler";
-import { Id, CreatedAt, ReceiptImageUrl } from "@models/valueObject";
+import { Id, CreatedAt } from "@models/valueObject";
 import { ReceiptImageEntity } from "@models/entity";
 
 export default class ReceiptImageRepository extends BaseRepository {
@@ -23,10 +23,7 @@ export default class ReceiptImageRepository extends BaseRepository {
             }
         });
 
-        return find_result.map((receiptImage) => new ReceiptImageEntity({
-            receiptId: new Id(receiptImage.receiptId),
-            url: new ReceiptImageUrl(receiptImage.url)
-        }, new Id(receiptImage.id), new CreatedAt(receiptImage.createdAt)))
+        return find_result.map((receiptImage) => ReceiptImageEntity.fromPrimitives(receiptImage))
     }
 
     @queryHandler

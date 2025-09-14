@@ -1,6 +1,6 @@
 import BaseRepository from "./_abstruct";
 import queryHandler from "./_queryHandler";
-import { Id, CreatedAt, PurchasePrice, PurchaseQuantity } from "@models/valueObject";
+import { Id, CreatedAt } from "@models/valueObject";
 import { PurchaseEntity } from "@models/entity";
 
 export default class PurchaseRepository extends BaseRepository {
@@ -24,15 +24,7 @@ export default class PurchaseRepository extends BaseRepository {
         });
 
         if (find_result) {
-            const { id, ...values } = find_result;
-            return new PurchaseEntity({
-                userId: new Id(values.userId),
-                receiptId: new Id(values.receiptId),
-                storeId: new Id(values.storeId),
-                productId: new Id(values.productId),
-                quantity: new PurchaseQuantity(values.quantity),
-                price: new PurchasePrice(values.price)
-            }, new Id(id), new CreatedAt(values.createdAt))
+            return PurchaseEntity.fromPrimitives(find_result);
         } else {
             return find_result;
         }
@@ -46,14 +38,7 @@ export default class PurchaseRepository extends BaseRepository {
             }
         });
 
-        return find_result.map((purchase) => new PurchaseEntity({
-            userId: new Id(purchase.userId),
-            receiptId: new Id(purchase.receiptId),
-            storeId: new Id(purchase.storeId),
-            productId: new Id(purchase.productId),
-            quantity: new PurchaseQuantity(purchase.quantity),
-            price: new PurchasePrice(purchase.price)
-        }, new Id(purchase.id), new CreatedAt(purchase.createdAt)))
+        return find_result.map((purchase) => PurchaseEntity.fromPrimitives(purchase))
     }
 
     @queryHandler
@@ -64,14 +49,7 @@ export default class PurchaseRepository extends BaseRepository {
             }
         });
 
-        return find_result.map((purchase) => new PurchaseEntity({
-            userId: new Id(purchase.userId),
-            receiptId: new Id(purchase.receiptId),
-            storeId: new Id(purchase.storeId),
-            productId: new Id(purchase.productId),
-            quantity: new PurchaseQuantity(purchase.quantity),
-            price: new PurchasePrice(purchase.price)
-        }, new Id(purchase.id), new CreatedAt(purchase.createdAt)))
+        return find_result.map((purchase) => PurchaseEntity.fromPrimitives(purchase))
     }
 
     @queryHandler

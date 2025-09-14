@@ -1,6 +1,6 @@
 import BaseRepository from "./_abstruct";
 import queryHandler from "./_queryHandler";
-import { Id, CreatedAt, ReceiptIsChecked, ReceiptLatitude, ReceiptLongitude } from "@models/valueObject";
+import { Id, CreatedAt } from "@models/valueObject";
 import { ReceiptEntity } from "@models/entity";
 
 export default class ReceiptRepository extends BaseRepository {
@@ -24,13 +24,7 @@ export default class ReceiptRepository extends BaseRepository {
         });
 
         if (find_result) {
-            const { id, ...values } = find_result;
-            return new ReceiptEntity({
-                userId: new Id(values.userId),
-                isChecked: new ReceiptIsChecked(values.isChecked),
-                latitude: new ReceiptLatitude(values.latitude),
-                longitude: new ReceiptLongitude(values.longitude)
-            }, new Id(id), new CreatedAt(values.createdAt));
+            return ReceiptEntity.fromPrimitives(find_result)
         } else {
             return find_result;
         }
@@ -44,12 +38,7 @@ export default class ReceiptRepository extends BaseRepository {
             }
         });
 
-        return find_result.map((receipt) => new ReceiptEntity({
-            userId: new Id(receipt.userId),
-            isChecked: new ReceiptIsChecked(receipt.isChecked),
-            latitude: new ReceiptLatitude(receipt.latitude),
-            longitude: new ReceiptLongitude(receipt.longitude)
-        }, new Id(receipt.id), new CreatedAt(receipt.createdAt)))
+        return find_result.map((receipt) => ReceiptEntity.fromPrimitives(receipt))
     }
 
     @queryHandler
