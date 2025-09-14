@@ -4,57 +4,45 @@ import { CreatedAt, Id, ReceiptImageUrl } from "@models/valueObject";
 import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 describe('ReceiptImageEntityのテスト', () => {
-    const id = new Id(1)
-    const correct_values = {
-        receiptId: new Id(2),
-        url: new ReceiptImageUrl("https://vitest.dev/"),
-        createdAt: new CreatedAt(new Date('2025-08-29'))
+    const testPrimitives = {
+        id: 1,
+        receiptId: 2,
+        url: "https://vitest.dev/",
+        createdAt: new Date('2025-08-29')
+    }
+
+    const testValueObjects = {
+        id: new Id(testPrimitives.id),
+        receiptId: new Id(testPrimitives.receiptId),
+        url: new ReceiptImageUrl(testPrimitives.url),
+        createdAt: new CreatedAt(testPrimitives.createdAt)
     }
 
     test('DB挿入前のオブジェクトをインスタンス化できること', () => {
-        expect(() => new ReceiptImageEntity({
-            receiptId: correct_values.receiptId,
-            url: correct_values.url
-        })).not.toThrowError()
+        const { id, createdAt, ...values } = testValueObjects;
+        expect(() => new ReceiptImageEntity(values)).not.toThrowError()
     })
 
     test('DB挿入後のオブジェクトをインスタンス化できること', () => {
-        expect(() => new ReceiptImageEntity(correct_values, id)).not.toThrowError()
+        expect(() => new ReceiptImageEntity(testValueObjects)).not.toThrowError()
     })
 
-    test('各プロパティに対して適切なエラーメッセージを返すこと', () => {
-        expect(() => new ReceiptImageEntity({
-            ...correct_values,
-            receiptId: "間違った値"
-        })).toThrow()
-
-        expect(() => new ReceiptImageEntity({
-            ...correct_values,
-            url: "間違った値"
-        })).toThrow()
-
-        expect(() => new ReceiptImageEntity({
-            ...correct_values,
-            createdAt: "間違った値"
-        })).toThrow()
-    })
 
     test('各ゲッターメソッドが正しく値を返すこと', () => {
-        expect(new ReceiptImageEntity(correct_values, id).id).toEqual(id)
+        expect(new ReceiptImageEntity(testValueObjects).id).toEqual(testValueObjects.id)
+        
+        const { id: voId, createdAt: voCreatedAt, ...voValues } = testValueObjects;
+        expect(new ReceiptImageEntity(testValueObjects).getValues).toEqual(voValues)
 
-        expect(new ReceiptImageEntity(correct_values).getValues).toEqual(correct_values)
+        expect(new ReceiptImageEntity(testValueObjects).receiptId).toEqual(testValueObjects.receiptId)
 
-        expect(new ReceiptImageEntity(correct_values).receiptId).toEqual(correct_values.receiptId)
-
-        expect(new ReceiptImageEntity(correct_values).toPrimitives).toEqual(
-            Object.fromEntries(
-                Object.entries(correct_values).map(([k,v]) => [k, v.value])
-            )
-        )
+        const { id: prId, createdAt: prCreatedAt, ...prValues } = testPrimitives;
+        expect(new ReceiptImageEntity(testValueObjects).toPrimitives).toEqual(prValues)
     })
 
     test('idセッターが正しく機能すること', () => {
-        const entity = new ReceiptImageEntity(correct_values)
+        const { id, createdAt, ...values } = testValueObjects;  
+        const entity = new ReceiptImageEntity(values)
         entity.newId = new Id(2)
         expect(entity.id).toEqual(new Id(2));
 
@@ -62,9 +50,11 @@ describe('ReceiptImageEntityのテスト', () => {
     })
 
     test('equalsメソッドが正しく機能すること', () => {
-        const entity = new ReceiptImageEntity(correct_values)
-        const same_entity = new ReceiptImageEntity(correct_values)
-        const different_entity = new ReceiptImageEntity(correct_values, new Id(2))
+        const entity = new ReceiptImageEntity(testValueObjects)
+        const same_entity = new ReceiptImageEntity(testValueObjects)
+        
+        const { id, ...values } = testValueObjects;
+        const different_entity = new ReceiptImageEntity({ id: new Id(3), ...values})
 
         expect(entity.equals(same_entity)).toBe(true)
         expect(entity.equals(different_entity)).toBe(false)

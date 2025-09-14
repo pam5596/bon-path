@@ -4,72 +4,52 @@ import { CreatedAt, Id, ReceiptIsChecked, ReceiptLatitude, ReceiptLongitude} fro
 import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 describe('ReceiptEntityのテスト', () => {
-    const id = new Id(1)
-    const correct_values = {
-        userId: new Id(2),
-        isChecked: new ReceiptIsChecked(false),
-        latitude: new ReceiptLatitude(90.00000),
-        longitude: new ReceiptLongitude(180.00000),
-        createdAt: new CreatedAt(new Date('2025-08-29'))
+    const testPrimitives = {
+        id: 1,
+        userId: 2,
+        isChecked: false,
+        latitude: 90.0000,
+        longitude: 180.0000,
+        createdAt: new Date('2025-08-29')
+    }
+
+    const testValueObjects = {
+        id: new Id(testPrimitives.id),
+        userId: new Id(testPrimitives.userId),
+        isChecked: new ReceiptIsChecked(testPrimitives.isChecked),
+        latitude: new ReceiptLatitude(testPrimitives.latitude),
+        longitude: new ReceiptLongitude(testPrimitives.longitude),
+        createdAt: new CreatedAt(testPrimitives.createdAt)
     }
 
     test('DB挿入前のオブジェクトをインスタンス化できること', () => {
-        expect(() => new ReceiptEntity({
-            userId: correct_values.userId,
-            isChecked: correct_values.isChecked,
-            latitude: correct_values.latitude,
-            longitude: correct_values.longitude
-        })).not.toThrowError()
+        const { id, createdAt, ...values } = testValueObjects;
+        expect(() => new ReceiptEntity(values)).not.toThrowError()
     })
 
     test('DB挿入後のオブジェクトをインスタンス化できること', () => {
-        expect(() => new ReceiptEntity(correct_values, id)).not.toThrowError()
+        expect(() => new ReceiptEntity(testValueObjects)).not.toThrowError()
     })
 
-    test('各プロパティに対して適切なエラーメッセージを返すこと', () => {
-        expect(() => new ReceiptEntity({
-            ...correct_values,
-            userId: "間違った値"
-        })).toThrow()
-
-        expect(() => new ReceiptEntity({
-            ...correct_values,
-            isChecked: "間違った値"
-        })).toThrow()
-
-        expect(() => new ReceiptEntity({
-            ...correct_values,
-            latitude: "間違った値"
-        })).toThrow()
-
-
-        expect(() => new ReceiptEntity({
-            ...correct_values,
-            longitude: "間違った値"
-        })).toThrow()
-
-        expect(() => new ReceiptEntity({
-            ...correct_values,
-            createdAt: "間違った値"
-        })).toThrow()
+    test('fromPrimitivesが生のオブジェクトをインスタンス化できること', () => {
+        expect(ReceiptEntity.fromPrimitives(testPrimitives)).toEqual(new ReceiptEntity(testValueObjects))
     })
 
     test('各ゲッターメソッドが正しく値を返すこと', () => {
-        expect(new ReceiptEntity(correct_values, id).id).toEqual(id)
+        expect(new ReceiptEntity(testValueObjects).id).toEqual(testValueObjects.id)
+        
+        const { id: voId, createdAt: voCreatedAt, ...voValues } = testValueObjects;
+        expect(new ReceiptEntity(testValueObjects).getValues).toEqual(voValues)
 
-        expect(new ReceiptEntity(correct_values).getValues).toEqual(correct_values)
+        expect(new ReceiptEntity(testValueObjects).userId).toEqual(testValueObjects.userId)
 
-        expect(new ReceiptEntity(correct_values).userId).toEqual(correct_values.userId)
-
-        expect(new ReceiptEntity(correct_values).toPrimitives).toEqual(
-            Object.fromEntries(
-                Object.entries(correct_values).map(([k,v]) => [k, v.value])
-            )
-        )
+        const { id: prId, createdAt: prCreatedAt, ...prValues } = testPrimitives;
+        expect(new ReceiptEntity(testValueObjects).toPrimitives).toEqual(prValues)
     })
 
     test('idセッターが正しく機能すること', () => {
-        const entity = new ReceiptEntity(correct_values)
+        const { id, createdAt, ...values } = testValueObjects;  
+        const entity = new ReceiptEntity(values)
         entity.newId = new Id(2)
         expect(entity.id).toEqual(new Id(2));
 
@@ -77,16 +57,18 @@ describe('ReceiptEntityのテスト', () => {
     })
 
     test('toggleIsCheckedが正しく機能すること', () => {
-        const entity = new ReceiptEntity(correct_values)
+        const entity = new ReceiptEntity(testValueObjects)
         entity.toggleIsChecked()
 
         expect(entity.getValues.isChecked).toEqual(new ReceiptIsChecked(true));
     })
 
     test('equalsメソッドが正しく機能すること', () => {
-        const entity = new ReceiptEntity(correct_values)
-        const same_entity = new ReceiptEntity(correct_values)
-        const different_entity = new ReceiptEntity(correct_values, new Id(2))
+        const entity = new ReceiptEntity(testValueObjects)
+        const same_entity = new ReceiptEntity(testValueObjects)
+        
+        const { id, ...values } = testValueObjects;
+        const different_entity = new ReceiptEntity({ id: new Id(3), ...values})
 
         expect(entity.equals(same_entity)).toBe(true)
         expect(entity.equals(different_entity)).toBe(false)

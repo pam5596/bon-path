@@ -10,5 +10,6 @@ export default class CreatedAt extends BaseValueObject<Date> {
     static schema() {
         return z
             .date()
+            .max(Date.now())
     }
 }
