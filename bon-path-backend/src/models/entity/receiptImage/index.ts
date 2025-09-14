@@ -1,21 +1,32 @@
-import { optional, z } from "zod";
+import { z } from "zod";
 import BaseEntity from "../_abstruct";
+import { AsPrimitives } from "../_asPrimitives";
+import { OptionalToNullable } from "../_optionalToNullable";
 import type { ReceiptImageType } from "./type";
 import { CreatedAt, Id, ReceiptImageUrl } from "@models/valueObject";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 export default class ReceiptImageEntity extends BaseEntity<ReceiptImageType> {
-    constructor(value: ReceiptImageType, id?: Id) {
-        super(value, ReceiptImageEntity.schema(), id)
+    constructor(valueObjects: ReceiptImageType & { id?: Id, createdAt?: CreatedAt }) {
+        const { id, createdAt, ...values } = valueObjects;
+        super(values, ReceiptImageEntity.schema(), id, createdAt)
     }
 
     static schema() {
         return z.strictObject({
             receiptId: z.instanceof(Id),
-            url: z.instanceof(ReceiptImageUrl),
-            createdAt: z.instanceof(CreatedAt).optional()
+            url: z.instanceof(ReceiptImageUrl)
         })
     }
+
+    static fromPrimitives(primitives: OptionalToNullable<AsPrimitives<ReceiptImageType> & { id?: number, createdAt?: Date }>) {
+        return new ReceiptImageEntity({
+            id: primitives.id ? new Id(primitives.id) : undefined,
+            createdAt: primitives.createdAt ? new CreatedAt(primitives.createdAt) : undefined,
+            receiptId: new Id(primitives.receiptId),
+            url: new ReceiptImageUrl(primitives.url)
+        })
+    }
+
 
     get receiptId() {
         return this._values.receiptId

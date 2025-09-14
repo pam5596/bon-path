@@ -1,12 +1,14 @@
 import { z } from "zod";
 import BaseEntity from "../_abstruct";
-import type { ProductType, ProductUpdatableType } from "./type";
+import { AsPrimitives } from "../_asPrimitives";
+import { OptionalToNullable } from "../_optionalToNullable";
+import type { ProductType } from "./type";
 import { CreatedAt, Id, ProductImage, ProductName, ProductPrice } from "@models/valueObject";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 export default class ProductEntity extends BaseEntity<ProductType> {
-    constructor(values: ProductType, id?: Id) {
-        super(values, ProductEntity.schema(), id)
+    constructor(valueObjects: ProductType & { id?: Id, createdAt?: CreatedAt }) {        
+        const { id, createdAt, ...values } = valueObjects;
+        super(values, ProductEntity.schema(), id, createdAt)
     }
 
     static schema() {
@@ -15,8 +17,19 @@ export default class ProductEntity extends BaseEntity<ProductType> {
             categoryId: z.instanceof(Id),
             name: z.instanceof(ProductName),
             image: z.instanceof(ProductImage).optional(),
-            price: z.instanceof(ProductPrice),
-            createdAt: z.instanceof(CreatedAt).optional()
+            price: z.instanceof(ProductPrice)
+        })
+    }
+
+    static fromPrimitives(primitives: OptionalToNullable<AsPrimitives<ProductType> & { id?: number, createdAt?: Date }>) {
+        return new ProductEntity({
+            id: primitives.id ? new Id(primitives.id) : undefined,
+            createdAt: primitives.createdAt ? new CreatedAt(primitives.createdAt) : undefined,
+            storeId: new Id(primitives.storeId),
+            categoryId: new Id(primitives.categoryId),
+            name: new ProductName(primitives.name),
+            image: primitives.image ? new ProductImage(primitives.image) : undefined,
+            price: new ProductPrice(primitives.price)
         })
     }
 
@@ -28,7 +41,7 @@ export default class ProductEntity extends BaseEntity<ProductType> {
         return this._values.categoryId
     }
 
-    set newValues(newValues: ProductUpdatableType) {
+    set newValues(newValues: Partial<Omit<ProductType, 'storeId'|'categoryId'>>) {
         this._values = this.validate({
             ...this._values, ...newValues
         }, ProductEntity.schema())
