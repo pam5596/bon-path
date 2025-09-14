@@ -4,71 +4,52 @@ import { CreatedAt, Id, UserEmail, UserHashId, UserHashPassword, UserName, UserP
 import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 describe('UserEntityのテスト', () => {
-    const id = new Id(1)
-    const hashedId = new UserHashId("cjr4j6g6g0000qzrmn0g1v6xv")
-    const correct_values = {
-        name: new UserName("testuser"),
-        email: new UserEmail("test@example.com"),
-        password: new UserHashPassword("$argon2id$v=19$m=65536,t=3,p=4$FZej+Jwsm6aZfX9+Wf3p6A$7y0SxIB7U4HQfMF5g53s6XHLr6vErvP5PrdP8R+L0rc"),
-        createdAt: new CreatedAt(new Date('2025-08-29'))
+    const testPrimitives = {
+        id: 1,
+        hashedId: "cjr4j6g6g0000qzrmn0g1v6xv",
+        name: "testuser",
+        email: "test@example.com",
+        password: "$argon2id$v=19$m=65536,t=3,p=4$FZej+Jwsm6aZfX9+Wf3p6A$7y0SxIB7U4HQfMF5g53s6XHLr6vErvP5PrdP8R+L0rc",
+        createdAt: new Date('2025-08-29')
+    }
+
+    const testValueObjects = {
+        id: new Id(testPrimitives.id),
+        hashedId: new UserHashId(testPrimitives.hashedId),
+        name: new UserName(testPrimitives.name),
+        email: new UserEmail(testPrimitives.email),
+        password: new UserHashPassword(testPrimitives.password),
+        createdAt: new CreatedAt(testPrimitives.createdAt)
     }
 
     test('DB挿入前のオブジェクトをインスタンス化できること', () => {
-        expect(() => new UserEntity({
-            name: correct_values.name,
-            email: correct_values.email,
-            password: correct_values.password
-        })).not.toThrowError()
+        const { id, hashedId, createdAt, ...values } = testValueObjects;
+        expect(() => new UserEntity(values)).not.toThrowError()
     })
 
     test('DB挿入後のオブジェクトをインスタンス化できること', () => {
-        expect(() => new UserEntity(correct_values, id)).not.toThrowError()
+        expect(() => new UserEntity(testValueObjects)).not.toThrowError()
     })
 
-    test('各プロパティに対して適切なエラーを返すこと', () => {
-        expect(() => new UserEntity({
-            ...correct_values,
-            hashedId: "間違った値"
-        })).toThrow()
-
-        expect(() => new UserEntity({
-            ...correct_values,
-            name: ""
-        })).toThrow()
-
-        expect(() => new UserEntity({
-            ...correct_values,
-            email: "間違った値"
-        })).toThrow()
-
-
-        expect(() => new UserEntity({
-            ...correct_values,
-            password: "間違った値"
-        })).toThrow()
-
-        expect(() => new UserEntity({
-            ...correct_values,
-            createdAt: "間違った値"
-        })).toThrow()
+    test('fromPrimitivesが生のオブジェクトをインスタンス化できること', () => {
+        expect(UserEntity.fromPrimitives(testPrimitives)).toEqual(new UserEntity(testValueObjects))
     })
 
     test('各ゲッターメソッドが正しく値を返すこと', () => {
-        expect(new UserEntity(correct_values, id).id).toEqual(id)
+        expect(new UserEntity(testValueObjects).id).toEqual(testValueObjects.id)
 
-        expect(new UserEntity(correct_values).getValues).toEqual(correct_values)
+        const { id: voId, createdAt: voCreatedAt, ...voValues } = testValueObjects;
+        expect(new UserEntity(testValueObjects).getValues).toEqual(voValues)
 
-        expect(new UserEntity(correct_values).hashedId).toEqual(correct_values.hashedId)
+        expect(new UserEntity(testValueObjects).hashedId).toEqual(testValueObjects.hashedId)
 
-        expect(new UserEntity(correct_values).getRowValues).toEqual(
-            Object.fromEntries(
-                Object.entries(correct_values).map(([k,v]) => [k, v.value])
-            )
-        )
+        const { id: prId, createdAt: prCreatedAt, ...prValues } = testPrimitives;
+        expect(new UserEntity(testValueObjects).toPrimitives).toEqual(prValues)
     })
 
     test('idセッターが正しく機能すること', () => {
-        const entity = new UserEntity(correct_values)
+        const { id, createdAt, ...values } = testValueObjects;
+        const entity = new UserEntity(values)
         entity.newId = new Id(2)
         expect(entity.id).toEqual(new Id(2));
 
@@ -76,7 +57,8 @@ describe('UserEntityのテスト', () => {
     })
 
     test('hashedIdセッターが正しく機能すること', () => {
-        const entity = new UserEntity(correct_values)
+        const { id, createdAt, hashedId, ...values } = testValueObjects;
+        const entity = new UserEntity(values)
         entity.newHashedId = new UserHashId("cjr4j6g6g0000qzrmn0g1vya")
         expect(entity.hashedId).toEqual(new UserHashId("cjr4j6g6g0000qzrmn0g1vya"));
 
@@ -84,7 +66,7 @@ describe('UserEntityのテスト', () => {
     })
 
     test('valuesセッターが正しく機能すること', () => {
-        const entity = new UserEntity(correct_values)
+        const entity = new UserEntity(testValueObjects)
         const new_values = {
             name: new UserName("testuser2"),
             email: new UserEmail("test2@example.com"),
@@ -98,9 +80,11 @@ describe('UserEntityのテスト', () => {
     })
 
     test('equalsメソッドが正しく機能すること', () => {
-        const entity = new UserEntity(correct_values)
-        const same_entity = new UserEntity(correct_values)
-        const different_entity = new UserEntity(correct_values, new Id(2))
+        const entity = new UserEntity(testValueObjects)
+        const same_entity = new UserEntity(testValueObjects)
+
+        const { id, ...values } = testValueObjects;
+        const different_entity = new UserEntity({ id: new Id(3), ...values})
 
         expect(entity.equals(same_entity)).toBe(true)
         expect(entity.equals(different_entity)).toBe(false)

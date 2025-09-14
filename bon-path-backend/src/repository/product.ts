@@ -1,14 +1,13 @@
 import BaseRepository from "./_abstruct";
 import queryHandler from "./_queryHandler";
-import nullableMapper from "./_nullableMapper";
-import { Id, CreatedAt, ProductImage, ProductName, ProductPrice } from "@models/valueObject";
+import { Id, CreatedAt } from "@models/valueObject";
 import { ProductEntity } from "@models/entity";
 
 export default class ProductRepository extends BaseRepository {
     @queryHandler
     async insert(product: ProductEntity) {
         const create_result = await this.client.product.create({
-            data: product.getRowValues
+            data: product.toPrimitives
         })
         product.newId = new Id(create_result.id);
         product.created = new CreatedAt(create_result.createdAt);
@@ -25,14 +24,7 @@ export default class ProductRepository extends BaseRepository {
         });
 
         if (find_result) {
-            const { id, ...values } = find_result;
-            return new ProductEntity({
-                storeId: new Id(values.storeId),
-                categoryId: new Id(values.categoryId),
-                name: new ProductName(values.name),
-                image: nullableMapper(values.image, (v) => new ProductImage(v)),
-                price: new ProductPrice(values.price)
-            }, new Id(id), new CreatedAt(values.createdAt));
+            return ProductEntity.fromPrimitives(find_result)
         } else {
             return find_result;
         }
@@ -46,13 +38,7 @@ export default class ProductRepository extends BaseRepository {
             }
         });
 
-        return find_result.map((product) => new ProductEntity({
-            storeId: new Id(product.storeId),
-            categoryId: new Id(product.categoryId),
-            name: new ProductName(product.name),
-            image: nullableMapper(product.image, (v) => new ProductImage(v)),
-            price: new ProductPrice(product.price)
-        }, new Id(product.id), new CreatedAt(product.createdAt)))
+        return find_result.map((product) => ProductEntity.fromPrimitives(product))
     }
 
     @queryHandler
@@ -63,13 +49,7 @@ export default class ProductRepository extends BaseRepository {
             }
         });
 
-        return find_result.map((product) => new ProductEntity({
-            storeId: new Id(product.storeId),
-            categoryId: new Id(product.categoryId),
-            name: new ProductName(product.name),
-            image: nullableMapper(product.image, (v) => new ProductImage(v)),
-            price: new ProductPrice(product.price)
-        }, new Id(product.id), new CreatedAt(product.createdAt)))
+        return find_result.map((product) => ProductEntity.fromPrimitives(product))
     }
 
     @queryHandler
@@ -78,7 +58,7 @@ export default class ProductRepository extends BaseRepository {
             where: {
                 id: product.id!.value
             },
-            data: product.getRowValues
+            data: product.toPrimitives
         })
     }
 

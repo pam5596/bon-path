@@ -1,12 +1,15 @@
 import { z } from "zod";
 import BaseEntity from "../_abstruct";
+import { AsPrimitives } from "../_asPrimitives";
+import { OptionalToNullable } from "../_optionalToNullable";
 import { EntityError } from "@error";
-import type { UserType, UserUpdatableType } from "./type";
+import type { UserType } from "./type";
 import { CreatedAt, Id, UserEmail, UserHashId, UserName, UserHashPassword } from "@models/valueObject";
 import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 export default class UserEntity extends BaseEntity<UserType> {
-    constructor(values: UserType, id?: Id, createdAt?: CreatedAt) {
+    constructor(valueObjects: UserType & { id?: Id, createdAt?: CreatedAt }) {
+        const { id, createdAt, ...values } = valueObjects;
         super(values, UserEntity.schema(), id, createdAt)
     }
 
@@ -17,6 +20,17 @@ export default class UserEntity extends BaseEntity<UserType> {
             email: z.instanceof(UserEmail),
             password: z.instanceof(UserHashPassword)
         });
+    }
+
+    static fromPrimitives(primitives: OptionalToNullable<AsPrimitives<UserType> & { id?: number, createdAt?: Date }>) {
+        return new UserEntity({
+            hashedId: primitives.hashedId ? new UserHashId(primitives.hashedId) : undefined,
+            name: new UserName(primitives.name),
+            email: new UserEmail(primitives.email),
+            password: new UserHashPassword(primitives.password),
+            id: primitives.id ? new Id(primitives.id) : undefined,
+            createdAt: primitives.createdAt ? new CreatedAt(primitives.createdAt) : undefined
+        })
     }
 
     get hashedId() {
@@ -33,7 +47,7 @@ export default class UserEntity extends BaseEntity<UserType> {
         this._values.hashedId = newHashedId
     }
 
-    set newValues(newValues: Partial<UserUpdatableType>) {
+    set newValues(newValues: Partial<Omit<UserType, 'hashedId'>>) {
         this._values = this.validate({
             ... this._values, ...newValues
         }, UserEntity.schema())

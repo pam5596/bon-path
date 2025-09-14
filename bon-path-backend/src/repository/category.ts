@@ -1,6 +1,5 @@
 import BaseRepository from "./_abstruct";
 import queryHandler from "./_queryHandler";
-import nullableMapper from "./_nullableMapper";
 import { Id, CategoryName } from "@models/valueObject";
 import { CategoryEntity } from "@models/entity";
 
@@ -8,7 +7,7 @@ export default class CategoryRepository extends BaseRepository {
     @queryHandler
     async insert(category: CategoryEntity) {
         const create_result = await this.client.category.create({
-            data: category.getRowValues
+            data: category.toPrimitives
         });
         category.newId = new Id(create_result.id);
 
@@ -24,10 +23,7 @@ export default class CategoryRepository extends BaseRepository {
         });
 
         if (find_result) {
-            return new CategoryEntity({
-                parentId: nullableMapper(find_result.parentId, (v) => new Id(v)),
-                name: new CategoryName(find_result.name)
-            }, new Id(find_result.id));
+            return CategoryEntity.fromPrimitives(find_result)
         } else {
             return find_result;
         }

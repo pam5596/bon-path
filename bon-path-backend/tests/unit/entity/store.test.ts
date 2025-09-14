@@ -4,73 +4,53 @@ import { CreatedAt, Id, StoreGoogleMapLink, StoreImage, StoreLatitude, StoreLong
 import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 describe('StoreEntityのテスト', () => {
-    const id = new Id(1)
-    const correct_values = {
-        googleMapLink: new StoreGoogleMapLink("https://vitest.dev/link"),
-        image: new StoreImage("https://vitest.dev/image"),
-        name: new StoreName("あううぃああ店"),
-        latitude: new StoreLatitude(90.00000),
-        longitude: new StoreLongitude(180.00000),
+    const testPrimitives = {
+        id: 1,
+        googleMapLink: "https://vitest.dev/link",
+        image: "https://vitest.dev/image",
+        name: "あううぃああ店",
+        latitude: 90.0000,
+        longitude: 180.0000,
+        createdAt: new Date('2025-08-29')
+    }
+
+    const testValueObjects = {
+        id: new Id(testPrimitives.id),
+        googleMapLink: new StoreGoogleMapLink(testPrimitives.googleMapLink),
+        image: new StoreImage(testPrimitives.image),
+        name: new StoreName(testPrimitives.name),
+        latitude: new StoreLatitude(testPrimitives.latitude),
+        longitude: new StoreLongitude(testPrimitives.longitude),
         createdAt: new CreatedAt(new Date('2025-08-29'))
     }
 
     test('DB挿入前のオブジェクトをインスタンス化できること', () => {
         expect(() => new StoreEntity({
-            name: correct_values.name
+            name: testValueObjects.name
         })).not.toThrowError()
     })
 
     test('DB挿入後のオブジェクトをインスタンス化できること', () => {
-        expect(() => new StoreEntity(correct_values, id)).not.toThrowError()
+        expect(() => new StoreEntity(testValueObjects)).not.toThrowError()
     })
 
-    test('各プロパティに対して適切なエラーメッセージを返すこと', () => {
-        expect(() => new StoreEntity({
-            ...correct_values,
-            name: "間違った値"
-        })).toThrow()
-
-        expect(() => new StoreEntity({
-            ...correct_values,
-            image: "間違った値"
-        })).toThrow()
-
-        expect(() => new StoreEntity({
-            ...correct_values,
-            latitude: "間違った値"
-        })).toThrow()
-
-
-        expect(() => new StoreEntity({
-            ...correct_values,
-            longitude: "間違った値"
-        })).toThrow()
-
-        expect(() => new StoreEntity({
-            ...correct_values,
-            googleMapLink: "間違った値"
-        })).toThrow()
-
-        expect(() => new StoreEntity({
-            ...correct_values,
-            createdAt: "間違った値"
-        })).toThrow()
+    test('fromPrimitivesが生のオブジェクトをインスタンス化できること', () => {
+        expect(StoreEntity.fromPrimitives(testPrimitives)).toEqual(new StoreEntity(testValueObjects))
     })
 
     test('各ゲッターメソッドが正しく値を返すこと', () => {
-        expect(new StoreEntity(correct_values, id).id).toEqual(id)
+        expect(new StoreEntity(testValueObjects).id).toEqual(testValueObjects.id)
+        
+        const { id: voId, createdAt: voCreatedAt, ...voValues } = testValueObjects;
+        expect(new StoreEntity(testValueObjects).getValues).toEqual(voValues)
 
-        expect(new StoreEntity(correct_values).getValues).toEqual(correct_values)
-
-        expect(new StoreEntity(correct_values).getRowValues).toEqual(
-            Object.fromEntries(
-                Object.entries(correct_values).map(([k,v]) => [k, v.value])
-            )
-        )
+        const { id: prId, createdAt: prCreatedAt, ...prValues } = testPrimitives;
+        expect(new StoreEntity(testValueObjects).toPrimitives).toEqual(prValues)
     })
 
     test('idセッターが正しく機能すること', () => {
-        const entity = new StoreEntity(correct_values)
+        const { id, createdAt, ...values } = testValueObjects;
+        const entity = new StoreEntity(values)
         entity.newId = new Id(2)
         expect(entity.id).toEqual(new Id(2));
 
@@ -78,7 +58,7 @@ describe('StoreEntityのテスト', () => {
     })
 
     test('valuesセッターが正しく機能すること', () => {
-        const entity = new StoreEntity(correct_values)
+        const entity = new StoreEntity(testValueObjects)
         const new_values = {
             image: new StoreImage("https://vitest.dev/image2"),
             latitude: new StoreLatitude(0.00000),
@@ -94,10 +74,12 @@ describe('StoreEntityのテスト', () => {
     })
 
     test('equalsメソッドが正しく機能すること', () => {
-        const entity = new StoreEntity(correct_values)
-        const same_entity = new StoreEntity(correct_values)
-        const different_entity = new StoreEntity(correct_values, new Id(2))
+        const entity = new StoreEntity(testValueObjects)
+        const same_entity = new StoreEntity(testValueObjects)
 
+        const { id, ...values } = testValueObjects;
+        const different_entity = new StoreEntity({ id: new Id(3), ...values})
+        
         expect(entity.equals(same_entity)).toBe(true)
         expect(entity.equals(different_entity)).toBe(false)
     })

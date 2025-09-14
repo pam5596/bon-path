@@ -7,9 +7,3 @@ export type ProductType = {
     image?: ProductImage,
     price: ProductPrice,
 }
-
-export type ProductUpdatableType = {
-    name: ProductName,
-    image: ProductImage,
-    price: ProductPrice
-}

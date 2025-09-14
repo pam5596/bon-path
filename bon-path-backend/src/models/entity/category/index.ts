@@ -1,10 +1,13 @@
 import { z } from "zod";
 import BaseEntity from "../_abstruct";
+import { AsPrimitives } from "../_asPrimitives";
+import { OptionalToNullable } from "../_optionalToNullable";
 import type { CategoryType } from "./type";
-import { CreatedAt, Id, CategoryName } from "@models/valueObject";
+import { Id, CategoryName } from "@models/valueObject";
 
 export default class CategoryEntity extends BaseEntity<CategoryType> {
-    constructor(values: CategoryType, id?: Id) {
+    constructor(valueObjects: CategoryType & { id?: Id }) {
+        const { id, ...values } = valueObjects;
         super(values, CategoryEntity.schema(), id)
     }
 
@@ -12,6 +15,14 @@ export default class CategoryEntity extends BaseEntity<CategoryType> {
         return z.strictObject({
             parentId: z.instanceof(Id).optional(),
             name: z.instanceof(CategoryName)
+        })
+    }
+
+    static fromPrimitives(primitives: OptionalToNullable<AsPrimitives<CategoryType> & { id?: number }>) {
+        return new CategoryEntity({
+            id: primitives.id ? new Id(primitives.id) : undefined,
+            parentId: primitives.parentId ? new Id(primitives.parentId) : undefined,
+            name: new CategoryName(primitives.name)
         })
     }
 

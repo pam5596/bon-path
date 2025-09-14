@@ -16,9 +16,9 @@ describe('PurchaseRepositoryのMockテスト', () => {
         price: 100
     }
 
-    const testId = new Id(mockResolvedValue.id)
-    const testCreatedAt = new CreatedAt(mockResolvedValue.createdAt)
     const testValues = {
+        id: new Id(mockResolvedValue.id),
+        createdAt: new CreatedAt(mockResolvedValue.createdAt),
         userId: new Id(mockResolvedValue.userId),
         receiptId: new Id(mockResolvedValue.receiptId),
         productId: new Id(mockResolvedValue.productId),
@@ -32,33 +32,34 @@ describe('PurchaseRepositoryのMockテスト', () => {
     it('insertが正常に呼び出されること', async () => {
         PrismaMock.purchase.create.mockResolvedValue(mockResolvedValue);
 
-        const entity = new PurchaseEntity(testValues);
+        const { id: _id, createdAt: _ca, ...values } = testValues;
+        const entity = new PurchaseEntity(values);
         const result = await repository.insert(entity);
         
-        const { id, createdAt, ...calledData } = mockResolvedValue;
+        const { id: __id, createdAt: __ca, ...calledData } = mockResolvedValue;
         expect(PrismaMock.purchase.create).toHaveBeenCalledWith({
             data: calledData
         });
-        expect(result).toEqual(new PurchaseEntity(testValues, testId, testCreatedAt));
+        expect(result).toEqual(new PurchaseEntity(testValues));
     });
 
     it('selectByIdがnullでないときでも正常に呼び出されること', async () => {
         PrismaMock.purchase.findUnique.mockResolvedValue(mockResolvedValue);
 
-        const result = await repository.selectById(testId);
+        const result = await repository.selectById(testValues.id);
 
         expect(PrismaMock.purchase.findUnique).toHaveBeenCalledWith({
             where: {
                 id: mockResolvedValue.id
             },
         });
-        expect(result).toEqual(new PurchaseEntity(testValues, testId, testCreatedAt));
+        expect(result).toEqual(new PurchaseEntity(testValues));
     });
 
     it('selectByIdがnullでも正常に呼び出されること', async () => {
         PrismaMock.purchase.findUnique.mockResolvedValue(null);
 
-        const result = await repository.selectById(testId)
+        const result = await repository.selectById(testValues.id)
 
         expect(PrismaMock.purchase.findUnique).toHaveBeenCalledWith({
             where: {
@@ -80,15 +81,7 @@ describe('PurchaseRepositoryのMockテスト', () => {
             }
         });
         expect(result).toEqual(
-            selectByUserIdmockResolvedValue.map((purchase) => new PurchaseEntity({
-                    userId: new Id(purchase.userId),
-                    receiptId: new Id(purchase.receiptId),
-                    storeId: new Id(purchase.storeId),
-                    productId: new Id(purchase.productId),
-                    quantity: new PurchaseQuantity(purchase.quantity),
-                    price: new PurchasePrice(purchase.price)
-                }, new Id(purchase.id), new CreatedAt(purchase.createdAt))
-            )
+            selectByUserIdmockResolvedValue.map((purchase) => PurchaseEntity.fromPrimitives(purchase))
         )
     })
 
@@ -104,24 +97,16 @@ describe('PurchaseRepositoryのMockテスト', () => {
             }
         });
         expect(result).toEqual(
-            selectByReceiptIdmockResolvedValue.map((purchase) => new PurchaseEntity({
-                    userId: new Id(purchase.userId),
-                    receiptId: new Id(purchase.receiptId),
-                    storeId: new Id(purchase.storeId),
-                    productId: new Id(purchase.productId),
-                    quantity: new PurchaseQuantity(purchase.quantity),
-                    price: new PurchasePrice(purchase.price)
-                }, new Id(purchase.id), new CreatedAt(purchase.createdAt))
-            )
+            selectByReceiptIdmockResolvedValue.map((purchase) => PurchaseEntity.fromPrimitives(purchase))
         )
     })
 
     it('deleteByIdが正常に呼び出されること', async () => {
-        await repository.deleteById(testId)
+        await repository.deleteById(testValues.id)
 
         expect(PrismaMock.purchase.delete).toHaveBeenCalledWith({
             where: {
-                id: testId.value
+                id: testValues.id.value
             }
         })
     })

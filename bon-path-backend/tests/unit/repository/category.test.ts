@@ -11,8 +11,8 @@ describe('CategoryRepositoryのMockテスト', () => {
         id: 1
     }
 
-    const testId = new Id(mockResolvedValue.id)
     const testValues = {
+        id: new Id(mockResolvedValue.id),
         parentId: new Id(mockResolvedValue.parentId),
         name: new CategoryName(mockResolvedValue.name)
     }
@@ -22,33 +22,34 @@ describe('CategoryRepositoryのMockテスト', () => {
     it('insertが正常に呼び出されること', async () => {
         PrismaMock.category.create.mockResolvedValue(mockResolvedValue);
 
-        const entity = new CategoryEntity(testValues);
+        const { id: _id, ...values } = testValues;
+        const entity = new CategoryEntity(values);
         const result = await repository.insert(entity);
         
-        const { id, ...calledData } = mockResolvedValue;
+        const { id: __id, ...calledData } = mockResolvedValue;
         expect(PrismaMock.category.create).toHaveBeenCalledWith({
             data: calledData
         });
-        expect(result).toEqual(new CategoryEntity(testValues, testId));
+        expect(result).toEqual(new CategoryEntity(testValues));
     });
 
     it('selectByIdがnullでないときでも正常に呼び出されること', async () => {
         PrismaMock.category.findUnique.mockResolvedValue(mockResolvedValue);
 
-        const result = await repository.selectById(testId);
+        const result = await repository.selectById(testValues.id);
 
         expect(PrismaMock.category.findUnique).toHaveBeenCalledWith({
             where: {
                 id: mockResolvedValue.id
             },
         });
-        expect(result).toEqual(new CategoryEntity(testValues, testId));
+        expect(result).toEqual(new CategoryEntity(testValues));
     });
 
     it('selectByIdがnullでも正常に呼び出されること', async () => {
         PrismaMock.category.findUnique.mockResolvedValue(null);
 
-        const result = await repository.selectById(testId)
+        const result = await repository.selectById(testValues.id)
 
         expect(PrismaMock.category.findUnique).toHaveBeenCalledWith({
             where: {

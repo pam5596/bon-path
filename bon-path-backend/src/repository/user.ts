@@ -1,13 +1,13 @@
 import BaseRepository from "./_abstruct";
 import queryHandler from "./_queryHandler";
-import { Id, CreatedAt, UserHashId, UserName, UserEmail, UserHashPassword } from "@models/valueObject";
+import { Id, CreatedAt, UserHashId } from "@models/valueObject";
 import { UserEntity } from "@models/entity";
 
 export default class UserRepository extends BaseRepository {
     @queryHandler
     async insert(user: UserEntity) {
         const create_result = await this.client.user.create({
-            data: user.getRowValues
+            data: user.toPrimitives
         });
         user.newId = new Id(create_result.id);
         user.newHashedId = new UserHashId(create_result.hashedId);
@@ -25,13 +25,7 @@ export default class UserRepository extends BaseRepository {
         });
 
         if (find_result) {
-            const { id, ...values } = find_result;
-            return new UserEntity({
-                hashedId: new UserHashId(values.hashedId),
-                name: new UserName(values.name),
-                email: new UserEmail(values.email),
-                password: new UserHashPassword(values.password)
-            }, new Id(id), new CreatedAt(values.createdAt));
+            return UserEntity.fromPrimitives(find_result)
         } else {
             return find_result;
         }
@@ -43,7 +37,7 @@ export default class UserRepository extends BaseRepository {
             where: {
                 id: user.id!.value
             },
-            data: user.getRowValues
+            data: user.toPrimitives
         })
     }
 

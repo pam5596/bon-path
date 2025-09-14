@@ -1,13 +1,13 @@
 import BaseRepository from "./_abstruct";
 import queryHandler from "./_queryHandler";
-import { Id, CreatedAt, ReceiptImageUrl } from "@models/valueObject";
+import { Id, CreatedAt } from "@models/valueObject";
 import { ReceiptImageEntity } from "@models/entity";
 
 export default class ReceiptImageRepository extends BaseRepository {
     @queryHandler
     async insert(receiptImage: ReceiptImageEntity) {
         const create_result = await this.client.receiptImage.create({
-            data: receiptImage.getRowValues
+            data: receiptImage.toPrimitives
         });
         receiptImage.newId = new Id(create_result.id);
         receiptImage.created = new CreatedAt(create_result.createdAt);
@@ -23,10 +23,7 @@ export default class ReceiptImageRepository extends BaseRepository {
             }
         });
 
-        return find_result.map((receiptImage) => new ReceiptImageEntity({
-            receiptId: new Id(receiptImage.receiptId),
-            url: new ReceiptImageUrl(receiptImage.url)
-        }, new Id(receiptImage.id), new CreatedAt(receiptImage.createdAt)))
+        return find_result.map((receiptImage) => ReceiptImageEntity.fromPrimitives(receiptImage))
     }
 
     @queryHandler

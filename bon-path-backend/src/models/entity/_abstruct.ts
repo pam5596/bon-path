@@ -1,4 +1,5 @@
-import { unknown, z } from "zod";
+import { z } from "zod";
+import { AsPrimitives } from "./_to_primitives";
 import BaseValueObject from "@models/valueObject/_abstruct";
 import { EntityError } from "@error";
 import { CreatedAt, Id } from "@models/valueObject";
@@ -40,16 +41,12 @@ export default abstract class BaseEntity<T extends Record<string, BaseValueObjec
         return this._values
     }
 
-    get getRowValues(): {
-        [K in keyof T]: NonNullable<T[K]> extends { value: infer V } ? V : never;
-    } {
+    get toPrimitives(): AsPrimitives<T> {
         return Object.fromEntries(
             Object.entries(this._values).map(
                 ([key, valueObject]) => [key, valueObject.value]
             )
-        ) as {
-            [K in keyof T]: NonNullable<T[K]> extends { value: infer V } ? V : never
-        };
+        ) as AsPrimitives<T>
     }
 
     get getCreatedAt() {
