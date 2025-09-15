@@ -5,14 +5,12 @@ import { ProductEntity } from "@models/entity";
 
 export default class ProductRepository extends BaseRepository {
     @queryHandler
-    async insert(product: ProductEntity) {
-        const create_result = await this.client.product.create({
-            data: product.toPrimitives
+    async insertMany(products: ProductEntity[]) {
+        const create_result = await this.client.product.createManyAndReturn({
+            data: products.map((product) => product.toPrimitives)
         })
-        product.newId = new Id(create_result.id);
-        product.created = new CreatedAt(create_result.createdAt);
 
-        return product;
+        return create_result.map((product) => ProductEntity.fromPrimitives(product))
     }
 
     @queryHandler

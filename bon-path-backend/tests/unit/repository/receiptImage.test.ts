@@ -21,18 +21,19 @@ describe('ReceiptImageRepositoryのMockテスト', () => {
 
     const repository = new ReceiptImageRepository(PrismaMock as any);
 
-    it('insertが正常に呼び出されること', async () => {
-        PrismaMock.receiptImage.create.mockResolvedValue(mockResolvedValue);
+    it('insertManyが正常に呼び出されること', async () => {
+        const insertManymockResolvedValue = Array(10).fill(mockResolvedValue)
+        PrismaMock.receiptImage.createManyAndReturn.mockResolvedValue(insertManymockResolvedValue);
 
         const { id: _id, createdAt: _ca, ...values } = testValues;
         const entity = new ReceiptImageEntity(values);
-        const result = await repository.insert(entity);
+        const result = await repository.insertMany(Array(10).fill(entity));
         
         const { id: __id, createdAt: __ca, ...calledData } = mockResolvedValue;
-        expect(PrismaMock.receiptImage.create).toHaveBeenCalledWith({
-            data: calledData
+        expect(PrismaMock.receiptImage.createManyAndReturn).toHaveBeenCalledWith({
+            data: Array(10).fill(calledData)
         });
-        expect(result).toEqual(new ReceiptImageEntity(testValues));
+        expect(result).toEqual(Array(10).fill(new ReceiptImageEntity(testValues)));
     });
 
     it('selectByReceiptId正常に呼び出されること', async () => {

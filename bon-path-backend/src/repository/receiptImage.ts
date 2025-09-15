@@ -5,14 +5,12 @@ import { ReceiptImageEntity } from "@models/entity";
 
 export default class ReceiptImageRepository extends BaseRepository {
     @queryHandler
-    async insert(receiptImage: ReceiptImageEntity) {
-        const create_result = await this.client.receiptImage.create({
-            data: receiptImage.toPrimitives
+    async insertMany(receiptImages: ReceiptImageEntity[]) {
+        const create_result = await this.client.receiptImage.createManyAndReturn({
+            data: receiptImages.map((receiptImage) => receiptImage.toPrimitives)
         });
-        receiptImage.newId = new Id(create_result.id);
-        receiptImage.created = new CreatedAt(create_result.createdAt);
 
-        return receiptImage;
+        return create_result.map((receiptImage) => ReceiptImageEntity.fromPrimitives(receiptImage));
     }
 
     @queryHandler

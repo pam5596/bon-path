@@ -16,11 +16,11 @@ export const PrismaMock = {
         delete: vi.fn(),
     },
     category: {
-        create: vi.fn(),
+        createManyAndReturn: vi.fn(),
         findUnique: vi.fn()
     },
     product: {
-        create: vi.fn(),
+        createManyAndReturn: vi.fn(),
         findUnique: vi.fn(),
         findMany: vi.fn(),
         update: vi.fn(),
@@ -34,12 +34,12 @@ export const PrismaMock = {
         delete: vi.fn(),
     },
     receiptImage: {
-        create: vi.fn(),
+        createManyAndReturn: vi.fn(),
         findMany: vi.fn(),
         delete: vi.fn(),
     },
     purchase: {
-        create: vi.fn(),
+        createManyAndReturn: vi.fn(),
         findUnique: vi.fn(),
         findMany: vi.fn(),
         delete: vi.fn(),

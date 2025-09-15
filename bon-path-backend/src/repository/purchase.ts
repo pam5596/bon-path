@@ -5,14 +5,12 @@ import { PurchaseEntity } from "@models/entity";
 
 export default class PurchaseRepository extends BaseRepository {
     @queryHandler
-    async insert(purchase: PurchaseEntity) {
-        const create_result = await this.client.purchase.create({
-            data: purchase.toPrimitives
+    async insertMany(purchases: PurchaseEntity[]) {
+        const create_result = await this.client.purchase.createManyAndReturn({
+            data: purchases.map((purchase) => purchase.toPrimitives)
         })
-        purchase.newId = new Id(create_result.id)
-        purchase.created = new CreatedAt(create_result.createdAt)
 
-        return purchase;
+        return create_result.map((purchase) => PurchaseEntity.fromPrimitives(purchase))
     }
 
     @queryHandler
