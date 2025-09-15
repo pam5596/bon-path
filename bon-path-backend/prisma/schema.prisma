@@ -13,7 +13,7 @@ model User {
   hashedId  String    @unique @default(cuid())
   name      String    @db.VarChar(30)
   email     String    @unique
-  password  String    @db.Char(32)
+  password  String
   createdAt DateTime  @default(now())
 
   receipts Receipt[]
