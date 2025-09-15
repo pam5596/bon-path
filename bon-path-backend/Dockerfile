@@ -5,5 +5,3 @@ WORKDIR /backend
 
 RUN npm install
 RUN npm install -g dotenv-cli
-
-CMD ["npm", "run", "dev"]

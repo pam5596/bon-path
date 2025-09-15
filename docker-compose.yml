@@ -6,7 +6,7 @@ services:
       - ./bon-path-backend:/backend
     ports:
       - "8080:8080"
-    command: sh -c "npm run migrate:dev && npm run migrate:test"
+    command: sh -c "npm run migrate:dev && npm run migrate:test && npm run dev"
     depends_on:
       - database
   database:
