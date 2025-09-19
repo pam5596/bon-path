@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { AsPrimitives } from "./_to_primitives";
+import { AsPrimitives } from "./_asPrimitives";
 import BaseValueObject from "@models/valueObject/_abstruct";
 import { EntityError } from "@error";
 import { CreatedAt, Id } from "@models/valueObject";
