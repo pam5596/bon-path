@@ -82,7 +82,7 @@ describe('UserRepositoryの結合テスト', () => {
         expect(selected_result?.getValues.email).toEqual(new_values.email)
     })
 
-    it('deleteがユーザーを削除すること', async () => {
+    it('deleteByIdがユーザーを削除すること', async () => {
         const { id, createdAt, hashedId, ...values } = valueObjects;
         const entity = new UserEntity(values);
         const insert_result = await repository.insert(entity);

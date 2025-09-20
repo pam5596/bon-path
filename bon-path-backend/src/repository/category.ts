@@ -31,13 +31,14 @@ export default class CategoryRepository extends BaseRepository {
     }
 
     @queryHandler
-    async update(category: CategoryEntity) {
-        await this.client.category.update({
+    async selectByParentId(id: Id) {
+        const find_results = await this.client.category.findMany({
             where: {
-                id: category.id!.value
+                parentId: id.value
             },
-            data: category.toPrimitives
-        })
+        });
+
+        return find_results.map((category) => CategoryEntity.fromPrimitives(category))
     }
 
     @queryHandler

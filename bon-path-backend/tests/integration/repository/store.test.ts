@@ -31,7 +31,7 @@ describe('StoreRepositoryの結合テスト', () => {
 
     const repository = new StoreRepository(client);
 
-    it('insertメソッドが追加したユーザーを返す', async () => {                                        
+    it('insertメソッドが追加した店舗情報を返す', async () => {                                        
         const { id, createdAt, ...values } = valueObjects;
         const entity = new StoreEntity(values);
         const result = await repository.insert(entity);
@@ -57,7 +57,7 @@ describe('StoreRepositoryの結合テスト', () => {
     });
 
     
-    it('selectByIdが指定したIDのユーザーを返す', async () => {
+    it('selectByIdが指定したIDの店舗情報を返す', async () => {
         const { id, createdAt, ...values } = valueObjects;
         const entity = new StoreEntity(values);
         const insert_result = await repository.insert(entity);
@@ -71,7 +71,7 @@ describe('StoreRepositoryの結合テスト', () => {
         expect(null_result).toEqual(null)
     })
 
-    it('updateがユーザーの情報を更新すること', async () => {
+    it('updateが店舗情報の情報を更新すること', async () => {
         const { id, createdAt, ...values } = valueObjects;
         const entity = new StoreEntity(values);
         const insert_result = await repository.insert(entity);
@@ -95,7 +95,7 @@ describe('StoreRepositoryの結合テスト', () => {
         expect(selected_result?.getValues.googleMapLink).toEqual(new_values.googleMapLink)
     })
 
-    it('deleteがユーザーを削除すること', async () => {
+    it('deleteByIdが店舗情報を削除すること', async () => {
         const { id, createdAt, ...values } = valueObjects;
         const entity = new StoreEntity(values);
         const insert_result = await repository.insert(entity);
