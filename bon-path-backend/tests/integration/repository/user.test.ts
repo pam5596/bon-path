@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { withTestTransaction } from "./_withTestTransaction";
 import { PrismaClient } from "@prismaGeneratedClient";
-import { CreatedAt, Id, UserEmail, UserHashId, UserHashPassword, UserName } from "@models/valueObject";
+import { Id, UserEmail, UserHashId, UserHashPassword, UserName } from "@models/valueObject";
 import { UserEntity } from "@models/entity";
 import { UserRepository } from "@repository";
 
@@ -14,13 +14,9 @@ describe('UserRepositoryの結合テスト', () => {
         name: "testuser",
         email: "test@example.com",
         password: "$argon2id$v=19$m=65536,t=3,p=4$FZej+Jwsm6aZfX9+Wf3p6A$7y0SxIB7U4HQfMF5g53s6XHLr6vErvP5PrdP8R+L0rc",
-        createdAt: new Date('2025-08-29'),
-        id: 1
     }
 
     const valueObjects = {
-        id: new Id(primitives.id),
-        createdAt: new CreatedAt(primitives.createdAt),
         hashedId: new UserHashId(primitives.hashedId),
         name: new UserName(primitives.name),
         email: new UserEmail(primitives.email),
@@ -30,7 +26,7 @@ describe('UserRepositoryの結合テスト', () => {
     const repository = new UserRepository(client);
 
     it('insertメソッドが追加したユーザーを返す', async () => {                                        
-        const { id, createdAt, hashedId, ...values } = valueObjects;
+        const { hashedId, ...values } = valueObjects;
         const entity = new UserEntity(values);
         const result = await repository.insert(entity);
 
@@ -42,7 +38,7 @@ describe('UserRepositoryの結合テスト', () => {
     });
 
     it('同じemailのユーザーをinsertできないこと', async () => {
-        const { id, createdAt, hashedId, ...values } = valueObjects;
+        const { hashedId, ...values } = valueObjects;
         const entity = new UserEntity(values);
         const result = await repository.insert(entity);
 
@@ -51,7 +47,7 @@ describe('UserRepositoryの結合テスト', () => {
 
 
     it('selectByIdが指定したIDのユーザーを返す', async () => {
-        const { id, createdAt, hashedId, ...values } = valueObjects;
+        const { hashedId, ...values } = valueObjects;
         const entity = new UserEntity(values);
         const insert_result = await repository.insert(entity);
         
@@ -65,7 +61,7 @@ describe('UserRepositoryの結合テスト', () => {
     })
 
     it('updateがユーザーの情報を更新すること', async () => {
-        const { id, createdAt, hashedId, ...values } = valueObjects;
+        const { hashedId, ...values } = valueObjects;
         const entity = new UserEntity(values);
         const insert_result = await repository.insert(entity);
 
@@ -83,7 +79,7 @@ describe('UserRepositoryの結合テスト', () => {
     })
 
     it('deleteByIdがユーザーを削除すること', async () => {
-        const { id, createdAt, hashedId, ...values } = valueObjects;
+        const { hashedId, ...values } = valueObjects;
         const entity = new UserEntity(values);
         const insert_result = await repository.insert(entity);
 

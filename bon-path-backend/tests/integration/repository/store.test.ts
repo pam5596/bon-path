@@ -15,13 +15,9 @@ describe('StoreRepositoryの結合テスト', () => {
         latitude: 90.0000,
         longitude: 90.0000,
         googleMapLink: 'https://vitest.dev/',
-        createdAt: new Date('2025-08-29'),
-        id: 1
     }
 
     const valueObjects = {
-        id: new Id(primitives.id),
-        createdAt: new CreatedAt(primitives.createdAt),
         name: new StoreName(primitives.name),
         image: new StoreImage(primitives.image),
         latitude: new StoreLatitude(primitives.latitude),
@@ -32,22 +28,20 @@ describe('StoreRepositoryの結合テスト', () => {
     const repository = new StoreRepository(client);
 
     it('insertメソッドが追加した店舗情報を返す', async () => {                                        
-        const { id, createdAt, ...values } = valueObjects;
-        const entity = new StoreEntity(values);
+        const entity = new StoreEntity(valueObjects);
         const result = await repository.insert(entity);
 
-        expect(result.getValues).toEqual(values)
+        expect(result.getValues).toEqual(valueObjects)
 
         const count = await client.store.count()
         expect(count).toBe(1)
     });
 
     it('selectAllメソッドが全ての店舗を返す', async () => {
-        const { id, createdAt, ...values } = valueObjects;
 
         const insert_results = []
         for (let i = 1; i <= 10; i++) {
-            const entity = new StoreEntity(values);
+            const entity = new StoreEntity(valueObjects);
             const insert_result = await repository.insert(entity)
             insert_results.push(insert_result)
         }
@@ -58,8 +52,7 @@ describe('StoreRepositoryの結合テスト', () => {
 
     
     it('selectByIdが指定したIDの店舗情報を返す', async () => {
-        const { id, createdAt, ...values } = valueObjects;
-        const entity = new StoreEntity(values);
+        const entity = new StoreEntity(valueObjects);
         const insert_result = await repository.insert(entity);
         
         const selectable_result = await repository.selectById(insert_result.id!)
@@ -72,8 +65,7 @@ describe('StoreRepositoryの結合テスト', () => {
     })
 
     it('updateが店舗情報の情報を更新すること', async () => {
-        const { id, createdAt, ...values } = valueObjects;
-        const entity = new StoreEntity(values);
+        const entity = new StoreEntity(valueObjects);
         const insert_result = await repository.insert(entity);
 
         const new_values = {
@@ -96,8 +88,7 @@ describe('StoreRepositoryの結合テスト', () => {
     })
 
     it('deleteByIdが店舗情報を削除すること', async () => {
-        const { id, createdAt, ...values } = valueObjects;
-        const entity = new StoreEntity(values);
+        const entity = new StoreEntity(valueObjects);
         const insert_result = await repository.insert(entity);
 
         const defore_count = await client.store.count()
