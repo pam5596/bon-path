@@ -5,7 +5,7 @@ import { Id, ReceiptIsChecked, ReceiptLatitude, ReceiptLongitude, UserEmail, Use
 import { ReceiptEntity, UserEntity } from "@models/entity";
 import { ReceiptRepository, UserRepository } from "@repository";
 
-describe('ReceiptImageRepositoryの結合テスト', () => {
+describe('ReceiptRepositoryの結合テスト', () => {
     const client = new PrismaClient()
     withTestTransaction(client)
 
