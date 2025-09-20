@@ -1,4 +1,4 @@
-import { beforeEach } from "vitest";
+import { afterAll, beforeEach } from "vitest";
 import { PrismaClient } from "@prismaGeneratedClient";
 
 export function withTestTruncate(client: PrismaClient, tables: string[]) {
@@ -11,4 +11,14 @@ export function withTestTruncate(client: PrismaClient, tables: string[]) {
             `)
         }
     );
+
+    afterAll(
+        async () => {
+            await client.$executeRawUnsafe(`
+                TRUNCATE TABLE
+                    ${tables.map((t) => `"${t}"`).join(',')}
+                RESTART IDENTITY CASCADE
+            `)
+        }
+    )
 }

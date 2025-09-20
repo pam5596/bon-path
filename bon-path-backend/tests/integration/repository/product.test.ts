@@ -109,7 +109,7 @@ describe('ProductRepositoryの結合テスト', async () => {
         expect(null_result).toEqual([])
     });
 
-    it('updateが店舗情報の情報を更新すること', async () => {
+    it('updateが商品情報の情報を更新すること', async () => {
         const [store_entity, category_entity] = await foreignDataInserts()
         const entities = Array(3).fill(new ProductEntity({ 
             ...valueObjects,
@@ -133,7 +133,7 @@ describe('ProductRepositoryの結合テスト', async () => {
         expect(selected_result?.getValues.price).toEqual(new_values.price)
     })
 
-    it('deleteByIdが店舗情報を削除すること', async () => {
+    it('deleteByIdが商品情報を削除すること', async () => {
         const [store_entity, category_entity] = await foreignDataInserts()
         const entities = Array(3).fill(new ProductEntity({ 
             ...valueObjects,
