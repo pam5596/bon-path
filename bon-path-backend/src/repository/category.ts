@@ -1,6 +1,6 @@
 import BaseRepository from "./_abstruct";
 import queryHandler from "./_queryHandler";
-import { Id, CategoryName } from "@models/valueObject";
+import { Id } from "@models/valueObject";
 import { CategoryEntity } from "@models/entity";
 
 export default class CategoryRepository extends BaseRepository {

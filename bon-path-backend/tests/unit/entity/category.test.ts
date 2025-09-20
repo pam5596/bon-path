@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 import { CategoryEntity } from "@models/entity";
-import { CreatedAt, Id, CategoryName } from "@models/valueObject";
+import { Id, CategoryName } from "@models/valueObject";
 import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 describe('CategoryEntityのテスト', () => {

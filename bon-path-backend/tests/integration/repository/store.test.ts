@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { withTestTransaction } from "./_withTestTransaction";
 import { PrismaClient } from "@prismaGeneratedClient";
-import { CreatedAt, Id, StoreGoogleMapLink, StoreImage, StoreLatitude, StoreLongitude, StoreName } from "@models/valueObject";
+import { Id, StoreGoogleMapLink, StoreImage, StoreLatitude, StoreLongitude, StoreName } from "@models/valueObject";
 import { StoreEntity } from "@models/entity";
 import { StoreRepository } from "@repository";
 

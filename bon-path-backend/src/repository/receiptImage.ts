@@ -1,6 +1,6 @@
 import BaseRepository from "./_abstruct";
 import queryHandler from "./_queryHandler";
-import { Id, CreatedAt } from "@models/valueObject";
+import { Id } from "@models/valueObject";
 import { ReceiptImageEntity } from "@models/entity";
 
 export default class ReceiptImageRepository extends BaseRepository {

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { withTestTransaction } from "./_withTestTransaction";
 import { PrismaClient } from "@prismaGeneratedClient";
-import { CreatedAt, Id, CategoryName } from "@models/valueObject";
+import { Id, CategoryName } from "@models/valueObject";
 import { CategoryEntity} from "@models/entity";
 import { CategoryRepository } from "@repository";
 
