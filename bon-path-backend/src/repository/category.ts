@@ -5,12 +5,14 @@ import { CategoryEntity } from "@models/entity";
 
 export default class CategoryRepository extends BaseRepository {
     @queryHandler
-    async insertMany(categories: CategoryEntity[]) {
-        const create_result = await this.client.category.createManyAndReturn({
-            data: categories.map((category) => category.toPrimitives)
+    async insert(category: CategoryEntity) {
+        const create_result = await this.client.category.create({
+            data: category.toPrimitives
         });
 
-        return create_result.map((category) => CategoryEntity.fromPrimitives(category));
+        category.newId = new Id(create_result.id);
+
+        return category;
     }
 
     @queryHandler
@@ -26,5 +28,24 @@ export default class CategoryRepository extends BaseRepository {
         } else {
             return find_result;
         }
+    }
+
+    @queryHandler
+    async update(category: CategoryEntity) {
+        await this.client.category.update({
+            where: {
+                id: category.id!.value
+            },
+            data: category.toPrimitives
+        })
+    }
+
+    @queryHandler
+    async deleteById(id: Id) {
+        await this.client.category.delete({
+            where: {
+                id: id.value
+            }
+        })
     }
 }
