@@ -1,4 +1,4 @@
-import { StoreGoogleMapLink, StoreImage, StoreLatitude, StoreLongitude, StoreName, Id, CreatedAt } from "@models/valueObject";
+import { StoreGoogleMapLink, StoreImage, StoreLatitude, StoreLongitude, StoreName } from "@models/valueObject";
 
 export type StoreType = {
     name: StoreName,
@@ -6,12 +6,4 @@ export type StoreType = {
     latitude?: StoreLatitude,
     longitude?: StoreLongitude,
     googleMapLink?: StoreGoogleMapLink,
-    readonly createdAt?: CreatedAt
-}
-
-export type StoreUpdatableType = {
-    image: StoreImage,
-    latitude: StoreLatitude,
-    longitude: StoreLongitude,
-    googleMapLink: StoreGoogleMapLink,
 }

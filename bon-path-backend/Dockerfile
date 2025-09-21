@@ -4,5 +4,4 @@ COPY . /backend
 WORKDIR /backend
 
 RUN npm install
-CMD ["npm", "run", "dev"]
-CMD ["npm", "run", "migrate"]
+RUN npm install -g dotenv-cli

@@ -1,6 +1,6 @@
 import { z } from "zod";
 import BaseValueObject from "./_abstruct";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
+
 
 export default class StoreLatitude extends BaseValueObject<number> {
     constructor(value: number) {

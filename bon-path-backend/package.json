@@ -3,8 +3,9 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/app.ts",
-    "test": "vitest",
-    "migrate": "dotenv -e .env.develop -- npx prisma migrate dev",
+    "test": "dotenv -e .env.test -- vitest",
+    "migrate:dev": "dotenv -e .env.develop -- npx prisma migrate dev --schema=./prisma/schema.prisma",
+    "migrate:test": "dotenv -e .env.test -- npx prisma migrate dev",
     "generate": "npx prisma generate",
     "build": "esbuild --bundle --outfile=./dist/index.js --platform=node --target=node20 ./src/index.ts",
     "zip": "zip -j lambda.zip dist/index.js",

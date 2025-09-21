@@ -5,5 +5,4 @@ export type ReceiptType = {
     isChecked: ReceiptIsChecked
     latitude: ReceiptLatitude
     longitude: ReceiptLongitude
-    readonly createdAt?: CreatedAt
 }

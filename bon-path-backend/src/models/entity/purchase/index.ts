@@ -1,12 +1,14 @@
 import { z } from "zod";
 import BaseEntity from "../_abstruct";
+import { AsPrimitives } from "../_asPrimitives";
+import { OptionalToNullable } from "../_optionalToNullable";
 import type { PurchaseType } from "./type";
 import { CreatedAt, Id, PurchasePrice, PurchaseQuantity } from "@models/valueObject";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 export default class PurchaseEntity extends BaseEntity<PurchaseType> {
-    constructor(values: PurchaseType, id?: Id) {
-        super(values, PurchaseEntity.schema(), id)
+    constructor(valueObjects: PurchaseType & { id?: Id, createdAt?: CreatedAt }) {
+        const { id, createdAt, ...values } = valueObjects;
+        super(values, PurchaseEntity.schema(), id, createdAt)
     }
 
     static schema() {
@@ -16,8 +18,20 @@ export default class PurchaseEntity extends BaseEntity<PurchaseType> {
             storeId: z.instanceof(Id),
             productId: z.instanceof(Id),
             quantity: z.instanceof(PurchaseQuantity),
-            price: z.instanceof(PurchasePrice),
-            createdAt: z.instanceof(CreatedAt).optional()
+            price: z.instanceof(PurchasePrice)
+        })
+    }
+
+    static fromPrimitives(primitives: OptionalToNullable<AsPrimitives<PurchaseType> & { id?: number, createdAt?: Date }>) {
+        return new PurchaseEntity({
+            id: primitives.id ? new Id(primitives.id) : undefined,
+            createdAt: primitives.createdAt ? new CreatedAt(primitives.createdAt) : undefined,
+            receiptId: new Id(primitives.receiptId),
+            userId: new Id(primitives.userId),
+            storeId: new Id(primitives.storeId),
+            productId: new Id(primitives.productId),
+            quantity: new PurchaseQuantity(primitives.quantity),
+            price: new PurchasePrice(primitives.price)
         })
     }
 

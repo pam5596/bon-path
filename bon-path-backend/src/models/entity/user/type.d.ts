@@ -1,14 +1,7 @@
-import { UserHashId, UserName, UserEmail, UserHashPassword, Id, CreatedAt } from "@models/valueObject";
+import { UserHashId, UserName, UserEmail, UserHashPassword } from "@models/valueObject";
 
 export type UserType = {
-    readonly hashedId?: UserHashId
-    name: UserName
-    email: UserEmail
-    password: UserHashPassword
-    readonly createdAt?: CreatedAt
-}
-
-export type UserUpdatableType = {
+    hashedId?: UserHashId
     name: UserName
     email: UserEmail
     password: UserHashPassword

@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "experimentalDecorators": false,
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "Bundler",
@@ -14,8 +15,11 @@
     "paths": {
       "@constants/*": ["constants/*"],
       "@models/*": ["models/*"],
-      "@error": ["models/error"],
+      "@error": ["error"],
       "@valueObject": ["models/valueObject"],
+      "@entity": ["models/entity"],
+      "@repository": ["repository"],
+      "@prismaGeneratedClient": ["../prisma/generated/prisma"]
     }
   }
 }

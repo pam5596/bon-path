@@ -1,4 +1,4 @@
-import { ProductImage, ProductName, ProductPrice, Id, CreatedAt } from "@models/valueObject";
+import { ProductImage, ProductName, ProductPrice, Id } from "@models/valueObject";
 
 export type ProductType = {
     readonly storeId: Id,
@@ -6,11 +6,4 @@ export type ProductType = {
     name: ProductName,
     image?: ProductImage,
     price: ProductPrice,
-    readonly createdAt?: CreatedAt
-}
-
-export type ProductUpdatableType = {
-    name: ProductName,
-    image: ProductImage,
-    price: ProductPrice
 }
