@@ -27,18 +27,19 @@ describe('ProductRepositoryのMockテスト', () => {
 
     const repository = new ProductRepository(PrismaMock as any);
 
-    it('insertが正常に呼び出されること', async () => {
-        PrismaMock.product.create.mockResolvedValue(mockResolvedValue);
+    it('insertManyが正常に呼び出されること', async () => {
+        const insertManymockResolvedValue = Array(10).fill(mockResolvedValue)
+        PrismaMock.product.createManyAndReturn.mockResolvedValue(insertManymockResolvedValue);
 
         const { id: _id, createdAt: _ca, ...values } = testValues;
         const entity = new ProductEntity(values);
-        const result = await repository.insert(entity);
+        const result = await repository.insertMany(Array(10).fill(entity));
         
         const { id: __id, createdAt: __ca, ...calledData } = mockResolvedValue;
-        expect(PrismaMock.product.create).toHaveBeenCalledWith({
-            data: calledData
+        expect(PrismaMock.product.createManyAndReturn).toHaveBeenCalledWith({
+            data: Array(10).fill(calledData)
         });
-        expect(result).toEqual(new ProductEntity(testValues));
+        expect(result).toEqual(Array(10).fill(new ProductEntity(testValues)));
     });
 
     it('selectByIdがnullでないときでも正常に呼び出されること', async () => {

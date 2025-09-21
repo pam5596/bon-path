@@ -27,8 +27,8 @@ export default class StoreEntity extends BaseEntity<StoreType> {
             createdAt: primitives.createdAt ? new CreatedAt(primitives.createdAt) : undefined,
             name: new StoreName(primitives.name),
             image: primitives.image ? new StoreImage(primitives.image) : undefined,
-            latitude: primitives.latitude ? new StoreLatitude(primitives.latitude) : undefined,
-            longitude: primitives.longitude ? new StoreLongitude(primitives.longitude) : undefined,
+            latitude: new StoreLatitude(primitives.latitude!),
+            longitude: new StoreLongitude(primitives.longitude!),
             googleMapLink: primitives.googleMapLink ? new StoreGoogleMapLink(primitives.googleMapLink) : undefined
         })
     }

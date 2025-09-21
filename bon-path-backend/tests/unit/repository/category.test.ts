@@ -19,18 +19,19 @@ describe('CategoryRepositoryのMockテスト', () => {
 
     const repository = new CategoryRepository(PrismaMock as any);
 
-    it('insertが正常に呼び出されること', async () => {
-        PrismaMock.category.create.mockResolvedValue(mockResolvedValue);
+    it('insertManyが正常に呼び出されること', async () => {
+        const insertManymockResolvedValue = Array(10).fill(mockResolvedValue)
+        PrismaMock.category.createManyAndReturn.mockResolvedValue(insertManymockResolvedValue);
 
         const { id: _id, ...values } = testValues;
         const entity = new CategoryEntity(values);
-        const result = await repository.insert(entity);
+        const result = await repository.insertMany(Array(10).fill(entity));
         
         const { id: __id, ...calledData } = mockResolvedValue;
-        expect(PrismaMock.category.create).toHaveBeenCalledWith({
-            data: calledData
+        expect(PrismaMock.category.createManyAndReturn).toHaveBeenCalledWith({
+            data: Array(10).fill(calledData)
         });
-        expect(result).toEqual(new CategoryEntity(testValues));
+        expect(result).toEqual(Array(10).fill(new CategoryEntity(testValues)));
     });
 
     it('selectByIdがnullでないときでも正常に呼び出されること', async () => {

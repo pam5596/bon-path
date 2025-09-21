@@ -29,18 +29,19 @@ describe('PurchaseRepositoryのMockテスト', () => {
 
     const repository = new PurchaseRepository(PrismaMock as any)
 
-    it('insertが正常に呼び出されること', async () => {
-        PrismaMock.purchase.create.mockResolvedValue(mockResolvedValue);
+    it('insertManyが正常に呼び出されること', async () => {
+        const insertManymockResolvedValue = Array(10).fill(mockResolvedValue)
+        PrismaMock.purchase.createManyAndReturn.mockResolvedValue(insertManymockResolvedValue);
 
         const { id: _id, createdAt: _ca, ...values } = testValues;
         const entity = new PurchaseEntity(values);
-        const result = await repository.insert(entity);
+        const result = await repository.insertMany(Array(10).fill(entity));
         
         const { id: __id, createdAt: __ca, ...calledData } = mockResolvedValue;
-        expect(PrismaMock.purchase.create).toHaveBeenCalledWith({
-            data: calledData
+        expect(PrismaMock.purchase.createManyAndReturn).toHaveBeenCalledWith({
+            data: Array(10).fill(calledData)
         });
-        expect(result).toEqual(new PurchaseEntity(testValues));
+        expect(result).toEqual(Array(10).fill(new PurchaseEntity(testValues)));
     });
 
     it('selectByIdがnullでないときでも正常に呼び出されること', async () => {
