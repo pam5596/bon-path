@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "experimentalDecorators": false,
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "Bundler",
@@ -10,5 +11,15 @@
     ],
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
+    "baseUrl": "./src",
+    "paths": {
+      "@constants/*": ["constants/*"],
+      "@models/*": ["models/*"],
+      "@error": ["error"],
+      "@valueObject": ["models/valueObject"],
+      "@entity": ["models/entity"],
+      "@repository": ["repository"],
+      "@prismaGeneratedClient": ["../prisma/generated/prisma"]
+    }
   }
 }
