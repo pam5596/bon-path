@@ -12,13 +12,15 @@ services:
       - storage
   database:
     container_name: bon-path-database
-    image: postgres:latest
+    image: postgres:13
     environment:
       POSTGRES_USER: bonpath
       POSTGRES_PASSWORD: bonpath
       POSTGRES_DB: bonpath
     ports:
       - "5432:5432"
+    volumes:
+      - ./.psql-data:/var/lib/postgresql/data
   storage:
     container_name: bon-path-storage
     image: minio/minio:RELEASE.2025-09-07T16-13-09Z
