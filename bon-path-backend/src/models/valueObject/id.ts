@@ -9,6 +9,7 @@ export default class Id extends BaseValueObject<number> {
 
     static schema() {
         return z
+            .number()
             .int()
             .min(1)
     }

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { CreatedAt } from "@valueObject";
 
-describe("Id VOのテスト", () => {
+describe("CreatedAtのテスト", () => {
     const value = new Date("2025-08-24T08:32:45.123Z")
 
     it('Dateが正であること', () => {
@@ -14,7 +14,7 @@ describe("Id VOのテスト", () => {
 
     it('valueメソッドが与えられた値を返すこと', () => {
         const createdAt = new CreatedAt(value);
-        expect(createdAt.value).toBe(value);
+        expect(createdAt.value).toStrictEqual(value);
     })
 
     it('equalsメソッドが同じ値のcreatedAtに対してtrueを返すこと', () => {

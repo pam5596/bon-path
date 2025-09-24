@@ -25,13 +25,13 @@ describe('CategoryRepositoryのMockテスト', () => {
 
         const { id: _id, ...values } = testValues;
         const entity = new CategoryEntity(values);
-        const result = await repository.insertMany(Array(10).fill(entity));
+        const result = await repository.insert(entity);
         
         const { id: __id, ...calledData } = mockResolvedValue;
         expect(PrismaMock.category.createManyAndReturn).toHaveBeenCalledWith({
-            data: Array(10).fill(calledData)
+            data: calledData
         });
-        expect(result).toEqual(Array(10).fill(new CategoryEntity(testValues)));
+        expect(result).toEqual(new CategoryEntity(testValues));
     });
 
     it('selectByIdがnullでないときでも正常に呼び出されること', async () => {

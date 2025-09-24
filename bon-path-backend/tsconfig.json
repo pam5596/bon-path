@@ -19,8 +19,7 @@
       "@valueObject": ["models/valueObject"],
       "@entity": ["models/entity"],
       "@repository": ["repository"],
-      "@client": ["clients"],
-      "@prismaGeneratedClient": ["../prisma/generated/prisma"]
+      "@client": ["clients"]
     }
   }
 }

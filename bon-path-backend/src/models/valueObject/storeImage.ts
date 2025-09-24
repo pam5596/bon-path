@@ -9,6 +9,7 @@ export default class StoreImage extends BaseValueObject<string> {
 
     static schema() {
         return z
+            .string()
             .url();
     }
 }

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { withTestTruncate } from "./_withTestTruncate";
-import { PrismaClient } from "@prismaGeneratedClient";
+import { PrismaClient } from "@client";
 import { Id, UserEmail, UserHashPassword, UserName, ReceiptIsChecked, ReceiptLatitude, ReceiptLongitude, ReceiptImageUrl} from "@models/valueObject";
 import { UserEntity, ReceiptEntity, ReceiptImageEntity } from "@models/entity";
 import { UserRepository, ReceiptRepository, ReceiptImageRepository } from "@repository";

@@ -17,7 +17,7 @@ export default abstract class BaseEntity<T extends Record<string, BaseValueObjec
     }
 
     validate(values: T, schema: z.ZodObject<z.ZodRawShape>): T {
-        const parse_result = schema.safeParse(values, { reportInput: true});
+        const parse_result = schema.safeParse(values);
 
         if (!parse_result.success) {
             const zod_error_issues = parse_result.error.issues
@@ -26,7 +26,7 @@ export default abstract class BaseEntity<T extends Record<string, BaseValueObjec
                 zod_error_issues.map((issue) => issue.message).join(", "),
                 zod_error_issues.map((issue) => issue.code).join(", "),
                 this.constructor.name,
-                zod_error_issues[0].input
+                values
             );
         }
 

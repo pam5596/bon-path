@@ -1,5 +1,5 @@
 import { beforeEach, afterEach } from "vitest";
-import { PrismaClient } from "@prismaGeneratedClient";
+import { PrismaClient } from "@client";
 
 export function withTestTransaction(client: PrismaClient) {
     beforeEach(
