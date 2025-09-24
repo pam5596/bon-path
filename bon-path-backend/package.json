@@ -3,7 +3,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/app.ts",
-    "test": "dotenv -e .env.test -- vitest",
+    "test": "dotenv -e .env.test -e .env -- vitest",
     "migrate:dev": "dotenv -e .env.develop -- npx prisma migrate dev --schema=./prisma/schema.prisma",
     "migrate:test": "dotenv -e .env.test -- npx prisma migrate dev",
     "generate": "npx prisma generate",

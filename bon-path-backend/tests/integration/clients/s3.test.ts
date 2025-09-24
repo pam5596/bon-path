@@ -34,7 +34,6 @@ describe('AwsS3Clientの結合テスト', () => {
     })
 
     it('deleteObjectメソッドがファイルをを削除すること', async () => {
-        const response = await client.deleteObject('sample/1.png')
-        console.log(response)
+        await client.deleteObject('sample/1.png')
     })
 })
