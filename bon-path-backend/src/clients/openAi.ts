@@ -1,7 +1,7 @@
 import { ChatOpenAI } from "@langchain/openai";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { StructuredOutputParser } from "langchain/output_parsers";
-import z, { ZodRawShape } from "zod";
+import z from "zod";
 
 export class LangChainOpenAiClient extends ChatOpenAI {
     constructor(options: {
@@ -12,10 +12,10 @@ export class LangChainOpenAiClient extends ChatOpenAI {
         super(options)
     }
 
-    async queryToJsonParser(
-        query: string,
+    async ocrToJsonParser(
+        queryImageUrls: string[],
         promptMessage: [['system', string], ['human', string]],
-        responseSchema: z.ZodObject<ZodRawShape>
+        responseSchema: z.ZodObject<any>
     ) {
         const parser = StructuredOutputParser.fromZodSchema(responseSchema);
 
@@ -23,8 +23,22 @@ export class LangChainOpenAiClient extends ChatOpenAI {
         const partialedPrompt = await prompt.partial({
             format_instructions: parser.getFormatInstructions(),
         });
+        const formattedPrompt = await partialedPrompt.format({});
 
-        const chain = partialedPrompt.pipe(this).pipe(parser);
-        return await chain.invoke({ query })
+        const response = await this.invoke([{
+            role: 'user',
+            content: [
+                { type: "text", text: formattedPrompt },
+                queryImageUrls.map((url) => ({ 
+                    type: "image_url", 
+                    image_url: { url } 
+                })),
+            ],
+        }])
+
+        const contentString = Array.isArray(response.content)
+            ? response.content.map((c: any) => typeof c === "string" ? c : c.text).join("\n")
+            : response.content;
+        return await parser.parse(contentString);
     }
 }
