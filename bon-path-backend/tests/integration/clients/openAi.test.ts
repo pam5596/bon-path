@@ -1,3 +1,4 @@
+import z from "zod";
 import { describe, expect, it } from "vitest";
 import { LangChainOpenAiClient } from "@client";
 
@@ -11,5 +12,8 @@ describe('LangChainOpenAiClientの結合テスト', () => {
     it('APIキーが読み込まれていて正常に接続できること', async () => {
         const response = await client.invoke("Say 'Hello, LangChain!'")
         console.log(response)
+
+        expect(response.content).toBeTypeOf('string')
+        expect(response.response_metadata.model_name).toBe('gpt-4o-mini-2024-07-18')
     });
 })

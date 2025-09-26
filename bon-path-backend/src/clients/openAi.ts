@@ -11,34 +11,4 @@ export class LangChainOpenAiClient extends ChatOpenAI {
     }) {
         super(options)
     }
-
-    async ocrToJsonParser(
-        queryImageUrls: string[],
-        promptMessage: [['system', string], ['human', string]],
-        responseSchema: z.ZodObject<any>
-    ) {
-        const parser = StructuredOutputParser.fromZodSchema(responseSchema);
-
-        const prompt = ChatPromptTemplate.fromMessages(promptMessage)
-        const partialedPrompt = await prompt.partial({
-            format_instructions: parser.getFormatInstructions(),
-        });
-        const formattedPrompt = await partialedPrompt.format({});
-
-        const response = await this.invoke([{
-            role: 'user',
-            content: [
-                { type: "text", text: formattedPrompt },
-                queryImageUrls.map((url) => ({ 
-                    type: "image_url", 
-                    image_url: { url } 
-                })),
-            ],
-        }])
-
-        const contentString = Array.isArray(response.content)
-            ? response.content.map((c: any) => typeof c === "string" ? c : c.text).join("\n")
-            : response.content;
-        return await parser.parse(contentString);
-    }
 }
