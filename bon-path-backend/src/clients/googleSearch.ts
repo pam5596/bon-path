@@ -1,5 +1,4 @@
 import { customsearch_v1 } from "googleapis";
-import { GlobalOptions } from "googleapis/build/src/apis/abusiveexperiencereport";
 
 export class GoogleSearchAPIClient extends customsearch_v1.Customsearch {
     private auth: string;

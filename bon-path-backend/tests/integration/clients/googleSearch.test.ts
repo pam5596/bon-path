@@ -4,7 +4,7 @@ import { GoogleSearchAPIClient } from "@client";
 describe('GoogleSearchAPIClientの結合テスト', () => {
     const client = new GoogleSearchAPIClient({
         apiVersion: 'v1',
-        apiKey: process.env.GOOGLE_SEARCH_API_KEY!,
+        apiKey: process.env.GOOGLE_API_KEY!,
         engineCx: process.env.GOOGLE_SEARCH_CX!
     })
 
