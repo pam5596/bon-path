@@ -8,18 +8,18 @@ import { ChatPromptTemplate } from "@langchain/core/prompts";
 
 export class ReceiptOCRService implements BaseService {
     constructor(
-        public request: {
-            query: ReceiptImageUrl[],
-            parser: StructuredOutputParser<any>,
-            prompt: ChatPromptTemplate
-        },
         public client: LangChainOpenAiClient,
     ){}
 
-    async execute() {
+    async execute(request: {
+            query: ReceiptImageUrl[],
+            parser: StructuredOutputParser<any>,
+            prompt: ChatPromptTemplate
+        }
+    ) {
         try {
-            const partialedPrompt = await this.request.prompt.partial({
-                format_instructions: this.request.parser.getFormatInstructions().replace(/\s+/g, " "),
+            const partialedPrompt = await request.prompt.partial({
+                format_instructions: request.parser.getFormatInstructions().replace(/\s+/g, " "),
             });
             const formattedPrompt = await partialedPrompt.format({});
 
@@ -27,7 +27,7 @@ export class ReceiptOCRService implements BaseService {
                 role: 'user',
                 content: [
                     { type: "text", text: formattedPrompt },
-                    ...this.request.query.map((url) => ({ 
+                    ...request.query.map((url) => ({ 
                         type: "image_url", 
                         image_url: { url: url.value } 
                     })),
@@ -39,7 +39,7 @@ export class ReceiptOCRService implements BaseService {
                     ERROR_MESSAGES.service.receiptOcr,
                     e.message,
                     this.constructor.name,
-                    this.request
+                    request
                 )
             } else {
                 throw e

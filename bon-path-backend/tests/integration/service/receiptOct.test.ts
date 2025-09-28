@@ -22,13 +22,11 @@ describe('ReceiptOCRServiceの結合テスト', () => {
         temperature: 0
     })
 
-    const service = new ReceiptOCRService({
-        query, prompt, parser
-    }, client)
+    const service = new ReceiptOCRService(client)
 
     it('レシートの画像をOCR分析できること', async () => {
         try {
-            const response = await service.execute()
+            const response = await service.execute({query, prompt, parser})
             const responseContent = await parser.parse(
                 Array.isArray(response.content) ?
                     response.content.map((c) => String(c)).join('\n') :
