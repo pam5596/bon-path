@@ -1,6 +1,6 @@
 import { SearchProductService } from "service";
 import { GoogleSearchAPIClient } from "@client";
-import { describe, it } from "vitest";
+import { describe, it, expect } from "vitest";
 import { ProductName } from "@models/valueObject";
 
 describe('SearchProductServiceの結合テスト', () => {
@@ -17,5 +17,6 @@ describe('SearchProductServiceの結合テスト', () => {
         const response = await service.execute(request);
 
         console.log(response)
+        expect(response.length).toBe(10)
     })
 })
