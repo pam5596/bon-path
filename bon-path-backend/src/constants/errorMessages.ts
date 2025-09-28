@@ -60,6 +60,10 @@ export const ERROR_MESSAGES = {
         googleMapPlaces: "GoogleMap検索処理で予期せぬエラーが発生しました。開発者に問い合わせてください。"
     },
     service: {
-        receiptOcr: "レシートのOCR処理で予期せぬエラーが発生しました。開発者に問い合わせてください。"
+        receiptOcr: "レシートのOCR処理で予期せぬエラーが発生しました。開発者に問い合わせてください。",
+        searchProduct: {
+            detail: "商品検索処理で検索結果を取得できませんでした。開発者に問い合わせてください。",
+            issue: "property of customsearch_v1.Schema$Search.items not found."
+        }
     }
 }
