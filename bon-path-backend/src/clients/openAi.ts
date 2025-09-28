@@ -1,7 +1,7 @@
 import { ChatOpenAI } from "@langchain/openai";
-import { ChatPromptTemplate } from "@langchain/core/prompts";
-import { StructuredOutputParser } from "langchain/output_parsers";
 import z from "zod";
+import { StructuredOutputParser } from "langchain/output_parsers";
+import { ChatPromptTemplate } from "@langchain/core/prompts";
 
 export class LangChainOpenAiClient extends ChatOpenAI {
     constructor(options: {
@@ -10,5 +10,22 @@ export class LangChainOpenAiClient extends ChatOpenAI {
         temperature: 0
     }) {
         super(options)
+    }
+
+    static createParserFromZodSchema(zodSchema: z.ZodObject<any>) {
+        return StructuredOutputParser.fromZodSchema(zodSchema)
+    }
+
+    static createPromptFromMessage(messages: { system: string, human: string }) {
+        return ChatPromptTemplate.fromMessages([
+            [
+                'system',
+                messages.system
+            ],
+            [
+                'human',
+                messages.human
+            ]
+        ])
     }
 }
