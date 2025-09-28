@@ -8,6 +8,7 @@ export default class ProductImage extends BaseValueObject<string> {
 
     static schema() {
         return z
+            .string()
             .url();
     }
 }

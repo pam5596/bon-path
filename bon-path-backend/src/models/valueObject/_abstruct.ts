@@ -10,7 +10,7 @@ export default abstract class BaseValueObject<T> {
     }
 
     validate(value: T, schema: z.ZodType<T>): T {
-        const parse_result = schema.safeParse(value, { reportInput: true });
+        const parse_result = schema.safeParse(value);
 
         if (!parse_result.success) {
             const zod_error_issues = parse_result.error.issues
@@ -25,7 +25,7 @@ export default abstract class BaseValueObject<T> {
                     issue.code
                 ).join("\n"),
                 this.constructor.name,
-                zod_error_issues[0].input
+                value
             );
         }
         return parse_result.data;

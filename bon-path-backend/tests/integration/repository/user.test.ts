@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { withTestTransaction } from "./_withTestTransaction";
-import { PrismaClient } from "@prismaGeneratedClient";
+import { PrismaClient } from "@client";
 import { Id, UserEmail, UserHashId, UserHashPassword, UserName } from "@models/valueObject";
 import { UserEntity } from "@models/entity";
 import { UserRepository } from "@repository";

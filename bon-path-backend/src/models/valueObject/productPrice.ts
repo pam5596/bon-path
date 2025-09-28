@@ -8,6 +8,7 @@ export default class ProductPrice extends BaseValueObject<number> {
 
     static schema() {
         return z
+            .number()
             .int()
             .min(0)
     }

@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prismaGeneratedClient";
+import { PrismaClient } from "@client";
 
 export default abstract class BaseRepository {
     protected client: PrismaClient;

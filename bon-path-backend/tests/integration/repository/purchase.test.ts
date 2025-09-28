@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { withTestTruncate } from "./_withTestTruncate";
-import { PrismaClient } from "@prismaGeneratedClient";
+import { PrismaClient } from "@client";
 import {
     Id, 
     ReceiptIsChecked, ReceiptLatitude, ReceiptLongitude, 

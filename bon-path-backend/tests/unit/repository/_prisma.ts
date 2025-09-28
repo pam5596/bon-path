@@ -1,4 +1,3 @@
-import { PrismaClient } from "@prismaGeneratedClient";
 import { vi } from "vitest";
 
 export const PrismaMock = {

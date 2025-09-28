@@ -10,8 +10,8 @@ export default class UserPassword extends BaseValueObject<string> {
     static schema() {
         return z
             .string()
-            .min(6, { error: ERROR_MESSAGES.valueObjects._tag + ERROR_MESSAGES.valueObjects.userPassword.minError })
-            .max(32, { error: ERROR_MESSAGES.valueObjects._tag + ERROR_MESSAGES.valueObjects.userPassword.maxError })
-            .regex(/^[A-Za-z0-9]+$/, { error: ERROR_MESSAGES.valueObjects._tag + ERROR_MESSAGES.valueObjects.userPassword.regexError })
+            .min(6, { message: ERROR_MESSAGES.valueObjects._tag + ERROR_MESSAGES.valueObjects.userPassword.minError })
+            .max(32, { message: ERROR_MESSAGES.valueObjects._tag + ERROR_MESSAGES.valueObjects.userPassword.maxError })
+            .regex(/^[A-Za-z0-9]+$/, { message: ERROR_MESSAGES.valueObjects._tag + ERROR_MESSAGES.valueObjects.userPassword.regexError })
     }
 }

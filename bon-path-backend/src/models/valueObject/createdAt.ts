@@ -9,6 +9,10 @@ export default class CreatedAt extends BaseValueObject<Date> {
     static schema() {
         return z
             .date()
-            .max(Date.now())
+            .max(new Date())
+    }
+
+    equals(other: CreatedAt): boolean {
+        return this._value.getTime() === other._value.getTime();
     }
 }
