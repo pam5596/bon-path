@@ -1,3 +1,5 @@
+import { ERROR_MESSAGES } from "@constants/errorMessages";
+import { ClientError } from "@error";
 import { places_v1 } from "googleapis";
 
 export class GoogleMapPlacesAPIClient extends places_v1.Places {
@@ -10,23 +12,53 @@ export class GoogleMapPlacesAPIClient extends places_v1.Places {
     }
 
     async searchPlaces(textQuery: string) {
-        return await this.places.searchText({
-            fields: '*',
-            key: this.key,
-            requestBody: {
-                textQuery,
-                maxResultCount: 10,
-                languageCode: 'ja'
+        try {
+            return await this.places.searchText({
+                fields: '*',
+                key: this.key,
+                requestBody: {
+                    textQuery,
+                    maxResultCount: 10,
+                    languageCode: 'ja'
+                }
+            })
+        } catch (e) {
+            if (e instanceof Error) {
+                throw new ClientError(
+                    500,
+                    ERROR_MESSAGES.client.googleMapPlaces,
+                    e.message,
+                    this.constructor.name,
+                    'searchPlaces',
+                    textQuery
+                )
+            } else {
+                throw e
             }
-        })
+        }
     }
 
     async getPhotoUri(name: string) {
-        return await this.places.photos.getMedia({
-            name: `${name}/media`,
-            key: this.key,
-            maxWidthPx: 400,
-            skipHttpRedirect: true
-        })
+        try {
+            return await this.places.photos.getMedia({
+                name: `${name}/media`,
+                key: this.key,
+                maxWidthPx: 400,
+                skipHttpRedirect: true
+            })
+        } catch (e) {
+            if (e instanceof Error) {
+                throw new ClientError(
+                    500,
+                    ERROR_MESSAGES.client.googleMapPlaces,
+                    e.message,
+                    this.constructor.name,
+                    'getPhotoUri',
+                    name
+                )
+            } else {
+                throw e
+            }
+        }
     }
 }

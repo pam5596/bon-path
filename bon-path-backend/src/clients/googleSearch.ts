@@ -1,3 +1,5 @@
+import { ERROR_MESSAGES } from "@constants/errorMessages";
+import { ClientError } from "@error";
 import { customsearch_v1 } from "googleapis";
 
 export class GoogleSearchAPIClient extends customsearch_v1.Customsearch {
@@ -12,12 +14,27 @@ export class GoogleSearchAPIClient extends customsearch_v1.Customsearch {
     }
 
     async searchImages(q: string) {
-        return await this.cse.list({
-            auth: this.auth,
-            cx: this.cx,
-            q,
-            searchType: 'image',
-            num: 10
-        })
+        try {
+            return await this.cse.list({
+                auth: this.auth,
+                cx: this.cx,
+                q,
+                searchType: 'image',
+                num: 10
+            })
+        } catch (e) {
+            if (e instanceof Error) {
+                throw new ClientError(
+                    500,
+                    ERROR_MESSAGES.client.googleSearch,
+                    e.message,
+                    this.constructor.name,
+                    'searchImages',
+                    q
+                )
+            } else {
+                throw e
+            }
+        }
     }
 }
