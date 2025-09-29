@@ -68,6 +68,7 @@ export const ERROR_MESSAGES = {
         searchStorePlace: {
             detail: "店舗検索処理で検索結果を取得できませんでした。開発者に問い合わせてください。",
             issue: "property of places_v1.Schema$GoogleMapsPlacesV1SearchTextResponse.places not found."
-        }
+        },
+        productNameExtract: "商品名の抽出処理に失敗しまた。開発者に問い合わせてください。"
     }
 }

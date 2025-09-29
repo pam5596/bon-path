@@ -23,6 +23,13 @@ export const OPEN_AI_PROMPTS = {
                     quantity: PurchaseQuantity.schema().describe('Number of products purchased'),
                 }).describe('information per product')
             )
-        }) 
+        })
+    },
+    productNameExtract: {
+        system: `
+            Extract only the product name from the website title.
+            Return ONLY the product name as plain text.
+        `,
+        human: "WebsiteTitle: {query}"
     }
 }
