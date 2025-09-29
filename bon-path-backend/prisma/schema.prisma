@@ -71,6 +71,7 @@ model Product {
   categoryId    Int
   name          String
   image         String?
+  link          String?
   price         Int
   createdAt     DateTime  @default(now())
   

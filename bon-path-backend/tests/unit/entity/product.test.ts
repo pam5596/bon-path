@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 import { ProductEntity } from "@models/entity";
-import { CreatedAt, Id, ProductImage, ProductName, ProductPrice } from "@models/valueObject";
+import { CreatedAt, Id, ProductImage, ProductLink, ProductName, ProductPrice } from "@models/valueObject";
 import { ERROR_MESSAGES } from "@constants/errorMessages";
 
 describe('ProductEntityのテスト', () => {
@@ -11,6 +11,7 @@ describe('ProductEntityのテスト', () => {
         image: "https://vitest.dev/image",
         name: "あううぃああ商品",
         price: 100,
+        link: "https://vitest.dev/context",
         createdAt: new Date('2025-08-29')
     }
     
@@ -21,6 +22,7 @@ describe('ProductEntityのテスト', () => {
         image: new ProductImage(testPrimitives.image),
         name: new ProductName(testPrimitives.name),
         price: new ProductPrice(testPrimitives.price),
+        link: new ProductLink(testPrimitives.link),
         createdAt: new CreatedAt(testPrimitives.createdAt)
     }
 
@@ -61,7 +63,8 @@ describe('ProductEntityのテスト', () => {
     test('valuesセッターが正しく機能すること', () => {
         const entity = new ProductEntity(testValueObjects)
         const new_values = {
-            image: new ProductImage("https://vitest.dev/image2"),
+            image: new ProductImage("https://vitest.dev/image"),
+            link: new ProductLink("https://vitest.dev/context2"),
             name: new ProductName("あいうえお商品"),
             price: new ProductPrice(120)
         }
@@ -70,6 +73,7 @@ describe('ProductEntityのテスト', () => {
         expect(entity.getValues.image).toEqual(new_values.image);
         expect(entity.getValues.name).toEqual(new_values.name);
         expect(entity.getValues.price).toEqual(new_values.price);
+        expect(entity.getValues.link).toEqual(new_values.link);
     })
 
     test('equalsメソッドが正しく機能すること', () => {

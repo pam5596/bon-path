@@ -3,7 +3,7 @@ import BaseEntity from "../_abstruct";
 import { AsPrimitives } from "../_asPrimitives";
 import { OptionalToNullable } from "../_optionalToNullable";
 import type { ProductType } from "./type";
-import { CreatedAt, Id, ProductImage, ProductName, ProductPrice } from "@models/valueObject";
+import { CreatedAt, Id, ProductImage, ProductLink, ProductName, ProductPrice } from "@models/valueObject";
 
 export default class ProductEntity extends BaseEntity<ProductType> {
     constructor(valueObjects: ProductType & { id?: Id, createdAt?: CreatedAt }) {        
@@ -17,6 +17,7 @@ export default class ProductEntity extends BaseEntity<ProductType> {
             categoryId: z.instanceof(Id),
             name: z.instanceof(ProductName),
             image: z.instanceof(ProductImage).optional(),
+            link: z.instanceof(ProductLink).optional(),
             price: z.instanceof(ProductPrice)
         })
     }
@@ -29,6 +30,7 @@ export default class ProductEntity extends BaseEntity<ProductType> {
             categoryId: new Id(primitives.categoryId),
             name: new ProductName(primitives.name),
             image: primitives.image ? new ProductImage(primitives.image) : undefined,
+            link: primitives.link ? new ProductLink(primitives.link) : undefined,
             price: new ProductPrice(primitives.price)
         })
     }
