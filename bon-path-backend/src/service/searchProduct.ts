@@ -1,6 +1,6 @@
 import { GoogleSearchAPIClient } from "@client";
 import BaseService from "./_interface";
-import { ProductImage, ProductName } from "@models/valueObject";
+import { ProductImage, ProductLink, ProductName } from "@models/valueObject";
 import { ServiceError } from "@error";
 import { ERROR_MESSAGES } from "@constants/errorMessages";
 
@@ -9,7 +9,11 @@ export class SearchProductService implements BaseService {
         public client: GoogleSearchAPIClient
     ){}
 
-    async execute(request: ProductName): Promise<{ name: ProductName, image: ProductImage}[]> {
+    async execute(request: ProductName): Promise<{ 
+        name: ProductName, 
+        image?: ProductImage,
+        link?: ProductLink
+    }[]> {
         const response = await this.client.searchImages(request.value)
 
         if (!response.data.items) throw new ServiceError(
@@ -20,11 +24,12 @@ export class SearchProductService implements BaseService {
         )
 
         return response.data.items
-            .filter((item) => item.title && item.image?.thumbnailLink)
+            .filter((item) => item.title)
             .map((item) => {
                 return {
                     name: new ProductName(item.title!),
-                    image: new ProductImage(item.image!.thumbnailLink!)
+                    image: item.image?.thumbnailLink ? new ProductImage(item.image.thumbnailLink) : undefined,
+                    link: item.image?.contextLink ? new ProductLink(item.image.contextLink) : undefined
                 }
             })
     }
