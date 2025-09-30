@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { CreatedAt, Id, ProductImage, ProductName, ProductPrice } from "@models/valueObject";
+import { CreatedAt, Id, ProductImage, ProductLink, ProductName, ProductPrice } from "@models/valueObject";
 import { ProductEntity } from "@models/entity";
 import { ProductRepository } from "@repository";
 import { PrismaMock } from "./_prisma";
@@ -10,6 +10,7 @@ describe('ProductRepositoryのMockテスト', () => {
         categoryId: 3,
         price: 2000,
         image: "https://vitest.dev/image",
+        link: "https://vitest.dev/context",
         name: "あううぃああバナナ",
         createdAt: new Date('2025-09-10'),
         id: 1
@@ -23,6 +24,7 @@ describe('ProductRepositoryのMockテスト', () => {
         price: new ProductPrice(mockResolvedValue.price),
         image: new ProductImage(mockResolvedValue.image),
         name: new ProductName(mockResolvedValue.name),
+        link: new ProductLink(mockResolvedValue.link)
     }
 
     const repository = new ProductRepository(PrismaMock as any);

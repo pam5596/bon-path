@@ -24,6 +24,7 @@ export { default as CategoryName } from "./categoryName";
 export { default as ProductName } from "./productName";
 export { default as ProductImage } from "./productImage";
 export { default as ProductPrice } from "./productPrice";
+export { default as ProductLink } from "./productLink";
 
 export { default as PurchaseQuantity } from "./purchaseQuantity";
 export { default as PurchasePrice } from "./purchasePrice";
