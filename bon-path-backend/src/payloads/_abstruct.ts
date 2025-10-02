@@ -15,13 +15,7 @@ export default abstract class BasePayload<T extends {
         return this._values
     }
 
-    static schema?(): {
-        body?: z.ZodObject,
-        params?: z.ZodObject,
-        query?: z.ZodObject,
-        cookies?: z.ZodObject,
-        headers?: z.ZodObject 
-    }
+    static schema?(): void
 
     public toValueObjects?(): void
 }
