@@ -3,12 +3,12 @@ import BasePayload from "../_abstruct";
 import { SessionPayloads } from "@share/payloads"
 import { UserEmail, UserHashPassword, UserName, UserPassword } from "@models/valueObject";
 
-export namespace Verify {
+export namespace VerifySchemas {
     export namespace GET {
         export class Request extends BasePayload<SessionPayloads.Verify.GET.Request> {
             static schema() {
                 return {
-                    cookies: z.object({
+                    cookies: z.strictObject({
                         verifySessionId: z.string()
                     })
                 }
@@ -18,11 +18,21 @@ export namespace Verify {
         export class Response extends BasePayload<SessionPayloads.Verify.GET.Response> {
             static schema() {
                 return {
-                    body: z.object({
+                    body: z.strictObject({
                         userName: UserName.schema(),
                         userEmail: UserEmail.schema(),
                         userHashPassword: UserHashPassword.schema()
                     })
+                }
+            }
+
+            toValueObjects(){
+                return {
+                    body: {
+                        userName: new UserName(this._values.body.userName),
+                        userEmail: new UserEmail(this._values.body.userEmail),
+                        userHashPassword: new UserHashPassword(this._values.body.userHashPassword)
+                    }
                 }
             }
         }
@@ -32,11 +42,21 @@ export namespace Verify {
         export class Request extends BasePayload<SessionPayloads.Verify.POST.Request> {
             static schema() {
                 return {
-                    body: z.object({
+                    body: z.strictObject({
                         name: UserName.schema(),
                         email: UserEmail.schema(),
                         password: UserPassword.schema()
                     })
+                }
+            }
+
+            public toValueObjects() {
+                return {
+                    body: {
+                        name: new UserName(this._values.body.name),
+                        email: new UserEmail(this._values.body.email),
+                        password: new UserPassword(this._values.body.password)
+                    }
                 }
             }
         }
@@ -44,10 +64,10 @@ export namespace Verify {
         export class Response extends BasePayload<SessionPayloads.Verify.POST.Response> {
             static schema() {
                 return {
-                    headers: z.object({
+                    headers: z.strictObject({
                         Location: z.url()
                     }),
-                    cookies: z.object({
+                    cookies: z.strictObject({
                         verifySessionId: z.string()
                     })
                 }

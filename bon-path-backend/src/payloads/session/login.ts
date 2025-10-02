@@ -3,12 +3,12 @@ import BasePayload from "../_abstruct";
 import { SessionPayloads } from "@share/payloads/session";
 import { UserEmail, UserHashId, UserPassword } from "@models/valueObject";
 
-export namespace Login {
+export namespace LoginSchemas {
     export namespace GET {
         export class Request extends BasePayload<SessionPayloads.Login.GET.Request> {
             static schema() {
                 return {
-                    cookies: z.object({
+                    cookies: z.strictObject({
                         loginSessionId: z.string()
                     })
                 }
@@ -18,7 +18,7 @@ export namespace Login {
         export class Response extends BasePayload<SessionPayloads.Login.GET.Response> {
             static schema() {
                 return {
-                    body: z.object({
+                    body: z.strictObject({
                         userHashId: UserHashId.schema(),
                         expiresAt: z.iso.datetime()
                     })
@@ -40,7 +40,7 @@ export namespace Login {
         export class Request extends BasePayload<SessionPayloads.Login.POST.Request> {
             static schema() {
                 return {
-                    body: z.object({
+                    body: z.strictObject({
                         email: UserEmail.schema(),
                         password: UserPassword.schema()
                     })
@@ -60,10 +60,10 @@ export namespace Login {
         export class Response extends BasePayload<SessionPayloads.Login.POST.Response> {
             static schema() {
                 return {
-                    headers: z.object({
+                    headers: z.strictObject({
                         Location: z.url()
                     }),
-                    cookies: z.object({
+                    cookies: z.strictObject({
                         loginSessionId: z.string()
                     })
                 }
@@ -75,7 +75,7 @@ export namespace Login {
         export class Request extends BasePayload<SessionPayloads.Login.DELETE.Request> {
             static schema() {
                 return {
-                    cookies: z.object({
+                    cookies: z.strictObject({
                         loginSessionId: z.string()
                     })
                 }
@@ -85,7 +85,7 @@ export namespace Login {
         export class Response extends BasePayload<SessionPayloads.Login.DELETE.Response> {
             static schema() {
                 return {
-                    headers: z.object({
+                    headers: z.strictObject({
                         Location: z.url()
                     })
                 }

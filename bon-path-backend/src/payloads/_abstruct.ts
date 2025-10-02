@@ -1,5 +1,3 @@
-import z from "zod";
-
 export default abstract class BasePayload<T extends {
     body?:      Record<string, unknown>,
     params?:    Record<string, unknown>,

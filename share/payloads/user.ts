@@ -47,13 +47,9 @@ export namespace UserPayloads {
     }
 
     export namespace DELETE {
-        export type Response = {
+        export type Request = {
             cookies: {
                 loginSessionId: string
-            },
-            body: {
-                name: string,
-                email: string
             }
         }
     }
