@@ -61,7 +61,7 @@ export namespace Login {
             static schema() {
                 return {
                     headers: z.object({
-                        Location: z.string()
+                        Location: z.url()
                     }),
                     cookies: z.object({
                         loginSessionId: z.string()
@@ -86,7 +86,7 @@ export namespace Login {
             static schema() {
                 return {
                     headers: z.object({
-                        Location: z.string()
+                        Location: z.url()
                     })
                 }
             }
