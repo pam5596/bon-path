@@ -5,7 +5,7 @@ import { PurchasesSchemas } from "./purchases";
 import { ImagesSchemas } from "./images";
 import { CreatedAt, Id, ReceiptIsChecked, ReceiptLatitude, ReceiptLongitude } from "@models/valueObject";
 
-export namespace ReceiptPayloadSchemas {
+export namespace ReceiptsPayloadSchemas {
     export import Purchases = PurchasesSchemas;
     export import Images = ImagesSchemas;
 
