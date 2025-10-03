@@ -4,7 +4,6 @@ import { ReceiptPayloads } from "@share/payloads";
 import { PurchasesSchemas } from "./purchases";
 import { ImagesSchemas } from "./images";
 import { CreatedAt, Id, ReceiptIsChecked, ReceiptLatitude, ReceiptLongitude } from "@models/valueObject";
-import BaseValueObject from "@models/valueObject/_abstruct";
 
 export namespace ReceiptPayloadSchemas {
     export import Purchases = PurchasesSchemas;
@@ -42,7 +41,7 @@ export namespace ReceiptPayloadSchemas {
                 }
             }
 
-            toValueObjectBody(): { latitude: number | BaseValueObject<number>; longitude: number | BaseValueObject<number>; isChecked: boolean | BaseValueObject<boolean>; createdAt: Date | BaseValueObject<Date>; } {
+            toValueObjectBody() {
                 return {
                     latitude: new ReceiptLatitude(this.getBody.latitude),
                     longitude: new ReceiptLongitude(this.getBody.longitude),

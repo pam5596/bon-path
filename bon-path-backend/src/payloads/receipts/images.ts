@@ -2,7 +2,6 @@ import { z } from "@hono/zod-openapi";
 import BasePayload from "../_abstruct";
 import { ReceiptPayloads } from "@share/payloads";
 import { CreatedAt, Id, ReceiptImageUrl } from "@models/valueObject";
-import BaseValueObject from "@models/valueObject/_abstruct";
 
 export namespace ImagesSchemas {
     export namespace GET {

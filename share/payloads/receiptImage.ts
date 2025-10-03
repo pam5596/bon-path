@@ -4,7 +4,7 @@ export namespace ReceiptImagePayloads {
             cookies: {
                 loginSessionId: string
             },
-            formData: {
+            body: {
                 receiptId: number,
                 images: File[]
             }
