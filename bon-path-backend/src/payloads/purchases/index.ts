@@ -74,7 +74,7 @@ export namespace PurchasesPayloadSchemas {
         }
     }
 
-    export namespace DELERE {
+    export namespace DELETE {
         export class Request extends BasePayload<PurchasePayloads.DELETE.Request> {
             schema() {
                 return {
