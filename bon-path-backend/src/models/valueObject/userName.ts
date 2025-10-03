@@ -10,8 +10,8 @@ export default class UserName extends BaseValueObject<string> {
     static schema() {
         return z
             .string()
-            .min(1, { message: ERROR_MESSAGES.valueObjects._tag + ERROR_MESSAGES.valueObjects.userName.minError })
-            .max(30, { message: ERROR_MESSAGES.valueObjects._tag + ERROR_MESSAGES.valueObjects.userName.maxError })
-            .refine((v) => v.trim().length > 0, { message: ERROR_MESSAGES.valueObjects._tag + ERROR_MESSAGES.valueObjects.userName.emptyError });
+            .min(1, { error: ERROR_MESSAGES.valueObjects._tag + ERROR_MESSAGES.valueObjects.userName.minError })
+            .max(30, { error: ERROR_MESSAGES.valueObjects._tag + ERROR_MESSAGES.valueObjects.userName.maxError })
+            .refine((v) => v.trim().length > 0, { error: ERROR_MESSAGES.valueObjects._tag + ERROR_MESSAGES.valueObjects.userName.emptyError });
     }
 }

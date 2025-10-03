@@ -4,6 +4,7 @@ services:
     build: ./bon-path-backend
     volumes:
       - ./bon-path-backend:/backend
+      - ./share:/share
     ports:
       - "8080:8080"
     command: sh -c "npm run migrate:dev && npm run migrate:test && npm run dev"

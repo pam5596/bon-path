@@ -10,6 +10,6 @@ export default class ProductName extends BaseValueObject<string> {
     static schema() {
         return z
             .string()
-            .min(1, { message: ERROR_MESSAGES.valueObjects._tag + ERROR_MESSAGES.valueObjects.productName.minError })
+            .min(1, { error: ERROR_MESSAGES.valueObjects._tag + ERROR_MESSAGES.valueObjects.productName.minError })
     }
 }
