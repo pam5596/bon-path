@@ -11,7 +11,7 @@ export namespace UsersPayloadSchemas {
 
     export namespace GET {
         export class Request extends BasePayload<UserPayloads.GET.Request> {
-            static schema() {
+            schema() {
                 return {
                     cookies: z.strictObject({
                         loginSessionId: z.string()
@@ -21,7 +21,7 @@ export namespace UsersPayloadSchemas {
         }
 
         export class Response extends BasePayload<UserPayloads.GET.Response> {
-            static schema() {
+            schema() {
                 return {
                     body: z.strictObject({
                         name: UserName.schema(),
@@ -31,13 +31,11 @@ export namespace UsersPayloadSchemas {
                 }
             }
 
-            public toValueObjects() {
+            toValueObjectBody() {
                 return {
-                    body: {
-                        name: new UserName(this._values.body.name),
-                        email: new UserEmail(this._values.body.email),
-                        createdAt: new CreatedAt(this._values.body.createdAt)
-                    }
+                    name: new UserName(this.getBody.name),
+                    email: new UserEmail(this.getBody.email),
+                    createdAt: new CreatedAt(this.getBody.createdAt)
                 }
             }
         }
@@ -45,7 +43,7 @@ export namespace UsersPayloadSchemas {
 
     export namespace POST {
         export class Request extends BasePayload<UserPayloads.POST.Request> {
-            static schema() {
+            schema() {
                 return {
                     cookies: z.strictObject({
                         verifySessionId: z.string()
@@ -58,20 +56,17 @@ export namespace UsersPayloadSchemas {
                 }
             }
 
-            public toValueObjects() {
+            toValueObjectBody() {
                 return {
-                    ...this._values,
-                    body: {
-                        name: new UserName(this._values.body.name),
-                        email: new UserEmail(this._values.body.email),
-                        password: new UserPassword(this._values.body.password)
-                    }
+                    name: new UserName(this.getBody.name),
+                    email: new UserEmail(this.getBody.email),
+                    password: new UserPassword(this.getBody.password)
                 }
             }
         }
 
         export class Response extends BasePayload<UserPayloads.POST.Response> {
-            static schema() {
+            schema() {
                 return {
                     body: z.strictObject({
                         hashedId: UserHashId.schema()
@@ -79,11 +74,9 @@ export namespace UsersPayloadSchemas {
                 }
             }
 
-            public toValueObjects() {
+            toValueObjectBody() {
                 return {
-                    body: {
-                        hashId: new UserHashId(this._values.body.hashedId)
-                    }
+                    hashedId: new UserHashId(this.getBody.hashedId)
                 }
             }
         }
@@ -91,7 +84,7 @@ export namespace UsersPayloadSchemas {
 
     export namespace PATCH {
         export class Request extends BasePayload<UserPayloads.PATCH.Request> {
-            static schema() {
+            schema() {
                 return {
                     cookies: z.strictObject({
                         loginSessionId: z.string()
@@ -103,13 +96,10 @@ export namespace UsersPayloadSchemas {
                 }
             }
 
-            public toValueObjects() {
+            toValueObjectBody() {
                 return {
-                    ...this._values,
-                    body: {
-                        name: new UserName(this._values.body.name),
-                        email: new UserEmail(this._values.body.email)
-                    }
+                    name: new UserName(this.getBody.name),
+                    email: new UserEmail(this.getBody.email)
                 }
             }
         }
@@ -117,7 +107,7 @@ export namespace UsersPayloadSchemas {
 
     export namespace DELETE {
         export class Request extends BasePayload<UserPayloads.DELETE.Request> {
-            static schema() {
+            schema() {
                 return {
                     cookies: z.strictObject({
                         loginSessionId: z.string()

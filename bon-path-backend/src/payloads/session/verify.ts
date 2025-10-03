@@ -6,7 +6,7 @@ import { UserEmail, UserHashPassword, UserName, UserPassword } from "@models/val
 export namespace VerifySchemas {
     export namespace GET {
         export class Request extends BasePayload<SessionPayloads.Verify.GET.Request> {
-            static schema() {
+            schema() {
                 return {
                     cookies: z.strictObject({
                         verifySessionId: z.string()
@@ -16,7 +16,7 @@ export namespace VerifySchemas {
         }
 
         export class Response extends BasePayload<SessionPayloads.Verify.GET.Response> {
-            static schema() {
+            schema() {
                 return {
                     body: z.strictObject({
                         userName: UserName.schema(),
@@ -26,13 +26,11 @@ export namespace VerifySchemas {
                 }
             }
 
-            toValueObjects(){
+            toValueObjectBody() {
                 return {
-                    body: {
-                        userName: new UserName(this._values.body.userName),
-                        userEmail: new UserEmail(this._values.body.userEmail),
-                        userHashPassword: new UserHashPassword(this._values.body.userHashPassword)
-                    }
+                    userName: new UserName(this.getBody.userName),
+                    userEmail: new UserEmail(this.getBody.userEmail),
+                    userHashPassword: new UserHashPassword(this.getBody.userHashPassword)
                 }
             }
         }
@@ -40,7 +38,7 @@ export namespace VerifySchemas {
 
     export namespace POST {
         export class Request extends BasePayload<SessionPayloads.Verify.POST.Request> {
-            static schema() {
+            schema() {
                 return {
                     body: z.strictObject({
                         name: UserName.schema(),
@@ -50,19 +48,18 @@ export namespace VerifySchemas {
                 }
             }
 
-            public toValueObjects() {
+            
+            toValueObjectBody() {
                 return {
-                    body: {
-                        name: new UserName(this._values.body.name),
-                        email: new UserEmail(this._values.body.email),
-                        password: new UserPassword(this._values.body.password)
-                    }
+                    name: new UserName(this.getBody.name),
+                    email: new UserEmail(this.getBody.email),
+                    password: new UserPassword(this.getBody.password)
                 }
             }
         }
 
         export class Response extends BasePayload<SessionPayloads.Verify.POST.Response> {
-            static schema() {
+            schema() {
                 return {
                     headers: z.strictObject({
                         Location: z.url()

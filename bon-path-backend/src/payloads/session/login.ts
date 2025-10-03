@@ -6,7 +6,7 @@ import { UserEmail, UserHashId, UserPassword } from "@models/valueObject";
 export namespace LoginSchemas {
     export namespace GET {
         export class Request extends BasePayload<SessionPayloads.Login.GET.Request> {
-            static schema() {
+            schema() {
                 return {
                     cookies: z.strictObject({
                         loginSessionId: z.string()
@@ -16,7 +16,7 @@ export namespace LoginSchemas {
         }
 
         export class Response extends BasePayload<SessionPayloads.Login.GET.Response> {
-            static schema() {
+            schema() {
                 return {
                     body: z.strictObject({
                         userHashId: UserHashId.schema(),
@@ -25,12 +25,10 @@ export namespace LoginSchemas {
                 }
             }
 
-            toValueObjects() {
+            toValueObjectBody() {
                 return {
-                    body: {
-                        userHashId: new UserHashId(this._values.body.userHashId),
-                        expiresAt: new Date(this._values.body.expiresAt)
-                    }
+                    userHashId: new UserHashId(this.getBody.userHashId),
+                    expiresAt: this.getBody.expiresAt
                 }
             }
         }
@@ -38,7 +36,7 @@ export namespace LoginSchemas {
 
     export namespace POST {
         export class Request extends BasePayload<SessionPayloads.Login.POST.Request> {
-            static schema() {
+            schema() {
                 return {
                     body: z.strictObject({
                         email: UserEmail.schema(),
@@ -47,18 +45,16 @@ export namespace LoginSchemas {
                 }
             }
 
-            toValueObjects() {
+            toValueObjectBody() {
                 return {
-                    body: {
-                        email: new UserEmail(this._values.body.email),
-                        password: new UserPassword(this._values.body.password)
-                    }
+                    email: new UserEmail(this.getBody.email),
+                    password: new UserPassword(this.getBody.password)
                 }
             }
         }
 
         export class Response extends BasePayload<SessionPayloads.Login.POST.Response> {
-            static schema() {
+            schema() {
                 return {
                     headers: z.strictObject({
                         Location: z.url()
@@ -73,7 +69,7 @@ export namespace LoginSchemas {
 
     export namespace DELETE {
         export class Request extends BasePayload<SessionPayloads.Login.DELETE.Request> {
-            static schema() {
+            schema() {
                 return {
                     cookies: z.strictObject({
                         loginSessionId: z.string()
@@ -83,7 +79,7 @@ export namespace LoginSchemas {
         }
 
         export class Response extends BasePayload<SessionPayloads.Login.DELETE.Response> {
-            static schema() {
+            schema() {
                 return {
                     headers: z.strictObject({
                         Location: z.url()

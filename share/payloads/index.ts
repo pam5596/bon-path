@@ -1,3 +1,5 @@
+export type { PayloadType } from "./type";
+
 export { UserPayloads } from "./user";
 export { ReceiptPayloads } from "./receipt";
 export { ReceiptImagePayloads } from "./receiptImage";

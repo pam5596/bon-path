@@ -6,7 +6,7 @@ import { CreatedAt, Id, ReceiptIsChecked, ReceiptLatitude, ReceiptLongitude } fr
 export namespace ReceiptsSchemas {
     export namespace GET {
         export class Request extends BasePayload<UserPayloads.Receipts.GET.Request> {
-            static schema() {
+            schema() {
                 return {
                     cookies: z.strictObject({
                         loginSessionId: z.string()
@@ -17,20 +17,15 @@ export namespace ReceiptsSchemas {
                 }
             }
 
-            public toValueObjects() {
+            toValueObjectQuery() {
                 return {
-                    ...this._values,
-                    query: {
-                        isChecked: this._values.query.isChecked ? 
-                            new ReceiptIsChecked(this._values.query.isChecked) : 
-                            undefined
-                    }
+                    isChecked: this.getQuery.isChecked ? new ReceiptIsChecked(this.getQuery.isChecked) : undefined
                 }
             }
         }
 
         export class Response extends BasePayload<UserPayloads.Receipts.GET.Response> {
-            static schema() {
+            schema() {
                 return {
                     body: z.strictObject({
                         receipts: z.array(
@@ -38,6 +33,7 @@ export namespace ReceiptsSchemas {
                                 id: Id.schema(),
                                 latitude: ReceiptLatitude.schema(),
                                 longitude: ReceiptLongitude.schema(),
+                                isChecked: ReceiptIsChecked.schema(),
                                 createdAt: CreatedAt.schema()
                             })
                         )
@@ -45,18 +41,17 @@ export namespace ReceiptsSchemas {
                 }
             }
 
-            public toValueObjects() {
+            toValueObjectBody() {
                 return {
-                    body: {
-                        purchases: this._values.body.receipts.map(
-                            (receipt) => ({
-                                id: new Id(receipt.id),
-                                latitude: new ReceiptLatitude(receipt.latitude),
-                                longitude: new ReceiptLongitude(receipt.longitude),
-                                createdAt: new CreatedAt(receipt.createdAt)
-                            })
-                        )
-                    }
+                    receipts: this.getBody.receipts.map(
+                        (receipt) => ({
+                            id: new Id(receipt.id),
+                            latitude: new ReceiptLatitude(receipt.latitude),
+                            longitude: new ReceiptLongitude(receipt.longitude),
+                            isChecked: new ReceiptIsChecked(receipt.isChecked),
+                            createdAt: new CreatedAt(receipt.createdAt)
+                        })
+                    )
                 }
             }
         }

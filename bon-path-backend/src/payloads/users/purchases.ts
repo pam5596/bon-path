@@ -6,7 +6,7 @@ import { CreatedAt, Id, PurchasePrice, PurchaseQuantity } from "@models/valueObj
 export namespace PurchasesSchemas {
     export namespace GET {
         export class Request extends BasePayload<UserPayloads.Purchases.GET.Request> {
-            static schema() {
+            schema() {
                 return {
                     cookies: z.strictObject({
                         loginSessionId: z.string()
@@ -16,7 +16,7 @@ export namespace PurchasesSchemas {
         }
 
         export class Response extends BasePayload<UserPayloads.Purchases.GET.Response> {
-            static schema() {
+            schema() {
                 return {
                     body: z.strictObject({
                         purchases: z.array(
@@ -34,21 +34,19 @@ export namespace PurchasesSchemas {
                 }
             }
 
-            public toValueObjects() {
+            toValueObjectBody() {
                 return {
-                    body: {
-                        purchases: this._values.body.purchases.map(
-                            (purchase) => ({
-                                id: new Id(purchase.id),
-                                receiptId: new Id(purchase.receiptId),
-                                storeId: new Id(purchase.storeId),
-                                productId: new Id(purchase.productId),
-                                price: new PurchasePrice(purchase.price),
-                                quantity: new PurchaseQuantity(purchase.quantity),
-                                createdAt: new CreatedAt(purchase.createdAt)
-                            })
-                        )
-                    }
+                    purchases: this.getBody.purchases.map(
+                        (purchase) => ({
+                            id: new Id(purchase.id),
+                            receiptId: new Id(purchase.receiptId),
+                            storeId: new Id(purchase.storeId),
+                            productId: new Id(purchase.productId),
+                            price: new PurchasePrice(purchase.price),
+                            quantity: new PurchaseQuantity(purchase.quantity),
+                            createdAt: new CreatedAt(purchase.createdAt)
+                        })
+                    )
                 }
             }
         }
