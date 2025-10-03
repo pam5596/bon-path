@@ -10,12 +10,14 @@ export namespace StorePayloads {
         }
 
         export type Response = {
-            name: string,
-            image?: string,
-            latitude?: string,
-            longitude?: string,
-            googleMapLink?: string,
-            createdAt: Date
+            body: {
+                name: string,
+                image?: string,
+                latitude?: number,
+                longitude?: number,
+                googleMapLink?: string,
+                createdAt: Date
+            }
         }
     }
 
@@ -25,24 +27,19 @@ export namespace StorePayloads {
             cookies: {
                 loginSessionId: string
             },
-            query: {
-                latitude?: number,
-                longitude?: number,
-                radius?: number,
-                limit?: number
+            body: {
+                name: string
+                image?: string
+                latitude?: number
+                longitude?: number
+                googleMapLink?: string
             }
         }
 
         export type Response = {
-            stores: {
-                id: number,
-                name: string,
-                image?: string,
-                latitude?: string,
-                longitude?: string,
-                googleMapLink?: string,
-                createdAt: Date
-            }[]
+            body: {
+                id: number
+            }
         }
     }
 
@@ -57,10 +54,9 @@ export namespace StorePayloads {
             body: {
                 name: string,
                 image?: string,
-                latitude?: string,
-                longitude?: string,
+                latitude?: number,
+                longitude?: number,
                 googleMapLink?: string,
-                createdAt: Date
             }
         }
     }
@@ -82,18 +78,26 @@ export namespace StorePayloads {
                 cookies: {
                     loginSessionId: string
                 },
-                params: {
-                    id: number
+                query: {
+                    latitude?: number,
+                    longitude?: number,
+                    radius?: number,
+                    limit?: number
                 }
             }
 
             export type Response = {
-                name: string,
-                image?: string,
-                latitude?: string,
-                longitude?: string,
-                googleMapLink?: string,
-                createdAt: Date
+                body: {
+                    stores: {
+                        id: number,
+                        name: string,
+                        image?: string,
+                        latitude?: number,
+                        longitude?: number,
+                        googleMapLink?: string,
+                        createdAt: Date
+                    }[]
+                }
             }
         }
     }
@@ -143,8 +147,8 @@ export namespace StorePayloads {
                         id: number,
                         name: string,
                         image?: string,
-                        latitude?: string,
-                        longitude?: string,
+                        latitude?: number,
+                        longitude?: number,
                         googleMapLink?: string,
                         createdAt: Date
                     }[]
@@ -159,7 +163,7 @@ export namespace StorePayloads {
                 cookies: {
                     loginSessionId: string
                 },
-                params: {
+                query: {
                     keyword: string,
                     limit?: number
                 }
