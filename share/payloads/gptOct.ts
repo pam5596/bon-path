@@ -4,20 +4,22 @@ export namespace GptOcrPayloads {
             cookies: {
                 loginSessionId: string
             },
-            formData: {
+            body: {
                 images: File[]
             }
         }
 
         export type Response = {
-            store: {
-                name: string
-            },
-            products: {
-                name: string,
-                price: number,
-                quantity: number
-            }[]
+            body: {
+                store: {
+                    name: string
+                },
+                products: {
+                    name: string,
+                    price: number,
+                    quantity: number
+                }[]
+            }
         }
     }
 }
