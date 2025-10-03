@@ -69,80 +69,86 @@ export namespace ProductPayloads {
     }
 
     export namespace Products {
-        export type Request = {
-            cookies: {
-                loginSessionId: string
-            },
-            query: {
-                sort?: 'price',
-                orderBy?: 'asc' | 'desc',
-                limit?: number
+        export namespace GET {
+            export type Request = {
+                cookies: {
+                    loginSessionId: string
+                },
+                query: {
+                    sort?: 'price',
+                    orderBy?: 'asc' | 'desc',
+                    limit?: number
+                }
             }
-        }
-
-        export type Response = {
-            body: {
-                products: {
-                    id: number,
-                    storeId: number,
-                    categoryId: number,
-                    name: string,
-                    image?: string,
-                    link?: string,
-                    price: number,
-                    createdAt: Date
-                }[]
+    
+            export type Response = {
+                body: {
+                    products: {
+                        id: number,
+                        storeId: number,
+                        categoryId: number,
+                        name: string,
+                        image?: string,
+                        link?: string,
+                        price: number,
+                        createdAt: Date
+                    }[]
+                }
             }
         }
     }
 
     export namespace VectorSearch {
-        export type Request = {
-            cookies: {
-                loginSessionId: string
-            },
-            query: {
-                keyword: string,
-                storeId: number,
-                limit?: number
-            }
-        }
-
-        export type Response = {
-            body: {
-                products: {
-                    id: number,
+        export namespace GET {
+            export type Request = {
+                cookies: {
+                    loginSessionId: string
+                },
+                query: {
+                    keyword: string,
                     storeId: number,
-                    categoryId: number,
-                    name: string,
-                    image?: string,
-                    link?: string,
-                    price: number,
-                    createdAt: Date
-                }[]
+                    limit?: number
+                }
+            }
+    
+            export type Response = {
+                body: {
+                    products: {
+                        id: number,
+                        storeId: number,
+                        categoryId: number,
+                        name: string,
+                        image?: string,
+                        link?: string,
+                        price: number,
+                        createdAt: Date
+                    }[]
+                }
             }
         }
     }
 
     export namespace GoogleSearch {
-        export type Request = {
-            cookies: {
-                loginSessionId: string
-            },
-            query: {
-                keyword: string,
-                limit?: number
+        export namespace GET {
+            export type Request = {
+                cookies: {
+                    loginSessionId: string
+                },
+                query: {
+                    keyword: string,
+                    limit?: number
+                }
             }
-        }
-
-        export type Response = {
-            body: {
-                products: {
-                    categoryId: number,
-                    name: string,
-                    image?: string,
-                    link?: string
-                }[]
+    
+            export type Response = {
+                body: {
+                    products: {
+                        categoryId: number,
+                        name: string,
+                        image?: string,
+                        link?: string
+                    }[]
+                }
             }
         }
     }
