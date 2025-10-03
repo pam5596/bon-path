@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { withTestTruncate } from "./_withTestTruncate";
 import { PrismaClient } from "@client";
-import { Id, ProductImage, ProductName, ProductPrice, CategoryName, StoreName } from "@models/valueObject";
+import { Id, ProductImage, ProductName, ProductPrice, CategoryName, StoreName, ProductLink } from "@models/valueObject";
 import { CategoryEntity, ProductEntity, StoreEntity } from "@models/entity";
 import { CategoryRepository, ProductRepository, StoreRepository } from "@repository";
 
@@ -12,13 +12,15 @@ describe('ProductRepositoryの結合テスト', async () => {
     const primitives = {
         name: "ボンパス牛乳",
         image: "https://vitest.dev/image",
+        link:"https://vitest.dev/context",
         price: 200
     }
 
     const valueObjects = {
         name: new ProductName(primitives.name),
         image: new ProductImage(primitives.image),
-        price: new ProductPrice(primitives.price)
+        price: new ProductPrice(primitives.price),
+        link: new ProductLink(primitives.link)
     }
 
     const repository = new ProductRepository(client);
@@ -121,7 +123,8 @@ describe('ProductRepositoryの結合テスト', async () => {
         const new_values = {
             name: new ProductName("ボンパスチーズ"),
             image: new ProductImage("https://vitest.dev/image2"),
-            price: new ProductPrice(500)
+            price: new ProductPrice(500),
+            link: new ProductLink("https://vitest.dev/context2")
         }
         insert_results[0].newValues = new_values
 
@@ -131,6 +134,7 @@ describe('ProductRepositoryの結合テスト', async () => {
         expect(selected_result?.getValues.name).toEqual(new_values.name)
         expect(selected_result?.getValues.image).toEqual(new_values.image)
         expect(selected_result?.getValues.price).toEqual(new_values.price)
+        expect(selected_result?.getValues.link).toEqual(new_values.link)
     })
 
     it('deleteByIdが商品情報を削除すること', async () => {
