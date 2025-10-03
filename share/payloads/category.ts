@@ -43,47 +43,51 @@ export namespace CategoryPayloads {
     }
 
     export namespace Children {
-        export type Request = {
-            cookies: {
-                loginSessionId: string
-            },
-            params: {
-                parantId: number
+        export namespace GET {
+            export type Request = {
+                cookies: {
+                    loginSessionId: string
+                },
+                params: {
+                    parantId: number
+                }
             }
-        }
-
-        export type Response = {
-            body: {
-                categories: {
-                    id: number,
-                    parentId?: number,
-                    name: string
-                }[]
+    
+            export type Response = {
+                body: {
+                    categories: {
+                        id: number,
+                        parentId?: number,
+                        name: string
+                    }[]
+                }
             }
         }
     }
 
     export namespace Products {
-        export type Request = {
-            cookies: {
-                loginSessionId: string
-            },
-            params: {
-                categoryId: number
+        export namespace GET {
+            export type Request = {
+                cookies: {
+                    loginSessionId: string
+                },
+                params: {
+                    categoryId: number
+                }
             }
-        }
-
-        export type Response = {
-            body: {
-                products: {
-                    id: number,
-                    categoryId: number,
-                    name: string,
-                    image?: string,
-                    link?: string,
-                    price: number,
-                    createdAt: Date
-                }[]
+    
+            export type Response = {
+                body: {
+                    products: {
+                        id: number,
+                        categoryId: number,
+                        name: string,
+                        image?: string,
+                        link?: string,
+                        price: number,
+                        createdAt: Date
+                    }[]
+                }
             }
         }
     }
