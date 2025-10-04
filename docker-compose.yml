@@ -7,7 +7,7 @@ services:
       - ./share:/share
     ports:
       - "8080:8080"
-    command: sh -c "npm run migrate:dev && npm run migrate:test && npm run dev"
+    command: sh -c "npm run dev"
     depends_on:
       - database
       - storage

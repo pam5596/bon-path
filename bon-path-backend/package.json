@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "tsx watch src/app.ts",
     "test": "dotenv -e .env.test -e .env -- vitest",
-    "migrate:dev": "dotenv -e .env.develop -- npx prisma migrate dev --schema=./prisma/schema.prisma",
+    "migrate:dev": "dotenv -e .env.develop -- npx prisma migrate dev",
     "migrate:test": "dotenv -e .env.test -- npx prisma migrate dev",
     "generate": "npx prisma generate",
     "build": "esbuild --bundle --outfile=./dist/index.js --platform=node --target=node20 ./src/index.ts",
