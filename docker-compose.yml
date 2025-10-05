@@ -3,8 +3,9 @@ services:
     container_name: bon-path-backend
     build: ./bon-path-backend
     volumes:
-      - ./bon-path-backend:/backend
+      - ./bon-path-backend:/bon-path-backend
       - ./share:/share
+      - /bon-path-backend/node_modules
     ports:
       - "8080:8080"
     command: sh -c "npm run dev"

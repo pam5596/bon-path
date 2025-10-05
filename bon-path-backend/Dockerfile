@@ -1,7 +1,7 @@
 FROM node:23.0.0
 
-COPY . /backend
-WORKDIR /backend
+COPY . /bon-path-backend
+WORKDIR /bon-path-backend
 
 RUN corepack enable && corepack prepare pnpm@9.12.0 --activate
 
