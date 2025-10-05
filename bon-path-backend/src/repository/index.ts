@@ -5,3 +5,4 @@ export { default as ProductRepository } from "./product";
 export { default as ReceiptRepository } from "./receipt";
 export { default as ReceiptImageRepository } from "./receiptImage";
 export { default as PurchaseRepository } from "./purchase";
+export { default as ProductVectorRepository } from "./productVector";

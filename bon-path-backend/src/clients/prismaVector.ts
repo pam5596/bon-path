@@ -1,17 +1,23 @@
 import { PrismaVectorStore } from "@langchain/community/vectorstores/prisma";
 import { OpenAIEmbeddings } from "@langchain/openai";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Prisma } from "./prisma";
 
 export class PrismaVectorClient {
+    public model: OpenAIEmbeddings
+    public prisma: PrismaClient
+
     constructor(
-        private model: OpenAIEmbeddings,
-        private prisma: PrismaClient
-    ) {}
+        model: OpenAIEmbeddings,
+        prisma: PrismaClient
+    ) {
+        this.model = model
+        this.prisma = prisma
+    }
     
     get product() {
         return PrismaVectorStore.withModel(this.prisma).create(
             this.model, {
-                prisma: this.prisma,
+                prisma: Prisma,
                 tableName: 'ProductVector',
                 vectorColumnName: 'emmbedding',
                 columns: {
@@ -25,7 +31,7 @@ export class PrismaVectorClient {
     get store() {
         return PrismaVectorStore.withModel(this.prisma).create(
             this.model, {
-                prisma: this.prisma,
+                prisma: Prisma,
                 tableName: 'StoreVector',
                 vectorColumnName: 'emmbedding',
                 columns: {
