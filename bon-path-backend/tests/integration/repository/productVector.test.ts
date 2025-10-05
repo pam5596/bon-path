@@ -71,9 +71,8 @@ describe('ProductRepositoryの結合テスト', async () => {
         const { product_entities } = await foreignDataInserts()
         await repository.insertMany(product_entities);
 
-        const results = await repository.searchByName(new ProductName('牛乳'));
+        const results = await repository.searchProductIdByName(new ProductName('牛乳'));
         console.log(results);
         expect(results.length).toBeGreaterThan(0);
-        expect(results[0].pageContent).toBe('おいしい牛乳');
     })
 })
