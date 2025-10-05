@@ -3,25 +3,24 @@ services:
     container_name: bon-path-backend
     build: ./bon-path-backend
     volumes:
-      - ./bon-path-backend:/backend
+      - ./bon-path-backend:/bon-path-backend
       - ./share:/share
+      - /bon-path-backend/node_modules
     ports:
       - "8080:8080"
-    command: sh -c "npm run migrate:dev && npm run migrate:test && npm run dev"
+    command: sh -c "npm run dev"
     depends_on:
       - database
       - storage
   database:
     container_name: bon-path-database
-    image: postgres:13
+    image: pgvector/pgvector:pg18-trixie
     environment:
       POSTGRES_USER: bonpath
       POSTGRES_PASSWORD: bonpath
       POSTGRES_DB: bonpath
     ports:
       - "5432:5432"
-    volumes:
-      - ./.psql-data:/var/lib/postgresql/data
   storage:
     container_name: bon-path-storage
     image: minio/minio:RELEASE.2025-09-07T16-13-09Z
