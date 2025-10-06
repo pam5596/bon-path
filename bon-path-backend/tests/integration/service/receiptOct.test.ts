@@ -1,8 +1,9 @@
 import { LangChainOpenAiClient } from "@client";
 import { OPEN_AI_PROMPTS } from "@constants/openAiPrompts";
 import { ReceiptImageUrl } from "@models/valueObject";
-import { ReceiptOCRService } from "service";
+import { ReceiptOCRService } from "@service";
 import { describe, expect, it } from "vitest";
+import { InteropZodType } from "@langchain/core/utils/types";
 
 describe('ReceiptOCRServiceの結合テスト', () => {
     const query = [
@@ -13,7 +14,7 @@ describe('ReceiptOCRServiceの結合テスト', () => {
         system: OPEN_AI_PROMPTS.receiptOcr.system
     });
     const parser = LangChainOpenAiClient.createParserFromZodSchema(
-        OPEN_AI_PROMPTS.receiptOcr.zodSchema
+        OPEN_AI_PROMPTS.receiptOcr.zodSchema as unknown as InteropZodType
     );
 
     const client = new LangChainOpenAiClient({

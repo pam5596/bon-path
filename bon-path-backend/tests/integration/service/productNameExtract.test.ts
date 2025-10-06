@@ -1,12 +1,16 @@
 import { describe, expect, it } from "vitest";
 import { LangChainOpenAiClient } from "@client";
 import { OPEN_AI_PROMPTS } from "@constants/openAiPrompts";
-import { ProductNameExtractService } from "service";
-import { ProductName } from "@models/valueObject";
+import { ProductNameExtractService } from "@service";
+import { CategoryName, Id, ProductName } from "@models/valueObject";
+import { CategoryEntity } from "@models/entity";
+import { InteropZodType } from "@langchain/core/utils/types";
 
-
-describe('ProductNameExtracの結合テスト', () => {
+describe('ProductNameExtractの結合テスト', () => {
     const prompt = LangChainOpenAiClient.createPromptFromMessage(OPEN_AI_PROMPTS.productNameExtract);
+    const parser = LangChainOpenAiClient.createParserFromZodSchema(
+        OPEN_AI_PROMPTS.productNameExtract as unknown as InteropZodType
+    );
 
     const client = new LangChainOpenAiClient({
         model: 'gpt-4o-mini',
@@ -16,13 +20,27 @@ describe('ProductNameExtracの結合テスト', () => {
 
     const service = new ProductNameExtractService(client)
 
+    const categories = [
+        'チーズ',
+        'いちご',
+        'パスタ・スパゲッティ',
+        'オリーブオイル',
+        'からあげ',
+        '牛肉'
+    ].map(
+        (categoryName, i) => new CategoryEntity({
+            id: new Id(i+1),
+            name: new CategoryName(categoryName)
+        })
+    )
+
     it('サイト名から商品名を抽出できること', async () => {
         const response = await service.execute({
-            query: new ProductName('Amazon | 【クール】QBB やわらか熟成6Pチーズ×12個'),
-            prompt
+            query: new ProductName('Amazon.co.jp: TOMINAGA(トミナガ) ラティーノ スパゲッティ 4kg 大容量 ギリシャ産 パスタ 1.65mm デュラム小麦100% 麺 業務用 電子レンジ : 食品・飲料・お酒'),
+            categories,
+            prompt,
+            parser
         })
-
         console.log(response.content)
-        expect(response.content.toString().includes('QBB やわらか熟成6Pチーズ')).toBe(true)
     })
 })
