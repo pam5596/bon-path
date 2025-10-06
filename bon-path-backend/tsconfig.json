@@ -19,6 +19,7 @@
       "@valueObject": ["bon-path-backend/src/models/valueObject"],
       "@entity": ["bon-path-backend/src/models/entity"],
       "@repository": ["bon-path-backend/src/repository"],
+      "@service": ["bon-path-backend/src/service"],
       "@client": ["bon-path-backend/src/clients"],
       "@share/*": ["share/*"]
     }

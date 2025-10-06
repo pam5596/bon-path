@@ -1,5 +1,5 @@
-import { ProductName, PurchasePrice, PurchaseQuantity, StoreName } from "@models/valueObject";
-import z from "zod";
+import { Id, ProductName, PurchasePrice, PurchaseQuantity, StoreName } from "@models/valueObject";
+import { z } from "zod";
 
 export const OPEN_AI_PROMPTS = {
     receiptOcr: {
@@ -27,9 +27,20 @@ export const OPEN_AI_PROMPTS = {
     },
     productNameExtract: {
         system: `
-            Extract only the product name from the website title.
-            Return ONLY the product name as plain text.
+            Extract the product name from the website title.
+            And categorize the product into one of the following categories from the website title.
+            Return the product name as plain text and the category ID number.
+
+            [categories]
+            {categories}
+
+            [output json schema]
+            {format_instructions}
         `,
-        human: "WebsiteTitle: {query}"
-    }
+        human: "WebsiteTitle: {query}",
+        zodSchema: z.object({
+            name: ProductName.schema().describe('Product Name from website title'),
+            categoryId: Id.schema().describe('Id number of category')
+        })
+    },
 }

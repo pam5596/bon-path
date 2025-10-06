@@ -1,7 +1,7 @@
 import { Argon2Client } from "@client";
 import { UserPassword } from "@models/valueObject";
 import { argon2id } from "argon2";
-import { UserPasswordHashService } from "service";
+import { UserPasswordHashService } from "@service";
 import { describe, expect, it } from "vitest";
 
 describe('UserPasswordHashServiceの結合テスト', () => {

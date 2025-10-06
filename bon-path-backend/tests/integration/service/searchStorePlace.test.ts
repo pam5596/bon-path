@@ -1,4 +1,4 @@
-import { SearchStorePlaceService } from "service";
+import { SearchStorePlaceService } from "@service";
 import { GoogleMapPlacesAPIClient } from "@client";
 import { describe, expect, it } from "vitest";
 import { StoreName } from "@models/valueObject";
