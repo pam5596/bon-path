@@ -11,17 +11,17 @@
     ],
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
-    "baseUrl": "../",
+    "ignoreDeprecations": "6.0",
     "paths": {
-      "@constants/*": ["bon-path-backend/src/constants/*"],
-      "@models/*": ["bon-path-backend/src/models/*"],
-      "@error": ["bon-path-backend/src/error"],
-      "@valueObject": ["bon-path-backend/src/models/valueObject"],
-      "@entity": ["bon-path-backend/src/models/entity"],
-      "@repository": ["bon-path-backend/src/repository"],
-      "@service": ["bon-path-backend/src/service"],
-      "@client": ["bon-path-backend/src/clients"],
-      "@share/*": ["share/*"]
+      "@constants/*": ["./src/constants/*"],
+      "@models/*": ["./src/models/*"],
+      "@error": ["./src/error"],
+      "@valueObject": ["./src/models/valueObject"],
+      "@entity": ["./src/models/entity"],
+      "@repository": ["./src/repository"],
+      "@service": ["./src/service"],
+      "@client": ["./src/clients"],
+      "@share/*": ["../share/*"]
     }
   }
 }
