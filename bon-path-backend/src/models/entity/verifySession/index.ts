@@ -3,10 +3,9 @@ import BaseEntity from "../_abstruct";
 import { AsPrimitives } from "../_asPrimitives";
 import type { VerifySessionType } from "./type";
 import { UserEmail, UserHashPassword, UserName } from "@models/valueObject";
-import { JWTPayload } from "hono/utils/jwt/types";
 
 export default class VerifySessionEntity extends BaseEntity<VerifySessionType> {
-    constructor(valueObjects: VerifySessionType & JWTPayload) {
+    constructor(valueObjects: VerifySessionType) {
         super(valueObjects, VerifySessionEntity.schema())
     }
 
@@ -18,7 +17,7 @@ export default class VerifySessionEntity extends BaseEntity<VerifySessionType> {
         })
     }
 
-    static fromPrimitives(primitives: AsPrimitives<VerifySessionType> & JWTPayload) {
+    static fromPrimitives(primitives: AsPrimitives<VerifySessionType>) {
         return new VerifySessionEntity({
             ...primitives,
             userName: new UserName(primitives.userName),

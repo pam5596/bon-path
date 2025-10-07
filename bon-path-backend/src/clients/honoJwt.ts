@@ -2,7 +2,6 @@ import { verify, sign, decode } from "hono/jwt";
 import { SignatureAlgorithm } from "hono/utils/jwt/jwa";
 import { VerifyOptionsWithAlg } from "hono/utils/jwt/jwt";
 import { JWTPayload } from "hono/utils/jwt/types";
-import { LoginSessionType, VerifySessionType } from "@models/entity";
 
 export class HonoJwtClient {
     constructor(
@@ -13,12 +12,11 @@ export class HonoJwtClient {
         token: string,
         algOrOptions?: SignatureAlgorithm | VerifyOptionsWithAlg
     ) {
-        return await verify(token, this.secret, algOrOptions) as 
-            LoginSessionType & JWTPayload | VerifySessionType & JWTPayload
+        return await verify(token, this.secret, algOrOptions)
     }
 
     async sign(
-        payload: LoginSessionType & JWTPayload | VerifySessionType & JWTPayload,
+        payload: JWTPayload,
         alg?: SignatureAlgorithm
     ) {
         return await sign(payload, this.secret, alg)

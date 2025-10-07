@@ -3,10 +3,9 @@ import BaseEntity from "../_abstruct";
 import { AsPrimitives } from "../_asPrimitives";
 import type { LoginSessionType } from "./type";
 import { Id, UserHashId } from "@models/valueObject";
-import { JWTPayload } from "hono/utils/jwt/types";
 
 export default class LoginSessionEntity extends BaseEntity<LoginSessionType> {
-    constructor(valueObjects: LoginSessionType & JWTPayload) {
+    constructor(valueObjects: LoginSessionType) {
         super(valueObjects, LoginSessionEntity.schema())
     }
 
@@ -17,7 +16,7 @@ export default class LoginSessionEntity extends BaseEntity<LoginSessionType> {
         })
     }
 
-    static fromPrimitives(primitives: AsPrimitives<LoginSessionType> & JWTPayload) {
+    static fromPrimitives(primitives: AsPrimitives<LoginSessionType>) {
         return new LoginSessionEntity({
             ...primitives,
             userId: new Id(primitives.userId),
