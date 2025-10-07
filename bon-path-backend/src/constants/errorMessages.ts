@@ -70,5 +70,11 @@ export const ERROR_MESSAGES = {
             issue: "property of places_v1.Schema$GoogleMapsPlacesV1SearchTextResponse.places not found."
         },
         productNameExtract: "商品の分析に失敗しまた。開発者に問い合わせてください。",
+    },
+    usecase: {
+        createLoginSession: {
+            detial: "ユーザーが見つかりませんでした。アカウントを登録してください。",
+            issues: "User not found."
+        }
     }
 }
