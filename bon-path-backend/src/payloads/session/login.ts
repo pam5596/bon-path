@@ -20,15 +20,13 @@ export namespace LoginSchemas {
                 return {
                     body: z.strictObject({
                         userHashId: UserHashId.schema(),
-                        expiresAt: z.iso.datetime()
                     })
                 }
             }
 
             toValueObjectBody() {
                 return {
-                    userHashId: new UserHashId(this.getBody.userHashId),
-                    expiresAt: this.getBody.expiresAt
+                    userHashId: new UserHashId(this.getBody.userHashId)
                 }
             }
         }
@@ -56,9 +54,6 @@ export namespace LoginSchemas {
         export class Response extends BasePayload<SessionPayloads.Login.POST.Response> {
             schema() {
                 return {
-                    headers: z.strictObject({
-                        Location: z.url()
-                    }),
                     cookies: z.strictObject({
                         loginSessionId: z.string()
                     })
@@ -73,16 +68,6 @@ export namespace LoginSchemas {
                 return {
                     cookies: z.strictObject({
                         loginSessionId: z.string()
-                    })
-                }
-            }
-        }
-
-        export class Response extends BasePayload<SessionPayloads.Login.DELETE.Response> {
-            schema() {
-                return {
-                    headers: z.strictObject({
-                        Location: z.url()
                     })
                 }
             }

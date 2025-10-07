@@ -61,9 +61,6 @@ export namespace VerifySchemas {
         export class Response extends BasePayload<SessionPayloads.Verify.POST.Response> {
             schema() {
                 return {
-                    headers: z.strictObject({
-                        Location: z.url()
-                    }),
                     cookies: z.strictObject({
                         verifySessionId: z.string()
                     })

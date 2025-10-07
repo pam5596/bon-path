@@ -9,8 +9,7 @@ export namespace SessionPayloads {
 
             export type Response = {
                 body: {
-                    userHashId: string,
-                    expiresAt: Date
+                    userHashId: string
                 }
             }
         }
@@ -24,9 +23,6 @@ export namespace SessionPayloads {
             }
 
             export type Response = {
-                headers: {
-                    Location: string
-                },
                 cookies: {
                     loginSessionId: string
                 }
@@ -37,12 +33,6 @@ export namespace SessionPayloads {
             export type Request = {
                 cookies: {
                     loginSessionId: string
-                }
-            }
-
-            export type Response = {
-                headers: {
-                    Location: string
                 }
             }
         }
@@ -75,9 +65,6 @@ export namespace SessionPayloads {
             }
 
             export type Response = {
-                headers: {
-                    Location: string
-                },
                 cookies: {
                     verifySessionId: string
                 }
