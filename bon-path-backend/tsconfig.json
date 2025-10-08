@@ -21,6 +21,7 @@
       "@repository": ["./src/repository"],
       "@service": ["./src/service"],
       "@client": ["./src/clients"],
+      "@payload": ["./src/payloads"],
       "@usecase/*": ["./src/usecase/*"],
       "@share/*": ["../share/*"]
     }

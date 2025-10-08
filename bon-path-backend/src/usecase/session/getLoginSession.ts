@@ -1,6 +1,6 @@
 import BaseUseCase from "@usecase/_interface";
 import { SessionPayloads } from "@share/payloads";
-import { SessionPayloadSchemas } from "../../payloads";
+import { SessionPayloadSchemas } from "@payload";
 import { HonoJwtClient } from "@client";
 import { LoginSessionEntity } from "@models/entity";
 import { JWTPayload } from "hono/utils/jwt/types";

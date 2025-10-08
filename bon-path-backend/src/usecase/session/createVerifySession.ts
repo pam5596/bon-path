@@ -1,6 +1,6 @@
 import BaseUseCase from "@usecase/_interface";
 import { SessionPayloads } from "@share/payloads";
-import { SessionPayloadSchemas } from "../../payloads";
+import { SessionPayloadSchemas } from "@payload";
 import { HonoJwtClient } from "@client";
 
 export class CreateVerifySessionUseCase implements BaseUseCase<
