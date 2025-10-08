@@ -30,7 +30,7 @@ export class CreateUserUseCase implements BaseUseCase<
         
         if (!session.getValues.userEmail.equals(email)) 
             throw new UseCaseError(
-                400,
+                403,
                 ERROR_MESSAGES.usecase.emailsNotEqual.detail,
                 ERROR_MESSAGES.usecase.emailsNotEqual.issues,
                 this.constructor.name,

@@ -80,6 +80,7 @@ export namespace ReceiptPayloads {
                         storeId: number,
                         productId: number,
                         price: number,
+                        quantity: number,
                         createdAt: Date
                     }[]
                 }

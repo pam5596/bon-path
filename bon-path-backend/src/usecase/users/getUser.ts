@@ -29,8 +29,7 @@ export class GetUserUseCase implements BaseUseCase<
             404,
             ERROR_MESSAGES.usecase.userNotFound.detial,
             ERROR_MESSAGES.usecase.userNotFound.issues,
-            this.constructor.name,
-            this.request.getBody
+            this.constructor.name
         )
 
         return new UsersPayloadSchemas.GET.Response({
