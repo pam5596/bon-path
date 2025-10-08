@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { ReceiptImageUrl } from "@valueObject";
 
 describe("receiptImageUrl VOのテスト", () => {
-    const value = "https://vitest.dev/"
+    const value = "/vitest.dev"
 
     it('URL形式が正であること', () => {
         expect(() => new ReceiptImageUrl(value)).not.toThrowError();

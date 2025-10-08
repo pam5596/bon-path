@@ -9,6 +9,6 @@ export default class ReceiptImageUrl extends BaseValueObject<string> {
     static schema() {
         return z
             .string()
-            .url();
+            .startsWith('/')
     }
 }

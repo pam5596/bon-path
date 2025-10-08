@@ -79,6 +79,26 @@ export const ERROR_MESSAGES = {
         emailsNotEqual: {
             detail: "ユーザーのメールアドレス認証に失敗しました。再度アカウントを登録し直してください。",
             issues: "The session payload email and The request body email are not equal."
+        },
+        receiptNotFound: {
+            detial: "レシート情報が見つかりませんでした。",
+            issues: "Receipt not found."
+        },
+        receiptNotAccessible: {
+            detail: "このレシート情報を見ることはできません。",
+            issues: "Can't access this receipt."
+        },
+        receiptIsCheckedNotEqual: {
+            detail: "レシート情報が改ざんされています。直ちに削除してください。",
+            issues: "The saved receipt isChecked and The request body isChecked are not equal."
+        },
+        purchaseNotAccessible: {
+            detail: "この購入履歴を見ることはできません。",
+            issues: "Can't access this purchase."
+        },
+        receiptImageNotFound: {
+            detial: "レシート画像が見つかりませんでした。",
+            issues: "Receipt image not found."
         }
     }
 }

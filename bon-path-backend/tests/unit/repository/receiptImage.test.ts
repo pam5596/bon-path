@@ -9,7 +9,7 @@ describe('ReceiptImageRepositoryのMockテスト', () => {
         createdAt: new Date('2025-09-11'),
         id: 1,
         receiptId: 2,
-        url: "https://vitest.dev/image"
+        url: "/vitest.dev/image"
     }
 
     const testValues = {
