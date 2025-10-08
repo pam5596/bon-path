@@ -2,6 +2,7 @@ import { z } from "@hono/zod-openapi";
 import BasePayload from "../_abstruct";
 import { PurchasePayloads } from "@share/payloads";
 import { CreatedAt, Id, PurchasePrice, PurchaseQuantity } from "@models/valueObject";
+import BaseValueObject from "@models/valueObject/_abstruct";
 
 export namespace PurchasesPayloadSchemas {
     export namespace GET {
@@ -69,6 +70,20 @@ export namespace PurchasesPayloadSchemas {
                             }
                         ))
                     })
+                }
+            }
+
+            toValueObjectBody() {
+                return {
+                    purchases: this.getBody.purchases.map(
+                        purchase => ({
+                            receiptId: new Id(purchase.receiptId),
+                            storeId: new Id(purchase.storeId),
+                            productId: new Id(purchase.productId),
+                            price: new PurchasePrice(purchase.price),
+                            quantity: new PurchaseQuantity(purchase.quantity)
+                        })
+                    )
                 }
             }
         }

@@ -2,9 +2,7 @@ import BaseUseCase from "@usecase/_interface";
 import { ReceiptImagePayloads } from "@share/payloads";
 import { ReceiptImagesPayloadSchemas } from "@payload";
 import { HonoJwtClient, AwsS3Client } from "@client";
-import { JWTPayload } from "hono/utils/jwt/types";
 import { ReceiptImageRepository } from "@repository";
-import { LoginSessionEntity} from "@models/entity";
 import { UseCaseError } from "@error";
 import { ERROR_MESSAGES } from "@constants/errorMessages";
 
@@ -20,7 +18,7 @@ export class DeleteReceiptImageUseCase implements BaseUseCase<
     async execute() {
         await this.clients.honoJwt.verify(
             this.request.getCookies.loginSessionId
-        ) as LoginSessionEntity['toPrimitives'] & JWTPayload
+        )
         const params = this.request.toValueObjectParams()
 
         const receiptImage = await this.repositories.receiptImage.selectById(params.id)

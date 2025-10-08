@@ -4,7 +4,6 @@ import { UsersPayloadSchemas } from "@payload";
 import { HonoJwtClient } from "@client";
 import { UserRepository } from "@repository";
 import { LoginSessionEntity } from "@models/entity";
-import { JWTPayload } from "hono/utils/jwt/types";
 import { UseCaseError } from "@error";
 import { ERROR_MESSAGES } from "@constants/errorMessages";
 
@@ -21,7 +20,7 @@ export class GetUserUseCase implements BaseUseCase<
     async execute() {
         const jwt_payload = await this.clients.honoJwt.verify(
             this.request.getCookies.loginSessionId
-        ) as LoginSessionEntity['toPrimitives'] & JWTPayload
+        ) as LoginSessionEntity['toPrimitives']
         const session = LoginSessionEntity.fromPrimitives(jwt_payload)
 
         const user = await this.repositories.user.selectById(session.getValues.userId)

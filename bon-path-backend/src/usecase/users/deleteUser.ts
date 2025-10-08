@@ -3,7 +3,6 @@ import { UserPayloads } from "@share/payloads";
 import { UsersPayloadSchemas } from "@payload";
 import { HonoJwtClient } from "@client";
 import { UserRepository } from "@repository";
-import { JWTPayload } from "hono/utils/jwt/types";
 import { LoginSessionEntity } from "@models/entity";
 
 export class DeleteUserUseCase implements BaseUseCase<
@@ -18,7 +17,7 @@ export class DeleteUserUseCase implements BaseUseCase<
     async execute() {
         const jwt_payload = await this.clients.honoJwt.verify(
             this.request.getCookies.loginSessionId
-        ) as LoginSessionEntity['toPrimitives'] & JWTPayload
+        ) as LoginSessionEntity['toPrimitives']
         const session = LoginSessionEntity.fromPrimitives(jwt_payload)
 
         await this.repositories.user.deleteById(session.getValues.userId)

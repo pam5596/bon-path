@@ -5,7 +5,6 @@ import { HonoJwtClient } from "@client";
 import { UserRepository } from "@repository";
 import { UserPasswordHashService } from "@service";
 import { UserEntity, VerifySessionEntity } from "@models/entity";
-import { JWTPayload } from "hono/utils/jwt/types";
 import { UseCaseError } from "@error";
 import { ERROR_MESSAGES } from "@constants/errorMessages";
 
@@ -23,7 +22,7 @@ export class CreateUserUseCase implements BaseUseCase<
     async execute() {
         const jwt_payload = await this.clients.honoJwt.verify(
             this.request.getCookies.verifySessionId
-        ) as VerifySessionEntity['toPrimitives'] & JWTPayload
+        ) as VerifySessionEntity['toPrimitives']
         const session = VerifySessionEntity.fromPrimitives(jwt_payload)
 
         const { email, name, password } = this.request.toValueObjectBody()

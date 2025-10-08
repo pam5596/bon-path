@@ -33,7 +33,7 @@ export namespace PurchasePayloads {
                     productId: number,
                     price: number,
                     quantity: number
-                }
+                }[]
             }
         }
     }

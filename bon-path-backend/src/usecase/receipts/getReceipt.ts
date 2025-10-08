@@ -2,7 +2,6 @@ import BaseUseCase from "@usecase/_interface";
 import { ReceiptPayloads } from "@share/payloads";
 import { ReceiptsPayloadSchemas } from "@payload";
 import { HonoJwtClient } from "@client";
-import { JWTPayload } from "hono/utils/jwt/types";
 import { ReceiptRepository } from "@repository";
 import { LoginSessionEntity } from "@models/entity";
 import { UseCaseError } from "@error";
@@ -21,7 +20,7 @@ export class GetReceiptUseCase implements BaseUseCase<
     async execute() {
         const jwt_payload = await this.clients.honoJwt.verify(
             this.request.getCookies.loginSessionId
-        ) as LoginSessionEntity['toPrimitives'] & JWTPayload
+        ) as LoginSessionEntity['toPrimitives']
         const session = LoginSessionEntity.fromPrimitives(jwt_payload)
         const params = this.request.toValueObjectParams()
 

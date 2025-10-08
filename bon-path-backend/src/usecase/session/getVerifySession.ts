@@ -3,7 +3,6 @@ import { SessionPayloads } from "@share/payloads";
 import { SessionPayloadSchemas } from "@payload";
 import { HonoJwtClient } from "@client";
 import { VerifySessionEntity } from "@models/entity";
-import { JWTPayload } from "hono/utils/jwt/types";
 
 export class GetVerifySessionUseCase implements BaseUseCase<
     SessionPayloads.Verify.GET.Request,
@@ -17,7 +16,7 @@ export class GetVerifySessionUseCase implements BaseUseCase<
     async execute() {
         const jwt_payload = await this.clients.honoJwt.verify(
             this.request.getCookies.verifySessionId
-        ) as VerifySessionEntity['toPrimitives'] & JWTPayload
+        ) as VerifySessionEntity['toPrimitives']
 
         return new SessionPayloadSchemas.Verify.GET.Response({
             body: {
