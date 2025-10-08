@@ -25,8 +25,8 @@ export class CreateLoginSessionUseCase implements BaseUseCase<
         const user = await this.repositories.user.selectByEmailAndPassword(email, hash_password)
         if (!user) throw new UseCaseError(
             404,
-            ERROR_MESSAGES.usecase.createLoginSession.detial,
-            ERROR_MESSAGES.usecase.createLoginSession.issues,
+            ERROR_MESSAGES.usecase.userNotFound.detial,
+            ERROR_MESSAGES.usecase.userNotFound.issues,
             this.constructor.name,
             this.request.getBody
         )

@@ -5,12 +5,12 @@ import BaseService from "../service/_interface"
 
 export default interface BaseUseCase<
     RequestT extends PayloadType, 
-    ResponseT extends PayloadType
+    ResponseT extends PayloadType = any
 > {
     clients?: Record<string, any>
     services?: Record<string, BaseService>
     repositories?: Record<string, BaseRepository>
     request: BasePayload<RequestT>
 
-    execute(): Promise<BasePayload<ResponseT>>
+    execute(): Promise<BasePayload<ResponseT>|void>
 }

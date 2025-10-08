@@ -72,9 +72,13 @@ export const ERROR_MESSAGES = {
         productNameExtract: "商品の分析に失敗しまた。開発者に問い合わせてください。",
     },
     usecase: {
-        createLoginSession: {
+        userNotFound: {
             detial: "ユーザーが見つかりませんでした。アカウントを登録してください。",
             issues: "User not found."
+        },
+        emailsNotEqual: {
+            detail: "ユーザーのメールアドレス認証に失敗しました。再度アカウントを登録し直してください。",
+            issues: "The session payload email and The request body email are not equal."
         }
     }
 }
