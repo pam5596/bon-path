@@ -85,20 +85,24 @@ export const ERROR_MESSAGES = {
             issues: "Receipt not found."
         },
         receiptNotAccessible: {
-            detail: "このレシート情報を見ることはできません。",
+            detail: "このレシート情報へのアクセス権限がありません。",
             issues: "Can't access this receipt."
         },
         receiptIsCheckedNotEqual: {
             detail: "レシート情報が改ざんされています。直ちに削除してください。",
             issues: "The saved receipt isChecked and The request body isChecked are not equal."
         },
-        purchaseNotAccessible: {
-            detail: "この購入履歴を見ることはできません。",
-            issues: "Can't access this purchase."
-        },
         receiptImageNotFound: {
             detial: "レシート画像が見つかりませんでした。",
             issues: "Receipt image not found."
-        }
+        },
+        purchaseNotFound: {
+            detail: "購入履歴が見つかりませんでした。",
+            issues: "Purchase history not found."
+        },
+        purchaseNotAccessible: {
+            detail: "この購入履歴へのアクセス権限がありません。",
+            issues: "Can't access this purchase."
+        },
     }
 }

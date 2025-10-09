@@ -9,3 +9,7 @@ export { UpdateUserUseCase } from "./users/updateUser";
 export { DeleteUserUseCase } from "./users/deleteUser";
 export { GetReceiptPurchasesUsecase } from "./receipts/getReceiptPutchases";
 export { GetReceiptImagesUsecase } from "./receipts/getReceiptImages";
+
+export { GetPurchasesUseCase } from "./purcahses/getPurchases";
+export { CreatePurchasesUseCase } from "./purcahses/createPurchases";
+export { DeletePurchaseUseCase } from "./purcahses/deletePurchase";
