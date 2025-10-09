@@ -2,6 +2,8 @@ import BaseRepository from "./_abstruct";
 import queryHandler from "./_queryHandler";
 import { Id } from "@models/valueObject";
 import { ProductEntity } from "@models/entity";
+import { Prisma } from "../clients/prisma";
+import { DefaultArgs } from "@prisma/client/runtime/library";
 
 export default class ProductRepository extends BaseRepository {
     @queryHandler
@@ -11,6 +13,13 @@ export default class ProductRepository extends BaseRepository {
         })
 
         return create_result.map((product) => ProductEntity.fromPrimitives(product))
+    }
+
+    @queryHandler
+    async selectAll(filter?: Prisma.ProductFindManyArgs<DefaultArgs>) {
+        const find_result = await this.client.product.findMany(filter);
+        
+        return find_result.map((product) => ProductEntity.fromPrimitives(product))
     }
 
     @queryHandler

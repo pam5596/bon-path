@@ -30,6 +30,7 @@ export namespace ProductPayloads {
             body: {
                 products: {
                     storeId: number,
+                    categoryId: number,
                     name: string,
                     image?: string,
                     link?: string,

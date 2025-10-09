@@ -71,6 +71,7 @@ export namespace ProductsPayloadSchemas {
                         products: z.array(
                             z.strictObject({
                                 storeId: Id.schema(),
+                                categoryId: Id.schema(),
                                 name: ProductName.schema(),
                                 image: ProductImage.schema().optional(),
                                 link: ProductLink.schema().optional(),
@@ -78,6 +79,21 @@ export namespace ProductsPayloadSchemas {
                             })
                         )
                     })
+                }
+            }
+
+            toValueObjectBody() {
+                return {
+                    products: this.getBody.products.map(
+                        product => ({
+                            storeId: new Id(product.storeId),
+                            categoryId: new Id(product.categoryId),
+                            name: new ProductName(product.name),
+                            image: product.image ? new ProductImage(product.image) : undefined,
+                            link: product.link ? new ProductLink(product.link) : undefined,
+                            price: new ProductPrice(product.price)
+                        })
+                    )
                 }
             }
         }
@@ -100,6 +116,22 @@ export namespace ProductsPayloadSchemas {
                         link: ProductLink.schema().optional(),
                         price: ProductPrice.schema()
                     })
+                }
+            }
+
+            toValueObjectParams() {
+                return {
+                    id: new Id(this.getParams.id)
+                }
+            }
+
+            toValueObjectBody() {
+                return {
+                    categoryId: new Id(this.getBody.categoryId),
+                    name: new ProductName(this.getBody.name),
+                    image: this.getBody.image ? new ProductImage(this.getBody.image) : undefined,
+                    link: this.getBody.link ? new ProductLink(this.getBody.link) : undefined,
+                    price: new ProductPrice(this.getBody.price)
                 }
             }
         }

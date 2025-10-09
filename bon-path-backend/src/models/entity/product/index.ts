@@ -43,7 +43,7 @@ export default class ProductEntity extends BaseEntity<ProductType> {
         return this._values.categoryId
     }
 
-    set newValues(newValues: Partial<Omit<ProductType, 'storeId'|'categoryId'>>) {
+    set newValues(newValues: Partial<Omit<ProductType, 'storeId'>>) {
         this._values = this.validate({
             ...this._values, ...newValues
         }, ProductEntity.schema())

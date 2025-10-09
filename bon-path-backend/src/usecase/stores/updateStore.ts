@@ -1,4 +1,6 @@
 import { HonoJwtClient } from "@client";
+import { ERROR_MESSAGES } from "@constants/errorMessages";
+import { UseCaseError } from "@error";
 import { StoreEntity } from "@models/entity";
 import { StoresPayloadSchemas } from "@payload";
 import { StoreRepository } from "@repository";
@@ -21,7 +23,14 @@ export class UpdateStoreUseCase implements BaseUseCase<
         const params = this.request.toValueObjectParams()
         const body = this.request.toValueObjectBody()
 
-        const store = new StoreEntity({...params, ...body})
+        const store = await this.repositories.store.selectById(params.id)
+        if (!store) throw new UseCaseError(
+            404,
+            ERROR_MESSAGES.usecase.storeNotFound.detail,
+            ERROR_MESSAGES.usecase.storeNotFound.issues,
+            this.constructor.name,
+            this.request.getParams
+        )
 
         await this.repositories.store.update(store)
     }

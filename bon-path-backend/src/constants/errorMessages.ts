@@ -111,6 +111,14 @@ export const ERROR_MESSAGES = {
         invalidLocationParams: {
             detail: "ユーザーの位置情報取得が無効な形式です。",
             issues: "Invalid params: location, latitude, radius."
+        },
+        productNotFound: {
+            detail: "商品が見つかりませんでした。",
+            issues: "Product not found."
+        },
+        invalidAiResponse: {
+            detail: "AIの処理でエラーが発生しました。最初からやりなおしてください。",
+            issues: "Google Search results and AI results are different."
         }
     }
 }

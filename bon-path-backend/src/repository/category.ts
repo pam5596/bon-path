@@ -16,6 +16,12 @@ export default class CategoryRepository extends BaseRepository {
     }
 
     @queryHandler
+    async selectAll() {
+        const find_results = await this.client.category.findMany()
+        return find_results.map((category) => CategoryEntity.fromPrimitives(category))
+    }
+
+    @queryHandler
     async selectById(id: Id) {
         const find_result = await this.client.category.findUnique({
             where: {

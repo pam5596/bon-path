@@ -9,12 +9,15 @@ export class SearchProductService implements BaseService {
         public client: GoogleSearchAPIClient
     ){}
 
-    async execute(request: ProductName): Promise<{ 
+    async execute(request: {
+        query: ProductName,
+        limit?: number
+    }): Promise<{ 
         name: ProductName, 
         image?: ProductImage,
         link?: ProductLink
     }[]> {
-        const response = await this.client.searchImages(request.value)
+        const response = await this.client.searchImages(request.query.value, request.limit)
 
         if (!response.data.items) throw new ServiceError(
             ERROR_MESSAGES.service.searchProduct.detail,
