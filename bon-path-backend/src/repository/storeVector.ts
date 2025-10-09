@@ -30,17 +30,15 @@ export default class StoreVectorRepository {
             name.value,
             limit
         );
-        
-        return await Promise.all(
-            search_results.map(
-                async (document) => {
-                    const find_result = await this.client.prisma.storeVector.findUnique({
-                        where: { id: document.metadata.id as number }
-                    })
 
-                    return find_result?.storeId ? new Id(find_result.storeId) : null;
+        const find_result = await this.client.prisma.storeVector.findMany({
+            where: { 
+                id: {
+                    in: search_results.map(document => document.metadata.id as number)
                 }
-            )
-        );
+            }
+        })
+
+        return find_result.map((vector) => new Id(vector.storeId))
     }
 }

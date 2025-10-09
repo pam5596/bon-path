@@ -11,14 +11,14 @@ export class GoogleMapPlacesAPIClient extends places_v1.Places {
         this.key = apiKey
     }
 
-    async searchPlaces(textQuery: string) {
+    async searchPlaces(textQuery: string, maxResultCount: number) {
         try {
             return await this.places.searchText({
                 fields: '*',
                 key: this.key,
                 requestBody: {
                     textQuery,
-                    maxResultCount: 10,
+                    maxResultCount,
                     languageCode: 'ja'
                 }
             })

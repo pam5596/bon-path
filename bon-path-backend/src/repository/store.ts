@@ -38,6 +38,19 @@ export default class StoreRepository extends BaseRepository {
     }
 
     @queryHandler
+    async selectByIds(ids: Id[]) {
+        const find_result = await this.client.store.findMany({
+            where: {
+                id: { 
+                    in: ids.map(id => id.value)
+                }
+            }
+        })
+        return find_result.map((store) => StoreEntity.fromPrimitives(store));
+    }
+    
+
+    @queryHandler
     async update(store: StoreEntity) {
         await this.client.store.update({
             where: {

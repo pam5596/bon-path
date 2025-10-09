@@ -11,8 +11,11 @@ export class SearchStorePlaceService implements BaseService {
         public client: GoogleMapPlacesAPIClient
     ){}
 
-    async execute(request: StoreName): Promise<StoreEntity[]> {
-        const response = await this.client.searchPlaces(request.value);
+    async execute(request: {
+        query: StoreName,
+        maxCount?: number
+    }): Promise<StoreEntity[]> {
+        const response = await this.client.searchPlaces(request.query.value, request.maxCount);
 
         if (!response.data.places) throw new ServiceError(
             ERROR_MESSAGES.service.searchStorePlace.detail,

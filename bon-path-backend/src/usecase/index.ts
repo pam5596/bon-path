@@ -13,3 +13,12 @@ export { GetReceiptImagesUsecase } from "./receipts/getReceiptImages";
 export { GetPurchasesUseCase } from "./purcahses/getPurchases";
 export { CreatePurchasesUseCase } from "./purcahses/createPurchases";
 export { DeletePurchaseUseCase } from "./purcahses/deletePurchase";
+
+export { CreateStoreUseCase } from "./stores/createStore";
+export { DeleteStoreUseCase } from "./stores/deleteStore";
+export { GetStoreUseCase } from "./stores/getStore";
+export { GetStoreProductsUseCase } from "./stores/getStoreProducts";
+export { GetStoresUseCase } from "./stores/getStores";
+export { GoogleMapSearchStoresUseCase } from "./stores/googleMapSearchStores";
+export { UpdateStoreUseCase } from "./stores/updateStore";
+export { VectorSearchStoresUseCase } from "./stores/vectorSearchStores"

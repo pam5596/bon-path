@@ -104,5 +104,13 @@ export const ERROR_MESSAGES = {
             detail: "この購入履歴へのアクセス権限がありません。",
             issues: "Can't access this purchase."
         },
+        storeNotFound: {
+            detail: "店舗が見つかりませんでした。",
+            issues: "Store not found."
+        },
+        invalidLocationParams: {
+            detail: "ユーザーの位置情報取得が無効な形式です。",
+            issues: "Invalid params: location, latitude, radius."
+        }
     }
 }
