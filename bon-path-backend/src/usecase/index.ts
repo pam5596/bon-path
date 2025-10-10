@@ -22,3 +22,13 @@ export { GetStoresUseCase } from "./stores/getStores";
 export { GoogleMapSearchStoresUseCase } from "./stores/googleMapSearchStores";
 export { UpdateStoreUseCase } from "./stores/updateStore";
 export { VectorSearchStoresUseCase } from "./stores/vectorSearchStores"
+
+export { CreateProductsUseCase } from "./products/createProducts";
+export { DeleteProductUseCase } from "./products/deleteProduct";
+export { GetProductUseCase } from "./products/getProduct";
+export { GetProductsUseCase } from "./products/getProducts";
+export { GoogleMapSearchProductsUseCase } from "./products/googleMapSearchProducts";
+export { UpdateProductUseCase } from "./products/updateProduct";
+export { VectorSearchProductsUseCase } from "./products/vectorSearchProducts";
+
+export { GptOcrUseCase } from "./gptOcr";
