@@ -1,10 +1,13 @@
+import z from "zod";
 import BaseService from "./_interface";
 import { ServiceError } from "@error";
-import { ReceiptImageUrl } from "@models/valueObject";
+import { ProductName, PurchasePrice, PurchaseQuantity, ReceiptImageUrl, StoreName } from "@models/valueObject";
 import { LangChainOpenAiClient } from "@client";
 import { ERROR_MESSAGES } from "@constants/errorMessages";
 import { StructuredOutputParser } from "langchain/output_parsers";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
+import { JsonOutputParser } from "@langchain/core/output_parsers";
+import { OPEN_AI_PROMPTS } from "@constants/openAiPrompts";
 
 export class ReceiptOCRService implements BaseService {
     constructor(
@@ -23,7 +26,7 @@ export class ReceiptOCRService implements BaseService {
             });
             const formattedPrompt = await partialedPrompt.format({});
 
-            return await this.client.invoke([{
+            const response = await this.client.invoke([{
                 role: 'user',
                 content: [
                     { type: "text", text: formattedPrompt },
@@ -33,6 +36,22 @@ export class ReceiptOCRService implements BaseService {
                     })),
                 ],
             }])
+            const json_response = await new JsonOutputParser().parse(
+                response.content.toString()
+            ) as z.infer<typeof OPEN_AI_PROMPTS.receiptOcr.zodSchema>
+
+            return {
+                store: {
+                    name: new StoreName(json_response.store.name)
+                },
+                products: json_response.products.map(
+                    product => ({
+                        name: new ProductName(product.name),
+                        price: new PurchasePrice(product.price),
+                        quantity: new PurchaseQuantity(product.quantity)
+                    })
+                )
+            }
         } catch (e) {
             if (e instanceof Error) {
                 throw new ServiceError(

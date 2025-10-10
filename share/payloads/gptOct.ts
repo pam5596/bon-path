@@ -5,7 +5,7 @@ export namespace GptOcrPayloads {
                 loginSessionId: string
             },
             body: {
-                images: File[]
+                images: string[]
             }
         }
 
