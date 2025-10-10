@@ -38,7 +38,6 @@ describe('StoreRepositoryの結合テスト', () => {
     });
 
     it('selectAllメソッドが全ての店舗を返す', async () => {
-
         const insert_results = []
         for (let i = 1; i <= 10; i++) {
             const entity = new StoreEntity(valueObjects);
@@ -46,8 +45,19 @@ describe('StoreRepositoryの結合テスト', () => {
             insert_results.push(insert_result)
         }
         
-        const select_results = await repository.selectAll();
-        expect(insert_results.length).toEqual(select_results.length)
+        const select_results = await repository.selectAll({ limit: 2 });
+        expect(select_results.length).toBe(2)
+
+        const filterd_select_results = await repository.selectAll({
+            location: {
+                latitude: new StoreLatitude(89.9999),
+                longitude: new StoreLongitude(89.9999),
+                radius: 12
+            },
+            limit: 3
+        });
+        console.log(filterd_select_results)
+        expect(filterd_select_results.length).toBe(3)
     });
 
     

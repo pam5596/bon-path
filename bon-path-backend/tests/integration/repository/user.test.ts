@@ -45,7 +45,6 @@ describe('UserRepositoryの結合テスト', () => {
         await expect(repository.insert(result)).rejects.toThrowError()
     })
 
-
     it('selectByIdが指定したIDのユーザーを返す', async () => {
         const { hashedId, ...values } = valueObjects;
         const entity = new UserEntity(values);
@@ -57,6 +56,26 @@ describe('UserRepositoryの結合テスト', () => {
         expect(selectable_result?.id?.value).toBe(entity.id?.value)
 
         const null_result = await repository.selectById(new Id(999));
+        expect(null_result).toEqual(null)
+    })
+
+    it('selectByEmailAndPasswordがユーザー情報を返すこと', async () => {
+        const { hashedId, ...values } = valueObjects;
+        const entity = new UserEntity(values);
+        const insert_result = await repository.insert(entity);
+
+        const selectable_result = await repository.selectByEmailAndPassword(
+            valueObjects.email,
+            valueObjects.password
+        )
+
+        expect(selectable_result).toEqual(entity)
+        expect(selectable_result?.id?.value).toBe(entity.id?.value)
+
+        const null_result = await repository.selectByEmailAndPassword(
+            new UserEmail('aaa@expamle.com'),
+            new UserHashPassword("$argon2id$v=19$m=65536,t=3,p=4$FZej+Jwsm6aZfX9+Wf3p6A$7y0SxIB7U4HQfMF5g53s6XHLr6vErvP5PrdP8R+L0ra")
+        );
         expect(null_result).toEqual(null)
     })
 
