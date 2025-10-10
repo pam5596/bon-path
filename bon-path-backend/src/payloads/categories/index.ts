@@ -28,6 +28,24 @@ export namespace CategoriesPayloadSchemas {
                 }
             }
         }
+
+        export class Response extends BasePayload<CategoryPayloads.GET.Response> {
+            schema() {
+                return {
+                    body: z.strictObject({
+                        parentId: Id.schema().optional(),
+                        name: CategoryName.schema()
+                    })
+                }
+            }
+
+            toValueObjectBody() {
+                return {
+                    parentId: this.getBody.parentId ? new Id(this.getBody.parentId) : undefined,
+                    name: new CategoryName(this.getBody.name)
+                }
+            }
+        }
     }
 
     export namespace POST {
