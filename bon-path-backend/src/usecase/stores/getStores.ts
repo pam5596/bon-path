@@ -1,7 +1,6 @@
 import { HonoJwtClient } from "@client";
 import { ERROR_MESSAGES } from "@constants/errorMessages";
 import { UseCaseError } from "@error";
-import { StoreEntity, LoginSessionEntity } from "@models/entity";
 import { StoresPayloadSchemas } from "@payload";
 import { StoreRepository } from "@repository";
 import { StorePayloads } from "@share/payloads";
@@ -18,31 +17,37 @@ export class GetStoresUseCase implements BaseUseCase<
     ){}
 
     async execute() {
-        const jwt_payload = await this.clients.honoJwt.verify(
+        await this.clients.honoJwt.verify(
             this.request.getCookies.loginSessionId
-        ) as LoginSessionEntity['toPrimitives']
-        const session = LoginSessionEntity.fromPrimitives(jwt_payload)
+        )
         const { latitude, longitude, radius, limit } = this.request.toValueObjectParams()
-
-        // latitude | longitude | raidus    | if
-        // 0        | 0         | 0         | 0
-        // 1        | 0         | 0         | 1
-        // 0        | 1         | 0         | 1
-        // 0        | 0         | 1         | 1
-        // 1        | 1         | 0         | 1
-        // 0        | 1         | 1         | 1
-        // 1        | 0         | 1         | 1
-        // 1        | 1         | 1         | 0
 
         if ((latitude || longitude || radius) && !(latitude && longitude && radius)) 
             throw new UseCaseError(
                 400,
-                ERROR_MESSAGES.usecase.invalidlocationParams.detail,
-                ERROR_MESSAGES.usecase.invalidlocationParams.issues,
+                ERROR_MESSAGES.usecase.invalidLocationParams.detail,
+                ERROR_MESSAGES.usecase.invalidLocationParams.issues,
                 this.constructor.name,
                 this.request.getParams
             )
         
-        // const stores = await this.repositories.store.selectAll();
+        const stores = await this.repositories.store.selectAll({
+            location: latitude && longitude && radius 
+                ? { latitude, longitude, radius } 
+                : undefined,
+            limit
+        });
+
+        return new StoresPayloadSchemas.Stores.GET.Response({
+            body: {
+                stores: stores.map(
+                    store => ({
+                        ...store.toPrimitives,
+                        id: store.id!.value,
+                        createdAt: store.created!.value
+                    })
+                )
+            }
+        })
     }
 }
