@@ -14,7 +14,7 @@ describe('SearchProductServiceの結合テスト', () => {
 
     it('商品名で検索できること', async () => {
         const request = new ProductName('qbbヤワラカジュクセイ');
-        const response = await service.execute(request);
+        const response = await service.execute({ query: request });
 
         console.log(response)
         expect(response.length).toBe(10)

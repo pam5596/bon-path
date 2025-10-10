@@ -49,9 +49,9 @@ describe('PurchaseRepositoryの結合テスト', () => {
         const store_entity = await store_repository.insert(new StoreEntity({
             name: new StoreName('ボンパス店')
         }));
-        const category_entity = await category_repository.insert(new CategoryEntity({
+        const category_entity = (await category_repository.insertMany([new CategoryEntity({
             name: new CategoryName('食品')
-        }));
+        })]))[0];
         const product_entities = await product_repository.insertMany([
             new ProductEntity({
                 name: new ProductName('バナナ'),

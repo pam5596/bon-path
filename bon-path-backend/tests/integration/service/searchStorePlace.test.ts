@@ -12,7 +12,7 @@ describe('SearchStorePlaceServiceの結合テスト', () => {
 
     it('店舗名で検索できること', async () => {
         const request = new StoreName('オーケー');
-        const response = await service.execute(request)
+        const response = await service.execute({ query: request })
 
         console.log(response.map((s) => s.toPrimitives))
         expect(response.length).toBe(10)
