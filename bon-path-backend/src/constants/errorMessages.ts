@@ -70,5 +70,59 @@ export const ERROR_MESSAGES = {
             issue: "property of places_v1.Schema$GoogleMapsPlacesV1SearchTextResponse.places not found."
         },
         productNameExtract: "商品の分析に失敗しまた。開発者に問い合わせてください。",
+    },
+    usecase: {
+        userNotFound: {
+            detial: "ユーザーが見つかりませんでした。アカウントを登録してください。",
+            issues: "User not found."
+        },
+        emailsNotEqual: {
+            detail: "ユーザーのメールアドレス認証に失敗しました。再度アカウントを登録し直してください。",
+            issues: "The session payload email and The request body email are not equal."
+        },
+        receiptNotFound: {
+            detial: "レシート情報が見つかりませんでした。",
+            issues: "Receipt not found."
+        },
+        receiptNotAccessible: {
+            detail: "このレシート情報へのアクセス権限がありません。",
+            issues: "Can't access this receipt."
+        },
+        receiptIsCheckedNotEqual: {
+            detail: "レシート情報が改ざんされています。直ちに削除してください。",
+            issues: "The saved receipt isChecked and The request body isChecked are not equal."
+        },
+        receiptImageNotFound: {
+            detial: "レシート画像が見つかりませんでした。",
+            issues: "Receipt image not found."
+        },
+        purchaseNotFound: {
+            detail: "購入履歴が見つかりませんでした。",
+            issues: "Purchase history not found."
+        },
+        purchaseNotAccessible: {
+            detail: "この購入履歴へのアクセス権限がありません。",
+            issues: "Can't access this purchase."
+        },
+        storeNotFound: {
+            detail: "店舗が見つかりませんでした。",
+            issues: "Store not found."
+        },
+        invalidLocationParams: {
+            detail: "ユーザーの位置情報取得が無効な形式です。",
+            issues: "Invalid params: location, latitude, radius."
+        },
+        productNotFound: {
+            detail: "商品が見つかりませんでした。",
+            issues: "Product not found."
+        },
+        invalidAiResponse: {
+            detail: "AIの処理でエラーが発生しました。最初からやりなおしてください。",
+            issues: "Google Search results and AI results are different."
+        },
+        categoryNotFound: {
+            detail: "商品カテゴリーが見つかりませんでした。",
+            issues: "Category not found."
+        },
     }
 }

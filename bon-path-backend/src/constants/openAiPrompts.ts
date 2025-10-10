@@ -27,9 +27,10 @@ export const OPEN_AI_PROMPTS = {
     },
     productNameExtract: {
         system: `
-            Extract the product name from the website title.
-            And categorize the product into one of the following categories from the website title.
-            Return the product name as plain text and the category ID number.
+            Extract the product name from website titles.
+            Including weight and brand name.
+            And categorize the products into one of the following categories from the website title.
+            Return the extracted name and id of category to JSON.
 
             [categories]
             {categories}
@@ -37,10 +38,14 @@ export const OPEN_AI_PROMPTS = {
             [output json schema]
             {format_instructions}
         `,
-        human: "WebsiteTitle: {query}",
+        human: "WebsiteTitles: {query}",
         zodSchema: z.object({
-            name: ProductName.schema().describe('Product Name from website title'),
-            categoryId: Id.schema().describe('Id number of category')
+            products: z.array(
+                z.object({
+                    name: ProductName.schema().describe('Product Name from website title'),
+                    categoryId: Id.schema().describe('Id number of category')
+                })
+            )
         })
     },
 }

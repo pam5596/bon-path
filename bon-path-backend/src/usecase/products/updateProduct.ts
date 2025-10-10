@@ -1,0 +1,38 @@
+import { HonoJwtClient } from "@client";
+import { ERROR_MESSAGES } from "@constants/errorMessages";
+import { UseCaseError } from "@error";
+import { ProductEntity } from "@models/entity";
+import { ProductsPayloadSchemas } from "@payload";
+import { ProductRepository } from "@repository";
+import { ProductPayloads } from "@share/payloads";
+import BaseUseCase from "@usecase/_interface";
+
+export class UpdateProductUseCase implements BaseUseCase<
+    ProductPayloads.PATCH.Request
+>{
+    constructor(
+        public clients: { honoJwt: HonoJwtClient },
+        public repositories: { product: ProductRepository },
+        public request: ProductsPayloadSchemas.PATCH.Request
+    ){}
+
+    async execute() {
+        await this.clients.honoJwt.verify(
+            this.request.getCookies.loginSessionId
+        )
+        const params = this.request.toValueObjectParams()
+        const body = this.request.toValueObjectBody()
+
+        const product = await this.repositories.product.selectById(params.id)
+        if (!product) throw new UseCaseError(
+            404,
+            ERROR_MESSAGES.usecase.productNotFound.detail,
+            ERROR_MESSAGES.usecase.productNotFound.issues,
+            this.constructor.name,
+            this.request.getParams
+        )
+
+        product.newValues = body
+        await this.repositories.product.update(product)
+    }
+}

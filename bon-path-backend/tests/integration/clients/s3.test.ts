@@ -30,6 +30,7 @@ describe('AwsS3Clientの結合テスト', () => {
             'sample/1.png'
         );
 
+        console.log(response)
         expect(response.$metadata.httpStatusCode).toBe(200)
     })
 

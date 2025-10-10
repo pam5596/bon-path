@@ -1,7 +1,7 @@
 import { z } from "@hono/zod-openapi";
 import BasePayload from "../_abstruct";
 import { ReceiptPayloads } from "@share/payloads";
-import { CreatedAt, Id, PurchasePrice } from "@models/valueObject";
+import { CreatedAt, Id, PurchasePrice, PurchaseQuantity } from "@models/valueObject";
 
 export namespace PurchasesSchemas {
     export namespace GET {
@@ -34,6 +34,7 @@ export namespace PurchasesSchemas {
                                 storeId: Id.schema(),
                                 productId: Id.schema(),
                                 price: PurchasePrice.schema(),
+                                quantity: PurchaseQuantity.schema(),
                                 createdAt: CreatedAt.schema()
                             })
                         )
@@ -49,6 +50,7 @@ export namespace PurchasesSchemas {
                             storeId: new Id(purchase.storeId),
                             productId: new Id(purchase.productId),
                             price: new PurchasePrice(purchase.price),
+                            quantity: new PurchaseQuantity(purchase.quantity),
                             createdAt: new CreatedAt(purchase.createdAt)
                         })
                     )

@@ -23,7 +23,7 @@ describe('ProductRepositoryの結合テスト', async () => {
 
     const foreignDataInserts = async () => {
         const store_entity = await store_repository.insert(new StoreEntity({name: new StoreName('ボンパス店')}))
-        const category_entity = await category_repository.insert(new CategoryEntity({name: new CategoryName('食品')}))
+        const category_entity = (await category_repository.insertMany([new CategoryEntity({name: new CategoryName('食品')})]))[0]
         const product_entities = await product_repository.insertMany(
             [
                 'あまおう',
@@ -67,12 +67,12 @@ describe('ProductRepositoryの結合テスト', async () => {
         await expect(repository.insertMany(entities)).rejects.toThrowError();
     });
 
-    it('searchByNameが指定した名前に類似する商品情報を返す', async () => {
+    it('searchProductIdByNameが指定した名前に類似する商品IDを返す', async () => {
         const { product_entities } = await foreignDataInserts()
         await repository.insertMany(product_entities);
 
-        const results = await repository.searchProductIdByName(new ProductName('牛乳'));
+        const results = await repository.searchProductIdByName(new ProductName('牛乳'), 5);
         console.log(results);
-        expect(results.length).toBeGreaterThan(0);
+        expect(results.length).toBe(5)
     })
 })

@@ -7,7 +7,7 @@ describe('ReceiptImageEntityのテスト', () => {
     const testPrimitives = {
         id: 1,
         receiptId: 2,
-        url: "https://vitest.dev/",
+        url: "/vitest.dev/",
         createdAt: new Date('2025-08-29')
     }
 

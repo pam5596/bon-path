@@ -1,7 +1,7 @@
 import { z } from "@hono/zod-openapi";
 import BasePayload from "../_abstruct";
 import { GptOcrPayloads } from "@share/payloads";
-import { ProductName, PurchasePrice, PurchaseQuantity, StoreName } from "@models/valueObject";
+import { ProductName, PurchasePrice, PurchaseQuantity, ReceiptImageUrl, StoreName } from "@models/valueObject";
 
 export namespace GptOcrPayloadSchemas {
     export namespace POST {
@@ -12,14 +12,16 @@ export namespace GptOcrPayloadSchemas {
                         loginSessionId: z.string()
                     }),
                     body: z.strictObject({
-                        images: z.array(z.any())
+                        images: z.array(z.string())
                     })
                 }
             }
 
             toValueObjectBody(){
                 return {
-                    images: this.getBody.images
+                    images: this.getBody.images.map(
+                        url => new ReceiptImageUrl(url)
+                    )
                 }
             }
         }

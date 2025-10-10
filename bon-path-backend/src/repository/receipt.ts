@@ -1,6 +1,6 @@
 import BaseRepository from "./_abstruct";
 import queryHandler from "./_queryHandler";
-import { Id, CreatedAt } from "@models/valueObject";
+import { Id, CreatedAt, ReceiptIsChecked } from "@models/valueObject";
 import { ReceiptEntity } from "@models/entity";
 
 export default class ReceiptRepository extends BaseRepository {
@@ -31,10 +31,13 @@ export default class ReceiptRepository extends BaseRepository {
     }
 
     @queryHandler
-    async selectByUserId(userId: Id) {
+    async selectByUserId(userId: Id, filter?: { isChecked: ReceiptIsChecked }) {
         const find_result = await this.client.receipt.findMany({
             where: {
-                userId: userId.value
+                userId: userId.value,
+                ...filter ? Object.fromEntries(
+                    Object.entries(filter).map(([K, v]) => [K, v.value])
+                ) : undefined
             }
         });
 

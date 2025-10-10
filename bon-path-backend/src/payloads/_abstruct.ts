@@ -20,7 +20,7 @@ export default abstract class BasePayload<T extends PayloadType> {
         return this._values?.query
     }
 
-    get getCookies(): T['query'] {
+    get getCookies(): T['cookies'] {
         return this._values?.cookies
     }
 

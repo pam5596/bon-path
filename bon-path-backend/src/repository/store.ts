@@ -1,7 +1,8 @@
 import BaseRepository from "./_abstruct";
 import queryHandler from "./_queryHandler";
-import { Id, CreatedAt } from "@models/valueObject";
+import { Id, CreatedAt, StoreLatitude, StoreLongitude } from "@models/valueObject";
 import { StoreEntity } from "@models/entity";
+import { Prisma } from "../clients/prisma";
 
 export default class StoreRepository extends BaseRepository {
     @queryHandler
@@ -16,10 +17,42 @@ export default class StoreRepository extends BaseRepository {
     }
 
     @queryHandler
-    async selectAll() {
-        const find_result = await this.client.store.findMany();
-
-        return find_result.map((store) => StoreEntity.fromPrimitives(store));
+    async selectAll(filter?: { 
+        location?: { 
+            latitude: StoreLatitude, 
+            longitude: StoreLongitude,
+            radius: number
+        }, 
+        limit?: number 
+    }) {
+        if (filter?.location) {
+            const find_results = await this.client.$queryRawUnsafe(`
+                SELECT *, ST_DistanceSphere(
+                    ST_MakePoint(longitude, latitude),
+                    ST_MakePoint(
+                        ${filter.location.latitude.value}, 
+                        ${filter.location.longitude.value}
+                    )
+                ) AS distance
+                FROM "Store"
+                WHERE ST_DistanceSphere(
+                    ST_MakePoint(longitude, latitude),
+                    ST_MakePoint(
+                        ${filter.location.latitude.value}, 
+                        ${filter.location.longitude.value}
+                    )
+                ) <= ${filter.location.radius}
+                ORDER BY distance ASC
+                ${ filter.limit ? `LIMIT ${filter.limit}` : '' };
+            `) as (Prisma.StoreGetPayload<{}> & { distance: number })[]
+            return find_results.map((store) => {
+                const { distance, ...values } = store
+                return StoreEntity.fromPrimitives(values)
+            });
+        } else {
+            const find_results = await this.client.store.findMany({ take: filter?.limit });
+            return find_results.map((store) => StoreEntity.fromPrimitives(store));
+        }
     }
 
     @queryHandler
@@ -36,6 +69,19 @@ export default class StoreRepository extends BaseRepository {
             return find_result;
         }
     }
+
+    @queryHandler
+    async selectByIds(ids: Id[]) {
+        const find_result = await this.client.store.findMany({
+            where: {
+                id: { 
+                    in: ids.map(id => id.value)
+                }
+            }
+        })
+        return find_result.map((store) => StoreEntity.fromPrimitives(store));
+    }
+    
 
     @queryHandler
     async update(store: StoreEntity) {

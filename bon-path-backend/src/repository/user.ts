@@ -1,6 +1,6 @@
 import BaseRepository from "./_abstruct";
 import queryHandler from "./_queryHandler";
-import { Id, CreatedAt, UserHashId } from "@models/valueObject";
+import { Id, CreatedAt, UserHashId, UserName, UserHashPassword, UserEmail } from "@models/valueObject";
 import { UserEntity } from "@models/entity";
 
 export default class UserRepository extends BaseRepository {
@@ -24,6 +24,22 @@ export default class UserRepository extends BaseRepository {
             },
         });
 
+        if (find_result) {
+            return UserEntity.fromPrimitives(find_result)
+        } else {
+            return find_result;
+        }
+    }
+
+    @queryHandler
+    async selectByEmailAndPassword(email: UserEmail, password: UserHashPassword) {
+        const find_result = await this.client.user.findFirst({
+            where: {
+                email: email.value,
+                password: password.value
+            }
+        });
+        
         if (find_result) {
             return UserEntity.fromPrimitives(find_result)
         } else {

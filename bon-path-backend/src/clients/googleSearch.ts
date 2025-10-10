@@ -13,14 +13,14 @@ export class GoogleSearchAPIClient extends customsearch_v1.Customsearch {
         this.cx = engineCx
     }
 
-    async searchImages(q: string) {
+    async searchImages(q: string, num?: number) {
         try {
             return await this.cse.list({
                 auth: this.auth,
                 cx: this.cx,
                 q,
                 searchType: 'image',
-                num: 10
+                num
             })
         } catch (e) {
             if (e instanceof Error) {

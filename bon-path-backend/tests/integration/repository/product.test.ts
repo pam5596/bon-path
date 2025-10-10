@@ -29,7 +29,7 @@ describe('ProductRepositoryの結合テスト', async () => {
 
     const foreignDataInserts = async () => {
         const store_entity = await store_repository.insert(new StoreEntity({name: new StoreName('ボンパス店')}))
-        const category_entity = await category_repository.insert(new CategoryEntity({name: new CategoryName('バナナ')}))
+        const category_entity = (await category_repository.insertMany([new CategoryEntity({name: new CategoryName('バナナ')})]))[0]
 
         return [store_entity, category_entity]
     }

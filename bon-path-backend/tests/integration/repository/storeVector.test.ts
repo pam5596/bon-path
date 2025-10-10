@@ -67,8 +67,8 @@ describe('StoreVectorRepositoryの結合テスト', () => {
         const store_entities = await foreignDataInserts()
         await repository.insertMany(store_entities);
 
-        const results = await repository.searchStoreIdByName(new StoreName('コンビニ'));
+        const results = await repository.searchStoreIdByName(new StoreName('コンビニ'), 5);
         console.log(results);
-        expect(results.length).toBeGreaterThan(0);
+        expect(results.length).toBe(5)
     })
 })

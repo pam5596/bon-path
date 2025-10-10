@@ -8,14 +8,14 @@ describe('GoogleMapPlacesAPIClientの結合テスト', () => {
     })
     
     it('searchPlacesが場所検索できること', async () => {
-        const response = await client.searchPlaces('オーケー')
+        const response = await client.searchPlaces('オーケー', 5)
 
         console.log(response.data.places![0])
-        expect(response.data.places!.length).toBe(10)
+        expect(response.data.places!.length).toBe(5)
     });
 
     it('getPhotoUriが画像URIを取得できること', async () => {
-        const search_response = await client.searchPlaces('オーケー')
+        const search_response = await client.searchPlaces('オーケー', 5)
         const name = search_response.data.places![0].photos![0].name!
         const response = await client.getPhotoUri(name)
         

@@ -14,7 +14,7 @@ services:
       - storage
   database:
     container_name: bon-path-database
-    image: pgvector/pgvector:pg18-trixie
+    build: ./bon-path-database
     environment:
       POSTGRES_USER: bonpath
       POSTGRES_PASSWORD: bonpath
