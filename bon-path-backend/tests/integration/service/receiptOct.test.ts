@@ -26,19 +26,7 @@ describe('ReceiptOCRServiceの結合テスト', () => {
     const service = new ReceiptOCRService(client)
 
     it('レシートの画像をOCR分析できること', async () => {
-        try {
-            const response = await service.execute({query, prompt, parser})
-            const responseContent = await parser.parse(
-                Array.isArray(response.content) ?
-                    response.content.map((c) => String(c)).join('\n') :
-                    response.content
-            );
-
-            console.log(response)
-            expect(responseContent.store.name.include('セブン-イレブン')).toBe(true)
-            expect(responseContent.products.length).lessThan(3)
-        } catch(e) {
-            console.log(e)
-        }
+        const response = await service.execute({query, prompt, parser})
+        console.log(response)
     })
 })

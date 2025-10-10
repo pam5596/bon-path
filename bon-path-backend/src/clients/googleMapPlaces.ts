@@ -11,7 +11,7 @@ export class GoogleMapPlacesAPIClient extends places_v1.Places {
         this.key = apiKey
     }
 
-    async searchPlaces(textQuery: string, maxResultCount: number) {
+    async searchPlaces(textQuery: string, maxResultCount?: number) {
         try {
             return await this.places.searchText({
                 fields: '*',
