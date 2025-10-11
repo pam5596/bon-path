@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { UserEmail } from "@valueObject";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 describe("useEmail VOのテスト", () => {
     it('空文字が不正であること', () => {

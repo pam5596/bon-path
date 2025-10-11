@@ -1,5 +1,5 @@
-import { ERROR_MESSAGES } from "@constants/errorMessages";
-import { ClientError } from "@error";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
+import { ClientError } from "@lib/error";
 import { places_v1 } from "googleapis";
 
 export class GoogleMapPlacesAPIClient extends places_v1.Places {

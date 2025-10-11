@@ -1,5 +1,5 @@
-import { ERROR_MESSAGES } from "@constants/errorMessages";
-import { ClientError } from "@error";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
+import { ClientError } from "@lib/error";
 import { customsearch_v1 } from "googleapis";
 
 export class GoogleSearchAPIClient extends customsearch_v1.Customsearch {

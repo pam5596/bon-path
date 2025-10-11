@@ -1,9 +1,9 @@
 import { z } from "zod";
 import { AsPrimitives } from "./_asPrimitives";
 import BaseValueObject from "@models/valueObject/_abstruct";
-import { EntityError } from "@error";
+import { EntityError } from "@lib/error";
 import { CreatedAt, Id } from "@models/valueObject";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 export default abstract class BaseEntity<T extends Record<string, BaseValueObject<unknown>>> {
     protected _id?: Id

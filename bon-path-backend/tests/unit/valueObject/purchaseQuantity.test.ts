@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { PurchaseQuantity } from "@valueObject";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 describe("purchaseQuantity VOのテスト", () => {
     it('負の数が不正であること', () => {

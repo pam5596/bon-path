@@ -1,5 +1,5 @@
 import { LangChainOpenAiClient } from "@client";
-import { OPEN_AI_PROMPTS } from "@constants/openAiPrompts";
+import { OPEN_AI_PROMPTS } from "@lib/constants/openAiPrompts";
 import { ReceiptImageUrl } from "@models/valueObject";
 import { ReceiptOCRService } from "@service";
 import { describe, expect, it } from "vitest";

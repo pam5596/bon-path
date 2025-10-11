@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { UserPassword } from "@valueObject";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 describe("userPassword VOのテスト", () => {
     it('非文字列が不正であること', () => {

@@ -3,8 +3,8 @@ import { ReceiptImagePayloads } from "@share/payloads";
 import { ReceiptImagesPayloadSchemas } from "@payload";
 import { HonoJwtClient, AwsS3Client } from "@client";
 import { ReceiptImageRepository } from "@repository";
-import { UseCaseError } from "@error";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
+import { UseCaseError } from "@lib/error";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 export class DeleteReceiptImageUseCase implements BaseUseCase<
     ReceiptImagePayloads.DELETE.Request

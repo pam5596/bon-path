@@ -4,8 +4,8 @@ import { ReceiptsPayloadSchemas } from "@payload";
 import { HonoJwtClient } from "@client";
 import { ReceiptRepository } from "@repository";
 import { LoginSessionEntity } from "@models/entity";
-import { UseCaseError } from "@error";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
+import { UseCaseError } from "@lib/error";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 export class GetReceiptUseCase implements BaseUseCase<
     ReceiptPayloads.GET.Request,

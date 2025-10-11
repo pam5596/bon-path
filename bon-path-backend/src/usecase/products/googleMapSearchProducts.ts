@@ -4,10 +4,10 @@ import { ProductNameExtractService, SearchProductService } from "@service";
 import { ProductPayloads } from "@share/payloads";
 import BaseUseCase from "@usecase/_interface";
 import { CategoryRepository } from "@repository";
-import { OPEN_AI_PROMPTS } from "@constants/openAiPrompts";
+import { OPEN_AI_PROMPTS } from "@lib/constants/openAiPrompts";
 import { InteropZodType } from "@langchain/core/utils/types";
-import { UseCaseError } from "@error";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
+import { UseCaseError } from "@lib/error";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 export class GoogleMapSearchProductsUseCase implements BaseUseCase<
     ProductPayloads.GoogleSearch.GET.Request,

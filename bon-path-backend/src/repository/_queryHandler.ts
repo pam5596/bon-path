@@ -1,6 +1,6 @@
-import { RepositoryError } from "@error"
+import { RepositoryError } from "@lib/error"
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 export default function queryHandler (
     queryMethod: Function,

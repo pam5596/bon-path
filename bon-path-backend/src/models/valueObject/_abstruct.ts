@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { ValueObjectError } from "@error";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
+import { ValueObjectError } from "@lib/error";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 export default abstract class BaseValueObject<T> {
     protected readonly _value: T;

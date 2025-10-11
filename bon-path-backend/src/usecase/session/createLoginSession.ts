@@ -1,8 +1,8 @@
 import BaseUseCase from "@usecase/_interface";
 import { SessionPayloads } from "@share/payloads";
 import { SessionPayloadSchemas } from "@payload";
-import { UseCaseError } from "@error";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
+import { UseCaseError } from "@lib/error";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 import { HonoJwtClient } from "@client";
 import { UserRepository } from "@repository";
 import { UserPasswordHashService } from "@service";

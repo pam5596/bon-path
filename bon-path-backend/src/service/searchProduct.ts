@@ -1,8 +1,8 @@
 import { GoogleSearchAPIClient } from "@client";
 import BaseService from "./_interface";
 import { ProductImage, ProductLink, ProductName } from "@models/valueObject";
-import { ServiceError } from "@error";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
+import { ServiceError } from "@lib/error";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 export class SearchProductService implements BaseService {
     constructor(

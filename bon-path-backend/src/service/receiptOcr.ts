@@ -1,13 +1,13 @@
 import z from "zod";
 import BaseService from "./_interface";
-import { ServiceError } from "@error";
+import { ServiceError } from "@lib/error";
 import { ProductName, PurchasePrice, PurchaseQuantity, ReceiptImageUrl, StoreName } from "@models/valueObject";
 import { LangChainOpenAiClient } from "@client";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 import { StructuredOutputParser } from "langchain/output_parsers";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { JsonOutputParser } from "@langchain/core/output_parsers";
-import { OPEN_AI_PROMPTS } from "@constants/openAiPrompts";
+import { OPEN_AI_PROMPTS } from "@lib/constants/openAiPrompts";
 
 export class ReceiptOCRService implements BaseService {
     constructor(

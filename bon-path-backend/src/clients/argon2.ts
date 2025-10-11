@@ -1,6 +1,6 @@
 import argon2 from "argon2";
-import { ClientError } from "@error";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
+import { ClientError } from "@lib/error";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 export class Argon2Client {
     constructor(private options: argon2.Options) {}

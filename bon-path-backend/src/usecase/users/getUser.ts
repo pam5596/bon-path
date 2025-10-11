@@ -4,8 +4,8 @@ import { UsersPayloadSchemas } from "@payload";
 import { HonoJwtClient } from "@client";
 import { UserRepository } from "@repository";
 import { LoginSessionEntity } from "@models/entity";
-import { UseCaseError } from "@error";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
+import { UseCaseError } from "@lib/error";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 export class GetUserUseCase implements BaseUseCase<
     UserPayloads.GET.Request,

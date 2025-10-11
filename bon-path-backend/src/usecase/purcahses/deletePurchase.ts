@@ -1,6 +1,6 @@
 import { HonoJwtClient } from "@client";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
-import { UseCaseError } from "@error";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
+import { UseCaseError } from "@lib/error";
 import { LoginSessionEntity } from "@models/entity";
 import { PurchasesPayloadSchemas } from "@payload";
 import { PurchaseRepository } from "@repository";

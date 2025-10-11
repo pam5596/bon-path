@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { LangChainOpenAiClient } from "@client";
-import { OPEN_AI_PROMPTS } from "@constants/openAiPrompts";
+import { OPEN_AI_PROMPTS } from "@lib/constants/openAiPrompts";
 import { ProductNameExtractService } from "@service";
 import { CategoryName, Id, ProductName } from "@models/valueObject";
 import { CategoryEntity } from "@models/entity";

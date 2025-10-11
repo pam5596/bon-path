@@ -2,10 +2,10 @@ import { z } from "zod";
 import BaseEntity from "../_abstruct";
 import { AsPrimitives } from "../_asPrimitives";
 import { OptionalToNullable } from "../_optionalToNullable";
-import { EntityError } from "@error";
+import { EntityError } from "@lib/error";
 import type { UserType } from "./type";
 import { CreatedAt, Id, UserEmail, UserHashId, UserName, UserHashPassword } from "@models/valueObject";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 export default class UserEntity extends BaseEntity<UserType> {
     constructor(valueObjects: UserType & { id?: Id, createdAt?: CreatedAt }) {

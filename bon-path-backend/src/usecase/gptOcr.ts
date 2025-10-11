@@ -3,7 +3,7 @@ import BaseUseCase from "./_interface";
 import { HonoJwtClient, LangChainOpenAiClient } from "@client";
 import { GptOcrPayloadSchemas } from "@payload";
 import { ReceiptOCRService } from "@service";
-import { OPEN_AI_PROMPTS } from "@constants/openAiPrompts";
+import { OPEN_AI_PROMPTS } from "@lib/constants/openAiPrompts";
 import { InteropZodType } from "@langchain/core/utils/types";
 
 export class GptOcrUseCase implements BaseUseCase<

@@ -1,6 +1,6 @@
 import { HonoJwtClient } from "@client";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
-import { UseCaseError } from "@error";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
+import { UseCaseError } from "@lib/error";
 import { CategoriesPayloadSchemas } from "@payload";
 import { CategoryRepository } from "@repository";
 import { CategoryPayloads } from "@share/payloads";

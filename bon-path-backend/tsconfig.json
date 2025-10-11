@@ -13,9 +13,8 @@
     "jsxImportSource": "hono/jsx",
     "ignoreDeprecations": "6.0",
     "paths": {
-      "@constants/*": ["./src/constants/*"],
+      "@lib/*": ["./src/lib/*"],
       "@models/*": ["./src/models/*"],
-      "@error": ["./src/error"],
       "@valueObject": ["./src/models/valueObject"],
       "@entity": ["./src/models/entity"],
       "@repository": ["./src/repository"],
@@ -23,6 +22,7 @@
       "@client": ["./src/clients"],
       "@payload": ["./src/payloads"],
       "@usecase/*": ["./src/usecase/*"],
+      "@routes": ["./src/routes"],
       "@share/*": ["../share/*"]
     }
   }
