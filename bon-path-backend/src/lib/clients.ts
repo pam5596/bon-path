@@ -6,7 +6,8 @@ import {
     GoogleSearchAPIClient,
     Argon2Client,
     PrismaVectorClient,
-    HonoJwtClient
+    HonoJwtClient,
+    PinoClient
 } from "@client"
 import { OpenAIEmbeddings } from "@langchain/openai";
 import { argon2id } from "argon2";
@@ -56,3 +57,5 @@ export const prismaVector = new PrismaVectorClient(openAiEmbedding, prisma);
 export const honoJwtLogin = new HonoJwtClient(process.env.JWT_LOGIN_SECRET_KEY!);
 
 export const honoJwtVerify = new HonoJwtClient(process.env.JWT_LOGIN_SECRET_KEY!);
+
+export const logger = PinoClient;
