@@ -1,22 +1,26 @@
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 import BaseError from "@lib/error/_abstruct";
-import { MiddlewareHandler } from "hono";
+import { ErrorHandler } from "hono";
 import { ContentfulStatusCode } from "hono/utils/http-status";
 
-export const errorHandler: MiddlewareHandler = async (context, next) => {
-    try {
-        return await next()
-    } catch (e) {
-        if (e instanceof BaseError) {
-            return context.json({
-                code: e.code,
-                detail: e.detail,
-                issue: e.issue,
-                stack: e.stack,
-                instance: e.instance,
-                report: e.report
-            }, e.code as ContentfulStatusCode)
-        } else {
-            throw e
-        }
+export const errorHandler: ErrorHandler = async (error, context) => {
+    if (error instanceof BaseError) {
+        return context.json({
+            code: error.code,
+            detail: error.detail,
+            issue: error.issue,
+            stack: error.stack,
+            instance: error.instance,
+            report: error.report
+        }, error.code as ContentfulStatusCode)
+    } else {
+        return context.json({
+            code: 500,
+            detail: ERROR_MESSAGES.route.unknown,
+            issue: error.message,
+            stack: error.stack,
+            instance: error.name,
+            report: context
+        }, 500)
     }
 }
