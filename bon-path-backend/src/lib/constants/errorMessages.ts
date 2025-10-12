@@ -57,7 +57,8 @@ export const ERROR_MESSAGES = {
         s3: "ストレージで予期せぬエラーが発生しました。開発者に問い合わせてください。",
         argon2: "パスワードの処理で予期せぬエラーが発生しました。開発者に問い合わせてください。",
         googleSearch: "Google検索処理で予期せぬエラーが発生しました。開発者に問い合わせてください。",
-        googleMapPlaces: "GoogleMap検索処理で予期せぬエラーが発生しました。開発者に問い合わせてください。"
+        googleMapPlaces: "GoogleMap検索処理で予期せぬエラーが発生しました。開発者に問い合わせてください。",
+        honoJwt: "トークンが無効です。ログインし直してください。"
     },
     service: {
         receiptOcr: "レシートのOCR処理で予期せぬエラーが発生しました。開発者に問い合わせてください。",
@@ -126,6 +127,7 @@ export const ERROR_MESSAGES = {
         },
     },
     route: {
+        unknown: "不明なエラーが発生しました。",
         invalidCookie: "Cookieが有効ではありません。Cookieを許可してください。"
     }
 }
