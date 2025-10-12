@@ -24,7 +24,7 @@ export class DeleteReceiptImageUseCase implements BaseUseCase<
         const receiptImage = await this.repositories.receiptImage.selectById(params.id)
         if (!receiptImage) throw new UseCaseError(
             404,
-            ERROR_MESSAGES.usecase.receiptImageNotFound.detial,
+            ERROR_MESSAGES.usecase.receiptImageNotFound.detail,
             ERROR_MESSAGES.usecase.receiptImageNotFound.issues,
             this.constructor.name,
             this.request.getParams

@@ -74,7 +74,7 @@ export const ERROR_MESSAGES = {
     },
     usecase: {
         userNotFound: {
-            detial: "ユーザーが見つかりませんでした。アカウントを登録してください。",
+            detail: "ユーザーが見つかりませんでした。アカウントを登録してください。",
             issues: "User not found."
         },
         emailsNotEqual: {
@@ -82,7 +82,7 @@ export const ERROR_MESSAGES = {
             issues: "The session payload email and The request body email are not equal."
         },
         receiptNotFound: {
-            detial: "レシート情報が見つかりませんでした。",
+            detail: "レシート情報が見つかりませんでした。",
             issues: "Receipt not found."
         },
         receiptNotAccessible: {
@@ -94,7 +94,7 @@ export const ERROR_MESSAGES = {
             issues: "The saved receipt isChecked and The request body isChecked are not equal."
         },
         receiptImageNotFound: {
-            detial: "レシート画像が見つかりませんでした。",
+            detail: "レシート画像が見つかりませんでした。",
             issues: "Receipt image not found."
         },
         purchaseNotFound: {
@@ -128,6 +128,9 @@ export const ERROR_MESSAGES = {
     },
     route: {
         unknown: "不明なエラーが発生しました。",
-        invalidCookie: "Cookieが有効ではありません。Cookieを許可してください。"
+        invalidCookie: {
+            detail: "Cookieが有効ではありません。Cookieを許可してください。",
+            issue: "SessionId not found in cookie."
+        }
     }
 }

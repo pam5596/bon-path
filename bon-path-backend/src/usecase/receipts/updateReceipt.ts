@@ -27,7 +27,7 @@ export class UpdateReceiptUseCase implements BaseUseCase<
         const receipt = await this.repositories.receipt.selectById(params.id)
         if (!receipt) throw new UseCaseError(
             404,
-            ERROR_MESSAGES.usecase.receiptNotFound.detial,
+            ERROR_MESSAGES.usecase.receiptNotFound.detail,
             ERROR_MESSAGES.usecase.receiptNotFound.issues,
             this.constructor.name,
             this.request.getParams
@@ -44,7 +44,7 @@ export class UpdateReceiptUseCase implements BaseUseCase<
         receipt.toggleIsChecked()
         if (!receipt.getValues.isChecked.equals(isChecked)) throw new UseCaseError(
             400,
-            ERROR_MESSAGES.usecase.receiptNotFound.detial,
+            ERROR_MESSAGES.usecase.receiptNotFound.detail,
             ERROR_MESSAGES.usecase.receiptNotFound.issues,
             this.constructor.name,
             this.request.getBody

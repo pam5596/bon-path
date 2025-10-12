@@ -26,7 +26,7 @@ export class GetUserUseCase implements BaseUseCase<
         const user = await this.repositories.user.selectById(session.getValues.userId)
         if (!user) throw new UseCaseError(
             404,
-            ERROR_MESSAGES.usecase.userNotFound.detial,
+            ERROR_MESSAGES.usecase.userNotFound.detail,
             ERROR_MESSAGES.usecase.userNotFound.issues,
             this.constructor.name
         )
