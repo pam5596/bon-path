@@ -3,7 +3,7 @@
   "type": "module",
   "packageManager": "pnpm@9.12.0",
   "scripts": {
-    "dev": "tsx watch src/app.ts",
+    "dev": "dotenv -e .env.develop -e .env -- tsx watch src/app.ts",
     "test": "dotenv -e .env.test -e .env -- vitest",
     "migrate:dev": "dotenv -e .env.develop -- npx prisma migrate dev",
     "migrate:test": "dotenv -e .env.test -- npx prisma migrate dev",
@@ -19,6 +19,7 @@
     "esbuild": "^0.21.5",
     "npm-run-all2": "^6.2.0",
     "pino": "^10.0.0",
+    "pino-pretty": "^13.1.2",
     "prisma": "^6.14.0",
     "tsx": "^4.20.4",
     "vite-tsconfig-paths": "^5.1.4",

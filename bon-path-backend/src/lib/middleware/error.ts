@@ -1,26 +1,37 @@
+import { logger } from "@lib/clients";
 import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 import BaseError from "@lib/error/_abstruct";
 import { ErrorHandler } from "hono";
 import { ContentfulStatusCode } from "hono/utils/http-status";
 
 export const errorHandler: ErrorHandler = async (error, context) => {
+    let response;
+
     if (error instanceof BaseError) {
-        return context.json({
+        response = {
             code: error.code,
             detail: error.detail,
             issue: error.issue,
             stack: error.stack,
             instance: error.instance,
             report: error.report
-        }, error.code as ContentfulStatusCode)
+        }
     } else {
-        return context.json({
+        response = {
             code: 500,
             detail: ERROR_MESSAGES.route.unknown,
             issue: error.message,
             stack: error.stack,
             instance: error.name,
-            report: context
-        }, 500)
+            report: {
+                body: await context.req.json(),
+                params: context.req.param(),
+                query: context.req.query(),
+                headers: context.req.header()
+            }
+        }
     }
+
+    logger.error(response)
+    return context.json(response, response.code as ContentfulStatusCode)
 }
