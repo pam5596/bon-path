@@ -31,8 +31,8 @@ export class GetLoginSessionRoute implements BaseRoute {
         const loginSessionId = getCookie(context, 'loginSessionId');
         if (!loginSessionId) throw new RouteError(
             401,
-            ERROR_MESSAGES.route.invalidCookie,
-            new TypeError().message,
+            ERROR_MESSAGES.route.invalidCookie.detail,
+            ERROR_MESSAGES.route.invalidCookie.issue,
             this.constructor.name,
             '/session/login',
             'GET',

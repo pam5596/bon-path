@@ -6,3 +6,9 @@ export const createLoginSession = new CreateLoginSessionRoute()
 
 import { DeleteLoginSessionRoute } from "./session/deleteLoginSession";
 export const deleteLoginSession = new DeleteLoginSessionRoute()
+
+import { GetVerifySessionRoute } from "./session/getVerifySession";
+export const getVerifySession = new GetVerifySessionRoute()
+
+import { CreateVerifySessionRoute } from "./session/createVerifySession";
+export const createVerifySession = new CreateVerifySessionRoute()
