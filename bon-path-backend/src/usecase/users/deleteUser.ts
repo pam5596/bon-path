@@ -11,7 +11,7 @@ export class DeleteUserUseCase implements BaseUseCase<
     constructor(
         public clients: { honoJwt: HonoJwtClient },
         public repositories: { user: UserRepository },
-        public request: UsersPayloadSchemas.PATCH.Request
+        public request: UsersPayloadSchemas.DELETE.Request
     ) {}
 
     async execute() {

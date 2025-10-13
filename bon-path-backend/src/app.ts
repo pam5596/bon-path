@@ -8,7 +8,11 @@ import {
     createLoginSession,
     deleteLoginSession,
     getVerifySession,
-    createVerifySession
+    createVerifySession,
+    createUser,
+    getUser,
+    updateUser,
+    deleteUser
 } from '@routes';
 
 const app = new OpenAPIHono()
@@ -25,6 +29,11 @@ app.openapi(createLoginSession.route, createLoginSession.handler)
 app.openapi(deleteLoginSession.route, deleteLoginSession.handler)
 app.openapi(getVerifySession.route, getVerifySession.handler)
 app.openapi(createVerifySession.route, createVerifySession.handler)
+
+app.openapi(createUser.route, createUser.handler)
+app.openapi(getUser.route, getUser.handler)
+app.openapi(updateUser.route, updateUser.handler)
+app.openapi(deleteUser.route, deleteUser.handler)
 
 app.doc('/doc', {
     openapi: '3.0.0',
