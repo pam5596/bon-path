@@ -30,7 +30,7 @@ export class GetLoginSessionRoute implements BaseRoute {
     handler: Handler = async (context) => {
         const loginSessionId = getCookie(context, 'loginSessionId');
         if (!loginSessionId) throw new RouteError(
-            401,
+            400,
             ERROR_MESSAGES.route.invalidCookie.detail,
             ERROR_MESSAGES.route.invalidCookie.issue,
             this.constructor.name,

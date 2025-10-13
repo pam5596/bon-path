@@ -30,7 +30,7 @@ export class GetVerifySessionRoute implements BaseRoute {
     handler: Handler = async (context) => {
         const verifySessionId = getCookie(context, 'verifySessionId');
         if (!verifySessionId) throw new RouteError(
-            401,
+            400,
             ERROR_MESSAGES.route.invalidCookie.detail,
             ERROR_MESSAGES.route.invalidCookie.issue,
             this.constructor.name,
