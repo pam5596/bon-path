@@ -24,3 +24,9 @@ export const updateUser = new UpdateUserRoute()
 
 import { DeleteUserRoute } from "./users/deleteUser";
 export const deleteUser = new DeleteUserRoute()
+
+import { GetUserReceiptsRoute } from "./users/getUserReceipts";
+export const getUserReceipts = new GetUserReceiptsRoute()
+
+import { GetUserPurchases } from "./users/getUserPurchases";
+export const getUserPurchases = new GetUserPurchases()

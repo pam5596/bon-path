@@ -12,7 +12,10 @@ export namespace ReceiptsSchemas {
                         loginSessionId: z.string()
                     }),
                     query: z.strictObject({
-                        isChecked: ReceiptIsChecked.schema().optional()
+                        isChecked: z.stringbool({
+                            truthy: ['true'],
+                            falsy: ['false']
+                        }).optional()
                     })
                 }
             }

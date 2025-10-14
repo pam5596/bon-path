@@ -7,5 +7,7 @@ export const ROUTE_DESCRIPTIONS = {
     createUser: '新規のユーザーを登録し、ユーザーのハッシュIDを返す。',
     getUser: 'ログインセッションIDからユーザー情報を返す。',
     updateUser: 'ユーザーの名前とメールアドレスを更新する。',
-    deleteUser: 'ユーザーを削除する。'
+    deleteUser: 'ユーザーを削除する。',
+    getUserReceipts: 'ユーザーのレシート一覧を取得する。',
+    getUserPurchases: 'ユーザーの購入履歴一覧を取得する。'
 }

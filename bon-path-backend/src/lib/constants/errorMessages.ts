@@ -131,6 +131,10 @@ export const ERROR_MESSAGES = {
         invalidCookie: {
             detail: "Cookieが有効ではありません。Cookieを許可してください。",
             issue: "SessionId not found in cookie."
+        },
+        invalidQueryIsChecked: {
+            detail: '確認済みのレシートの取得に失敗しました。開発者に問い合わせてください。',
+            issue: 'Invalid params: isChecked.'
         }
     }
 }
