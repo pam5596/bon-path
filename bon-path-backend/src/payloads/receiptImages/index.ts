@@ -29,7 +29,7 @@ export namespace ReceiptImagesPayloadSchemas {
 
     export namespace DELETE {
         export class Request extends BasePayload<ReceiptImagePayloads.DELETE.Request> {
-            schema(): { body?: z.ZodObject<{}, z.core.$strict> | undefined; params?: z.ZodObject<{ id: z.ZodType<unknown, unknown, z.core.$ZodTypeInternals<unknown, unknown>>; }, z.core.$strict> | undefined; query?: z.ZodObject<{}, z.core.$strict> | undefined; cookies?: z.ZodObject<{ loginSessionId: z.ZodType<unknown, unknown, z.core.$ZodTypeInternals<unknown, unknown>>; }, z.core.$strict> | undefined; headers?: z.ZodObject<{}, z.core.$strict> | undefined; } {
+            schema() {
                 return {
                     cookies: z.strictObject({
                         loginSessionId: z.string()

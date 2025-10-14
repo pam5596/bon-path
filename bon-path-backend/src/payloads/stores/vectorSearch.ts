@@ -6,7 +6,7 @@ import { CreatedAt, Id, StoreGoogleMapLink, StoreImage, StoreLatitude, StoreLong
 export namespace VectorSearchSchemas {
     export namespace GET {
         export class Request extends BasePayload<StorePayloads.VectorSearch.GET.Request> {
-            schema(): { body?: z.ZodObject<{}, z.core.$strict> | undefined; params?: z.ZodObject<{}, z.core.$strict> | undefined; query?: z.ZodObject<{ keyword: z.ZodType<unknown, unknown, z.core.$ZodTypeInternals<unknown, unknown>>; limit?: z.ZodType<unknown, unknown, z.core.$ZodTypeInternals<unknown, unknown>> | undefined; }, z.core.$strict> | undefined; cookies?: z.ZodObject<{ loginSessionId: z.ZodType<unknown, unknown, z.core.$ZodTypeInternals<unknown, unknown>>; }, z.core.$strict> | undefined; headers?: z.ZodObject<{}, z.core.$strict> | undefined; } {
+            schema() {
                 return {
                     cookies: z.strictObject({
                         loginSessionId: z.string()
@@ -27,7 +27,7 @@ export namespace VectorSearchSchemas {
         }
 
         export class Response extends BasePayload<StorePayloads.VectorSearch.GET.Response> {
-            schema(): { body?: z.ZodObject<{ stores: z.ZodType<unknown, unknown, z.core.$ZodTypeInternals<unknown, unknown>>; }, z.core.$strict> | undefined; params?: z.ZodObject<{}, z.core.$strict> | undefined; query?: z.ZodObject<{}, z.core.$strict> | undefined; cookies?: z.ZodObject<{}, z.core.$strict> | undefined; headers?: z.ZodObject<{}, z.core.$strict> | undefined; } {
+            schema() {
                 return {
                     body: z.strictObject({
                         stores: z.array(
