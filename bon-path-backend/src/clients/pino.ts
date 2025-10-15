@@ -4,7 +4,7 @@ export const PinoClient = pino({
     transport: {
         target: 'pino-pretty',
         options: {
-            destination: 'logs/error.log',
+            destination: 'logs/logs.log',
             mkdir: true,
             levelFirst: true,
             singleLine: false,

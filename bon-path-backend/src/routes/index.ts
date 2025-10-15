@@ -63,3 +63,27 @@ export const deletePurchase = new DeletePurchaseRoute()
 
 import { GetPurchaseRoute } from "./purchases/getPurchase";
 export const getPurchase = new GetPurchaseRoute()
+
+import { CreateStoreRoute } from "./stores/createStore";
+export const createStore = new CreateStoreRoute()
+
+import { DeleteStoreRoute } from "./stores/deleteStore";
+export const deleteStore = new DeleteStoreRoute()
+
+import { GetStoreRoute } from "./stores/getStore";
+export const getStore = new GetStoreRoute()
+
+import { GetStoreProductsRoute } from "./stores/getStoreProducts";
+export const getStoreProducts = new GetStoreProductsRoute()
+
+import { GetStoresRoute } from "./stores/getStores";
+export const getStores = new GetStoresRoute()
+
+import { GoogleMapSearchStoresRoute } from "./stores/googleMapSearchStores";
+export const googleMapSearchStores = new GoogleMapSearchStoresRoute()
+
+import { UpdateStoreRoute } from "./stores/updateStore";
+export const updateStore = new UpdateStoreRoute()
+
+import { VectorSearchStoresRoute } from "./stores/vectorSearchStores";
+export const vectorSearchStores = new VectorSearchStoresRoute()

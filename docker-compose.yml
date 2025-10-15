@@ -8,7 +8,7 @@ services:
       - /bon-path-backend/node_modules
     ports:
       - "8080:8080"
-    command: sh -c "npm run dev"
+    command: sh -c "npm run dev && rm -rf logs"
     depends_on:
       - database
       - storage

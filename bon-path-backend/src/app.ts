@@ -25,7 +25,15 @@ import {
     deleteReceiptImage,
     createPurchases,
     deletePurchase,
-    getPurchase
+    getPurchase,
+    createStore,
+    deleteStore,
+    getStore,
+    getStoreProducts,
+    getStores,
+    googleMapSearchStores,
+    updateStore,
+    vectorSearchStores
 } from '@routes';
 
 const app = new OpenAPIHono()
@@ -61,8 +69,17 @@ app.openapi(putReceiptImage.route, putReceiptImage.handler)
 app.openapi(deleteReceiptImage.route, deleteReceiptImage.handler)
 
 app.openapi(createPurchases.route, createPurchases.handler)
-app.openapi(deletePurchase.route, deletePurchase.handler),
+app.openapi(deletePurchase.route, deletePurchase.handler)
 app.openapi(getPurchase.route, getPurchase.handler)
+
+app.openapi(createStore.route, createStore.handler)
+app.openapi(deleteStore.route, deleteStore.handler),
+app.openapi(getStore.route, getStore.handler),
+app.openapi(getStoreProducts.route, getStoreProducts.handler)
+app.openapi(getStores.route, getStores.handler)
+app.openapi(googleMapSearchStores.route,googleMapSearchStores.handler)
+app.openapi(updateStore.route, updateStore.handler)
+app.openapi(vectorSearchStores.route, vectorSearchStores.handler)
 
 app.doc('/doc', {
     openapi: '3.0.0',

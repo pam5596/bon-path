@@ -20,5 +20,13 @@ export const ROUTE_DESCRIPTIONS = {
     deleteReceiptImage: 'パスパラメータのIDからレシート画像を削除する。',
     createPurchases: '新規の購入履歴を登録する。',
     deletePurchase: 'パスパラメータのIDから購入履歴を削除する。',
-    getPurchase: 'パスパラメータのIDから購入履歴を取得する。'
+    getPurchase: 'パスパラメータのIDから購入履歴を取得する。',
+    createStore: '新規の店舗情報を登録する。',
+    deleteStore: 'パスパラメータのIDから店舗情報を削除する。',
+    getStore: 'パスパラメータのIDから店舗情報を取得する。',
+    getStoreProducts: '店舗の商品情報一覧を取得する。',
+    getStores: '店舗情報の一覧を取得する。クエリパラメータで座標を指定すれば近辺を取得可能。',
+    googleMapSearchStores: '店舗名をGoogle検索し、検索結果を返す。',
+    updateStore: '店舗情報を更新する。',
+    vectorSearchStores: '店舗名でベクトル検索し、検索結果を返す。'
 }
