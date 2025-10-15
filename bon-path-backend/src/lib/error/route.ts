@@ -1,4 +1,6 @@
+import { PathsEnum } from "@lib/enums";
 import BaseError from "./_abstruct";
+import { RouteConfig } from "@hono/zod-openapi";
 
 export default class RouteError extends BaseError {
     constructor(
@@ -6,11 +8,11 @@ export default class RouteError extends BaseError {
         detail: string,
         issue: string,
         instance: string,
-        route: string,
-        method: 'GET' | 'POST' | 'DELETE' | 'PATCH' | 'PUT',
+        route: PathsEnum,
+        method: RouteConfig['method'],
         report: unknown
     ) {
         super(
-            code, detail, issue, `[${instance}] ${method}: ${route}`, report);
+            code, detail, issue, `[${instance}] ${method.toUpperCase()}: ${route}`, report);
     }
 }

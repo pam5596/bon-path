@@ -1,7 +1,6 @@
 import BaseRoute from "../_interface";
 import { UsersPayloadSchemas } from "@payload";
 import { getCookie } from "hono/cookie";
-import { RouteError } from "@lib/error";
 import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 import { UpdateUserUseCase } from "@usecase/index";
 import { honoJwtLogin } from "@lib/clients";
@@ -22,13 +21,8 @@ export class UpdateUserRoute extends BaseRoute {
                 const body = await context.req.json()
                 const loginSessionId = getCookie(context, 'loginSessionId');
 
-                if (!loginSessionId) throw new RouteError(
-                    400,
-                    ERROR_MESSAGES.route.invalidCookie.detail,
-                    ERROR_MESSAGES.route.invalidCookie.issue,
-                    this.constructor.name,
-                    '/users',
-                    'PATCH',
+                if (!loginSessionId) throw this.createError(
+                    ERROR_MESSAGES.route.invalidCookie,
                     getCookie(context)
                 )
 

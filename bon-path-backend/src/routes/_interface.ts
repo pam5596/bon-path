@@ -2,7 +2,8 @@ import { createRoute, RouteConfig } from "@hono/zod-openapi"
 import { Handler } from "hono"
 import BasePayload from "../payloads/_abstruct"
 import { ROUTE_DESCRIPTIONS } from "@lib/constants/routeDescriptions"
-import type { PathsEnum, TagsEnum } from "./_enums";
+import type { PathsEnum, TagsEnum } from "@lib/enums"
+import { RouteError } from "@lib/error"
 
 type PartOfRouteConfig = {
     method: RouteConfig['method'],
@@ -50,5 +51,20 @@ export default abstract class BaseRoute {
     private routeName() {
         const name = this.constructor.name
         return name.charAt(0).toLowerCase() + name.slice(1).replace('Route', '')
+    }
+
+    protected createError(
+        messages: { detail: string, issue: string }, 
+        report?: any
+    ) {
+        return new RouteError(
+            400,
+            messages.detail,
+            messages.issue,
+            this.constructor.name,
+            this.route.path as PathsEnum,
+            this.route.method,
+            report
+        )
     }
 }
