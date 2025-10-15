@@ -48,3 +48,9 @@ export const getReceiptPurchases = new GetReceiptPurchasesRoute()
 
 import { GetReceiptImagesRoute } from "./receipts/getReceiptImages";
 export const getReceiptImages = new GetReceiptImagesRoute()
+
+import { PutReceiptImagesRoute } from "./receiptImages/putReceiptImages";
+export const putReceiptImage = new PutReceiptImagesRoute()
+
+import { DeleteReceiptImageRoute } from "./receiptImages/deleteReceiptImage";
+export const deleteReceiptImage = new DeleteReceiptImageRoute()

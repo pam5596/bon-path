@@ -20,7 +20,9 @@ import {
     getReceipt,
     updateReceipt,
     getReceiptPurchases,
-    getReceiptImages
+    getReceiptImages,
+    putReceiptImage,
+    deleteReceiptImage
 } from '@routes';
 
 const app = new OpenAPIHono()
@@ -51,6 +53,9 @@ app.openapi(getReceipt.route, getReceipt.handler)
 app.openapi(updateReceipt.route, updateReceipt.handler)
 app.openapi(getReceiptPurchases.route, getReceiptPurchases.handler)
 app.openapi(getReceiptImages.route, getReceiptImages.handler)
+
+app.openapi(putReceiptImage.route, putReceiptImage.handler)
+app.openapi(deleteReceiptImage.route, deleteReceiptImage.handler)
 
 app.doc('/doc', {
     openapi: '3.0.0',

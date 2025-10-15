@@ -13,5 +13,9 @@ export const ROUTE_DESCRIPTIONS = {
     createReceipt: '新規のレシート情報を登録し、IDを返す。',
     getReceipt: 'パスパラメータのIDからレシート情報を返す。',
     updateReceipt: 'パスパラメータのIDからレシート情報を更新する。',
-    deleteReceipt: 'パスパラメータのIDからレシート情報を削除する。'
+    deleteReceipt: 'パスパラメータのIDからレシート情報を削除する。',
+    getReceiptPurchases: 'レシートの購入履歴一覧を取得する。',
+    getReceiptImages: 'レシートの画像一覧を取得する。',
+    putReceiptImages: '新規のレシート画像を複数登録する。',
+    deleteReceiptImage: 'パスパラメータのIDからレシート画像を削除する。'
 }
