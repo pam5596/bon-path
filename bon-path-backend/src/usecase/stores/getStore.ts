@@ -13,14 +13,13 @@ export class GetStoreUseCase implements BaseUseCase<
     constructor(
         public clients: { honoJwt: HonoJwtClient },
         public repositories: { store: StoreRepository },
-        public request: StoresPayloadSchemas.GET.Request
     ){}
 
-    async execute() {
+    async execute(request: StoresPayloadSchemas.GET.Request) {
         await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
+            request.getCookies.loginSessionId
         )
-        const params = this.request.toValueObjectParams()
+        const params = request.toValueObjectParams()
 
         const store = await this.repositories.store.selectById(params.id)
 
@@ -29,7 +28,7 @@ export class GetStoreUseCase implements BaseUseCase<
             ERROR_MESSAGES.usecase.storeNotFound.detail,
             ERROR_MESSAGES.usecase.storeNotFound.issues,
             this.constructor.name,
-            this.request.getParams
+            request.getParams
         )
 
         return new StoresPayloadSchemas.GET.Response({

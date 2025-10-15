@@ -13,14 +13,13 @@ export class GetStoresUseCase implements BaseUseCase<
     constructor(
         public clients: { honoJwt: HonoJwtClient },
         public repositories: { store: StoreRepository },
-        public request: StoresPayloadSchemas.Stores.GET.Request
     ){}
 
-    async execute() {
+    async execute(request: StoresPayloadSchemas.Stores.GET.Request) {
         await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
+            request.getCookies.loginSessionId
         )
-        const { latitude, longitude, radius, limit } = this.request.toValueObjectParams()
+        const { latitude, longitude, radius, limit } = request.toValueObjectParams()
 
         if ((latitude || longitude || radius) && !(latitude && longitude && radius)) 
             throw new UseCaseError(
@@ -28,7 +27,7 @@ export class GetStoresUseCase implements BaseUseCase<
                 ERROR_MESSAGES.usecase.invalidLocationParams.detail,
                 ERROR_MESSAGES.usecase.invalidLocationParams.issues,
                 this.constructor.name,
-                this.request.getParams
+                request.getParams
             )
         
         const stores = await this.repositories.store.selectAll({

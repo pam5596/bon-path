@@ -11,14 +11,13 @@ export class GetReceiptPurchasesUsecase implements BaseUseCase<
     constructor(
         public clients: { honoJwt: HonoJwtClient },
         public repositories: { purchase: PurchaseRepository },
-        public request: ReceiptsPayloadSchemas.Purchases.GET.Request
     ) {}
 
-    async execute() {
+    async execute(request: ReceiptsPayloadSchemas.Purchases.GET.Request) {
         await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
+            request.getCookies.loginSessionId
         )
-        const params = this.request.toValueObjectParams()
+        const params = request.toValueObjectParams()
 
         const purchases = await this.repositories.purchase.selectByReceiptId(params.receiptId);
 

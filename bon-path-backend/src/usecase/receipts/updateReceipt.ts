@@ -13,16 +13,15 @@ export class UpdateReceiptUseCase implements BaseUseCase<
     constructor(
         public clients: { honoJwt: HonoJwtClient },
         public repositories: { receipt: ReceiptRepository },
-        public request: ReceiptsPayloadSchemas.PATCH.Request
     ) {}
 
-    async execute() {
+    async execute(request: ReceiptsPayloadSchemas.PATCH.Request) {
         const jwt_payload = await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
+            request.getCookies.loginSessionId
         ) as LoginSessionEntity['toPrimitives']
         const session = LoginSessionEntity.fromPrimitives(jwt_payload)
-        const params = this.request.toValueObjectParams()
-        const { isChecked } = this.request.toValueObjectBody()
+        const params = request.toValueObjectParams()
+        const { isChecked } = request.toValueObjectBody()
 
         const receipt = await this.repositories.receipt.selectById(params.id)
         if (!receipt) throw new UseCaseError(
@@ -30,7 +29,7 @@ export class UpdateReceiptUseCase implements BaseUseCase<
             ERROR_MESSAGES.usecase.receiptNotFound.detail,
             ERROR_MESSAGES.usecase.receiptNotFound.issues,
             this.constructor.name,
-            this.request.getParams
+            request.getParams
         )
 
         if (!receipt.userId.equals(session.getValues.userId)) throw new UseCaseError(
@@ -38,7 +37,7 @@ export class UpdateReceiptUseCase implements BaseUseCase<
             ERROR_MESSAGES.usecase.receiptNotAccessible.detail,
             ERROR_MESSAGES.usecase.receiptNotAccessible.issues,
             this.constructor.name,
-            this.request.getParams
+            request.getParams
         )
 
         receipt.toggleIsChecked()
@@ -47,7 +46,7 @@ export class UpdateReceiptUseCase implements BaseUseCase<
             ERROR_MESSAGES.usecase.receiptNotFound.detail,
             ERROR_MESSAGES.usecase.receiptNotFound.issues,
             this.constructor.name,
-            this.request.getBody
+            request.getBody
         )
 
         await this.repositories.receipt.update(receipt)

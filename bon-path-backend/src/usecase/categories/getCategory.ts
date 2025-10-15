@@ -13,14 +13,13 @@ export class GetCategoryUseCase implements BaseUseCase<
     constructor(
         public clients: { honoJwt: HonoJwtClient },
         public repositories: { category: CategoryRepository },
-        public request: CategoriesPayloadSchemas.GET.Request
     ){}
 
-    async execute() {
+    async execute(request: CategoriesPayloadSchemas.GET.Request) {
         await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
+            request.getCookies.loginSessionId
         )
-        const params = this.request.toValueObjectParams()
+        const params = request.toValueObjectParams()
 
         const category = await this.repositories.category.selectById(params.id)
         if (!category) throw new UseCaseError(
@@ -28,7 +27,7 @@ export class GetCategoryUseCase implements BaseUseCase<
             ERROR_MESSAGES.usecase.categoryNotFound.detail,
             ERROR_MESSAGES.usecase.categoryNotFound.issues,
             this.constructor.name,
-            this.request.getParams
+            request.getParams
         )
 
         return new CategoriesPayloadSchemas.GET.Response({

@@ -24,14 +24,13 @@ export class GoogleMapSearchProductsUseCase implements BaseUseCase<
         public repositories: {
             category: CategoryRepository
         },
-        public request: ProductsPayloadSchemas.GoogleSearch.GET.Request
     ){}
 
-    async execute() {
+    async execute(request: ProductsPayloadSchemas.GoogleSearch.GET.Request) {
         await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
+            request.getCookies.loginSessionId
         )
-        const { keyword, limit } = this.request.toValueObjectQuery()
+        const { keyword, limit } = request.toValueObjectQuery()
         
         const searchedProducts = await this.services.searchProduct.execute({
             query: keyword,
@@ -56,7 +55,7 @@ export class GoogleMapSearchProductsUseCase implements BaseUseCase<
                 ERROR_MESSAGES.usecase.invalidAiResponse.detail,
                 ERROR_MESSAGES.usecase.invalidAiResponse.issues,
                 this.constructor.name,
-                this.request.getQuery
+                request.getQuery
             )
 
         return new ProductsPayloadSchemas.GoogleSearch.GET.Response({

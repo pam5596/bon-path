@@ -15,12 +15,11 @@ export class UpdateUserUseCase implements BaseUseCase<
         public clients: { honoJwt: HonoJwtClient },
         public repositories: { user: UserRepository },
         public services: { userPasswordHash: UserPasswordHashService },
-        public request: UsersPayloadSchemas.PATCH.Request
     ) {}
 
-    async execute() {
+    async execute(request: UsersPayloadSchemas.PATCH.Request) {
         const jwt_payload = await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
+            request.getCookies.loginSessionId
         ) as LoginSessionEntity['toPrimitives']
         const session = LoginSessionEntity.fromPrimitives(jwt_payload)
 
@@ -30,9 +29,9 @@ export class UpdateUserUseCase implements BaseUseCase<
             ERROR_MESSAGES.usecase.userNotFound.detail,
             ERROR_MESSAGES.usecase.userNotFound.issues,
             this.constructor.name,
-            this.request.getBody
+            request.getBody
         )
-        user.newValues = this.request.toValueObjectBody()
+        user.newValues = request.toValueObjectBody()
 
         await this.repositories.user.update(user)
     }

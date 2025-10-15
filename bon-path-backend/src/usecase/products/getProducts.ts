@@ -11,14 +11,13 @@ export class GetProductsUseCase implements BaseUseCase<
     constructor(
         public clients: { honoJwt: HonoJwtClient },
         public repositories: { product: ProductRepository },
-        public request: ProductsPayloadSchemas.Products.GET.Request
     ){}
 
-    async execute() {
+    async execute(request: ProductsPayloadSchemas.Products.GET.Request) {
         await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
+            request.getCookies.loginSessionId
         )
-        const { sort, orderBy, limit } = this.request.getQuery
+        const { sort, orderBy, limit } = request.getQuery
         const products = await this.repositories.product.selectAll({
             orderBy: {
                 [sort as string]: orderBy

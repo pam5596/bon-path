@@ -11,14 +11,13 @@ export class CreateCategoriesUseCase implements BaseUseCase<
     constructor(
         public clients: { honoJwt: HonoJwtClient },
         public repositories: { category: CategoryRepository },
-        public request: CategoriesPayloadSchemas.POST.Request
     ){}
 
-    async execute() {
+    async execute(request: CategoriesPayloadSchemas.POST.Request) {
         await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
+            request.getCookies.loginSessionId
         )
-        const body = this.request.toValueObjectBody()
+        const body = request.toValueObjectBody()
 
         const categories = body.categories.map(
             category => new CategoryEntity({ ...category })

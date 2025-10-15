@@ -11,14 +11,13 @@ export class GetStoreProductsUseCase implements BaseUseCase<
     constructor(
         public clients: { honoJwt: HonoJwtClient },
         public repositories: { product: ProductRepository },
-        public request: StoresPayloadSchemas.Products.GET.Request
     ){}
 
-    async execute() {
+    async execute(request: StoresPayloadSchemas.Products.GET.Request) {
         await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
+            request.getCookies.loginSessionId
         )
-        const params = this.request.toValueObjectParams()
+        const params = request.toValueObjectParams()
 
         const products = await this.repositories.product.selectByStoreId(params.storeId)
 

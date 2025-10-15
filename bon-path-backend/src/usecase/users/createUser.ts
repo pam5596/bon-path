@@ -15,17 +15,16 @@ export class CreateUserUseCase implements BaseUseCase<
     constructor(
         public clients: { honoJwt: HonoJwtClient },
         public repositories: { user: UserRepository },
-        public services: { userPasswordHashService: UserPasswordHashService },
-        public request: UsersPayloadSchemas.POST.Request
+        public services: { userPasswordHashService: UserPasswordHashService }
     ) {}
 
-    async execute() {
+    async execute(request: UsersPayloadSchemas.POST.Request) {
         const jwt_payload = await this.clients.honoJwt.verify(
-            this.request.getCookies.verifySessionId
+            request.getCookies.verifySessionId
         ) as VerifySessionEntity['toPrimitives']
         const session = VerifySessionEntity.fromPrimitives(jwt_payload)
 
-        const { email, name, password } = this.request.toValueObjectBody()
+        const { email, name, password } = request.toValueObjectBody()
         
         if (!session.getValues.userEmail.equals(email)) 
             throw new UseCaseError(
@@ -33,7 +32,7 @@ export class CreateUserUseCase implements BaseUseCase<
                 ERROR_MESSAGES.usecase.emailsNotEqual.detail,
                 ERROR_MESSAGES.usecase.emailsNotEqual.issues,
                 this.constructor.name,
-                this.request.getBody
+                request.getBody
             )
 
         const hash_password = await this.services.userPasswordHashService.execute(password)

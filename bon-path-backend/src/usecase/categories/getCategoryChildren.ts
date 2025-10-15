@@ -11,14 +11,13 @@ export class GetCategoryChildrenUseCase implements BaseUseCase<
     constructor(
         public clients: { honoJwt: HonoJwtClient },
         public repositories: { category: CategoryRepository },
-        public request: CategoriesPayloadSchemas.Children.GET.Request
     ){}
 
-    async execute() {
+    async execute(request: CategoriesPayloadSchemas.Children.GET.Request) {
         await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
+            request.getCookies.loginSessionId
         )
-        const params = this.request.toValueObjectParams()
+        const params = request.toValueObjectParams()
 
         const categories = await this.repositories.category.selectByParentId(params.parantId)
 

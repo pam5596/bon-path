@@ -11,7 +11,6 @@ export default interface BaseUseCase<
     clients?: Record<string, any>
     services?: Record<string, BaseService>
     repositories?: Record<string, BaseRepository|StoreVectorRepository|ProductVectorRepository>
-    request: BasePayload<RequestT>
 
-    execute(): Promise<BasePayload<ResponseT>|void>
+    execute(request: BasePayload<RequestT>): Promise<BasePayload<ResponseT>|void>
 }

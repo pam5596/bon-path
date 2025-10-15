@@ -11,15 +11,14 @@ export class PutReceiptImagesUsecase implements BaseUseCase<
     constructor(
         public clients: { honoJwt: HonoJwtClient, awsS3: AwsS3Client },
         public repositories: { receiptImage: ReceiptImageRepository },
-        public request: ReceiptImagesPayloadSchemas.POST.Request
     ){}
 
-    async execute() {
+    async execute(request: ReceiptImagesPayloadSchemas.POST.Request) {
         await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
+            request.getCookies.loginSessionId
         )
 
-        const { images, receiptId } = this.request.toValueObjectBody();
+        const { images, receiptId } = request.toValueObjectBody();
 
         const receiptImages = await Promise.all(
             images.map(

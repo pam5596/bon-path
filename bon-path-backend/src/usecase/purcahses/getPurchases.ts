@@ -14,15 +14,14 @@ export class GetPurchasesUseCase implements BaseUseCase<
     constructor(
         public clients: { honoJwt: HonoJwtClient },
         public repositories: { purchase: PurchaseRepository },
-        public request: PurchasesPayloadSchemas.GET.Request
     ){}
 
-    async execute() {
+    async execute(request: PurchasesPayloadSchemas.GET.Request) {
         const jwt_payload = await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
+            request.getCookies.loginSessionId
         ) as LoginSessionEntity['toPrimitives']
         const session = LoginSessionEntity.fromPrimitives(jwt_payload)
-        const params = this.request.toValueObjectParams()
+        const params = request.toValueObjectParams()
 
         const purchase = await this.repositories.purchase.selectById(params.id)
         if (!purchase) throw new UseCaseError(
@@ -30,7 +29,7 @@ export class GetPurchasesUseCase implements BaseUseCase<
             ERROR_MESSAGES.usecase.purchaseNotFound.detail,
             ERROR_MESSAGES.usecase.purchaseNotFound.issues,
             this.constructor.name,
-            this.request.getParams
+            request.getParams
         )
 
         if (!purchase.userId.equals(session.getValues.userId)) throw new UseCaseError(
@@ -38,7 +37,7 @@ export class GetPurchasesUseCase implements BaseUseCase<
             ERROR_MESSAGES.usecase.purchaseNotAccessible.detail,
             ERROR_MESSAGES.usecase.purchaseNotAccessible.issues,
             this.constructor.name,
-            this.request.getParams
+            request.getParams
         )
 
         return new PurchasesPayloadSchemas.GET.Response({

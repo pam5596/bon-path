@@ -11,14 +11,13 @@ export class VectorSearchStoresUseCase implements BaseUseCase<
     constructor(
         public clients: { honoJwt: HonoJwtClient, prismaVector: PrismaVectorClient },
         public repositories: { store: StoreRepository, storeVector: StoreVectorRepository },
-        public request: StoresPayloadSchemas.VectorSearch.GET.Request
     ){}
 
-    async execute() {
+    async execute(request: StoresPayloadSchemas.VectorSearch.GET.Request) {
         await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
+            request.getCookies.loginSessionId
         )
-        const { keyword, limit } = this.request.toValueObjectQuery()
+        const { keyword, limit } = request.toValueObjectQuery()
 
         const storeIds = await this.repositories.storeVector.searchStoreIdByName(keyword, limit)
         const stores = await this.repositories.store.selectByIds(storeIds)

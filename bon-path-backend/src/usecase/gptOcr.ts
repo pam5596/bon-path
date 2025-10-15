@@ -18,9 +18,9 @@ export class GptOcrUseCase implements BaseUseCase<
 
     async execute() {
         await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
+            request.getCookies.loginSessionId
         )
-        const body = this.request.toValueObjectBody()
+        const body = request.toValueObjectBody()
 
         const ocrResult = await this.services.receiptOcr.execute({
             query: body.images,

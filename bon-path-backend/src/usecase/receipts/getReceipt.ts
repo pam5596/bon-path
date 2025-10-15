@@ -14,15 +14,14 @@ export class GetReceiptUseCase implements BaseUseCase<
     constructor(
         public clients: { honoJwt: HonoJwtClient },
         public repositories: { receipt: ReceiptRepository },
-        public request: ReceiptsPayloadSchemas.GET.Request
     ) {}
 
-    async execute() {
+    async execute(request: ReceiptsPayloadSchemas.GET.Request) {
         const jwt_payload = await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
+            request.getCookies.loginSessionId
         ) as LoginSessionEntity['toPrimitives']
         const session = LoginSessionEntity.fromPrimitives(jwt_payload)
-        const params = this.request.toValueObjectParams()
+        const params = request.toValueObjectParams()
 
         const receipt = await this.repositories.receipt.selectById(params.id)
         if (!receipt) throw new UseCaseError(
@@ -30,7 +29,7 @@ export class GetReceiptUseCase implements BaseUseCase<
             ERROR_MESSAGES.usecase.receiptNotFound.detail,
             ERROR_MESSAGES.usecase.receiptNotFound.issues,
             this.constructor.name,
-            this.request.getParams
+            request.getParams
         )
 
         if (!receipt.userId.equals(session.getValues.userId)) throw new UseCaseError(
@@ -38,7 +37,7 @@ export class GetReceiptUseCase implements BaseUseCase<
             ERROR_MESSAGES.usecase.receiptNotAccessible.detail,
             ERROR_MESSAGES.usecase.receiptNotAccessible.issues,
             this.constructor.name,
-            this.request.getParams
+            request.getParams
         )
 
         const { isChecked, latitude, longitude } = receipt.toPrimitives

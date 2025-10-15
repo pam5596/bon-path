@@ -12,12 +12,11 @@ export class GetUserPurchasesUseCase implements BaseUseCase<
     constructor(
         public clients: { honoJwt: HonoJwtClient },
         public repositories: { purchase: PurchaseRepository },
-        public request: UsersPayloadSchemas.Purchases.GET.Request
     ) {}
 
-    async execute() {
+    async execute(request: UsersPayloadSchemas.Purchases.GET.Request) {
         const jwt_payload = await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
+            request.getCookies.loginSessionId
         ) as LoginSessionEntity['toPrimitives']
         const session = LoginSessionEntity.fromPrimitives(jwt_payload)
 

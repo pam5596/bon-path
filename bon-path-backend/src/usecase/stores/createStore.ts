@@ -12,14 +12,13 @@ export class CreateStoreUseCase implements BaseUseCase<
     constructor(
         public clients: { honoJwt: HonoJwtClient },
         public repositories: { store: StoreRepository },
-        public request: StoresPayloadSchemas.POST.Request
     ){}
 
-    async execute() {
+    async execute(request: StoresPayloadSchemas.POST.Request) {
         await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
+            request.getCookies.loginSessionId
         )
-        const body = this.request.toValueObjectBody()
+        const body = request.toValueObjectBody()
 
         const store = new StoreEntity(body)
         const inserted_store = await this.repositories.store.insert(store)

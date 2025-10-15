@@ -13,17 +13,16 @@ export class CreateReceiptUseCase implements BaseUseCase<
     constructor(
         public clients: { honoJwt: HonoJwtClient },
         public repositories: { receipt: ReceiptRepository },
-        public request: ReceiptsPayloadSchemas.POST.Request
     ) {}
 
-    async execute() {
+    async execute(request: ReceiptsPayloadSchemas.POST.Request) {
         const jwt_payload = await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
+            request.getCookies.loginSessionId
         ) as LoginSessionEntity['toPrimitives']
         const session = LoginSessionEntity.fromPrimitives(jwt_payload)
 
         const receipt = new ReceiptEntity({
-            ...this.request.toValueObjectBody(),
+            ...request.toValueObjectBody(),
             userId: session.getValues.userId,
             isChecked: new ReceiptIsChecked(false)
         })

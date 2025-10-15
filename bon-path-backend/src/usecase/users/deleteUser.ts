@@ -11,12 +11,11 @@ export class DeleteUserUseCase implements BaseUseCase<
     constructor(
         public clients: { honoJwt: HonoJwtClient },
         public repositories: { user: UserRepository },
-        public request: UsersPayloadSchemas.DELETE.Request
     ) {}
 
-    async execute() {
+    async execute(request: UsersPayloadSchemas.DELETE.Request) {
         const jwt_payload = await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
+            request.getCookies.loginSessionId
         ) as LoginSessionEntity['toPrimitives']
         const session = LoginSessionEntity.fromPrimitives(jwt_payload)
 

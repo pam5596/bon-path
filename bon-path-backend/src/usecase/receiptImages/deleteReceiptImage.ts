@@ -12,14 +12,13 @@ export class DeleteReceiptImageUseCase implements BaseUseCase<
     constructor(
         public clients: { honoJwt: HonoJwtClient, awsS3: AwsS3Client },
         public repositories: { receiptImage: ReceiptImageRepository },
-        public request: ReceiptImagesPayloadSchemas.DELETE.Request
     ){}
 
-    async execute() {
+    async execute(request: ReceiptImagesPayloadSchemas.DELETE.Request) {
         await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
+            request.getCookies.loginSessionId
         )
-        const params = this.request.toValueObjectParams()
+        const params = request.toValueObjectParams()
 
         const receiptImage = await this.repositories.receiptImage.selectById(params.id)
         if (!receiptImage) throw new UseCaseError(
@@ -27,7 +26,7 @@ export class DeleteReceiptImageUseCase implements BaseUseCase<
             ERROR_MESSAGES.usecase.receiptImageNotFound.detail,
             ERROR_MESSAGES.usecase.receiptImageNotFound.issues,
             this.constructor.name,
-            this.request.getParams
+            request.getParams
         )
 
         await this.repositories.receiptImage.deleteById(params.id)

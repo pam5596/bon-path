@@ -11,14 +11,13 @@ export class CreateProductsUseCase implements BaseUseCase<
     constructor(
         public clients: { honoJwt: HonoJwtClient },
         public repositories: { product: ProductRepository },
-        public request: ProductsPayloadSchemas.POST.Request
     ){}
 
-    async execute() {
+    async execute(request: ProductsPayloadSchemas.POST.Request) {
         await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
+            request.getCookies.loginSessionId
         )
-        const body = this.request.toValueObjectBody()
+        const body = request.toValueObjectBody()
 
         const products = body.products.map(
             product => new ProductEntity(product)

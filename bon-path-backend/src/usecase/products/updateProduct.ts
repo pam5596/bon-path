@@ -13,15 +13,14 @@ export class UpdateProductUseCase implements BaseUseCase<
     constructor(
         public clients: { honoJwt: HonoJwtClient },
         public repositories: { product: ProductRepository },
-        public request: ProductsPayloadSchemas.PATCH.Request
     ){}
 
-    async execute() {
+    async execute(request: ProductsPayloadSchemas.PATCH.Request) {
         await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
+            request.getCookies.loginSessionId
         )
-        const params = this.request.toValueObjectParams()
-        const body = this.request.toValueObjectBody()
+        const params = request.toValueObjectParams()
+        const body = request.toValueObjectBody()
 
         const product = await this.repositories.product.selectById(params.id)
         if (!product) throw new UseCaseError(
@@ -29,7 +28,7 @@ export class UpdateProductUseCase implements BaseUseCase<
             ERROR_MESSAGES.usecase.productNotFound.detail,
             ERROR_MESSAGES.usecase.productNotFound.issues,
             this.constructor.name,
-            this.request.getParams
+            request.getParams
         )
 
         product.newValues = body

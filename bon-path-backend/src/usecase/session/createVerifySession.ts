@@ -9,11 +9,10 @@ export class CreateVerifySessionUseCase implements BaseUseCase<
 > {
     constructor(
         public clients: { honoJwt: HonoJwtClient },
-        public request: SessionPayloadSchemas.Verify.POST.Request
     ) {}
 
-    async execute() {
-        const { name, email, password } = this.request.toValueObjectBody();
+    async execute(request: SessionPayloadSchemas.Verify.POST.Request) {
+        const { name, email, password } = request.toValueObjectBody();
 
         const jwt_token = await this.clients.honoJwt.sign({
             userName: name,

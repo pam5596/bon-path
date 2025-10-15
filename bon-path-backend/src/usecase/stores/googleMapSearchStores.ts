@@ -11,14 +11,13 @@ export class GoogleMapSearchStoresUseCase implements BaseUseCase<
     constructor(
         public clients: { honoJwt: HonoJwtClient },
         public services: { searchStorePlace: SearchStorePlaceService },
-        public request: StoresPayloadSchemas.GoogleMapSearch.GET.Request
     ){}
 
-    async execute() {
+    async execute(request: StoresPayloadSchemas.GoogleMapSearch.GET.Request) {
         await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
+            request.getCookies.loginSessionId
         )
-        const { keyword, limit } = this.request.toValueObjectQuery()
+        const { keyword, limit } = request.toValueObjectQuery()
 
         const stores = await this.services.searchStorePlace.execute({
             query: keyword,

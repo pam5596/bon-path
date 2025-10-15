@@ -15,11 +15,10 @@ export class CreateLoginSessionUseCase implements BaseUseCase<
         public clients: { honoJwt: HonoJwtClient },
         public repositories: { user: UserRepository },
         public services: { userPasswordHashService: UserPasswordHashService },
-        public request: SessionPayloadSchemas.Login.POST.Request
     ){}
 
-    async execute() {
-        const { email, password } = this.request.toValueObjectBody() 
+    async execute(request: SessionPayloadSchemas.Login.POST.Request) {
+        const { email, password } = request.toValueObjectBody() 
         const hash_password = await this.services.userPasswordHashService.execute(password)
         
         const user = await this.repositories.user.selectByEmailAndPassword(email, hash_password)
@@ -28,7 +27,7 @@ export class CreateLoginSessionUseCase implements BaseUseCase<
             ERROR_MESSAGES.usecase.userNotFound.detail,
             ERROR_MESSAGES.usecase.userNotFound.issues,
             this.constructor.name,
-            this.request.getBody
+            request.getBody
         )
         
         const jwt_token = await this.clients.honoJwt.sign({
