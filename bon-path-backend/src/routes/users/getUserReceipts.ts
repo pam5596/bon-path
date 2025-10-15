@@ -12,7 +12,7 @@ export class GetUserReceiptsRoute extends BaseRoute {
             {
                 method: 'get',
                 path: '/users/receipts',
-                tags: ['ユーザー情報をリソースとするルート'],
+                tags: ['ユーザー情報をリソースとするルート', 'レシート情報をリソースとするルート'],
                 requestMediaType: 'application/json',
                 successStatusCode: 200
             },

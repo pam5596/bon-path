@@ -12,7 +12,7 @@ export class GetUserPurchases extends BaseRoute {
             {
                 method: 'get',
                 path: '/users/purchases',
-                tags: ['ユーザー情報をリソースとするルート'],
+                tags: ['ユーザー情報をリソースとするルート', '購入履歴をリソースとするルート'],
                 requestMediaType: 'application/json',
                 successStatusCode: 200
             },
