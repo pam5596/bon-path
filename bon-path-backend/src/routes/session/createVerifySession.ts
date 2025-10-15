@@ -21,8 +21,7 @@ export class CreateVerifySessionRoute extends BaseRoute {
                 const request = new SessionPayloadSchemas.Verify.POST.Request({body})
                 const response = await new CreateVerifySessionUseCase(
                     { honoJwt: honoJwtVerify },
-                    request
-                ).execute();
+                ).execute(request);
 
                 setCookie(context, 'verifySessionId', response.getCookies.verifySessionId, {
                     secure: true,

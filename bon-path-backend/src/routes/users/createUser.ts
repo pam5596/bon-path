@@ -33,8 +33,7 @@ export class CreateUserRoute extends BaseRoute {
                     { honoJwt: honoJwtVerify },
                     { user: userRepository },
                     { userPasswordHashService },
-                    request
-                ).execute();
+                ).execute(request);
 
                 return context.json(response.getBody)
             },

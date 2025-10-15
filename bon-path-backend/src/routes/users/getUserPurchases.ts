@@ -29,8 +29,7 @@ export class GetUserPurchases extends BaseRoute {
                 const response = await new GetUserPurchasesUseCase(
                     { honoJwt: honoJwtLogin },
                     { purchase: purchaseRepository },
-                    request
-                ).execute()
+                ).execute(request)
 
                 return context.json(response.getBody)
             },

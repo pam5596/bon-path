@@ -25,8 +25,7 @@ export class CreateLoginSessionRoute extends BaseRoute {
                     { honoJwt: honoJwtLogin }, 
                     { user: userRepository },
                     { userPasswordHashService },
-                    request
-                ).execute();
+                ).execute(request);
 
                 setCookie(context, 'loginSessionId', response.getCookies.loginSessionId, {
                     secure: true,

@@ -29,8 +29,7 @@ export class GetUserRoute extends BaseRoute {
                 const response = await new GetUserUseCase(
                     { honoJwt: honoJwtLogin },
                     { user: userRepository },
-                    request
-                ).execute()
+                ).execute(request)
 
                 return context.json(response.getBody)
             },

@@ -27,7 +27,7 @@ export class GetVerifySessionRoute extends BaseRoute {
                 });
                 const response = await new GetVerifySessionUseCase({
                     honoJwt: honoJwtVerify
-                }, request).execute()
+                }).execute(request)
 
                 return context.json(response.getBody)
             },

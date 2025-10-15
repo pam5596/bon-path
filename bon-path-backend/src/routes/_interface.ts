@@ -4,6 +4,7 @@ import BasePayload from "../payloads/_abstruct"
 import { ROUTE_DESCRIPTIONS } from "@lib/constants/routeDescriptions"
 import type { PathsEnum, TagsEnum } from "@lib/enums"
 import { RouteError } from "@lib/error"
+import BaseUseCase from "@usecase/_interface"
 
 type PartOfRouteConfig = {
     method: RouteConfig['method'],
@@ -19,8 +20,8 @@ export default abstract class BaseRoute {
     constructor(
         config: PartOfRouteConfig,
         public handler: Handler,
-        request: BasePayload<any>,
-        response?: BasePayload<any>,
+        public request: BasePayload<any>,
+        public response?: BasePayload<any>,
     ){
         this.route = createRoute({
             ...config,
@@ -42,13 +43,13 @@ export default abstract class BaseRoute {
                             schema: response.schema().body!
                         }
                     } : undefined,
-                    description: ROUTE_DESCRIPTIONS[(this.routeName()) as keyof typeof ROUTE_DESCRIPTIONS]
+                    description: ROUTE_DESCRIPTIONS[(this.nameToCamelCase()) as keyof typeof ROUTE_DESCRIPTIONS]
                 }
             }
         })
     }
 
-    private routeName() {
+    private nameToCamelCase() {
         const name = this.constructor.name
         return name.charAt(0).toLowerCase() + name.slice(1).replace('Route', '')
     }

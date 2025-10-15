@@ -35,8 +35,7 @@ export class UpdateUserRoute extends BaseRoute {
                     { honoJwt: honoJwtLogin },
                     { user: userRepository },
                     { userPasswordHash: userPasswordHashService },
-                    request
-                ).execute()
+                ).execute(request)
             },
             new UsersPayloadSchemas.PATCH.Request()
         )

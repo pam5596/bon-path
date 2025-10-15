@@ -33,8 +33,7 @@ export class GetUserReceiptsRoute extends BaseRoute {
                 const response = await new GetUserReceiptsUseCase(
                     { honoJwt: honoJwtLogin },
                     { receipt: receiptRepository },
-                    request
-                ).execute()
+                ).execute(request)
 
                 return context.json(response.getBody)
             },

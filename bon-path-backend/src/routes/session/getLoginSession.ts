@@ -27,7 +27,7 @@ export class GetLoginSessionRoute extends BaseRoute {
                 });
                 const response = await new GetLoginSessionUseCase({
                     honoJwt: honoJwtLogin
-                }, request).execute()
+                }).execute(request)
 
                 return context.json(response.getBody)
             },
