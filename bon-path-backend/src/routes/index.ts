@@ -87,3 +87,24 @@ export const updateStore = new UpdateStoreRoute()
 
 import { VectorSearchStoresRoute } from "./stores/vectorSearchStores";
 export const vectorSearchStores = new VectorSearchStoresRoute()
+
+import { CreateProductsRoute } from "./products/createProducts";
+export const createProducts = new CreateProductsRoute()
+
+import { DeleteProductRoute } from "./products/deleteProduct";
+export const deleteProduct = new DeleteProductRoute()
+
+import { GetProductRoute } from "./products/getProduct";
+export const getProduct = new GetProductRoute()
+
+import { GetProductsRoute } from "./products/getProducts";
+export const getProducts = new GetProductsRoute()
+
+import { GoogleMapSearchProductsRoute } from "./products/googleMapSearchProducts";
+export const googleMapSearchProducts = new GoogleMapSearchProductsRoute()
+
+import { UpdateProductRoute } from "./products/updateProduct";
+export const updateProduct = new UpdateProductRoute()
+
+import { VectorSearchProductsRoute } from "./products/vectorSearchProducts";
+export const vectorSearchProducts = new VectorSearchProductsRoute()

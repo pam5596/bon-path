@@ -1,19 +1,18 @@
 import { getCookie } from "hono/cookie";
 import BaseRoute from "../_interface";
 import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
-import { StorePayloads } from "@share/payloads";
-import { StoresPayloadSchemas } from "@payload";
-import { GetStoresUseCase } from "@usecase/index";
+import { ProductsPayloadSchemas } from "@payload";
+import { GetProductUseCase } from "@usecase/index";
 import { honoJwtLogin } from "@lib/clients";
-import { storeRepository } from "@lib/repositories";
+import { productRepository } from "@lib/repositories";
 
-export class GetStoresRoute extends BaseRoute {
+export class GetProductRoute extends BaseRoute {
     constructor() {
         super(
             {
                 method: 'get',
-                path: '/stores',
-                tags: ['店舗情報をリソースとするルート'],
+                path: '/products/:id',
+                tags: ['商品情報をリソースとするルート'],
                 requestMediaType: 'application/json',
                 successStatusCode: 200
             },
@@ -24,31 +23,26 @@ export class GetStoresRoute extends BaseRoute {
                     getCookie(context)
                 )
 
-                const query = context.req.query();
-                if (
-                    isNaN(Number(query.longitude)) || 
-                    isNaN(Number(query.latitude)) ||
-                    isNaN(Number(query.radius)) ||
-                    isNaN(Number(query.limit))
-                ) throw this.createError(
+                const { id } = context.req.param()
+                if (isNaN(Number(id))) throw this.createError(
                     ERROR_MESSAGES.route.invalidParams,
                     context.req.param()
                 )
 
-                const request = new StoresPayloadSchemas.Stores.GET.Request({
+                const request = new ProductsPayloadSchemas.GET.Request({
                     cookies: { loginSessionId },
-                    query
+                    params: { id: Number(id) }
                 })
 
-                const response = await new GetStoresUseCase(
+                const response = await new GetProductUseCase(
                     { honoJwt: honoJwtLogin },
-                    { store: storeRepository }
+                    { product: productRepository }
                 ).execute(request)
 
                 return context.json(response.getBody)
             },
-            new StoresPayloadSchemas.Stores.GET.Request(),
-            new StoresPayloadSchemas.Stores.GET.Response()
+            new ProductsPayloadSchemas.GET.Request(),
+            new ProductsPayloadSchemas.GET.Response()
         )
     }
 }

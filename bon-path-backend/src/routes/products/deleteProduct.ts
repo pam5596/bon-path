@@ -1,0 +1,45 @@
+import { getCookie } from "hono/cookie";
+import BaseRoute from "../_interface";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
+import { ProductsPayloadSchemas } from "@payload";
+import { DeleteProductUseCase } from "@usecase/index";
+import { honoJwtLogin } from "@lib/clients";
+import { productRepository } from "@lib/repositories";
+
+export class DeleteProductRoute extends BaseRoute {
+    constructor() {
+        super(
+            {
+                method: 'delete',
+                path: '/products/:id',
+                tags: ['商品情報をリソースとするルート'],
+                requestMediaType: 'application/json',
+                successStatusCode: 204
+            },
+            async (context) => {
+                const loginSessionId = getCookie(context, 'loginSessionid');
+                if (!loginSessionId) throw this.createError(
+                    ERROR_MESSAGES.route.invalidCookie,
+                    getCookie(context)
+                )
+
+                const { id } = context.req.param()
+                if (isNaN(Number(id))) throw this.createError(
+                    ERROR_MESSAGES.route.invalidParams,
+                    context.req.param()
+                )
+
+                const request = new ProductsPayloadSchemas.DELETE.Request({
+                    cookies: { loginSessionId },
+                    params: { id: Number(id) }
+                })
+
+                await new DeleteProductUseCase(
+                    { honoJwt: honoJwtLogin },
+                    { product: productRepository }
+                ).execute(request)
+            },
+            new ProductsPayloadSchemas.DELETE.Request()
+        )
+    }
+}

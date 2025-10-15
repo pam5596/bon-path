@@ -15,9 +15,9 @@ export class CreateVerifySessionUseCase implements BaseUseCase<
         const { name, email, password } = request.toValueObjectBody();
 
         const jwt_token = await this.clients.honoJwt.sign({
-            userName: name,
-            userEmail: email,
-            userPassword: password
+            userName: name.value,
+            userEmail: email.value,
+            userPassword: password.value
         })
 
         return new SessionPayloadSchemas.Verify.POST.Response({

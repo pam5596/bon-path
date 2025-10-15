@@ -33,7 +33,14 @@ import {
     getStores,
     googleMapSearchStores,
     updateStore,
-    vectorSearchStores
+    vectorSearchStores,
+    createProducts,
+    deleteProduct,
+    getProduct,
+    getProducts,
+    googleMapSearchProducts,
+    updateProduct,
+    vectorSearchProducts
 } from '@routes';
 
 const app = new OpenAPIHono()
@@ -80,6 +87,14 @@ app.openapi(getStores.route, getStores.handler)
 app.openapi(googleMapSearchStores.route,googleMapSearchStores.handler)
 app.openapi(updateStore.route, updateStore.handler)
 app.openapi(vectorSearchStores.route, vectorSearchStores.handler)
+
+app.openapi(createProducts.route, createProducts.handler)
+app.openapi(deleteProduct.route, deleteProduct.handler)
+app.openapi(getProduct.route, getProduct.handler)
+app.openapi(getProducts.route, getProducts.handler)
+app.openapi(googleMapSearchProducts.route, googleMapSearchProducts.handler)
+app.openapi(updateProduct.route, updateProduct.handler)
+app.openapi(vectorSearchProducts.route, vectorSearchProducts.handler)
 
 app.doc('/doc', {
     openapi: '3.0.0',
