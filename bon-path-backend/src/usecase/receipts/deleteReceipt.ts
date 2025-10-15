@@ -13,10 +13,9 @@ export class DeleteReceiptUseCase implements BaseUseCase<
     constructor(
         public clients: { honoJwt: HonoJwtClient },
         public repositories: { receipt: ReceiptRepository },
-        public request: ReceiptsPayloadSchemas.DELETE.Request
     ){}
 
-    async execute() {
+    async execute(request: ReceiptsPayloadSchemas.DELETE.Request) {
         const jwt_payload = await this.clients.honoJwt.verify(
             request.getCookies.loginSessionId
         ) as LoginSessionEntity['toPrimitives']

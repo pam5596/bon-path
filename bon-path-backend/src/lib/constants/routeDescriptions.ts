@@ -9,5 +9,9 @@ export const ROUTE_DESCRIPTIONS = {
     updateUser: 'ユーザーの名前とメールアドレスを更新する。',
     deleteUser: 'ユーザーを削除する。',
     getUserReceipts: 'ユーザーのレシート一覧を取得する。',
-    getUserPurchases: 'ユーザーの購入履歴一覧を取得する。'
+    getUserPurchases: 'ユーザーの購入履歴一覧を取得する。',
+    createReceipt: '新規のレシート情報を登録し、IDを返す。',
+    getReceipt: 'パスパラメータのIDからレシート情報を返す。',
+    updateReceipt: 'パスパラメータのIDからレシート情報を更新する。',
+    deleteReceipt: 'パスパラメータのIDからレシート情報を削除する。'
 }

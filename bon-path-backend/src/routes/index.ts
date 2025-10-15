@@ -33,3 +33,12 @@ export const getUserPurchases = new GetUserPurchases()
 
 import { CreateReceiptRoute } from "./receipts/createReceipt";
 export const createReceipt = new CreateReceiptRoute()
+
+import { DeleteReceiptRoute } from "./receipts/deleteReceipt";
+export const deleteReceipt = new DeleteReceiptRoute()
+
+import { GetReceiptRoute } from "./receipts/getReceipt";
+export const getReceipt = new GetReceiptRoute()
+
+import { UpdateReceiptRoute } from "./receipts/updateReceipt";
+export const updateReceipt = new UpdateReceiptRoute()

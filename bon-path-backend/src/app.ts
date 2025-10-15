@@ -15,7 +15,10 @@ import {
     deleteUser,
     getUserReceipts,
     getUserPurchases,
-    createReceipt
+    createReceipt,
+    deleteReceipt,
+    getReceipt,
+    updateReceipt
 } from '@routes';
 
 const app = new OpenAPIHono()
@@ -40,7 +43,10 @@ app.openapi(deleteUser.route, deleteUser.handler)
 app.openapi(getUserReceipts.route, getUserReceipts.handler)
 app.openapi(getUserPurchases.route, getUserPurchases.handler)
 
-// app.openapi(createReceipt.route, createReceipt.handler)
+app.openapi(createReceipt.route, createReceipt.handler)
+app.openapi(deleteReceipt.route, deleteReceipt.handler)
+app.openapi(getReceipt.route, getReceipt.handler)
+app.openapi(updateReceipt.route, updateReceipt.handler)
 
 app.doc('/doc', {
     openapi: '3.0.0',
