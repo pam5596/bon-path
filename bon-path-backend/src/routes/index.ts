@@ -30,3 +30,6 @@ export const getUserReceipts = new GetUserReceiptsRoute()
 
 import { GetUserPurchases } from "./users/getUserPurchases";
 export const getUserPurchases = new GetUserPurchases()
+
+import { CreateReceiptRoute } from "./receipts/createReceipt";
+export const createReceipt = new CreateReceiptRoute()
