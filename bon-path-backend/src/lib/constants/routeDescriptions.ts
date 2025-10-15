@@ -17,5 +17,8 @@ export const ROUTE_DESCRIPTIONS = {
     getReceiptPurchases: 'レシートの購入履歴一覧を取得する。',
     getReceiptImages: 'レシートの画像一覧を取得する。',
     putReceiptImages: '新規のレシート画像を複数登録する。',
-    deleteReceiptImage: 'パスパラメータのIDからレシート画像を削除する。'
+    deleteReceiptImage: 'パスパラメータのIDからレシート画像を削除する。',
+    createPurchases: '新規の購入履歴を登録する。',
+    deletePurchase: 'パスパラメータのIDから購入履歴を削除する。',
+    getPurchase: 'パスパラメータのIDから購入履歴を取得する。'
 }

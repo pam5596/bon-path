@@ -54,3 +54,12 @@ export const putReceiptImage = new PutReceiptImagesRoute()
 
 import { DeleteReceiptImageRoute } from "./receiptImages/deleteReceiptImage";
 export const deleteReceiptImage = new DeleteReceiptImageRoute()
+
+import { CreatePurchasesRoute } from "./purchases/createPurchases";
+export const createPurchases = new CreatePurchasesRoute()
+
+import { DeletePurchaseRoute } from "./purchases/deletePurchase";
+export const deletePurchase = new DeletePurchaseRoute()
+
+import { GetPurchaseRoute } from "./purchases/getPurchase";
+export const getPurchase = new GetPurchaseRoute()
