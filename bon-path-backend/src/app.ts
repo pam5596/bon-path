@@ -2,7 +2,6 @@ import { OpenAPIHono } from '@hono/zod-openapi'
 import { swaggerUI } from "@hono/swagger-ui";
 import { serve } from '@hono/node-server'
 import { corsHandler, errorHandler, loginSessionHandler, verifySessionHandler } from '@lib/middleware';
-
 import { 
     getLoginSession,
     createLoginSession,
@@ -40,7 +39,12 @@ import {
     getProducts,
     googleMapSearchProducts,
     updateProduct,
-    vectorSearchProducts
+    vectorSearchProducts,
+    createCategories,
+    deleteCategory,
+    getCategory,
+    getCategoryChildren,
+    getCategoryProducts
 } from '@routes/index';
 
 const app = new OpenAPIHono()
@@ -97,6 +101,12 @@ app.openapi(getProducts.route, getProducts.handler)
 app.openapi(googleMapSearchProducts.route, googleMapSearchProducts.handler)
 app.openapi(updateProduct.route, updateProduct.handler)
 app.openapi(vectorSearchProducts.route, vectorSearchProducts.handler)
+
+app.openapi(createCategories.route, createCategories.handler)
+app.openapi(deleteCategory.route, deleteCategory.handler)
+app.openapi(getCategory.route, getCategory.handler)
+app.openapi(getCategoryChildren.route, getCategoryChildren.handler)
+app.openapi(getCategoryProducts.route, getCategoryProducts.handler)
 
 app.doc('/doc', {
     openapi: '3.0.0',

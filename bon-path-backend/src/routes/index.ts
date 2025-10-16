@@ -108,3 +108,18 @@ export const updateProduct = new UpdateProductRoute()
 
 import { VectorSearchProductsRoute } from "./products/vectorSearchProducts";
 export const vectorSearchProducts = new VectorSearchProductsRoute()
+
+import { CreateCategoriesRoute } from "./categories/createCategories";
+export const createCategories = new CreateCategoriesRoute()
+
+import { DeleteCategoryRoute } from "./categories/deleteCategory";
+export const deleteCategory = new DeleteCategoryRoute()
+
+import { GetCategoryRoute } from "./categories/getCategory";
+export const getCategory = new GetCategoryRoute()
+
+import { GetCategoryChildren } from "./categories/getCategoryChildren";
+export const getCategoryChildren = new GetCategoryChildren()
+
+import { GetCategoryProducts } from "./categories/getCategoryProducts";
+export const getCategoryProducts = new GetCategoryProducts()

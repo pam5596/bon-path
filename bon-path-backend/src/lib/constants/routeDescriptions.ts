@@ -27,6 +27,18 @@ export const ROUTE_DESCRIPTIONS = {
     getStoreProducts: '店舗の商品情報一覧を取得する。',
     getStores: '店舗情報の一覧を取得する。クエリパラメータで座標を指定すれば近辺を取得可能。',
     googleMapSearchStores: '店舗名をGoogle検索し、検索結果を返す。',
-    updateStore: '店舗情報を更新する。',
-    vectorSearchStores: '店舗名でベクトル検索し、検索結果を返す。'
+    updateStore: 'パスパラメータのIDから店舗情報を更新する。',
+    vectorSearchStores: '店舗名でベクトル検索し、検索結果を返す。',
+    createProducts: '新規の商品情報を登録する。',
+    deleteProduct: 'パスパラメータのIDから商品情報を削除する。',
+    getProduct: 'パスパラメータのIDから商品情報を取得する。',
+    getProducts: '商品情報の一覧を取得する。クエリパラメータでフィルタリング可能。',
+    googleMapSearchProducts: '商品名をGoogle検索し、検索結果を返す。',
+    updateProduct: 'パスパラメータのIDから商品情報を更新する。',
+    vectorSearchProducts: '商品名でベクトル検索し、検索結果を返す。',
+    createCategories: '新規の商品カテゴリーを登録する。',
+    deleteCategory: 'パスパラメータのIDから商品カテゴリーを削除する。',
+    getCategory: 'パスパラメータのIDから商品カテゴリーを取得する。',
+    getCategoryChildren: '親カテゴリーの商品カテゴリー一覧を取得する。',
+    getCategoryProducts: '商品カテゴリーの商品一覧を取得する。'
 }
