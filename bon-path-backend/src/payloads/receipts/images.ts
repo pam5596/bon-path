@@ -9,7 +9,7 @@ export namespace ImagesSchemas {
             schema() {
                 return {
                     params: z.strictObject({
-                        receiptId: Id.schema()
+                        receiptId: Id.paramSchema()
                     })
                 }
             }
@@ -27,7 +27,7 @@ export namespace ImagesSchemas {
                     body: z.strictObject({
                         images: z.array(
                             z.strictObject({
-                                id: Id.schema(),
+                                id: Id.paramSchema(),
                                 url: ReceiptImageUrl.schema(),
                                 createdAt: CreatedAt.schema()
                             })

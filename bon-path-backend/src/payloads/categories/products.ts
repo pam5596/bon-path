@@ -12,7 +12,7 @@ export namespace ProductsSchemas {
                         loginSessionId: z.string()
                     }),
                     params: z.strictObject({
-                        categoryId: Id.schema()
+                        categoryId: Id.paramSchema()
                     })
                 }
             }
@@ -30,8 +30,8 @@ export namespace ProductsSchemas {
                     body: z.strictObject({
                         products: z.array(
                             z.strictObject({
-                                id: Id.schema(),
-                                categoryId: Id.schema(),
+                                id: Id.paramSchema(),
+                                categoryId: Id.paramSchema(),
                                 name: ProductName.schema(),
                                 image: ProductImage.schema().optional(),
                                 link: ProductLink.schema().optional(),

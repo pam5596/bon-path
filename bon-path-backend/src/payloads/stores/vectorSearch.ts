@@ -10,7 +10,7 @@ export namespace VectorSearchSchemas {
                 return {
                     query: z.strictObject({
                         keyword: StoreName.schema(),
-                        limit: z.number().optional()
+                        limit: z.coerce.number().optional()
                     })
                 }
             }
@@ -29,7 +29,7 @@ export namespace VectorSearchSchemas {
                     body: z.strictObject({
                         stores: z.array(
                             z.strictObject({
-                                id: Id.schema(),
+                                id: Id.paramSchema(),
                                 name: StoreName.schema(),
                                 image: StoreImage.schema().optional(),
                                 latitude: StoreLatitude.schema().optional(),

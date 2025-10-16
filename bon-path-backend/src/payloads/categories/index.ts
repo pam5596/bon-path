@@ -14,7 +14,7 @@ export namespace CategoriesPayloadSchemas {
             schema() {
                 return {
                     params: z.strictObject({
-                        id: Id.schema()
+                        id: Id.paramSchema()
                     })
                 }
             }
@@ -30,7 +30,7 @@ export namespace CategoriesPayloadSchemas {
             schema() {
                 return {
                     body: z.strictObject({
-                        parentId: Id.schema().optional(),
+                        parentId: Id.paramSchema().optional(),
                         name: CategoryName.schema()
                     })
                 }
@@ -52,7 +52,7 @@ export namespace CategoriesPayloadSchemas {
                     body: z.strictObject({
                         categories: z.array(
                             z.strictObject({
-                                parentId: Id.schema().optional(),
+                                parentId: Id.paramSchema().optional(),
                                 name: CategoryName.schema()
                             })
                         )
@@ -78,7 +78,7 @@ export namespace CategoriesPayloadSchemas {
             schema() {
                 return {
                     params: z.strictObject({
-                        id: Id.schema()
+                        id: Id.paramSchema()
                     })
                 }
             }

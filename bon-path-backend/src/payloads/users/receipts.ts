@@ -33,7 +33,7 @@ export namespace ReceiptsSchemas {
                     body: z.strictObject({
                         receipts: z.array(
                             z.strictObject({
-                                id: Id.schema(),
+                                id: Id.paramSchema(),
                                 latitude: ReceiptLatitude.schema(),
                                 longitude: ReceiptLongitude.schema(),
                                 isChecked: ReceiptIsChecked.schema(),

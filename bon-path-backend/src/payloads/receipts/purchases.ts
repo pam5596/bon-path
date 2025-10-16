@@ -9,7 +9,7 @@ export namespace PurchasesSchemas {
             schema() {
                 return {
                     params: z.strictObject({
-                        receiptId: Id.schema()
+                        receiptId: Id.paramSchema()
                     })
                 }
             }
@@ -27,9 +27,9 @@ export namespace PurchasesSchemas {
                     body: z.strictObject({
                         purchases: z.array(
                             z.strictObject({
-                                id: Id.schema(),
-                                storeId: Id.schema(),
-                                productId: Id.schema(),
+                                id: Id.paramSchema(),
+                                storeId: Id.paramSchema(),
+                                productId: Id.paramSchema(),
                                 price: PurchasePrice.schema(),
                                 quantity: PurchaseQuantity.schema(),
                                 createdAt: CreatedAt.schema()

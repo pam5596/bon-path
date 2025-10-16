@@ -12,7 +12,7 @@ export namespace ChildrenSchemas {
                         loginSessionId: z.string()
                     }),
                     params: z.strictObject({
-                        parentId: Id.schema()
+                        parentId: Id.paramSchema()
                     })
                 }
             }
@@ -30,8 +30,8 @@ export namespace ChildrenSchemas {
                     body: z.strictObject({
                         categories: z.array(
                             z.strictObject({
-                                id: Id.schema(),
-                                parentId: Id.schema().optional(),
+                                id: Id.paramSchema(),
+                                parentId: Id.paramSchema().optional(),
                                 name: CategoryName.schema()
                             })
                         )

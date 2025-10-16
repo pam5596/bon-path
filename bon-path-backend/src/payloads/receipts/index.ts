@@ -17,7 +17,7 @@ export namespace ReceiptsPayloadSchemas {
                         loginSessionId: z.string()
                     }),
                     params: z.strictObject({
-                        id: Id.schema()
+                        id: Id.paramSchema()
                     })
                 }
             }
@@ -78,7 +78,7 @@ export namespace ReceiptsPayloadSchemas {
             schema() {
                 return {
                     body: z.strictObject({
-                        id: Id.schema()
+                        id: Id.paramSchema()
                     })
                 }
             }
@@ -99,7 +99,7 @@ export namespace ReceiptsPayloadSchemas {
                         loginSessionId: z.string()
                     }),
                     params: z.strictObject({
-                        id: Id.schema()
+                        id: Id.paramSchema()
                     }),
                     body: z.strictObject({
                         isChecked: ReceiptIsChecked.schema()
@@ -129,7 +129,7 @@ export namespace ReceiptsPayloadSchemas {
                         loginSessionId: z.string()
                     }),
                     params: z.strictObject({
-                        id: Id.schema()
+                        id: Id.paramSchema()
                     })
                 }
             }

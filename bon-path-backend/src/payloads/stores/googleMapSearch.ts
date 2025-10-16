@@ -10,7 +10,7 @@ export namespace GoogleMapSearchSchemas {
                 return {
                     query: z.strictObject({
                         keyword: StoreName.schema(),
-                        limit: z.number().optional()
+                        limit: z.coerce.number().optional()
                     })
                 }
             }

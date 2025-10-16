@@ -13,4 +13,12 @@ export default class StoreLongitude extends BaseValueObject<number> {
             .min(-180)
             .max(180);
     }
+
+    static querySchema() {
+        return z
+            .coerce
+            .number()
+            .min(-180)
+            .max(180);
+    }
 }

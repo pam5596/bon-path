@@ -18,7 +18,7 @@ export namespace StoresPayloadSchemas {
             schema() {
                 return {
                     params: z.strictObject({
-                        id: Id.schema()
+                        id: Id.paramSchema()
                     })
                 }
             }
@@ -86,7 +86,7 @@ export namespace StoresPayloadSchemas {
             schema() {
                 return {
                     body: z.strictObject({
-                        id: Id.schema()
+                        id: Id.paramSchema()
                     })
                 }
             }
@@ -104,7 +104,7 @@ export namespace StoresPayloadSchemas {
             schema(){
                 return {
                     params: z.strictObject({
-                        id: Id.schema()
+                        id: Id.paramSchema()
                     }),
                     body: z.strictObject({
                         name: StoreName.schema(),
@@ -139,7 +139,7 @@ export namespace StoresPayloadSchemas {
             schema() {
                 return {
                     params: z.strictObject({
-                        id: Id.schema()
+                        id: Id.paramSchema()
                     })
                 }
             }

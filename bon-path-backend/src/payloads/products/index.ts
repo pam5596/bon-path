@@ -16,7 +16,7 @@ export namespace ProductsPayloadSchemas {
             schema() {
                 return {
                     params: z.strictObject({
-                        id: Id.schema()
+                        id: Id.paramSchema()
                     })
                 }
             }
@@ -32,8 +32,8 @@ export namespace ProductsPayloadSchemas {
             schema() {
                 return {
                     body: z.strictObject({
-                        storeId: Id.schema(),
-                        categoryId: Id.schema(),
+                        storeId: Id.paramSchema(),
+                        categoryId: Id.paramSchema(),
                         name: ProductName.schema(),
                         image: ProductImage.schema().optional(),
                         link: ProductImage.schema().optional(),
@@ -64,8 +64,8 @@ export namespace ProductsPayloadSchemas {
                     body: z.strictObject({
                         products: z.array(
                             z.strictObject({
-                                storeId: Id.schema(),
-                                categoryId: Id.schema(),
+                                storeId: Id.paramSchema(),
+                                categoryId: Id.paramSchema(),
                                 name: ProductName.schema(),
                                 image: ProductImage.schema().optional(),
                                 link: ProductLink.schema().optional(),
@@ -98,10 +98,10 @@ export namespace ProductsPayloadSchemas {
             schema() {
                 return {
                     params: z.strictObject({
-                        id: Id.schema()
+                        id: Id.paramSchema()
                     }),
                     body: z.strictObject({
-                        categoryId: Id.schema(),
+                        categoryId: Id.paramSchema(),
                         name: ProductName.schema(),
                         image: ProductImage.schema().optional(),
                         link: ProductLink.schema().optional(),
@@ -133,7 +133,7 @@ export namespace ProductsPayloadSchemas {
             schema() {
                 return {
                     params: z.strictObject({
-                        id: Id.schema()
+                        id: Id.paramSchema()
                     })
                 }
             }

@@ -14,7 +14,7 @@ export namespace ProductsSchemas {
                     query: z.strictObject({
                         sort: z.enum(['price']).optional(),
                         orderBy: z.enum(['asc', 'desc']).optional(),
-                        limit: z.number().optional()
+                        limit: z.coerce.number().optional()
                     })
                 }
             }
@@ -26,9 +26,9 @@ export namespace ProductsSchemas {
                     body: z.strictObject({
                         products: z.array(
                             z.strictObject({
-                                id: Id.schema(),
-                                storeId: Id.schema(),
-                                categoryId: Id.schema(),
+                                id: Id.paramSchema(),
+                                storeId: Id.paramSchema(),
+                                categoryId: Id.paramSchema(),
                                 name: ProductName.schema(),
                                 image: ProductImage.schema().optional(),
                                 link: ProductLink.schema().optional(),

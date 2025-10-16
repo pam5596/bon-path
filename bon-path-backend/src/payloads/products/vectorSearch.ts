@@ -10,8 +10,8 @@ export namespace VectorSearchSchemas {
                 return {
                     query: z.strictObject({
                         keyword: ProductName.schema(),
-                        storeId: Id.schema(),
-                        limit: z.number().optional()
+                        storeId: Id.paramSchema(),
+                        limit: z.coerce.number().optional()
                     })
                 }
             }
@@ -31,9 +31,9 @@ export namespace VectorSearchSchemas {
                     body: z.strictObject({
                         products: z.array(
                             z.strictObject({
-                                id: Id.schema(),
-                                storeId: Id.schema(),
-                                categoryId: Id.schema(),
+                                id: Id.paramSchema(),
+                                storeId: Id.paramSchema(),
+                                categoryId: Id.paramSchema(),
                                 name: ProductName.schema(),
                                 image: ProductImage.schema().optional(),
                                 link: ProductLink.schema().optional(),

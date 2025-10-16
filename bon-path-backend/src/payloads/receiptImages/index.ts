@@ -9,7 +9,7 @@ export namespace ReceiptImagesPayloadSchemas {
             schema() {
                 return {
                     body: z.strictObject({
-                        receiptId: Id.schema(),
+                        receiptId: Id.paramSchema(),
                         images: z.array(z.any())
                     })
                 }
@@ -29,7 +29,7 @@ export namespace ReceiptImagesPayloadSchemas {
             schema() {
                 return {
                     params: z.strictObject({
-                        id: Id.schema()
+                        id: Id.paramSchema()
                     })
                 }
             }
