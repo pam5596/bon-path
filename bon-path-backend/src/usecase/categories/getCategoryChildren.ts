@@ -14,12 +14,9 @@ export class GetCategoryChildrenUseCase implements BaseUseCase<
     ){}
 
     async execute(request: CategoriesPayloadSchemas.Children.GET.Request) {
-        await this.clients.honoJwt.verify(
-            request.getCookies.loginSessionId
-        )
         const params = request.toValueObjectParams()
 
-        const categories = await this.repositories.category.selectByParentId(params.parantId)
+        const categories = await this.repositories.category.selectByParentId(params.parentId)
 
         return new CategoriesPayloadSchemas.Children.GET.Response({
             body: {

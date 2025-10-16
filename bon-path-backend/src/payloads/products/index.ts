@@ -15,9 +15,6 @@ export namespace ProductsPayloadSchemas {
         export class Request extends BasePayload<ProductPayloads.GET.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     params: z.strictObject({
                         id: Id.schema()
                     })
@@ -64,9 +61,6 @@ export namespace ProductsPayloadSchemas {
         export class Request extends BasePayload<ProductPayloads.POST.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     body: z.strictObject({
                         products: z.array(
                             z.strictObject({
@@ -103,9 +97,6 @@ export namespace ProductsPayloadSchemas {
         export class Request extends BasePayload<ProductPayloads.PATCH.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     params: z.strictObject({
                         id: Id.schema()
                     }),
@@ -141,9 +132,6 @@ export namespace ProductsPayloadSchemas {
         export class Request extends BasePayload<ProductPayloads.DELETE.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     params: z.strictObject({
                         id: Id.schema()
                     })

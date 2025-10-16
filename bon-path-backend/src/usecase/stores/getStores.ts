@@ -16,9 +16,6 @@ export class GetStoresUseCase implements BaseUseCase<
     ){}
 
     async execute(request: StoresPayloadSchemas.Stores.GET.Request) {
-        await this.clients.honoJwt.verify(
-            request.getCookies.loginSessionId
-        )
         const { latitude, longitude, radius, limit } = request.toValueObjectParams()
 
         if ((latitude || longitude || radius) && !(latitude && longitude && radius)) 

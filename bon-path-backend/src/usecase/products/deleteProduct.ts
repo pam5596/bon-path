@@ -13,9 +13,6 @@ export class DeleteProductUseCase implements BaseUseCase<
     ) {}
 
     async execute(request: ProductsPayloadSchemas.DELETE.Request) {
-        await this.clients.honoJwt.verify(
-            request.getCookies.loginSessionId
-        )
         const params = request.toValueObjectParams()
 
         await this.repositories.product.deleteById(params.id)

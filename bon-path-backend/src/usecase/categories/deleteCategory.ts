@@ -13,9 +13,6 @@ export class DeleteCategoryUseCase implements BaseUseCase<
     ){}
 
     async execute(request: CategoriesPayloadSchemas.DELETE.Request) {
-        await this.clients.honoJwt.verify(
-            request.getCookies.loginSessionId
-        )
         const params = request.toValueObjectParams()
 
         await this.repositories.category.deleteById(params.id)

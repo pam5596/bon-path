@@ -12,14 +12,10 @@ export class GptOcrUseCase implements BaseUseCase<
 >{
     constructor(
         public clients: { honoJwt: HonoJwtClient },
-        public services: { receiptOcr: ReceiptOCRService },
-        public request: GptOcrPayloadSchemas.POST.Request
+        public services: { receiptOcr: ReceiptOCRService }
     ){}
 
-    async execute() {
-        await this.clients.honoJwt.verify(
-            request.getCookies.loginSessionId
-        )
+    async execute(request: GptOcrPayloadSchemas.POST.Request) {
         const body = request.toValueObjectBody()
 
         const ocrResult = await this.services.receiptOcr.execute({

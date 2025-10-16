@@ -65,9 +65,6 @@ export namespace ReceiptPayloads {
     export namespace Purchases {
         export namespace GET {
             export type Request = {
-                cookies: {
-                    loginSessionId: string
-                },
                 params: {
                     receiptId: number
                 }
@@ -91,9 +88,6 @@ export namespace ReceiptPayloads {
     export namespace Images {
         export namespace GET {
             export type Request = {
-                cookies: {
-                    loginSessionId: string
-                },
                 params: {
                     receiptId: number
                 }

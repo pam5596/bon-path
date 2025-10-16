@@ -14,9 +14,6 @@ export class CreateCategoriesUseCase implements BaseUseCase<
     ){}
 
     async execute(request: CategoriesPayloadSchemas.POST.Request) {
-        await this.clients.honoJwt.verify(
-            request.getCookies.loginSessionId
-        )
         const body = request.toValueObjectBody()
 
         const categories = body.categories.map(

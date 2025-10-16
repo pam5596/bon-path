@@ -14,9 +14,6 @@ export class GetProductsUseCase implements BaseUseCase<
     ){}
 
     async execute(request: ProductsPayloadSchemas.Products.GET.Request) {
-        await this.clients.honoJwt.verify(
-            request.getCookies.loginSessionId
-        )
         const { sort, orderBy, limit } = request.getQuery
         const products = await this.repositories.product.selectAll({
             orderBy: {

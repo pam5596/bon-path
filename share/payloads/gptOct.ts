@@ -1,9 +1,6 @@
 export namespace GptOcrPayloads {
     export namespace POST {
         export type Request = {
-            cookies: {
-                loginSessionId: string
-            },
             body: {
                 images: string[]
             }

@@ -12,14 +12,14 @@ export namespace ChildrenSchemas {
                         loginSessionId: z.string()
                     }),
                     params: z.strictObject({
-                        parantId: Id.schema()
+                        parentId: Id.schema()
                     })
                 }
             }
 
             toValueObjectParams() {
                 return {
-                    parantId: new Id(this.getParams.parantId)
+                    parentId: new Id(this.getParams.parentId)
                 }
             }
         }

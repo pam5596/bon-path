@@ -13,9 +13,6 @@ export namespace CategoriesPayloadSchemas {
         export class Request extends BasePayload<CategoryPayloads.GET.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     params: z.strictObject({
                         id: Id.schema()
                     })
@@ -52,9 +49,6 @@ export namespace CategoriesPayloadSchemas {
         export class Request extends BasePayload<CategoryPayloads.POST.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     body: z.strictObject({
                         categories: z.array(
                             z.strictObject({
@@ -83,9 +77,6 @@ export namespace CategoriesPayloadSchemas {
         export class Request extends BasePayload<CategoryPayloads.DELETE.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     params: z.strictObject({
                         id: Id.schema()
                     })

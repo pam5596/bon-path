@@ -14,9 +14,6 @@ export class GetReceiptPurchasesUsecase implements BaseUseCase<
     ) {}
 
     async execute(request: ReceiptsPayloadSchemas.Purchases.GET.Request) {
-        await this.clients.honoJwt.verify(
-            request.getCookies.loginSessionId
-        )
         const params = request.toValueObjectParams()
 
         const purchases = await this.repositories.purchase.selectByReceiptId(params.receiptId);

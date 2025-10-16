@@ -8,9 +8,6 @@ export namespace StoresSchemas {
         export class Request extends BasePayload<StorePayloads.Stores.GET.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     query: z.strictObject({
                         latitude: StoreLatitude.schema().optional(),
                         longitude: StoreLongitude.schema().optional(),

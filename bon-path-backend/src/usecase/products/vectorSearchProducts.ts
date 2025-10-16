@@ -14,9 +14,6 @@ export class VectorSearchProductsUseCase implements BaseUseCase<
     ){}
 
     async execute(request: ProductsPayloadSchemas.VectorSearch.GET.Request) {
-        await this.clients.honoJwt.verify(
-            request.getCookies.loginSessionId
-        )
         const { keyword, storeId, limit } = request.toValueObjectQuery()
 
         const productIds = await this.repositories.productVector.searchProductIdByName(keyword)

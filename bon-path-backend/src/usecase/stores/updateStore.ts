@@ -16,9 +16,6 @@ export class UpdateStoreUseCase implements BaseUseCase<
     ){}
 
     async execute(request: StoresPayloadSchemas.PATCH.Request) {
-        await this.clients.honoJwt.verify(
-            request.getCookies.loginSessionId
-        )
         const params = request.toValueObjectParams()
         const body = request.toValueObjectBody()
 

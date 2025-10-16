@@ -8,9 +8,6 @@ export namespace GoogleSearchSchemas {
         export class Request extends BasePayload<ProductPayloads.GoogleSearch.GET.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     query: z.strictObject({
                         keyword: ProductName.schema(),
                         limit: z.number().optional()

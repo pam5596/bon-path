@@ -8,9 +8,6 @@ export namespace ProductsSchemas {
         export class Request extends BasePayload<StorePayloads.Products.GET.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     params: z.strictObject({
                         storeId: Id.schema()
                     })

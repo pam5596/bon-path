@@ -8,9 +8,6 @@ export namespace VectorSearchSchemas {
         export class Request extends BasePayload<ProductPayloads.VectorSearch.GET.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     query: z.strictObject({
                         keyword: ProductName.schema(),
                         storeId: Id.schema(),

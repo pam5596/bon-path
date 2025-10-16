@@ -14,10 +14,6 @@ export class PutReceiptImagesUsecase implements BaseUseCase<
     ){}
 
     async execute(request: ReceiptImagesPayloadSchemas.POST.Request) {
-        await this.clients.honoJwt.verify(
-            request.getCookies.loginSessionId
-        )
-
         const { images, receiptId } = request.toValueObjectBody();
 
         const receiptImages = await Promise.all(

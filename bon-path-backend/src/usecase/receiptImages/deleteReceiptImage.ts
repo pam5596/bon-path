@@ -15,9 +15,6 @@ export class DeleteReceiptImageUseCase implements BaseUseCase<
     ){}
 
     async execute(request: ReceiptImagesPayloadSchemas.DELETE.Request) {
-        await this.clients.honoJwt.verify(
-            request.getCookies.loginSessionId
-        )
         const params = request.toValueObjectParams()
 
         const receiptImage = await this.repositories.receiptImage.selectById(params.id)

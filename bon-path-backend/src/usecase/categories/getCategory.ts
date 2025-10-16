@@ -16,9 +16,6 @@ export class GetCategoryUseCase implements BaseUseCase<
     ){}
 
     async execute(request: CategoriesPayloadSchemas.GET.Request) {
-        await this.clients.honoJwt.verify(
-            request.getCookies.loginSessionId
-        )
         const params = request.toValueObjectParams()
 
         const category = await this.repositories.category.selectById(params.id)

@@ -14,9 +14,6 @@ export class GoogleMapSearchStoresUseCase implements BaseUseCase<
     ){}
 
     async execute(request: StoresPayloadSchemas.GoogleMapSearch.GET.Request) {
-        await this.clients.honoJwt.verify(
-            request.getCookies.loginSessionId
-        )
         const { keyword, limit } = request.toValueObjectQuery()
 
         const stores = await this.services.searchStorePlace.execute({

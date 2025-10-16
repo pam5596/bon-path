@@ -8,9 +8,6 @@ export namespace ReceiptImagesPayloadSchemas {
         export class Request extends BasePayload<ReceiptImagePayloads.POST.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     body: z.strictObject({
                         receiptId: Id.schema(),
                         images: z.array(z.any())
@@ -31,9 +28,6 @@ export namespace ReceiptImagesPayloadSchemas {
         export class Request extends BasePayload<ReceiptImagePayloads.DELETE.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     params: z.strictObject({
                         id: Id.schema()
                     })

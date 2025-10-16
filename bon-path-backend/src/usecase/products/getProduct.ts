@@ -16,9 +16,6 @@ export class GetProductUseCase implements BaseUseCase<
     ){}
 
     async execute(request: ProductsPayloadSchemas.GET.Request) {
-        await this.clients.honoJwt.verify(
-            request.getCookies.loginSessionId
-        )
         const params = request.toValueObjectParams()
 
         const product = await this.repositories.product.selectById(params.id)
