@@ -22,7 +22,7 @@
       "@client": ["./src/clients"],
       "@payload": ["./src/payloads"],
       "@usecase/*": ["./src/usecase/*"],
-      "@routes": ["./src/routes"],
+      "@routes/*": ["./src/routes/*"],
       "@share/*": ["../share/*"]
     }
   }

@@ -1,7 +1,7 @@
 import { OpenAPIHono } from '@hono/zod-openapi'
 import { swaggerUI } from "@hono/swagger-ui";
 import { serve } from '@hono/node-server'
-import { corsHandler, errorHandler } from '@lib/middleware';
+import { corsHandler, errorHandler, loginSessionHandler, verifySessionHandler } from '@lib/middleware';
 
 import { 
     getLoginSession,
@@ -41,12 +41,14 @@ import {
     googleMapSearchProducts,
     updateProduct,
     vectorSearchProducts
-} from '@routes';
+} from '@routes/index';
 
 const app = new OpenAPIHono()
 
-app.use('/*', corsHandler)
+app.use('*', corsHandler)
 app.onError(errorHandler)
+app.use('*', loginSessionHandler)
+app.use('*', verifySessionHandler)
 
 app.get('/signup', (c) => c.text('Redirect test: /signup'))
 app.get('/signin/email-verify', (c) => c.text('Redirect test: /signin/email-verify'))

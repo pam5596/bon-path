@@ -2,9 +2,8 @@ import { createRoute, RouteConfig } from "@hono/zod-openapi"
 import { Handler } from "hono"
 import BasePayload from "../payloads/_abstruct"
 import { ROUTE_DESCRIPTIONS } from "@lib/constants/routeDescriptions"
-import type { PathsEnum, TagsEnum } from "@lib/enums"
+import type { PathsEnum, TagsEnum } from "./enums"
 import { RouteError } from "@lib/error"
-import BaseUseCase from "@usecase/_interface"
 
 type PartOfRouteConfig = {
     method: RouteConfig['method'],

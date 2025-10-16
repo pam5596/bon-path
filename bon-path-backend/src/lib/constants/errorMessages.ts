@@ -128,9 +128,13 @@ export const ERROR_MESSAGES = {
     },
     route: {
         unknown: "不明なエラーが発生しました。",
-        invalidCookie: {
-            detail: "Cookieが有効ではありません。Cookieを許可してください。",
-            issue: "SessionId not found in cookie."
+        invalidLoginSession: {
+            detail: "ログインセッションの有効期限が切れました。ログインし直してください。",
+            issue: "LoginSessionId not found in cookie."
+        },
+        invalidVerifySession: {
+            detail: "メールアドレス確認用のセッションの有効期限が切れました。アカウントの登録をやり直してください。",
+            issue: "VerifySessionId not found in cookie."
         },
         invalidQuery: {
             detail: 'クエリの形式が不正です。開発者に問い合わせてください。',

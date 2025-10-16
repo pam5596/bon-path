@@ -3,7 +3,7 @@ import { SessionPayloadSchemas } from "@payload";
 import { CreateVerifySessionUseCase } from "@usecase/index";
 import { honoJwtVerify } from "@lib/clients";
 import { setCookie } from "hono/cookie";
-import { TIMES } from "@lib/times";
+import { TIMES } from "@lib/constants/times";
 
 export class CreateVerifySessionRoute extends BaseRoute {
     constructor() {
