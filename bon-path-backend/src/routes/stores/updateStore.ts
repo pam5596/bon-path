@@ -2,7 +2,6 @@ import BaseRoute from "../_interface";
 import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 import { StoresPayloadSchemas } from "@payload";
 import { UpdateStoreUseCase } from "@usecase/index";
-import { honoJwtLogin } from "@lib/clients";
 import { storeRepository } from "@lib/repositories";
 
 export class UpdateStoreRoute extends BaseRoute {
@@ -30,7 +29,6 @@ export class UpdateStoreRoute extends BaseRoute {
                 })
 
                 await new UpdateStoreUseCase(
-                    { honoJwt: honoJwtLogin },
                     { store: storeRepository }
                 ).execute(request)
             },

@@ -1,7 +1,6 @@
 import BaseRoute from "../_interface";
 import { ProductsPayloadSchemas } from "@payload";
 import { CreateProductsUseCase } from "@usecase/index";
-import { honoJwtLogin } from "@lib/clients";
 import { productRepository } from "@lib/repositories";
 
 export class CreateProductsRoute extends BaseRoute {
@@ -22,7 +21,6 @@ export class CreateProductsRoute extends BaseRoute {
                 })
 
                 await new CreateProductsUseCase(
-                    { honoJwt: honoJwtLogin },
                     { product: productRepository }
                 ).execute(request)
             },

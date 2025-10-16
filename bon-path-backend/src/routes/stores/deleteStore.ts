@@ -2,7 +2,6 @@ import BaseRoute from "../_interface";
 import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 import { StoresPayloadSchemas } from "@payload";
 import { DeleteStoreUseCase } from "@usecase/index";
-import { honoJwtLogin } from "@lib/clients";
 import { storeRepository } from "@lib/repositories";
 
 export class DeleteStoreRoute extends BaseRoute {
@@ -27,7 +26,6 @@ export class DeleteStoreRoute extends BaseRoute {
                 });
 
                 await new DeleteStoreUseCase(
-                    { honoJwt: honoJwtLogin },
                     { store: storeRepository }
                 ).execute(request)
             },

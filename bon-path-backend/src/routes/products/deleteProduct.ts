@@ -2,7 +2,6 @@ import BaseRoute from "../_interface";
 import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 import { ProductsPayloadSchemas } from "@payload";
 import { DeleteProductUseCase } from "@usecase/index";
-import { honoJwtLogin } from "@lib/clients";
 import { productRepository } from "@lib/repositories";
 
 export class DeleteProductRoute extends BaseRoute {
@@ -27,7 +26,6 @@ export class DeleteProductRoute extends BaseRoute {
                 })
 
                 await new DeleteProductUseCase(
-                    { honoJwt: honoJwtLogin },
                     { product: productRepository }
                 ).execute(request)
             },

@@ -2,7 +2,6 @@ import BaseRoute from "../_interface";
 import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 import { ReceiptsPayloadSchemas } from "@payload";
 import { GetReceiptPurchasesUsecase } from "@usecase/index";
-import { honoJwtLogin } from "@lib/clients";
 import { purchaseRepository } from "@lib/repositories";
 
 export class GetReceiptPurchasesRoute extends BaseRoute {
@@ -27,7 +26,6 @@ export class GetReceiptPurchasesRoute extends BaseRoute {
                 })
 
                 const response = await new GetReceiptPurchasesUsecase(
-                    { honoJwt: honoJwtLogin },
                     { purchase: purchaseRepository }
                 ).execute(request)
 

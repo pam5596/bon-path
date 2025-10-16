@@ -2,7 +2,7 @@ import BaseRoute from "../_interface";
 import { StorePayloads } from "@share/payloads";
 import { StoresPayloadSchemas } from "@payload";
 import { VectorSearchStoresUseCase } from "@usecase/index";
-import { honoJwtLogin, prismaVector } from "@lib/clients";
+import { prismaVector } from "@lib/clients";
 import { storeRepository, storeVectorRepository } from "@lib/repositories";
 
 export class VectorSearchStoresRoute extends BaseRoute {
@@ -23,7 +23,7 @@ export class VectorSearchStoresRoute extends BaseRoute {
                 })
 
                 const response = await new VectorSearchStoresUseCase(
-                    { honoJwt: honoJwtLogin, prismaVector },
+                    { prismaVector },
                     { store: storeRepository, storeVector: storeVectorRepository }
                 ).execute(request)
 

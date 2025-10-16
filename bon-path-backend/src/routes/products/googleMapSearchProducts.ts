@@ -1,7 +1,6 @@
 import BaseRoute from "../_interface";
 import { ProductsPayloadSchemas } from "@payload";
 import { GoogleMapSearchProductsUseCase } from "@usecase/index";
-import { honoJwtLogin } from "@lib/clients";
 import { productNameExtractService, searchProductService } from "@lib/services";
 import { categoryRepository } from "@lib/repositories";
 
@@ -23,7 +22,6 @@ export class GoogleMapSearchProductsRoute extends BaseRoute {
                 })
 
                 const response = await new GoogleMapSearchProductsUseCase(
-                    { honoJwt: honoJwtLogin },
                     { 
                         searchProduct: searchProductService, 
                         productNameExtract: productNameExtractService 

@@ -2,7 +2,7 @@ import BaseRoute from "../_interface";
 import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 import { ReceiptImagesPayloadSchemas } from "@payload";
 import { DeleteReceiptImageUseCase } from "@usecase/receiptImages/deleteReceiptImage";
-import { awsS3, honoJwtLogin } from "@lib/clients";
+import { awsS3 } from "@lib/clients";
 import { receiptImageRepository } from "@lib/repositories";
 
 export class DeleteReceiptImageRoute extends BaseRoute {
@@ -27,7 +27,7 @@ export class DeleteReceiptImageRoute extends BaseRoute {
                 })
 
                 await new DeleteReceiptImageUseCase(
-                    { honoJwt: honoJwtLogin, awsS3 },
+                    { awsS3 },
                     { receiptImage: receiptImageRepository }
                 ).execute(request)
             },

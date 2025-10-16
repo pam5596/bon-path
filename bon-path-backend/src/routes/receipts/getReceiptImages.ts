@@ -2,7 +2,6 @@ import BaseRoute from "../_interface";
 import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 import { ReceiptsPayloadSchemas } from "@payload";
 import { GetReceiptImagesUsecase } from "@usecase/index";
-import { honoJwtLogin } from "@lib/clients";
 import { receiptImageRepository } from "@lib/repositories";
 
 export class GetReceiptImagesRoute extends BaseRoute {
@@ -27,7 +26,6 @@ export class GetReceiptImagesRoute extends BaseRoute {
                 })
 
                 const response = await new GetReceiptImagesUsecase(
-                    { honoJwt: honoJwtLogin },
                     { receiptImage: receiptImageRepository }
                 ).execute(request)
 

@@ -2,7 +2,7 @@ import BaseRoute from "../_interface";
 import { ReceiptImagesPayloadSchemas } from "@payload";
 import { ReceiptImagePayloads } from "@share/payloads";
 import { PutReceiptImagesUsecase } from "@usecase/receiptImages/putReceiptImages";
-import { awsS3, honoJwtLogin } from "@lib/clients";
+import { awsS3 } from "@lib/clients";
 import { receiptImageRepository } from "@lib/repositories";
 
 export class PutReceiptImagesRoute extends BaseRoute {
@@ -23,7 +23,7 @@ export class PutReceiptImagesRoute extends BaseRoute {
                 });
 
                 await new PutReceiptImagesUsecase(
-                    { honoJwt: honoJwtLogin, awsS3 },
+                    { awsS3 },
                     { receiptImage: receiptImageRepository }
                 ).execute(request)
             },

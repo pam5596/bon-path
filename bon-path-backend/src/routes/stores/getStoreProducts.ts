@@ -2,7 +2,6 @@ import BaseRoute from "../_interface";
 import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 import { StoresPayloadSchemas } from "@payload";
 import { GetStoreProductsUseCase } from "@usecase/index";
-import { honoJwtLogin } from "@lib/clients";
 import { productRepository } from "@lib/repositories";
 
 export class GetStoreProductsRoute extends BaseRoute {
@@ -27,7 +26,6 @@ export class GetStoreProductsRoute extends BaseRoute {
                 })
 
                 const response = await new GetStoreProductsUseCase(
-                    { honoJwt: honoJwtLogin },
                     { product: productRepository }
                 ).execute(request)
 
