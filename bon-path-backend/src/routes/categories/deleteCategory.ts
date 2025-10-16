@@ -10,7 +10,7 @@ export class DeleteCategoryRoute extends BaseRoute {
             {
                 method: 'delete',
                 path: '/categories/:id',
-                tags: ['商品カテゴリーををリソースとするルート'],
+                tags: ['商品カテゴリーをリソースとするルート'],
                 requestMediaType: 'application/json',
                 successStatusCode: 204
             },

@@ -4,13 +4,13 @@ import { CategoriesPayloadSchemas } from "@payload";
 import BaseRoute from "@routes/_interface";
 import { GetCategoryProductsUseCase } from "@usecase/categories/getCategoryProducts";
 
-export class GetCategoryProducts extends BaseRoute {
+export class GetCategoryProductsRoute extends BaseRoute {
     constructor() {
         super(
             {
                 method: 'get',
                 path: '/categories/:categoryId/products',
-                tags: ['商品カテゴリーををリソースとするルート', '商品カテゴリーををリソースとするルート'],
+                tags: ['商品カテゴリーをリソースとするルート', '商品情報をリソースとするルート'],
                 requestMediaType: 'application/json',
                 successStatusCode: 200
             },

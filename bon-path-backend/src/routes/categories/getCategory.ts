@@ -10,7 +10,7 @@ export class GetCategoryRoute extends BaseRoute {
             {
                 method: 'get',
                 path: '/categories/:id',
-                tags: ['商品情報をリソースとするルート'],
+                tags: ['商品カテゴリーをリソースとするルート'],
                 requestMediaType: 'application/json',
                 successStatusCode: 200
             },

@@ -28,8 +28,8 @@ export const deleteUser = new DeleteUserRoute()
 import { GetUserReceiptsRoute } from "./users/getUserReceipts";
 export const getUserReceipts = new GetUserReceiptsRoute()
 
-import { GetUserPurchases } from "./users/getUserPurchases";
-export const getUserPurchases = new GetUserPurchases()
+import { GetUserPurchasesRoute } from "./users/getUserPurchases";
+export const getUserPurchases = new GetUserPurchasesRoute()
 
 import { CreateReceiptRoute } from "./receipts/createReceipt";
 export const createReceipt = new CreateReceiptRoute()
@@ -118,8 +118,11 @@ export const deleteCategory = new DeleteCategoryRoute()
 import { GetCategoryRoute } from "./categories/getCategory";
 export const getCategory = new GetCategoryRoute()
 
-import { GetCategoryChildren } from "./categories/getCategoryChildren";
-export const getCategoryChildren = new GetCategoryChildren()
+import { GetCategoryChildrenRoute } from "./categories/getCategoryChildren";
+export const getCategoryChildren = new GetCategoryChildrenRoute()
 
-import { GetCategoryProducts } from "./categories/getCategoryProducts";
-export const getCategoryProducts = new GetCategoryProducts()
+import { GetCategoryProductsRoute } from "./categories/getCategoryProducts";
+export const getCategoryProducts = new GetCategoryProductsRoute()
+
+import { GptOcrRoute } from "./gptOcr";
+export const gptOcr = new GptOcrRoute()

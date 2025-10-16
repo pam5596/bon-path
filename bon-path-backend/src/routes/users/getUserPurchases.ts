@@ -5,7 +5,7 @@ import { GetUserPurchasesUseCase } from "@usecase/users/getUserPurchases";
 import { honoJwtLogin } from "@lib/clients";
 import { purchaseRepository } from "@lib/repositories";
 
-export class GetUserPurchases extends BaseRoute {
+export class GetUserPurchasesRoute extends BaseRoute {
     constructor() {
         super(
             {

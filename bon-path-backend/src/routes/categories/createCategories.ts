@@ -9,7 +9,7 @@ export class CreateCategoriesRoute extends BaseRoute {
             {
                 method: 'post',
                 path: '/categories',
-                tags: ['商品カテゴリーををリソースとするルート'],
+                tags: ['商品カテゴリーをリソースとするルート'],
                 requestMediaType: 'application/json',
                 successStatusCode: 201
             },

@@ -44,7 +44,8 @@ import {
     deleteCategory,
     getCategory,
     getCategoryChildren,
-    getCategoryProducts
+    getCategoryProducts,
+    gptOcr
 } from '@routes/index';
 
 const app = new OpenAPIHono()
@@ -107,6 +108,8 @@ app.openapi(deleteCategory.route, deleteCategory.handler)
 app.openapi(getCategory.route, getCategory.handler)
 app.openapi(getCategoryChildren.route, getCategoryChildren.handler)
 app.openapi(getCategoryProducts.route, getCategoryProducts.handler)
+
+app.openapi(gptOcr.route, gptOcr.handler)
 
 app.doc('/doc', {
     openapi: '3.0.0',

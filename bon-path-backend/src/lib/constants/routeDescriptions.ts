@@ -40,5 +40,6 @@ export const ROUTE_DESCRIPTIONS = {
     deleteCategory: 'パスパラメータのIDから商品カテゴリーを削除する。',
     getCategory: 'パスパラメータのIDから商品カテゴリーを取得する。',
     getCategoryChildren: '親カテゴリーの商品カテゴリー一覧を取得する。',
-    getCategoryProducts: '商品カテゴリーの商品一覧を取得する。'
+    getCategoryProducts: '商品カテゴリーの商品一覧を取得する。',
+    gptOcr: 'レシート画像のURLからOCR分析を行う。'
 }
