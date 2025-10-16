@@ -1,4 +1,4 @@
-import { HonoJwtClient, LangChainOpenAiClient } from "@client";
+import { LangChainOpenAiClient } from "@client";
 import { ProductsPayloadSchemas } from "@payload";
 import { ProductNameExtractService, SearchProductService } from "@service";
 import { ProductPayloads } from "@share/payloads";
@@ -14,9 +14,6 @@ export class GoogleMapSearchProductsUseCase implements BaseUseCase<
     ProductPayloads.GoogleSearch.GET.Response
 >{
     constructor(
-        public clients: { 
-            honoJwt: HonoJwtClient
-        },
         public services: { 
             searchProduct: SearchProductService,
             productNameExtract: ProductNameExtractService

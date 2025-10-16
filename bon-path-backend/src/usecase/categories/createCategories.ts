@@ -1,4 +1,3 @@
-import { HonoJwtClient } from "@client";
 import { CategoryEntity } from "@models/entity";
 import { CategoriesPayloadSchemas } from "@payload";
 import { CategoryRepository } from "@repository";
@@ -9,7 +8,6 @@ export class CreateCategoriesUseCase implements BaseUseCase<
     CategoryPayloads.POST.Request
 >{
     constructor(
-        public clients: { honoJwt: HonoJwtClient },
         public repositories: { category: CategoryRepository },
     ){}
 

@@ -1,4 +1,3 @@
-import { HonoJwtClient } from "@client";
 import { CategoriesPayloadSchemas } from "@payload";
 import { CategoryRepository } from "@repository";
 import { CategoryPayloads } from "@share/payloads";
@@ -9,7 +8,6 @@ export class GetCategoryChildrenUseCase implements BaseUseCase<
     CategoryPayloads.Children.GET.Response
 >{
     constructor(
-        public clients: { honoJwt: HonoJwtClient },
         public repositories: { category: CategoryRepository },
     ){}
 

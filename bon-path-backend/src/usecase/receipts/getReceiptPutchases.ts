@@ -1,7 +1,6 @@
 import BaseUseCase from "@usecase/_interface";
 import { ReceiptPayloads } from "@share/payloads";
 import { ReceiptsPayloadSchemas } from "@payload";
-import { HonoJwtClient } from "@client";
 import { PurchaseRepository } from "@repository";
 
 export class GetReceiptPurchasesUsecase implements BaseUseCase<
@@ -9,7 +8,6 @@ export class GetReceiptPurchasesUsecase implements BaseUseCase<
     ReceiptPayloads.Purchases.GET.Response
 > {
     constructor(
-        public clients: { honoJwt: HonoJwtClient },
         public repositories: { purchase: PurchaseRepository },
     ) {}
 

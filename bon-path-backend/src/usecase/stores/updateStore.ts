@@ -1,7 +1,5 @@
-import { HonoJwtClient } from "@client";
 import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 import { UseCaseError } from "@lib/error";
-import { StoreEntity } from "@models/entity";
 import { StoresPayloadSchemas } from "@payload";
 import { StoreRepository } from "@repository";
 import { StorePayloads } from "@share/payloads";
@@ -11,7 +9,6 @@ export class UpdateStoreUseCase implements BaseUseCase<
     StorePayloads.PATCH.Request
 >{
     constructor(   
-        public clients: { honoJwt: HonoJwtClient },
         public repositories: { store: StoreRepository },
     ){}
 
@@ -28,6 +25,7 @@ export class UpdateStoreUseCase implements BaseUseCase<
             request.getParams
         )
 
+        store.newValues = body
         await this.repositories.store.update(store)
     }
 }

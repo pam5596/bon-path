@@ -1,6 +1,5 @@
 import { StorePayloads } from "@share/payloads";
 import BaseUseCase from "@usecase/_interface";
-import { HonoJwtClient } from "@client";
 import { StoresPayloadSchemas } from "@payload";
 import { SearchStorePlaceService } from "@service";
 
@@ -9,7 +8,6 @@ export class GoogleMapSearchStoresUseCase implements BaseUseCase<
     StorePayloads.GoogleMapSearch.GET.Response
 >{
     constructor(
-        public clients: { honoJwt: HonoJwtClient },
         public services: { searchStorePlace: SearchStorePlaceService },
     ){}
 

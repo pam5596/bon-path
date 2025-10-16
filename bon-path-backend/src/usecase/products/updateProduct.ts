@@ -1,7 +1,5 @@
-import { HonoJwtClient } from "@client";
 import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 import { UseCaseError } from "@lib/error";
-import { ProductEntity } from "@models/entity";
 import { ProductsPayloadSchemas } from "@payload";
 import { ProductRepository } from "@repository";
 import { ProductPayloads } from "@share/payloads";
@@ -11,7 +9,6 @@ export class UpdateProductUseCase implements BaseUseCase<
     ProductPayloads.PATCH.Request
 >{
     constructor(
-        public clients: { honoJwt: HonoJwtClient },
         public repositories: { product: ProductRepository },
     ){}
 

@@ -1,6 +1,6 @@
 import { GptOcrPayloads } from "@share/payloads";
 import BaseUseCase from "./_interface";
-import { HonoJwtClient, LangChainOpenAiClient } from "@client";
+import { LangChainOpenAiClient } from "@client";
 import { GptOcrPayloadSchemas } from "@payload";
 import { ReceiptOCRService } from "@service";
 import { OPEN_AI_PROMPTS } from "@lib/constants/openAiPrompts";
@@ -11,7 +11,6 @@ export class GptOcrUseCase implements BaseUseCase<
     GptOcrPayloads.POST.Response
 >{
     constructor(
-        public clients: { honoJwt: HonoJwtClient },
         public services: { receiptOcr: ReceiptOCRService }
     ){}
 

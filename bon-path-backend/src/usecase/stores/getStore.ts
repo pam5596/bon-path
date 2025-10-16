@@ -1,4 +1,3 @@
-import { HonoJwtClient } from "@client";
 import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 import { UseCaseError } from "@lib/error";
 import { StoresPayloadSchemas } from "@payload";
@@ -11,7 +10,6 @@ export class GetStoreUseCase implements BaseUseCase<
     StorePayloads.GET.Response
 >{
     constructor(
-        public clients: { honoJwt: HonoJwtClient },
         public repositories: { store: StoreRepository },
     ){}
 

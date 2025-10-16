@@ -1,4 +1,4 @@
-import { HonoJwtClient, PrismaVectorClient } from "@client";
+import { PrismaVectorClient } from "@client";
 import { ProductsPayloadSchemas } from "@payload";
 import { ProductRepository, ProductVectorRepository } from "@repository";
 import { ProductPayloads } from "@share/payloads";
@@ -9,7 +9,7 @@ export class VectorSearchProductsUseCase implements BaseUseCase<
     ProductPayloads.VectorSearch.GET.Response
 >{
     constructor(
-        public clients: { honoJwt: HonoJwtClient, prismaVector: PrismaVectorClient },
+        public clients: { prismaVector: PrismaVectorClient },
         public repositories: { product: ProductRepository, productVector: ProductVectorRepository },
     ){}
 

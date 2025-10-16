@@ -1,7 +1,7 @@
 import BaseUseCase from "@usecase/_interface";
 import { ReceiptImagePayloads } from "@share/payloads";
 import { ReceiptImagesPayloadSchemas } from "@payload";
-import { HonoJwtClient, AwsS3Client } from "@client";
+import { AwsS3Client } from "@client";
 import { ReceiptImageRepository } from "@repository";
 import { ReceiptImageEntity } from "@models/entity";
 
@@ -9,7 +9,7 @@ export class PutReceiptImagesUsecase implements BaseUseCase<
     ReceiptImagePayloads.POST.Request
 > {
     constructor(
-        public clients: { honoJwt: HonoJwtClient, awsS3: AwsS3Client },
+        public clients: { awsS3: AwsS3Client },
         public repositories: { receiptImage: ReceiptImageRepository },
     ){}
 

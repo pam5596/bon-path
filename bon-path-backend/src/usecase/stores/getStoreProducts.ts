@@ -1,4 +1,3 @@
-import { HonoJwtClient } from "@client";
 import { StoresPayloadSchemas } from "@payload";
 import { ProductRepository } from "@repository";
 import { StorePayloads } from "@share/payloads";
@@ -9,7 +8,6 @@ export class GetStoreProductsUseCase implements BaseUseCase<
     StorePayloads.Products.GET.Response
 >{
     constructor(
-        public clients: { honoJwt: HonoJwtClient },
         public repositories: { product: ProductRepository },
     ){}
 

@@ -1,4 +1,3 @@
-import { HonoJwtClient } from "@client";
 import { CategoriesPayloadSchemas } from "@payload";
 import { CategoryRepository } from "@repository";
 import { CategoryPayloads } from "@share/payloads";
@@ -8,7 +7,6 @@ export class DeleteCategoryUseCase implements BaseUseCase<
     CategoryPayloads.DELETE.Request
 >{
     constructor(
-        public clients: { honoJwt: HonoJwtClient },
         public repositories: { category: CategoryRepository },
     ){}
 
