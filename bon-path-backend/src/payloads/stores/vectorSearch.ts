@@ -10,7 +10,7 @@ export namespace VectorSearchSchemas {
                 return {
                     query: z.strictObject({
                         keyword: StoreName.schema(),
-                        limit: z.coerce.number().optional()
+                        limit: z.coerce.number().int().min(1).optional()
                     })
                 }
             }

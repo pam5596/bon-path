@@ -11,7 +11,7 @@ export namespace VectorSearchSchemas {
                     query: z.strictObject({
                         keyword: ProductName.schema(),
                         storeId: Id.paramSchema(),
-                        limit: z.coerce.number().optional()
+                        limit: z.coerce.number().int().min(1).optional()
                     })
                 }
             }

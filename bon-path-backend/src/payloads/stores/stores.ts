@@ -11,8 +11,8 @@ export namespace StoresSchemas {
                     query: z.strictObject({
                         latitude: StoreLatitude.querySchema().optional(),
                         longitude: StoreLongitude.querySchema().optional(),
-                        radius: z.coerce.number().min(1).optional(),
-                        limit: z.coerce.number().optional()
+                        radius: z.coerce.number().optional(),
+                        limit: z.coerce.number().int().min(1).optional()
                     })
                 }
             }

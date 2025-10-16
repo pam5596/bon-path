@@ -10,7 +10,7 @@ export namespace GoogleSearchSchemas {
                 return {
                     query: z.strictObject({
                         keyword: ProductName.schema(),
-                        limit: z.coerce.number().optional()
+                        limit: z.coerce.number().int().min(1).optional()
                     })
                 }
             }

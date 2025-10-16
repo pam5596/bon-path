@@ -14,7 +14,7 @@ export namespace ProductsSchemas {
                     query: z.strictObject({
                         sort: z.enum(['price']).optional(),
                         orderBy: z.enum(['asc', 'desc']).optional(),
-                        limit: z.coerce.number().optional()
+                        limit: z.coerce.number().int().min(1).optional()
                     })
                 }
             }
