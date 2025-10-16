@@ -1,7 +1,4 @@
-import { getCookie } from "hono/cookie";
 import BaseRoute from "../_interface";
-import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
-import { StorePayloads } from "@share/payloads";
 import { StoresPayloadSchemas } from "@payload";
 import { GetStoresUseCase } from "@usecase/index";
 import { honoJwtLogin } from "@lib/clients";
@@ -18,26 +15,14 @@ export class GetStoresRoute extends BaseRoute {
                 successStatusCode: 200
             },
             async (context) => {
-                const loginSessionId = getCookie(context, 'loginSessionid');
-                if (!loginSessionId) throw this.createError(
-                    ERROR_MESSAGES.route.invalidCookie,
-                    getCookie(context)
-                )
-
                 const query = context.req.query();
-                if (
-                    isNaN(Number(query.longitude)) || 
-                    isNaN(Number(query.latitude)) ||
-                    isNaN(Number(query.radius)) ||
-                    isNaN(Number(query.limit))
-                ) throw this.createError(
-                    ERROR_MESSAGES.route.invalidParams,
-                    context.req.param()
-                )
 
                 const request = new StoresPayloadSchemas.Stores.GET.Request({
-                    cookies: { loginSessionId },
-                    query
+                    query: Object.fromEntries(
+                        Object.entries(query).map(
+                            ([k,v]) => [k, isNaN(Number(v)) ? undefined : Number(v)]
+                        )
+                    )
                 })
 
                 const response = await new GetStoresUseCase(

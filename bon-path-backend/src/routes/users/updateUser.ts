@@ -1,7 +1,6 @@
 import BaseRoute from "../_interface";
 import { UsersPayloadSchemas } from "@payload";
 import { getCookie } from "hono/cookie";
-import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 import { UpdateUserUseCase } from "@usecase/index";
 import { honoJwtLogin } from "@lib/clients";
 import { userPasswordHashService } from "@lib/services";
@@ -19,12 +18,7 @@ export class UpdateUserRoute extends BaseRoute {
             },
             async (context) => {
                 const body = await context.req.json()
-                const loginSessionId = getCookie(context, 'loginSessionId');
-
-                if (!loginSessionId) throw this.createError(
-                    ERROR_MESSAGES.route.invalidCookie,
-                    getCookie(context)
-                )
+                const loginSessionId = getCookie(context, 'loginSessionId') as string;
 
                 const request = new UsersPayloadSchemas.PATCH.Request({
                     cookies: { loginSessionId },

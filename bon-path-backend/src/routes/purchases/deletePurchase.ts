@@ -17,12 +17,7 @@ export class DeletePurchaseRoute extends BaseRoute {
                 successStatusCode: 204
             },
             async (context) => {
-                const loginSessionId = getCookie(context, 'loginSessionid');
-                if (!loginSessionId) throw this.createError(
-                    ERROR_MESSAGES.route.invalidCookie,
-                    getCookie(context)
-                )
-
+                const loginSessionId = getCookie(context, 'loginSessionid') as string;
                 const { id } = context.req.param()
                 if (isNaN(Number(id))) throw this.createError(
                     ERROR_MESSAGES.route.invalidParams,

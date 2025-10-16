@@ -1,4 +1,3 @@
-import { getCookie } from "hono/cookie";
 import BaseRoute from "../_interface";
 import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 import { ReceiptsPayloadSchemas } from "@payload";
@@ -17,12 +16,6 @@ export class GetReceiptPurchasesRoute extends BaseRoute {
                 successStatusCode: 200
             },
             async (context) => {
-                const loginSessionId = getCookie(context, 'loginSessionid');
-                if (!loginSessionId) throw this.createError(
-                    ERROR_MESSAGES.route.invalidCookie,
-                    getCookie(context)
-                )
-
                 const { receiptId } = context.req.param()
                 if (isNaN(Number(receiptId))) throw this.createError(
                     ERROR_MESSAGES.route.invalidParams,
@@ -30,7 +23,6 @@ export class GetReceiptPurchasesRoute extends BaseRoute {
                 )
 
                 const request = new ReceiptsPayloadSchemas.Purchases.GET.Request({
-                    cookies: { loginSessionId },
                     params: { receiptId: Number(receiptId) }
                 })
 

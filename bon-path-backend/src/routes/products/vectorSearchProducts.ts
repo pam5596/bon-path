@@ -1,6 +1,4 @@
-import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 import BaseRoute from "../_interface";
-import { getCookie } from "hono/cookie";
 import { ProductsPayloadSchemas } from "@payload";
 import { VectorSearchProductsUseCase } from "@usecase/index";
 import { honoJwtLogin, prismaVector } from "@lib/clients";
@@ -17,16 +15,9 @@ export class VectorSearchProductsRoute extends BaseRoute {
                 successStatusCode: 200
             },
             async (context) => {
-                const loginSessionId = getCookie(context, 'loginSessionid');
-                if (!loginSessionId) throw this.createError(
-                    ERROR_MESSAGES.route.invalidCookie,
-                    getCookie(context)
-                )
-
                 const query = context.req.query() as any
 
                 const request = new ProductsPayloadSchemas.VectorSearch.GET.Request({
-                    cookies: { loginSessionId },
                     query
                 })
 

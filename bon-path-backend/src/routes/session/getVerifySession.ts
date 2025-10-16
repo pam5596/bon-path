@@ -1,7 +1,6 @@
 import BaseRoute from "../_interface";
 import { SessionPayloadSchemas } from "@payload";
 import { getCookie } from "hono/cookie";
-import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 import { GetVerifySessionUseCase } from "@usecase/index";
 import { honoJwtVerify } from "@lib/clients";
 
@@ -16,11 +15,7 @@ export class GetVerifySessionRoute extends BaseRoute {
                 successStatusCode: 200
             },
             async (context) => {
-                const verifySessionId = getCookie(context, 'verifySessionId');
-                if (!verifySessionId) throw this.createError(
-                    ERROR_MESSAGES.route.invalidCookie,
-                    getCookie(context)
-                )
+                const verifySessionId = getCookie(context, 'verifySessionId') as string;
 
                 const request = new SessionPayloadSchemas.Verify.GET.Request({
                     cookies: { verifySessionId }

@@ -1,4 +1,3 @@
-import { getCookie } from "hono/cookie";
 import BaseRoute from "../_interface";
 import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 import { StoresPayloadSchemas } from "@payload";
@@ -12,17 +11,11 @@ export class GetStoreProductsRoute extends BaseRoute {
             {
                 method: 'get',
                 path: '/stores/:storeId/products',
-                tags: ['店舗情報をリソースとするルート', '商品情報ををリソースとするルート'],
+                tags: ['店舗情報をリソースとするルート', '商品情報をリソースとするルート'],
                 requestMediaType: 'application/json',
                 successStatusCode: 200
             },
             async (context) => {
-                const loginSessionId = getCookie(context, 'loginSessionid');
-                if (!loginSessionId) throw this.createError(
-                    ERROR_MESSAGES.route.invalidCookie,
-                    getCookie(context)
-                )
-
                 const { storeId } = context.req.param()
                 if (isNaN(Number(storeId))) throw this.createError(
                     ERROR_MESSAGES.route.invalidParams,
@@ -30,7 +23,6 @@ export class GetStoreProductsRoute extends BaseRoute {
                 )
 
                 const request = new StoresPayloadSchemas.Products.GET.Request({
-                    cookies: { loginSessionId },
                     params: { storeId: Number(storeId) }
                 })
 

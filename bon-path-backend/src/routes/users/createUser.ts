@@ -2,7 +2,6 @@ import BaseRoute from "../_interface";
 import { UsersPayloadSchemas } from "@payload";
 import { UserPayloads } from "@share/payloads";
 import { getCookie } from "hono/cookie";
-import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 import { CreateUserUseCase } from "@usecase/index";
 import { honoJwtVerify } from "@lib/clients";
 import { userRepository } from "@lib/repositories";
@@ -20,15 +19,12 @@ export class CreateUserRoute extends BaseRoute {
             },
             async (context) => {
                 const body = await context.req.json() as UserPayloads.POST.Request['body']
-                const verifySessionId = getCookie(context, 'loginSessionId');
-                if (!verifySessionId) throw this.createError(
-                    ERROR_MESSAGES.route.invalidCookie,
-                    getCookie(context)
-                )
+                const verifySessionId = getCookie(context, 'loginSessionId') as string;
 
                 const request = new UsersPayloadSchemas.POST.Request({
                     cookies: { verifySessionId }, body
                 });
+                
                 const response = await new CreateUserUseCase(
                     { honoJwt: honoJwtVerify },
                     { user: userRepository },

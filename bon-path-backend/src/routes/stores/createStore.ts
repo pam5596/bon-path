@@ -1,6 +1,4 @@
-import { getCookie } from "hono/cookie";
 import BaseRoute from "../_interface";
-import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 import { StoresPayloadSchemas } from "@payload";
 import { CreateStoreUseCase } from "@usecase/index";
 import { honoJwtLogin } from "@lib/clients";
@@ -17,15 +15,9 @@ export class CreateStoreRoute extends BaseRoute {
                 successStatusCode: 201
             },
             async (context) => {
-                const loginSessionId = getCookie(context, 'loginSessionid');
-                if (!loginSessionId) throw this.createError(
-                    ERROR_MESSAGES.route.invalidCookie,
-                    getCookie(context)
-                )
-
                 const body = await context.req.json()
+                
                 const request = new StoresPayloadSchemas.POST.Request({
-                    cookies: { loginSessionId },
                     body
                 });
 

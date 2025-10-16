@@ -1,7 +1,6 @@
 import BaseRoute from "../_interface";
 import { UsersPayloadSchemas } from "@payload";
 import { getCookie } from "hono/cookie";
-import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 import { GetUserPurchasesUseCase } from "@usecase/users/getUserPurchases";
 import { honoJwtLogin } from "@lib/clients";
 import { purchaseRepository } from "@lib/repositories";
@@ -17,15 +16,12 @@ export class GetUserPurchases extends BaseRoute {
                 successStatusCode: 200
             },
             async (context) => {
-                const loginSessionId = getCookie(context, 'loginSessionid');
-                if (!loginSessionId) throw this.createError(
-                    ERROR_MESSAGES.route.invalidCookie,
-                    getCookie(context)
-                )
+                const loginSessionId = getCookie(context, 'loginSessionid') as string;
 
                 const request = new UsersPayloadSchemas.Purchases.GET.Request({
                     cookies: { loginSessionId }
                 })
+                
                 const response = await new GetUserPurchasesUseCase(
                     { honoJwt: honoJwtLogin },
                     { purchase: purchaseRepository },

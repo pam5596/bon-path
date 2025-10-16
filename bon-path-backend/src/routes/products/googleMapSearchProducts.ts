@@ -1,6 +1,4 @@
-import { getCookie } from "hono/cookie";
 import BaseRoute from "../_interface";
-import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 import { ProductsPayloadSchemas } from "@payload";
 import { GoogleMapSearchProductsUseCase } from "@usecase/index";
 import { honoJwtLogin } from "@lib/clients";
@@ -18,16 +16,9 @@ export class GoogleMapSearchProductsRoute extends BaseRoute {
                 successStatusCode: 200
             },
             async (context) => {
-                const loginSessionId = getCookie(context, 'loginSessionid');
-                if (!loginSessionId) throw this.createError(
-                    ERROR_MESSAGES.route.invalidCookie,
-                    getCookie(context)
-                )
-
                 const query = context.req.query() as any;
                 
                 const request = new ProductsPayloadSchemas.GoogleSearch.GET.Request({
-                    cookies: { loginSessionId },
                     query
                 })
 

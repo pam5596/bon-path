@@ -1,7 +1,6 @@
 import BaseRoute from "../_interface";
 import { UsersPayloadSchemas } from "@payload";
 import { getCookie } from "hono/cookie";
-import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 import { GetUserReceiptsUseCase } from "@usecase/users/getUserReceipts";
 import { honoJwtLogin } from "@lib/clients";
 import { receiptRepository } from "@lib/repositories";
@@ -17,11 +16,7 @@ export class GetUserReceiptsRoute extends BaseRoute {
                 successStatusCode: 200
             },
             async (context) => {
-                const loginSessionId = getCookie(context, 'loginSessionid');
-                if (!loginSessionId) throw this.createError(
-                    ERROR_MESSAGES.route.invalidCookie,
-                    getCookie(context)
-                )
+                const loginSessionId = getCookie(context, 'loginSessionid') as string;
 
                 const { isChecked } = new UsersPayloadSchemas.Receipts.GET.Request()
                     .schema().query.parse(context.req.query())
