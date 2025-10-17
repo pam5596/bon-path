@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "storeId": 1,
+        "categoryId": 5,
+        "name": "醤油ラーメン スープ45g",
+        "price": 95
+    },
+    {
+        "id": 2,
+        "storeId": 1,
+        "categoryId": 5,
+        "name": "ちぢれ麺 130g",
+        "price": 99
+    },
+    {
+        "id": 3,
+        "storeId": 2,
+        "categoryId": 3,
+        "name": "スパゲティ1kg",
+        "price": 358
+    }
+]

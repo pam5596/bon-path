@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "name": "Taro Yamada",
+        "email": "yamada@example.com",
+        "password": "$argon2id$v=19$m=65536,t=3,p=4$Wbz7ijsDeo+j68UkLqlLmw$O8PXegJ8/Jz4N2sThtrr7ymkkBR5EUNnOvDch68KmF0"
+    },
+    {
+        "id": 2,
+        "name": "Kyoko Saito",
+        "email": "saito@example.com",
+        "password": "$argon2id$v=19$m=65536,t=3,p=4$XHVcVL8oAkwMijI3lOpbPA$z5XsM19z4onKuHKUh6J1ediG0gILgxzgyzRDztI6VK8"
+    }
+]

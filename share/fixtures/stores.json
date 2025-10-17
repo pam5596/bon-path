@@ -1,0 +1,19 @@
+[
+    {
+        "id": 1,
+        "name": "サミット 三田店",
+        "image": "https://lh3.googleusercontent.com/gps-cs-s/AC9h4npigvAOTsf8ztUCvD-JNld2HOy_StD2yIIR88I0D6FnpF-HYpCDuzqKgi61RV2ntb70bzKuJFdtKdm4nODMW5P0MWAswB2mZYnjIttZcx7K0PbAsozhqtE-Tr-5nPuuqG4zQrCY4wva-XIE=w426-h240-k-no",
+        "latitude": 35.64569174174139, 
+        "longitude": 139.73851329605122,
+        "googleMapLink": "https://maps.app.goo.gl/gy1w4r1JstTjtCvn7"
+
+    },
+    {
+        "id": 2,
+        "name": "ライフ ムスブ田町店",
+        "image": "https://lh3.googleusercontent.com/gps-cs-s/AC9h4noUb9qdQaSMiS28G0k8nAXhqkMXR9MwPBcMr4G7z4ffx9wdN86ae4hq8NcR9SuC2ObJStaVWATWZI4HnfZLRwSiCbMpSUvQnnoO8XZT3EYfowC3deQLE9Ea-qJvQDR3ACOMhOb4bA=w408-h544-k-no",
+        "latitude": 35.64489937217276,
+        "longitude": 139.74898064031694,
+        "googleMapLink": "https://maps.app.goo.gl/Csx9goS4SxtMSmcp8"
+    }
+]
