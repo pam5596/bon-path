@@ -24,7 +24,7 @@ export const errorHandler: ErrorHandler = async (error, context) => {
             stack: error.stack,
             instance: error.name,
             report: {
-                body: await context.req.json(),
+                body: context.req.parseBody(),
                 params: context.req.param(),
                 query: context.req.query(),
                 headers: context.req.header()

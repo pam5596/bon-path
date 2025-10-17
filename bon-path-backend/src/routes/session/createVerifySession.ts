@@ -4,6 +4,8 @@ import { CreateVerifySessionUseCase } from "@usecase/index";
 import { honoJwtVerify } from "@lib/clients";
 import { setCookie } from "hono/cookie";
 import { TIMES } from "@lib/constants/times";
+import { userPasswordHashService } from "@lib/services";
+import { userRepository } from "@lib/repositories";
 
 export class CreateVerifySessionRoute extends BaseRoute {
     constructor() {
@@ -21,6 +23,8 @@ export class CreateVerifySessionRoute extends BaseRoute {
                 const request = new SessionPayloadSchemas.Verify.POST.Request({body})
                 const response = await new CreateVerifySessionUseCase(
                     { honoJwt: honoJwtVerify },
+                    { userPasswordHashService },
+                    { user: userRepository }
                 ).execute(request);
 
                 setCookie(context, 'verifySessionId', response.getCookies.verifySessionId, {

@@ -73,6 +73,10 @@ export const ERROR_MESSAGES = {
         productNameExtract: "商品の分析に失敗しまた。開発者に問い合わせてください。",
     },
     usecase: {
+        userConflict: {
+            detail: '入力されたメールアドレスは既に使用されています。',
+            issues: 'UserEmail already registered.'
+        },
         userNotFound: {
             detail: "ユーザーが見つかりませんでした。アカウントを登録してください。",
             issues: "User not found."
