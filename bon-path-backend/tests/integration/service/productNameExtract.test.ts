@@ -22,16 +22,34 @@ describe('ProductNameExtractの結合テスト', () => {
     const service = new ProductNameExtractService(client)
 
     const categories = [
-        'チーズ',
-        'いちご',
-        'パスタ・スパゲッティ',
-        'オリーブオイル',
-        'からあげ',
-        '牛肉'
+        {
+            name: '食品'
+        },
+        {
+            name: 'パスタ・スパゲッティ',
+            parentId: 1,
+        },
+        {
+            name: '果物',
+            parentId: 1,
+        },
+        {
+            name: 'いちご',
+            parentId: 3,
+        },
+        {
+            name: '冷凍食品',
+            parentId: 1
+        },
+        {
+            name: 'からあげ',
+            parentId: 5
+        },
     ].map(
-        (categoryName, i) => new CategoryEntity({
+        (category, i) => new CategoryEntity({
             id: new Id(i+1),
-            name: new CategoryName(categoryName)
+            name: new CategoryName(category.name),
+            parentId: category.parentId ? new Id(category.parentId) : undefined
         })
     )
 
