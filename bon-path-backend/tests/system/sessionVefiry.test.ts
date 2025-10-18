@@ -19,7 +19,7 @@ describe('sessionVerifyエンドポイントのシステムテスト', () => {
         });
                 
         expect(res.status).toBe(302)
-        expect(res.headers.getSetCookie()[0].includes('verifySessionId'))
+        expect(res.headers.getSetCookie()[0].includes('verifySessionId')).toBe(true)
         expect(res.headers.get('location')).toBe(process.env.FRONTEND_DOMAIN + '/signin/email-verify')
     })
 
