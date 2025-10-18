@@ -1,17 +1,16 @@
-import { OpenAPIHono } from "@hono/zod-openapi";
+import { request } from "./_request";
 
 export async function createVerifySession(
-    app: OpenAPIHono,
     user: {
         name: string,
         email: string,
         password: string,
-    }, 
-    secret: string
+    }
 ) {
-    const res = await app.request('/session/verify', {
+    const res = await request('/session/verify', {
         method: 'POST',
-        body: JSON.stringify(user)
+        body: JSON.stringify(user),
+        redirect: 'manual'
     });
 
     return res.headers.getSetCookie()[0].split('; ')[0]

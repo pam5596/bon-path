@@ -1,5 +1,6 @@
 import { OpenAPIHono } from '@hono/zod-openapi'
 import { swaggerUI } from "@hono/swagger-ui";
+import { logger } from 'hono/logger';
 import { corsHandler, errorHandler, loginSessionHandler, verifySessionHandler } from '@lib/middleware';
 import { 
     getLoginSession,
@@ -53,6 +54,7 @@ app.use('*', corsHandler)
 app.onError(errorHandler)
 app.use('*', loginSessionHandler)
 app.use('*', verifySessionHandler)
+app.use(logger())
 
 app.openapi(getLoginSession.route, getLoginSession.handler)
 app.openapi(createLoginSession.route, createLoginSession.handler)
@@ -106,7 +108,7 @@ app.openapi(getCategoryProducts.route, getCategoryProducts.handler)
 
 app.openapi(gptOcr.route, gptOcr.handler)
 
-if (process.env.NODE_ENV == 'develop') {
+if (process.env.NODE_ENV == 'development') {
     app.doc('/doc', {
         openapi: '3.0.0',
         info: {
