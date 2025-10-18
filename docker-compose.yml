@@ -21,6 +21,7 @@ services:
       - "7070:7070"
     command: sh -c "rm -rf logs && npm run app:test"
     depends_on:
+      - backend-dev
       - database
       - storage
   database:
