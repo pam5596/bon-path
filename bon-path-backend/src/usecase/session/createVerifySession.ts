@@ -21,7 +21,7 @@ export class CreateVerifySessionUseCase implements BaseUseCase<
         const { name, email, password } = request.toValueObjectBody();
         const hash_password = await this.services.userPasswordHashService.execute(password);
 
-        const user = await this.repositories.user.selectByEmailAndPassword(email, hash_password)
+        const user = await this.repositories.user.selectByEmail(email)
         if (user) throw new UseCaseError(
             409,
             ERROR_MESSAGES.usecase.userConflict.detail,

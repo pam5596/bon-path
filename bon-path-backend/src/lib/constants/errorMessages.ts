@@ -81,6 +81,10 @@ export const ERROR_MESSAGES = {
             detail: "ユーザーが見つかりませんでした。アカウントを登録してください。",
             issues: "User not found."
         },
+        userPasswordIncorrect: {
+            detail: "パスワードが間違えています。",
+            issues: "Incorrect user password."
+        },
         emailsNotEqual: {
             detail: "ユーザーのメールアドレス認証に失敗しました。再度アカウントを登録し直してください。",
             issues: "The session payload email and The request body email are not equal."
