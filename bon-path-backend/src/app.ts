@@ -1,6 +1,5 @@
 import { OpenAPIHono } from '@hono/zod-openapi'
 import { swaggerUI } from "@hono/swagger-ui";
-import { serve } from '@hono/node-server'
 import { corsHandler, errorHandler, loginSessionHandler, verifySessionHandler } from '@lib/middleware';
 import { 
     getLoginSession,
@@ -55,10 +54,6 @@ app.onError(errorHandler)
 app.use('*', loginSessionHandler)
 app.use('*', verifySessionHandler)
 
-app.get('/signup', (c) => c.text('Redirect test: /signup'))
-app.get('/signin/email-verify', (c) => c.text('Redirect test: /signin/email-verify'))
-app.get('/login', (c) => c.text('Redirect test: /login'))
-
 app.openapi(getLoginSession.route, getLoginSession.handler)
 app.openapi(createLoginSession.route, createLoginSession.handler)
 app.openapi(deleteLoginSession.route, deleteLoginSession.handler)
@@ -111,20 +106,19 @@ app.openapi(getCategoryProducts.route, getCategoryProducts.handler)
 
 app.openapi(gptOcr.route, gptOcr.handler)
 
-app.doc('/doc', {
-    openapi: '3.0.0',
-    info: {
-        version: '1.0.0',
-        title: 'BonPathAPI',
-    },
-})
-app.get("/docs", swaggerUI({ url: "/doc" }))
-
-serve({
-    fetch: app.fetch,
-    port: 8080,
-},() => {
-    console.log('Server is running on http://localhost:8080')
-})
+if (process.env.NODE_ENV == 'develop') {
+    app.doc('/doc', {
+        openapi: '3.0.0',
+        info: {
+            version: '1.0.0',
+            title: 'BonPathAPI',
+        },
+    })
+    app.get("/docs", swaggerUI({ url: "/doc" }))
+} else if (process.env.NODE_ENV == 'test') {
+    app.get('/signup', (c) => c.text('Redirect test: /signup'))
+    app.get('/signin/email-verify', (c) => c.text('Redirect test: /signin/email-verify'))
+    app.get('/login', (c) => c.text('Redirect test: /login'))
+}
 
 export default app

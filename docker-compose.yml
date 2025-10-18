@@ -1,13 +1,25 @@
 services:
-  backend:
-    container_name: bon-path-backend
+  backend-dev:
+    container_name: bon-path-backend-develop
     build: ./bon-path-backend
     volumes:
       - ./bon-path-backend:/bon-path-backend
       - ./share:/share
     ports:
       - "8080:8080"
-    command: sh -c "npm run dev && rm -rf logs"
+    command: sh -c "rm -rf logs && npm run app:dev"
+    depends_on:
+      - database
+      - storage
+  backend-test:
+    container_name: bon-path-backend-test
+    build: ./bon-path-backend
+    volumes:
+      - ./bon-path-backend:/bon-path-backend
+      - ./share:/share
+    ports:
+      - "7070:7070"
+    command: sh -c "rm -rf logs && npm run app:test"
     depends_on:
       - database
       - storage
