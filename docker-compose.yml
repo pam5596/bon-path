@@ -7,6 +7,7 @@ services:
       - ./share:/share
     ports:
       - "8080:8080"
+      - "5050:5050"
     command: sh -c "rm -rf logs && npm run app:dev"
     depends_on:
       - database
@@ -19,6 +20,7 @@ services:
       - ./share:/share
     ports:
       - "7070:7070"
+      - "4040:4040"
     command: sh -c "rm -rf logs && npm run app:test"
     depends_on:
       - backend-dev

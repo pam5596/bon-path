@@ -9,6 +9,8 @@
     "migrate:dev": "dotenv -e .env.develop -- npx prisma migrate dev",
     "migrate:test": "dotenv -e .env.test -- npx prisma migrate dev",
     "generate": "npx prisma generate",
+    "studio:dev": "dotenv -e .env.develop -- npx prisma studio -p 5050",
+    "studio:test": "dotenv -e .env.test -- npx prisma studio -p 4040",
     "build": "esbuild --bundle --outfile=./dist/index.js --platform=node --target=node20 ./src/index.ts",
     "zip": "zip -j lambda.zip dist/index.js",
     "update": "aws lambda update-function-code --zip-file fileb://lambda.zip --function-name hello",
