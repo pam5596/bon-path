@@ -34,7 +34,7 @@ export class CreateLoginSessionUseCase implements BaseUseCase<
             rowPassword: password
         })
         if (!is_correct_password) throw new UseCaseError(
-            422,
+            401,
             ERROR_MESSAGES.usecase.userPasswordIncorrect.detail,
             ERROR_MESSAGES.usecase.userPasswordIncorrect.issues,
             this.constructor.name,
