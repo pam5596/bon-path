@@ -17,6 +17,7 @@ export class GetUserUseCase implements BaseUseCase<
     ) {}
 
     async execute(request: UsersPayloadSchemas.GET.Request) {
+        console.log(request)
         const jwt_payload = await this.clients.honoJwt.verify(
             request.getCookies.loginSessionId
         ) as LoginSessionEntity['toPrimitives']

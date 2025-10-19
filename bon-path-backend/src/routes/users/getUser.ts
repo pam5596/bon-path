@@ -16,7 +16,7 @@ export class GetUserRoute extends BaseRoute {
                 successStatusCode: 200
             },
             async (context) => {
-                const loginSessionId = getCookie(context, 'loginSessionid') as string;
+                const loginSessionId = getCookie(context, 'loginSessionId') as string;
                 
                 const request = new UsersPayloadSchemas.GET.Request({
                     cookies: { loginSessionId }

@@ -7,11 +7,14 @@ import { getCookie } from "hono/cookie";
 import { verifySessionPaths } from "@routes/_verifySessionPaths";
 
 export const verifySessionHandler: MiddlewareHandler = async (context, next) => {
-    const verifySessionId = getCookie(context, 'verifySessionid');
+    const verifySessionId = getCookie(context, 'verifySessionId');
     const path = context.req.path as PathsEnum;
     const method = context.req.method.toLowerCase() as RouteConfig['method'];
 
-    if (!verifySessionId && verifySessionPaths.includes({path, method})) 
+    const needSessionId = verifySessionPaths.some(
+        p => p.path == path && p.method == method
+    )
+    if (!verifySessionId && needSessionId) 
         throw new RouteError(
             401,
             ERROR_MESSAGES.route.invalidVerifySession.detail,

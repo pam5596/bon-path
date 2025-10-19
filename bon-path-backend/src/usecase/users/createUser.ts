@@ -3,10 +3,7 @@ import { UserPayloads } from "@share/payloads";
 import { UsersPayloadSchemas } from "@payload";
 import { HonoJwtClient } from "@client";
 import { UserRepository } from "@repository";
-import { UserPasswordHashService } from "@service";
 import { UserEntity, VerifySessionEntity } from "@models/entity";
-import { UseCaseError } from "@lib/error";
-import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 export class CreateUserUseCase implements BaseUseCase<
     UserPayloads.POST.Request,
@@ -15,7 +12,6 @@ export class CreateUserUseCase implements BaseUseCase<
     constructor(
         public clients: { honoJwt: HonoJwtClient },
         public repositories: { user: UserRepository },
-        public services: { userPasswordHashService: UserPasswordHashService }
     ) {}
 
     async execute(request: UsersPayloadSchemas.POST.Request) {
@@ -23,20 +19,13 @@ export class CreateUserUseCase implements BaseUseCase<
             request.getCookies.verifySessionId
         ) as VerifySessionEntity['toPrimitives']
         const session = VerifySessionEntity.fromPrimitives(jwt_payload)
-
-        const { email, name, password } = request.toValueObjectBody()
+        const { 
+            userName: name, 
+            userEmail: email, 
+            userHashPassword: password
+        } = session.getValues
         
-        if (!session.getValues.userEmail.equals(email)) 
-            throw new UseCaseError(
-                403,
-                ERROR_MESSAGES.usecase.emailsNotEqual.detail,
-                ERROR_MESSAGES.usecase.emailsNotEqual.issues,
-                this.constructor.name,
-                request.getBody
-            )
-
-        const hash_password = await this.services.userPasswordHashService.execute(password)
-        const user = new UserEntity({ name, email, password: hash_password })
+        const user = new UserEntity({ name, email, password })
         const inserted_user = await this.repositories.user.insert(user)
 
         return new UsersPayloadSchemas.POST.Response({
