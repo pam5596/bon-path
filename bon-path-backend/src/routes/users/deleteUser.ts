@@ -26,6 +26,8 @@ export class DeleteUserRoute extends BaseRoute {
                     { honoJwt: honoJwtLogin },
                     { user: userRepository },
                 ).execute(request)
+
+                return context.body(null, 204)
             },
             new UsersPayloadSchemas.DELETE.Request()
         )

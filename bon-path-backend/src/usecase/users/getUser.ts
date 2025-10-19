@@ -31,9 +31,11 @@ export class GetUserUseCase implements BaseUseCase<
             this.constructor.name
         )
 
+        const { email, name } = user.toPrimitives
         return new UsersPayloadSchemas.GET.Response({
             body: {
-                ...user.toPrimitives,
+                email,
+                name,
                 createdAt: user.getCreatedAt!.value
             }
         })

@@ -85,10 +85,6 @@ export const ERROR_MESSAGES = {
             detail: "パスワードが間違えています。",
             issues: "Incorrect user password."
         },
-        emailsNotEqual: {
-            detail: "ユーザーのメールアドレス認証に失敗しました。再度アカウントを登録し直してください。",
-            issues: "The session payload email and The request body email are not equal."
-        },
         receiptNotFound: {
             detail: "レシート情報が見つかりませんでした。",
             issues: "Receipt not found."

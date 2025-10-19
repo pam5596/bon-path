@@ -30,6 +30,8 @@ export class UpdateUserRoute extends BaseRoute {
                     { user: userRepository },
                     { userPasswordHash: userPasswordHashService },
                 ).execute(request)
+
+                return context.body(null, 204)
             },
             new UsersPayloadSchemas.PATCH.Request()
         )

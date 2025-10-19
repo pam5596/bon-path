@@ -47,20 +47,7 @@ export namespace UsersPayloadSchemas {
                 return {
                     cookies: z.strictObject({
                         verifySessionId: z.string()
-                    }),
-                    body: z.strictObject({
-                        name: UserName.schema(),
-                        email: UserEmail.schema(),
-                        password: UserPassword.schema()
                     })
-                }
-            }
-
-            toValueObjectBody() {
-                return {
-                    name: new UserName(this.getBody.name),
-                    email: new UserEmail(this.getBody.email),
-                    password: new UserPassword(this.getBody.password)
                 }
             }
         }
