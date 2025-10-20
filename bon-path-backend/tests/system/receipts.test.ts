@@ -3,11 +3,9 @@ import { request } from "./_request";
 import { withTestFixtures } from "./_withTestFixtures";
 import { prisma } from "@lib/clients";
 import { createLoginSession } from "./_createLoginSession";
-import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
-import { createVerifySession } from "./_createVerifySession";
 
 describe('receiptsエンドポイントのシステムテスト', () => {
-    withTestFixtures(prisma, true)
+    withTestFixtures(prisma, false)
 
     test('[POST]createReceipt レシートを登録できること', async () => {
         const loginSessionId = await createLoginSession({
