@@ -28,7 +28,7 @@ export class CreateReceiptRoute extends BaseRoute {
                     { receipt: receiptRepository },
                 ).execute(request)
 
-                return context.json(response.getBody)
+                return context.json(response.getBody, 201)
             },
             new ReceiptsPayloadSchemas.POST.Request(),
             new ReceiptsPayloadSchemas.POST.Response()

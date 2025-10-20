@@ -10,7 +10,8 @@ import product_fixtures from "@share/fixtures/products.json";
 import purchase_fixtures from "@share/fixtures/purchases.json";
 
 export function withTestFixtures(
-    client: PrismaClient
+    client: PrismaClient,
+    checkDBAfterAll: boolean
 ) {
     beforeAll(
         async () => {
@@ -107,21 +108,22 @@ export function withTestFixtures(
         }
     )
 
-    afterAll(
-        async () => {
-            await client.$executeRawUnsafe(`
-                TRUNCATE TABLE
-                    "User", 
-                    "Receipt", 
-                    "ReceiptImage", 
-                    "Store",
-                    "Category",
-                    "Product",
-                    "Purchase",
-                    "StoreVector",
-                    "ProductVector"
-                RESTART IDENTITY CASCADE;
-            `)
-        }
-    )
+    if (!checkDBAfterAll)
+        afterAll(
+            async () => {
+                await client.$executeRawUnsafe(`
+                    TRUNCATE TABLE
+                        "User", 
+                        "Receipt", 
+                        "ReceiptImage", 
+                        "Store",
+                        "Category",
+                        "Product",
+                        "Purchase",
+                        "StoreVector",
+                        "ProductVector"
+                    RESTART IDENTITY CASCADE;
+                `)
+            }
+        )
 }

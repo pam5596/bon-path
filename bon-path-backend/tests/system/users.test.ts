@@ -7,7 +7,7 @@ import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 import { createVerifySession } from "./_createVerifySession";
 
 describe('usersエンドポイントのシステムテスト', () => {
-    withTestFixtures(prisma)
+    withTestFixtures(prisma, true)
 
     test('[POST]createUser ユーザーを登録できること', async () => {
         const verifySessionId = await createVerifySession({

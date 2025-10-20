@@ -37,6 +37,8 @@ export class UpdateReceiptRoute extends BaseRoute {
                     { honoJwt: honoJwtLogin },
                     { receipt: receiptRepository },
                 ).execute(request)
+
+                return context.body(null, 204)
             },
             new ReceiptsPayloadSchemas.PATCH.Request()
         )

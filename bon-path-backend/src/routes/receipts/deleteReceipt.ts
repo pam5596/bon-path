@@ -34,6 +34,8 @@ export class DeleteReceiptRoute extends BaseRoute {
                     { honoJwt: honoJwtLogin },
                     { receipt: receiptRepository }
                 ).execute(request)
+
+                return context.body(null, 204)
             },
             new ReceiptsPayloadSchemas.DELETE.Request()
         )
