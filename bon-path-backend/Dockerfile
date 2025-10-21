@@ -4,4 +4,3 @@ COPY . /bon-path-backend
 WORKDIR /bon-path-backend
 
 RUN npm install --legacy-peer-deps
-RUN npm install -g dotenv-cli
