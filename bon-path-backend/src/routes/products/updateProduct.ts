@@ -25,6 +25,8 @@ export class UpdateProductRoute extends BaseRoute {
                 await new UpdateProductUseCase(
                     { product: productRepository }
                 ).execute(request)
+
+                return context.body(null, 204)
             },
             new ProductsPayloadSchemas.PATCH.Request()
         )

@@ -89,7 +89,7 @@ export namespace ProductPayloads {
             export type Request = {
                 query: {
                     keyword: string,
-                    storeId: number,
+                    storeId?: number,
                     limit?: number
                 }
             }

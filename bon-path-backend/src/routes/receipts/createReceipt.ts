@@ -16,7 +16,7 @@ export class CreateReceiptRoute extends BaseRoute {
                 successStatusCode: 201
             },
             async (context) => {
-                const loginSessionId = getCookie(context, 'loginSessionid') as string;
+                const loginSessionId = getCookie(context, 'loginSessionId') as string;
                 const body = await context.req.json()
 
                 const request = new ReceiptsPayloadSchemas.POST.Request({
@@ -28,7 +28,7 @@ export class CreateReceiptRoute extends BaseRoute {
                     { receipt: receiptRepository },
                 ).execute(request)
 
-                return context.json(response.getBody)
+                return context.json(response.getBody, 201)
             },
             new ReceiptsPayloadSchemas.POST.Request(),
             new ReceiptsPayloadSchemas.POST.Response()

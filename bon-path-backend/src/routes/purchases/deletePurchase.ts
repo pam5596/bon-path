@@ -17,7 +17,7 @@ export class DeletePurchaseRoute extends BaseRoute {
                 successStatusCode: 204
             },
             async (context) => {
-                const loginSessionId = getCookie(context, 'loginSessionid') as string;
+                const loginSessionId = getCookie(context, 'loginSessionId') as string;
                 const { id } = context.req.param()
                 if (isNaN(Number(id))) throw this.createError(
                     ERROR_MESSAGES.route.invalidParams,
@@ -33,6 +33,8 @@ export class DeletePurchaseRoute extends BaseRoute {
                     { honoJwt: honoJwtLogin },
                     { purchase: purchaseRepository }
                 ).execute(request)
+
+                return context.body(null, 204)
             },
             new PurchasesPayloadSchemas.DELETE.Request()
         )

@@ -38,7 +38,7 @@ export class GetStoresUseCase implements BaseUseCase<
                     store => ({
                         ...store.toPrimitives,
                         id: store.id!.value,
-                        createdAt: store.created!.value
+                        createdAt: store.getCreatedAt!.value
                     })
                 )
             }

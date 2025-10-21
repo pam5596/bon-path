@@ -100,8 +100,8 @@ export const getProduct = new GetProductRoute()
 import { GetProductsRoute } from "./products/getProducts";
 export const getProducts = new GetProductsRoute()
 
-import { GoogleMapSearchProductsRoute } from "./products/googleMapSearchProducts";
-export const googleMapSearchProducts = new GoogleMapSearchProductsRoute()
+import { GoogleSearchProductsRoute } from "./products/googleSearchProducts";
+export const googleSearchProducts = new GoogleSearchProductsRoute()
 
 import { UpdateProductRoute } from "./products/updateProduct";
 export const updateProduct = new UpdateProductRoute()

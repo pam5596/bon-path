@@ -9,7 +9,7 @@ import { InteropZodType } from "@langchain/core/utils/types";
 import { UseCaseError } from "@lib/error";
 import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
-export class GoogleMapSearchProductsUseCase implements BaseUseCase<
+export class GoogleSearchProductsUseCase implements BaseUseCase<
     ProductPayloads.GoogleSearch.GET.Request,
     ProductPayloads.GoogleSearch.GET.Response
 >{
@@ -64,9 +64,5 @@ export class GoogleMapSearchProductsUseCase implements BaseUseCase<
                 )
             }
         })
-
-
-
-
     }
 }

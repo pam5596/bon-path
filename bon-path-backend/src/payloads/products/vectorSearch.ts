@@ -10,7 +10,7 @@ export namespace VectorSearchSchemas {
                 return {
                     query: z.strictObject({
                         keyword: ProductName.schema(),
-                        storeId: Id.paramSchema(),
+                        storeId: Id.paramSchema().optional(),
                         limit: z.coerce.number().int().min(1).optional()
                     })
                 }
@@ -19,7 +19,7 @@ export namespace VectorSearchSchemas {
             toValueObjectQuery() {
                 return {
                     keyword: new ProductName(this.getQuery.keyword),
-                    storeId: new Id(this.getQuery.storeId),
+                    storeId: this.getQuery.storeId ? new Id(this.getQuery.storeId) : undefined,
                     limit: this.getQuery.limit
                 }
             }

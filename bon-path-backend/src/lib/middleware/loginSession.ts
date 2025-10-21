@@ -7,11 +7,14 @@ import { getCookie } from "hono/cookie";
 import { loginSessionPaths } from "@routes/_loginSessionPaths";
 
 export const loginSessionHandler: MiddlewareHandler = async (context, next) => {
-    const loginSessionId = getCookie(context, 'loginSessionid');
+    const loginSessionId = getCookie(context, 'loginSessionId');
     const path = context.req.path as PathsEnum;
     const method = context.req.method.toLowerCase() as RouteConfig['method'];
 
-    if (!loginSessionId && loginSessionPaths.includes({path, method})) 
+    const needSessionId = loginSessionPaths.some(
+        p => p.path == path && p.method == method
+    )
+    if (!loginSessionId && needSessionId) 
         throw new RouteError(
             401,
             ERROR_MESSAGES.route.invalidLoginSession.detail,

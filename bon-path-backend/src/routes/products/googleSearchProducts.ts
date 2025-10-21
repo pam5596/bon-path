@@ -1,10 +1,10 @@
 import BaseRoute from "../_interface";
 import { ProductsPayloadSchemas } from "@payload";
-import { GoogleMapSearchProductsUseCase } from "@usecase/index";
+import { GoogleSearchProductsUseCase } from "@usecase/index";
 import { productNameExtractService, searchProductService } from "@lib/services";
 import { categoryRepository } from "@lib/repositories";
 
-export class GoogleMapSearchProductsRoute extends BaseRoute {
+export class GoogleSearchProductsRoute extends BaseRoute {
     constructor() {
         super(
             {
@@ -18,10 +18,13 @@ export class GoogleMapSearchProductsRoute extends BaseRoute {
                 const query = context.req.query() as any;
                 
                 const request = new ProductsPayloadSchemas.GoogleSearch.GET.Request({
-                    query
+                    query: {
+                        keyword: query.keyword,
+                        limit: Number(query.limit) ? Number(query.limit) : undefined  
+                    }
                 })
 
-                const response = await new GoogleMapSearchProductsUseCase(
+                const response = await new GoogleSearchProductsUseCase(
                     { 
                         searchProduct: searchProductService, 
                         productNameExtract: productNameExtractService 

@@ -20,7 +20,7 @@ export class VectorSearchProductsUseCase implements BaseUseCase<
         const products = await this.repositories.product.selectAll({
             where: {
                 id: { in: productIds.map(id => id.value) },
-                storeId: storeId.value
+                storeId: storeId ? storeId.value : undefined
             },
             take: limit
         })

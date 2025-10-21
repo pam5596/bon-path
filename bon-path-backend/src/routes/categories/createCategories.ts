@@ -21,6 +21,8 @@ export class CreateCategoriesRoute extends BaseRoute {
                 await new CreateCategoriesUseCase(
                     { category: categoryRepository }
                 ).execute(request)
+
+                return context.body(null, 201)
             },
             new CategoriesPayloadSchemas.POST.Request()
         )

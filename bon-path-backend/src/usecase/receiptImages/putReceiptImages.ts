@@ -16,33 +16,30 @@ export class PutReceiptImagesUsecase implements BaseUseCase<
     async execute(request: ReceiptImagesPayloadSchemas.POST.Request) {
         const { images, receiptId } = request.toValueObjectBody();
 
-        const receiptImages = await Promise.all(
+        await Promise.all(
             images.map(
                 async (image) => {
                     const buffer = Buffer.from(await image.arrayBuffer())
+                    const fileKey = `/receipts/${Date.now()}-${image.name}`
+
                     await this.clients.awsS3.putObject(
                         buffer,
-                        `/receipts/${image.name}`
+                        fileKey
                     )
-                    return ReceiptImageEntity.fromPrimitives({
+                    
+                    const receiptImage = ReceiptImageEntity.fromPrimitives({
                         receiptId: receiptId.value,
-                        url: `/receipts/${image.name}`
+                        url: fileKey
                     })
+
+                    try {
+                        await this.repositories.receiptImage.insert(receiptImage)
+                    } catch(e) {
+                        await this.clients.awsS3.deleteObject(fileKey)
+                        throw e
+                    }
                 }
             )
         )
-
-        try {
-            await this.repositories.receiptImage.insertMany(receiptImages)
-        } catch(e) {
-            await Promise.all(
-                images.map(
-                    async (image) => {
-                        await this.clients.awsS3.deleteObject(`/receipts/${image.name}`)
-                    }
-                )
-            )
-            throw e
-        }
     }
 }

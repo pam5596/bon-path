@@ -32,7 +32,7 @@ export class ReceiptOCRService implements BaseService {
                     { type: "text", text: formattedPrompt },
                     ...request.query.map((url) => ({ 
                         type: "image_url", 
-                        image_url: { url: url.value } 
+                        image_url: { url: process.env.STORAGE_DOMAIN + url.value } 
                     })),
                 ],
             }])

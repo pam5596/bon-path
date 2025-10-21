@@ -17,7 +17,7 @@ export class DeleteReceiptRoute extends BaseRoute {
                 successStatusCode: 204
             },
             async(context) => {
-                const loginSessionId = getCookie(context, 'loginSessionid') as string;
+                const loginSessionId = getCookie(context, 'loginSessionId') as string;
 
                 const { id } = context.req.param()
                 if (isNaN(Number(id))) throw this.createError(
@@ -34,6 +34,8 @@ export class DeleteReceiptRoute extends BaseRoute {
                     { honoJwt: honoJwtLogin },
                     { receipt: receiptRepository }
                 ).execute(request)
+
+                return context.body(null, 204)
             },
             new ReceiptsPayloadSchemas.DELETE.Request()
         )

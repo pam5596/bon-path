@@ -16,16 +16,23 @@ export class PutReceiptImagesRoute extends BaseRoute {
                 successStatusCode: 201
             },
             async (context) => {
-                const body = await context.req.parseBody() as unknown as ReceiptImagePayloads.POST.Request['body']
+                const formData = await context.req.formData()
+                const receiptId = formData.get('receiptId') as string
+                const images = formData.getAll('images') as File[]
 
                 const request = new ReceiptImagesPayloadSchemas.POST.Request({
-                    body
+                    body: { 
+                        receiptId: Number(receiptId),
+                        images
+                    }
                 });
 
                 await new PutReceiptImagesUsecase(
                     { awsS3 },
                     { receiptImage: receiptImageRepository }
                 ).execute(request)
+
+                return context.body(null, 201)
             },
             new ReceiptImagesPayloadSchemas.POST.Request()
         )

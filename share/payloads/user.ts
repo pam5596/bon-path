@@ -19,11 +19,6 @@ export namespace UserPayloads {
         export type Request = {
             cookies: {
                 verifySessionId: string
-            },
-            body: {
-                name: string,
-                email: string,
-                password: string
             }
         }
 

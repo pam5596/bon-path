@@ -23,6 +23,8 @@ export class CreateProductsRoute extends BaseRoute {
                 await new CreateProductsUseCase(
                     { product: productRepository }
                 ).execute(request)
+
+                return context.body(null, 201)
             },
             new ProductsPayloadSchemas.POST.Request()
         )

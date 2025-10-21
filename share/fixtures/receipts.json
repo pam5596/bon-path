@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "userId": 1,
+        "latitude": 35.659662980276245, 
+        "longitude": 139.74534809634963,
+        "isChecked": false
+    },
+    {
+        "id": 2,
+        "userId": 1,
+        "latitude": 35.66789151408094,
+        "longitude": 139.74775135568981,
+        "isChecked": true
+    },
+    {
+        "id": 3,
+        "userId": 2,
+        "latitude": 35.6812270571283,
+        "longitude": 139.76644346234298,
+        "isChecked": true
+    }
+]

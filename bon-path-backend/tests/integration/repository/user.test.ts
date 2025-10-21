@@ -64,17 +64,15 @@ describe('UserRepositoryの結合テスト', () => {
         const entity = new UserEntity(values);
         const insert_result = await repository.insert(entity);
 
-        const selectable_result = await repository.selectByEmailAndPassword(
+        const selectable_result = await repository.selectByEmail(
             valueObjects.email,
-            valueObjects.password
         )
 
         expect(selectable_result).toEqual(entity)
         expect(selectable_result?.id?.value).toBe(entity.id?.value)
 
-        const null_result = await repository.selectByEmailAndPassword(
+        const null_result = await repository.selectByEmail(
             new UserEmail('aaa@expamle.com'),
-            new UserHashPassword("$argon2id$v=19$m=65536,t=3,p=4$FZej+Jwsm6aZfX9+Wf3p6A$7y0SxIB7U4HQfMF5g53s6XHLr6vErvP5PrdP8R+L0ra")
         );
         expect(null_result).toEqual(null)
     })

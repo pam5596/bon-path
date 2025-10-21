@@ -28,6 +28,8 @@ export class DeleteCategoryRoute extends BaseRoute {
                 await new DeleteCategoryUseCase(
                     { category: categoryRepository }
                 ).execute(request)
+
+                return context.body(null, 204)
             },
             new CategoriesPayloadSchemas.DELETE.Request()
         )

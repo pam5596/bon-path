@@ -16,7 +16,7 @@ export class CreatePurchasesRoute extends BaseRoute {
                 successStatusCode: 201
             },
             async (context) => {
-                const loginSessionId = getCookie(context, 'loginSessionid') as string;
+                const loginSessionId = getCookie(context, 'loginSessionId') as string;
                 const body = await context.req.json()
 
                 const request = new PurchasesPayloadSchemas.POST.Request({
@@ -28,6 +28,8 @@ export class CreatePurchasesRoute extends BaseRoute {
                     { honoJwt: honoJwtLogin },
                     { purchase: purchaseRepository }
                 ).execute(request)
+
+                return context.body(null, 201)
             },
             new PurchasesPayloadSchemas.POST.Request()
         )

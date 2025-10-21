@@ -73,13 +73,17 @@ export const ERROR_MESSAGES = {
         productNameExtract: "商品の分析に失敗しまた。開発者に問い合わせてください。",
     },
     usecase: {
+        userConflict: {
+            detail: '入力されたメールアドレスは既に使用されています。',
+            issues: 'UserEmail already registered.'
+        },
         userNotFound: {
             detail: "ユーザーが見つかりませんでした。アカウントを登録してください。",
             issues: "User not found."
         },
-        emailsNotEqual: {
-            detail: "ユーザーのメールアドレス認証に失敗しました。再度アカウントを登録し直してください。",
-            issues: "The session payload email and The request body email are not equal."
+        userPasswordIncorrect: {
+            detail: "パスワードが間違えています。",
+            issues: "Incorrect user password."
         },
         receiptNotFound: {
             detail: "レシート情報が見つかりませんでした。",

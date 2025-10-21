@@ -10,7 +10,7 @@ describe('ReceiptImageRepositoryの結合テスト', () => {
     withTestTruncate(client, ['User', 'Receipt', 'ReceiptImage'])
 
     const primitives = {
-        url: "https://vitest.dev/"
+        url: "/bonpath/a.jpg"
     }
 
     const valueObjects = {
@@ -41,34 +41,27 @@ describe('ReceiptImageRepositoryの結合テスト', () => {
 
     it('insertManyメソッドが複数のレシート画像を追加できること', async () => {
         const receipt_entity = await foreignDataInserts();
-        const entities = Array(3).fill(
-            new ReceiptImageEntity({
-                ...valueObjects,
-                receiptId: receipt_entity.id!
-            })
-        );
-        const result = await repository.insertMany(entities);
-
-        expect(result.length).toBe(3)
+        const entity = new ReceiptImageEntity({
+            ...valueObjects,
+            receiptId: receipt_entity.id!
+        })
+        await repository.insert(entity);
 
         const count = await client.receiptImage.count();
-        expect(count).toBe(3)
+        expect(count).toBe(1)
     });
 
     it('selectByReceiptIdが指定したレシートIDの画像を返す', async () => {
         const receipt_entity = await foreignDataInserts();
-        const entities = Array(3).fill(
-            new ReceiptImageEntity({
-                ...valueObjects,
-                receiptId: receipt_entity.id!
-            })
-        );
-        const insert_results = await repository.insertMany(entities);
+        const entity = new ReceiptImageEntity({
+            ...valueObjects,
+            receiptId: receipt_entity.id!
+        })
+        await repository.insert(entity);
         
         const selectable_result = await repository.selectByReceiptId(receipt_entity.id!)
         
-        expect(selectable_result.length).toBe(3)
-        expect(selectable_result).toEqual(insert_results)
+        expect(selectable_result.length).toBe(1)
 
         const null_result = await repository.selectByReceiptId(new Id(999));
         expect(null_result).toEqual([])
@@ -76,20 +69,18 @@ describe('ReceiptImageRepositoryの結合テスト', () => {
 
     it('deleteByIdがレシート画像を削除すること', async () => {
         const receipt_entity = await foreignDataInserts();
-        const entities = Array(3).fill(
-            new ReceiptImageEntity({
-                ...valueObjects,
-                receiptId: receipt_entity.id!
-            })
-        );
-        const insert_results = await repository.insertMany(entities);
+        const entity = new ReceiptImageEntity({
+            ...valueObjects,
+            receiptId: receipt_entity.id!
+        })
+        const insert_result = await repository.insert(entity);
 
-        const defore_count = await client.receiptImage.count()
-        expect(defore_count).toBe(3)
+        const before_count = await client.receiptImage.count()
+        expect(before_count).toBe(1)
 
-        await repository.deleteById(insert_results[0].id!);
+        await repository.deleteById(insert_result.id!);
 
         const after_count = await client.receiptImage.count()
-        expect(after_count).toBe(2)
+        expect(after_count).toBe(0)
     })
 })

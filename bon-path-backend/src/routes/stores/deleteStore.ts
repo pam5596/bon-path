@@ -28,6 +28,8 @@ export class DeleteStoreRoute extends BaseRoute {
                 await new DeleteStoreUseCase(
                     { store: storeRepository }
                 ).execute(request)
+
+                return context.body(null, 204)
             },
             new StoresPayloadSchemas.DELETE.Request()
         )

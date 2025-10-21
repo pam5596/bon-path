@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "receiptId": 1,
+        "url": "/receipts/IMG_0034.JPG"
+    },
+    {
+        "id": 2,
+        "receiptId": 2,
+        "url": "/receipts/IMG_0034.JPG"
+    },
+    {
+        "id": 3,
+        "receiptId": 3,
+        "url": "/receipts/IMG_0034.JPG"
+    }
+]

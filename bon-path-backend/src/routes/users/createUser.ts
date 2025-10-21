@@ -18,20 +18,18 @@ export class CreateUserRoute extends BaseRoute {
                 successStatusCode: 201
             },
             async (context) => {
-                const body = await context.req.json() as UserPayloads.POST.Request['body']
-                const verifySessionId = getCookie(context, 'loginSessionId') as string;
+                const verifySessionId = getCookie(context, 'verifySessionId') as string;
 
                 const request = new UsersPayloadSchemas.POST.Request({
-                    cookies: { verifySessionId }, body
+                    cookies: { verifySessionId }
                 });
                 
                 const response = await new CreateUserUseCase(
                     { honoJwt: honoJwtVerify },
                     { user: userRepository },
-                    { userPasswordHashService },
                 ).execute(request);
 
-                return context.json(response.getBody)
+                return context.json(response.getBody, 201)
             },
             new  UsersPayloadSchemas.POST.Request(),
             new  UsersPayloadSchemas.POST.Response()

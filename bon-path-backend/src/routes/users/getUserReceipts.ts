@@ -16,7 +16,7 @@ export class GetUserReceiptsRoute extends BaseRoute {
                 successStatusCode: 200
             },
             async (context) => {
-                const loginSessionId = getCookie(context, 'loginSessionid') as string;
+                const loginSessionId = getCookie(context, 'loginSessionId') as string;
 
                 const { isChecked } = new UsersPayloadSchemas.Receipts.GET.Request()
                     .schema().query.parse(context.req.query())

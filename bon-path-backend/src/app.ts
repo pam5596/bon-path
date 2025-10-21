@@ -1,6 +1,6 @@
 import { OpenAPIHono } from '@hono/zod-openapi'
 import { swaggerUI } from "@hono/swagger-ui";
-import { serve } from '@hono/node-server'
+import { logger } from 'hono/logger';
 import { corsHandler, errorHandler, loginSessionHandler, verifySessionHandler } from '@lib/middleware';
 import { 
     getLoginSession,
@@ -37,7 +37,7 @@ import {
     deleteProduct,
     getProduct,
     getProducts,
-    googleMapSearchProducts,
+    googleSearchProducts,
     updateProduct,
     vectorSearchProducts,
     createCategories,
@@ -47,17 +47,27 @@ import {
     getCategoryProducts,
     gptOcr
 } from '@routes/index';
+import { HTTPException } from 'hono/http-exception';
+import { ZodError } from 'zod';
 
-const app = new OpenAPIHono()
+const app = new OpenAPIHono({
+    defaultHook: (result) => {
+        if (!result.success && result.error instanceof ZodError) 
+            throw new HTTPException(
+                400,
+                {
+                    message: result.error.issues.map((i) => i.message).join(', '),
+                    cause: result.error
+                }
+            )
+    }
+})
 
 app.use('*', corsHandler)
 app.onError(errorHandler)
 app.use('*', loginSessionHandler)
 app.use('*', verifySessionHandler)
-
-app.get('/signup', (c) => c.text('Redirect test: /signup'))
-app.get('/signin/email-verify', (c) => c.text('Redirect test: /signin/email-verify'))
-app.get('/login', (c) => c.text('Redirect test: /login'))
+app.use(logger())
 
 app.openapi(getLoginSession.route, getLoginSession.handler)
 app.openapi(createLoginSession.route, createLoginSession.handler)
@@ -86,22 +96,22 @@ app.openapi(createPurchases.route, createPurchases.handler)
 app.openapi(deletePurchase.route, deletePurchase.handler)
 app.openapi(getPurchase.route, getPurchase.handler)
 
-app.openapi(createStore.route, createStore.handler)
+app.openapi(vectorSearchStores.route, vectorSearchStores.handler)
+app.openapi(googleMapSearchStores.route,googleMapSearchStores.handler)
 app.openapi(deleteStore.route, deleteStore.handler),
 app.openapi(getStore.route, getStore.handler),
-app.openapi(getStoreProducts.route, getStoreProducts.handler)
-app.openapi(getStores.route, getStores.handler)
-app.openapi(googleMapSearchStores.route,googleMapSearchStores.handler)
 app.openapi(updateStore.route, updateStore.handler)
-app.openapi(vectorSearchStores.route, vectorSearchStores.handler)
+app.openapi(getStoreProducts.route, getStoreProducts.handler)
+app.openapi(createStore.route, createStore.handler)
+app.openapi(getStores.route, getStores.handler)
 
-app.openapi(createProducts.route, createProducts.handler)
+app.openapi(vectorSearchProducts.route, vectorSearchProducts.handler)
+app.openapi(googleSearchProducts.route, googleSearchProducts.handler)
 app.openapi(deleteProduct.route, deleteProduct.handler)
 app.openapi(getProduct.route, getProduct.handler)
-app.openapi(getProducts.route, getProducts.handler)
-app.openapi(googleMapSearchProducts.route, googleMapSearchProducts.handler)
 app.openapi(updateProduct.route, updateProduct.handler)
-app.openapi(vectorSearchProducts.route, vectorSearchProducts.handler)
+app.openapi(createProducts.route, createProducts.handler)
+app.openapi(getProducts.route, getProducts.handler)
 
 app.openapi(createCategories.route, createCategories.handler)
 app.openapi(deleteCategory.route, deleteCategory.handler)
@@ -111,20 +121,19 @@ app.openapi(getCategoryProducts.route, getCategoryProducts.handler)
 
 app.openapi(gptOcr.route, gptOcr.handler)
 
-app.doc('/doc', {
-    openapi: '3.0.0',
-    info: {
-        version: '1.0.0',
-        title: 'BonPathAPI',
-    },
-})
-app.get("/docs", swaggerUI({ url: "/doc" }))
-
-serve({
-    fetch: app.fetch,
-    port: 8080,
-},() => {
-    console.log('Server is running on http://localhost:8080')
-})
+if (process.env.NODE_ENV == 'development') {
+    app.doc('/doc', {
+        openapi: '3.0.0',
+        info: {
+            version: '1.0.0',
+            title: 'BonPathAPI',
+        },
+    })
+    app.get("/docs", swaggerUI({ url: "/doc" }))
+} else if (process.env.NODE_ENV == 'test') {
+    app.get('/signup', (c) => c.text('Redirect test: /signup'))
+    app.get('/signin/email-verify', (c) => c.text('Redirect test: /signin/email-verify'))
+    app.get('/login', (c) => c.text('Redirect test: /login'))
+}
 
 export default app

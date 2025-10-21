@@ -30,6 +30,8 @@ export class DeleteReceiptImageRoute extends BaseRoute {
                     { awsS3 },
                     { receiptImage: receiptImageRepository }
                 ).execute(request)
+
+                return context.body(null, 204)
             },
             new ReceiptImagesPayloadSchemas.DELETE.Request()
         )

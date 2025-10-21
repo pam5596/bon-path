@@ -22,7 +22,7 @@ export namespace ReceiptsSchemas {
 
             toValueObjectQuery() {
                 return {
-                    isChecked: this.getQuery.isChecked ? new ReceiptIsChecked(this.getQuery.isChecked) : undefined
+                    isChecked: this.getQuery.isChecked == undefined ? undefined : new ReceiptIsChecked(this.getQuery.isChecked)
                 }
             }
         }
