@@ -8,12 +8,9 @@ export namespace GoogleMapSearchSchemas {
         export class Request extends BasePayload<StorePayloads.GoogleMapSearch.GET.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     query: z.strictObject({
                         keyword: StoreName.schema(),
-                        limit: z.number().optional()
+                        limit: z.coerce.number().int().min(1).optional()
                     })
                 }
             }

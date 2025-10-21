@@ -1,4 +1,3 @@
-import { HonoJwtClient } from "@client";
 import { CategoriesPayloadSchemas } from "@payload";
 import { CategoryRepository } from "@repository";
 import { CategoryPayloads } from "@share/payloads";
@@ -8,16 +7,11 @@ export class DeleteCategoryUseCase implements BaseUseCase<
     CategoryPayloads.DELETE.Request
 >{
     constructor(
-        public clients: { honoJwt: HonoJwtClient },
         public repositories: { category: CategoryRepository },
-        public request: CategoriesPayloadSchemas.DELETE.Request
     ){}
 
-    async execute() {
-        await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
-        )
-        const params = this.request.toValueObjectParams()
+    async execute(request: CategoriesPayloadSchemas.DELETE.Request) {
+        const params = request.toValueObjectParams()
 
         await this.repositories.category.deleteById(params.id)
     }

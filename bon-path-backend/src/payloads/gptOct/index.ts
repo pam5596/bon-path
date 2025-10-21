@@ -8,9 +8,6 @@ export namespace GptOcrPayloadSchemas {
         export class Request extends BasePayload<GptOcrPayloads.POST.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     body: z.strictObject({
                         images: z.array(z.string())
                     })

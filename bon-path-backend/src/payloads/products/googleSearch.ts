@@ -8,12 +8,9 @@ export namespace GoogleSearchSchemas {
         export class Request extends BasePayload<ProductPayloads.GoogleSearch.GET.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     query: z.strictObject({
                         keyword: ProductName.schema(),
-                        limit: z.number().optional()
+                        limit: z.coerce.number().int().min(1).optional()
                     })
                 }
             }
@@ -32,7 +29,7 @@ export namespace GoogleSearchSchemas {
                     body: z.strictObject({
                         products: z.array(
                             z.strictObject({
-                                categoryId: Id.schema(),
+                                categoryId: Id.paramSchema(),
                                 name: ProductName.schema(),
                                 image: ProductImage.schema().optional(),
                                 link: ProductLink.schema().optional(),

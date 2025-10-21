@@ -13,7 +13,7 @@ export namespace PurchasesPayloadSchemas {
                         loginSessionId: z.string()
                     }),
                     params: z.strictObject({
-                        id: Id.schema()
+                        id: Id.paramSchema()
                     })
                 }
             }
@@ -29,9 +29,9 @@ export namespace PurchasesPayloadSchemas {
             schema() {
                 return {
                     body: z.strictObject({
-                        receiptId: Id.schema(),
-                        storeId: Id.schema(),
-                        productId: Id.schema(),
+                        receiptId: Id.paramSchema(),
+                        storeId: Id.paramSchema(),
+                        productId: Id.paramSchema(),
                         price: PurchasePrice.schema(),
                         quantity: PurchaseQuantity.schema(),
                         createdAt: CreatedAt.schema()
@@ -62,9 +62,9 @@ export namespace PurchasesPayloadSchemas {
                     body: z.strictObject({
                         purchases: z.array(
                             z.strictObject({
-                                receiptId: Id.schema(),
-                                storeId: Id.schema(),
-                                productId: Id.schema(),
+                                receiptId: Id.paramSchema(),
+                                storeId: Id.paramSchema(),
+                                productId: Id.paramSchema(),
                                 price: PurchasePrice.schema(),
                                 quantity: PurchaseQuantity.schema()
                             }
@@ -97,7 +97,7 @@ export namespace PurchasesPayloadSchemas {
                         loginSessionId: z.string()
                     }),
                     params: z.strictObject({
-                        id: Id.schema()
+                        id: Id.paramSchema()
                     })
                 }
             }

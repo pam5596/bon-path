@@ -1,7 +1,7 @@
 import BaseUseCase from "@usecase/_interface";
 import { ReceiptImagePayloads } from "@share/payloads";
 import { ReceiptImagesPayloadSchemas } from "@payload";
-import { HonoJwtClient, AwsS3Client } from "@client";
+import { AwsS3Client } from "@client";
 import { ReceiptImageRepository } from "@repository";
 import { ReceiptImageEntity } from "@models/entity";
 
@@ -9,45 +9,37 @@ export class PutReceiptImagesUsecase implements BaseUseCase<
     ReceiptImagePayloads.POST.Request
 > {
     constructor(
-        public clients: { honoJwt: HonoJwtClient, awsS3: AwsS3Client },
+        public clients: { awsS3: AwsS3Client },
         public repositories: { receiptImage: ReceiptImageRepository },
-        public request: ReceiptImagesPayloadSchemas.POST.Request
     ){}
 
-    async execute() {
-        await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
-        )
+    async execute(request: ReceiptImagesPayloadSchemas.POST.Request) {
+        const { images, receiptId } = request.toValueObjectBody();
 
-        const { images, receiptId } = this.request.toValueObjectBody();
-
-        const receiptImages = await Promise.all(
+        await Promise.all(
             images.map(
                 async (image) => {
                     const buffer = Buffer.from(await image.arrayBuffer())
+                    const fileKey = `/receipts/${Date.now()}-${image.name}`
+
                     await this.clients.awsS3.putObject(
                         buffer,
-                        `/receipts/${image.name}`
+                        fileKey
                     )
-                    return ReceiptImageEntity.fromPrimitives({
+                    
+                    const receiptImage = ReceiptImageEntity.fromPrimitives({
                         receiptId: receiptId.value,
-                        url: `/receipts/${image.name}`
+                        url: fileKey
                     })
+
+                    try {
+                        await this.repositories.receiptImage.insert(receiptImage)
+                    } catch(e) {
+                        await this.clients.awsS3.deleteObject(fileKey)
+                        throw e
+                    }
                 }
             )
         )
-
-        try {
-            await this.repositories.receiptImage.insertMany(receiptImages)
-        } catch(e) {
-            await Promise.all(
-                images.map(
-                    async (image) => {
-                        await this.clients.awsS3.deleteObject(`/receipts/${image.name}`)
-                    }
-                )
-            )
-            throw e
-        }
     }
 }

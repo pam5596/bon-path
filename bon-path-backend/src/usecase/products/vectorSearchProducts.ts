@@ -1,4 +1,4 @@
-import { HonoJwtClient, PrismaVectorClient } from "@client";
+import { PrismaVectorClient } from "@client";
 import { ProductsPayloadSchemas } from "@payload";
 import { ProductRepository, ProductVectorRepository } from "@repository";
 import { ProductPayloads } from "@share/payloads";
@@ -9,22 +9,18 @@ export class VectorSearchProductsUseCase implements BaseUseCase<
     ProductPayloads.VectorSearch.GET.Response
 >{
     constructor(
-        public clients: { honoJwt: HonoJwtClient, prismaVector: PrismaVectorClient },
+        public clients: { prismaVector: PrismaVectorClient },
         public repositories: { product: ProductRepository, productVector: ProductVectorRepository },
-        public request: ProductsPayloadSchemas.VectorSearch.GET.Request
     ){}
 
-    async execute() {
-        await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
-        )
-        const { keyword, storeId, limit } = this.request.toValueObjectQuery()
+    async execute(request: ProductsPayloadSchemas.VectorSearch.GET.Request) {
+        const { keyword, storeId, limit } = request.toValueObjectQuery()
 
         const productIds = await this.repositories.productVector.searchProductIdByName(keyword)
         const products = await this.repositories.product.selectAll({
             where: {
                 id: { in: productIds.map(id => id.value) },
-                storeId: storeId.value
+                storeId: storeId ? storeId.value : undefined
             },
             take: limit
         })

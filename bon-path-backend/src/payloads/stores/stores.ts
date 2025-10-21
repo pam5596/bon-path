@@ -8,14 +8,11 @@ export namespace StoresSchemas {
         export class Request extends BasePayload<StorePayloads.Stores.GET.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     query: z.strictObject({
-                        latitude: StoreLatitude.schema().optional(),
-                        longitude: StoreLongitude.schema().optional(),
-                        radius: z.number().min(1).optional(),
-                        limit: z.number().min(1).max(100).optional()
+                        latitude: StoreLatitude.querySchema().optional(),
+                        longitude: StoreLongitude.querySchema().optional(),
+                        radius: z.coerce.number().optional(),
+                        limit: z.coerce.number().int().min(1).optional()
                     })
                 }
             }
@@ -36,7 +33,7 @@ export namespace StoresSchemas {
                     body: z.strictObject({
                         stores: z.array(
                             z.strictObject({
-                                id: Id.schema(),
+                                id: Id.paramSchema(),
                                 name: StoreName.schema(),
                                 image: StoreImage.schema().optional(),
                                 latitude: StoreLatitude.schema().optional(),

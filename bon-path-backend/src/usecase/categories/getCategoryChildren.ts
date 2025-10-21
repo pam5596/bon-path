@@ -1,4 +1,3 @@
-import { HonoJwtClient } from "@client";
 import { CategoriesPayloadSchemas } from "@payload";
 import { CategoryRepository } from "@repository";
 import { CategoryPayloads } from "@share/payloads";
@@ -9,18 +8,13 @@ export class GetCategoryChildrenUseCase implements BaseUseCase<
     CategoryPayloads.Children.GET.Response
 >{
     constructor(
-        public clients: { honoJwt: HonoJwtClient },
         public repositories: { category: CategoryRepository },
-        public request: CategoriesPayloadSchemas.Children.GET.Request
     ){}
 
-    async execute() {
-        await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
-        )
-        const params = this.request.toValueObjectParams()
+    async execute(request: CategoriesPayloadSchemas.Children.GET.Request) {
+        const params = request.toValueObjectParams()
 
-        const categories = await this.repositories.category.selectByParentId(params.parantId)
+        const categories = await this.repositories.category.selectByParentId(params.parentId)
 
         return new CategoriesPayloadSchemas.Children.GET.Response({
             body: {

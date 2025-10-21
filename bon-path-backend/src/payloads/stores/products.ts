@@ -8,11 +8,8 @@ export namespace ProductsSchemas {
         export class Request extends BasePayload<StorePayloads.Products.GET.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     params: z.strictObject({
-                        storeId: Id.schema()
+                        storeId: Id.paramSchema()
                     })
                 }
             }
@@ -30,8 +27,8 @@ export namespace ProductsSchemas {
                     body: z.strictObject({
                         products: z.array(
                             z.strictObject({
-                                id: Id.schema(),
-                                categoryId: Id.schema(),
+                                id: Id.paramSchema(),
+                                categoryId: Id.paramSchema(),
                                 name: ProductName.schema(),
                                 image: ProductImage.schema().optional(),
                                 link: ProductLink.schema().optional(),

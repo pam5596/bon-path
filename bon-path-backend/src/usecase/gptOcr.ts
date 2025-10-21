@@ -1,9 +1,9 @@
 import { GptOcrPayloads } from "@share/payloads";
 import BaseUseCase from "./_interface";
-import { HonoJwtClient, LangChainOpenAiClient } from "@client";
+import { LangChainOpenAiClient } from "@client";
 import { GptOcrPayloadSchemas } from "@payload";
 import { ReceiptOCRService } from "@service";
-import { OPEN_AI_PROMPTS } from "@constants/openAiPrompts";
+import { OPEN_AI_PROMPTS } from "@lib/constants/openAiPrompts";
 import { InteropZodType } from "@langchain/core/utils/types";
 
 export class GptOcrUseCase implements BaseUseCase<
@@ -11,16 +11,11 @@ export class GptOcrUseCase implements BaseUseCase<
     GptOcrPayloads.POST.Response
 >{
     constructor(
-        public clients: { honoJwt: HonoJwtClient },
-        public services: { receiptOcr: ReceiptOCRService },
-        public request: GptOcrPayloadSchemas.POST.Request
+        public services: { receiptOcr: ReceiptOCRService }
     ){}
 
-    async execute() {
-        await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
-        )
-        const body = this.request.toValueObjectBody()
+    async execute(request: GptOcrPayloadSchemas.POST.Request) {
+        const body = request.toValueObjectBody()
 
         const ocrResult = await this.services.receiptOcr.execute({
             query: body.images,

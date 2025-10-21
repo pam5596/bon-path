@@ -32,11 +32,10 @@ export default class UserRepository extends BaseRepository {
     }
 
     @queryHandler
-    async selectByEmailAndPassword(email: UserEmail, password: UserHashPassword) {
+    async selectByEmail(email: UserEmail) {
         const find_result = await this.client.user.findFirst({
             where: {
-                email: email.value,
-                password: password.value
+                email: email.value
             }
         });
         

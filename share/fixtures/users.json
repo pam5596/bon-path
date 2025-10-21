@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "name": "Taro Yamada",
+        "email": "yamada@example.com",
+        "password": "$argon2id$v=19$m=65536,t=3,p=4$Wbz7ijsDeo+j68UkLqlLmw$O8PXegJ8/Jz4N2sThtrr7ymkkBR5EUNnOvDch68KmF0"
+    },
+    {
+        "id": 2,
+        "name": "Kyoko Saito",
+        "email": "saito@example.com",
+        "password": "$argon2id$v=19$m=65536,t=3,p=4$9F3GV3wtSDU+a4S9E9F/Rg$wnDizByLI5U90pzM9Oa1rdP3YRjq5jaSCI03HbaPezQ"
+    },
+    {
+        "id": 3,
+        "name": "Ryota Tanaka",
+        "email": "tanaka@example.com",
+        "password": "$argon2id$v=19$m=65536,t=3,p=4$S9eCh7jhO05fvXTUtH53hQ$nuiN8XG7Fl9IEKClvSJor3EYsnskUS8CVdDhlnoBgVs"
+    }
+]

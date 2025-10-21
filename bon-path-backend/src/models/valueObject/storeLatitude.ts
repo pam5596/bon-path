@@ -13,4 +13,12 @@ export default class StoreLatitude extends BaseValueObject<number> {
             .min(-90)
             .max(90);
     }
+
+    static querySchema() {
+        return z
+            .coerce
+            .number()
+            .min(-90)
+            .max(90);
+    }
 }

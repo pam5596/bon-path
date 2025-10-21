@@ -1,7 +1,7 @@
 import { describe, expect, test } from "vitest";
 import { ReceiptImageEntity } from "@models/entity";
 import { CreatedAt, Id, ReceiptImageUrl } from "@models/valueObject";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 describe('ReceiptImageEntityのテスト', () => {
     const testPrimitives = {

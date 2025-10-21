@@ -21,10 +21,10 @@ export namespace PurchasesSchemas {
                     body: z.strictObject({
                         purchases: z.array(
                             z.strictObject({
-                                id: Id.schema(),
-                                receiptId: Id.schema(),
-                                storeId: Id.schema(),
-                                productId: Id.schema(),
+                                id: Id.paramSchema(),
+                                receiptId: Id.paramSchema(),
+                                storeId: Id.paramSchema(),
+                                productId: Id.paramSchema(),
                                 price: PurchasePrice.schema(),
                                 quantity: PurchaseQuantity.schema(),
                                 createdAt: CreatedAt.schema()

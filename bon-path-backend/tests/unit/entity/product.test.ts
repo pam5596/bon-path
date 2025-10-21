@@ -1,7 +1,7 @@
 import { describe, expect, test } from "vitest";
 import { ProductEntity } from "@models/entity";
 import { CreatedAt, Id, ProductImage, ProductLink, ProductName, ProductPrice } from "@models/valueObject";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 describe('ProductEntityのテスト', () => {
     const testPrimitives = {

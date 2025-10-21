@@ -2,8 +2,8 @@ import { GoogleMapPlacesAPIClient } from "@client";
 import BaseService from "./_interface";
 import { StoreName } from "@models/valueObject";
 import { StoreEntity } from "@models/entity";
-import { ServiceError } from "@error";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
+import { ServiceError } from "@lib/error";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 
 export class SearchStorePlaceService implements BaseService {

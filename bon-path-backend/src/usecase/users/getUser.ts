@@ -4,8 +4,8 @@ import { UsersPayloadSchemas } from "@payload";
 import { HonoJwtClient } from "@client";
 import { UserRepository } from "@repository";
 import { LoginSessionEntity } from "@models/entity";
-import { UseCaseError } from "@error";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
+import { UseCaseError } from "@lib/error";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 export class GetUserUseCase implements BaseUseCase<
     UserPayloads.GET.Request,
@@ -14,26 +14,28 @@ export class GetUserUseCase implements BaseUseCase<
     constructor(
         public clients: { honoJwt: HonoJwtClient },
         public repositories: { user: UserRepository },
-        public request: UsersPayloadSchemas.GET.Request
     ) {}
 
-    async execute() {
+    async execute(request: UsersPayloadSchemas.GET.Request) {
+        console.log(request)
         const jwt_payload = await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
+            request.getCookies.loginSessionId
         ) as LoginSessionEntity['toPrimitives']
         const session = LoginSessionEntity.fromPrimitives(jwt_payload)
 
         const user = await this.repositories.user.selectById(session.getValues.userId)
         if (!user) throw new UseCaseError(
             404,
-            ERROR_MESSAGES.usecase.userNotFound.detial,
+            ERROR_MESSAGES.usecase.userNotFound.detail,
             ERROR_MESSAGES.usecase.userNotFound.issues,
             this.constructor.name
         )
 
+        const { email, name } = user.toPrimitives
         return new UsersPayloadSchemas.GET.Response({
             body: {
-                ...user.toPrimitives,
+                email,
+                name,
                 createdAt: user.getCreatedAt!.value
             }
         })

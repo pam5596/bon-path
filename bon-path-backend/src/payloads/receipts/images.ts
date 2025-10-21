@@ -8,11 +8,8 @@ export namespace ImagesSchemas {
         export class Request extends BasePayload<ReceiptPayloads.Images.GET.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     params: z.strictObject({
-                        receiptId: Id.schema()
+                        receiptId: Id.paramSchema()
                     })
                 }
             }
@@ -30,7 +27,7 @@ export namespace ImagesSchemas {
                     body: z.strictObject({
                         images: z.array(
                             z.strictObject({
-                                id: Id.schema(),
+                                id: Id.paramSchema(),
                                 url: ReceiptImageUrl.schema(),
                                 createdAt: CreatedAt.schema()
                             })

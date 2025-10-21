@@ -8,13 +8,10 @@ export namespace VectorSearchSchemas {
         export class Request extends BasePayload<ProductPayloads.VectorSearch.GET.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     query: z.strictObject({
                         keyword: ProductName.schema(),
-                        storeId: Id.schema(),
-                        limit: z.number().optional()
+                        storeId: Id.paramSchema().optional(),
+                        limit: z.coerce.number().int().min(1).optional()
                     })
                 }
             }
@@ -22,7 +19,7 @@ export namespace VectorSearchSchemas {
             toValueObjectQuery() {
                 return {
                     keyword: new ProductName(this.getQuery.keyword),
-                    storeId: new Id(this.getQuery.storeId),
+                    storeId: this.getQuery.storeId ? new Id(this.getQuery.storeId) : undefined,
                     limit: this.getQuery.limit
                 }
             }
@@ -34,9 +31,9 @@ export namespace VectorSearchSchemas {
                     body: z.strictObject({
                         products: z.array(
                             z.strictObject({
-                                id: Id.schema(),
-                                storeId: Id.schema(),
-                                categoryId: Id.schema(),
+                                id: Id.paramSchema(),
+                                storeId: Id.paramSchema(),
+                                categoryId: Id.paramSchema(),
                                 name: ProductName.schema(),
                                 image: ProductImage.schema().optional(),
                                 link: ProductLink.schema().optional(),

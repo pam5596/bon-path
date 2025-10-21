@@ -1,4 +1,3 @@
-import { HonoJwtClient } from "@client";
 import { ProductsPayloadSchemas } from "@payload";
 import { ProductRepository } from "@repository";
 import { ProductPayloads } from "@share/payloads";
@@ -8,16 +7,11 @@ export class DeleteProductUseCase implements BaseUseCase<
     ProductPayloads.DELETE.Request
 >{
     constructor(
-        public clients: { honoJwt: HonoJwtClient },
         public repositories: { product: ProductRepository },
-        public request: ProductsPayloadSchemas.DELETE.Request
     ) {}
 
-    async execute() {
-        await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
-        )
-        const params = this.request.toValueObjectParams()
+    async execute(request: ProductsPayloadSchemas.DELETE.Request) {
+        const params = request.toValueObjectParams()
 
         await this.repositories.product.deleteById(params.id)
     }

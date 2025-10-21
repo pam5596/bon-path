@@ -1,4 +1,3 @@
-import { HonoJwtClient } from "@client";
 import { CategoryEntity } from "@models/entity";
 import { CategoriesPayloadSchemas } from "@payload";
 import { CategoryRepository } from "@repository";
@@ -9,16 +8,11 @@ export class CreateCategoriesUseCase implements BaseUseCase<
     CategoryPayloads.POST.Request
 >{
     constructor(
-        public clients: { honoJwt: HonoJwtClient },
         public repositories: { category: CategoryRepository },
-        public request: CategoriesPayloadSchemas.POST.Request
     ){}
 
-    async execute() {
-        await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
-        )
-        const body = this.request.toValueObjectBody()
+    async execute(request: CategoriesPayloadSchemas.POST.Request) {
+        const body = request.toValueObjectBody()
 
         const categories = body.categories.map(
             category => new CategoryEntity({ ...category })

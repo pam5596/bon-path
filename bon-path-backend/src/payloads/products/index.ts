@@ -15,11 +15,8 @@ export namespace ProductsPayloadSchemas {
         export class Request extends BasePayload<ProductPayloads.GET.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     params: z.strictObject({
-                        id: Id.schema()
+                        id: Id.paramSchema()
                     })
                 }
             }
@@ -35,8 +32,8 @@ export namespace ProductsPayloadSchemas {
             schema() {
                 return {
                     body: z.strictObject({
-                        storeId: Id.schema(),
-                        categoryId: Id.schema(),
+                        storeId: Id.paramSchema(),
+                        categoryId: Id.paramSchema(),
                         name: ProductName.schema(),
                         image: ProductImage.schema().optional(),
                         link: ProductImage.schema().optional(),
@@ -64,14 +61,11 @@ export namespace ProductsPayloadSchemas {
         export class Request extends BasePayload<ProductPayloads.POST.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     body: z.strictObject({
                         products: z.array(
                             z.strictObject({
-                                storeId: Id.schema(),
-                                categoryId: Id.schema(),
+                                storeId: Id.paramSchema(),
+                                categoryId: Id.paramSchema(),
                                 name: ProductName.schema(),
                                 image: ProductImage.schema().optional(),
                                 link: ProductLink.schema().optional(),
@@ -103,14 +97,11 @@ export namespace ProductsPayloadSchemas {
         export class Request extends BasePayload<ProductPayloads.PATCH.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     params: z.strictObject({
-                        id: Id.schema()
+                        id: Id.paramSchema()
                     }),
                     body: z.strictObject({
-                        categoryId: Id.schema(),
+                        categoryId: Id.paramSchema(),
                         name: ProductName.schema(),
                         image: ProductImage.schema().optional(),
                         link: ProductLink.schema().optional(),
@@ -141,11 +132,8 @@ export namespace ProductsPayloadSchemas {
         export class Request extends BasePayload<ProductPayloads.DELETE.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     params: z.strictObject({
-                        id: Id.schema()
+                        id: Id.paramSchema()
                     })
                 }
             }

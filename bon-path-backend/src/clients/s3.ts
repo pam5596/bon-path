@@ -1,6 +1,6 @@
 import { DeleteObjectCommand, PutObjectCommand, S3Client, S3ClientConfig, S3ServiceException } from "@aws-sdk/client-s3";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
-import { ClientError } from "@error";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
+import { ClientError } from "@lib/error";
 
 export class AwsS3Client extends S3Client {
     private readonly bucketName: string;

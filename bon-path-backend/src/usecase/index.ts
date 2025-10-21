@@ -27,7 +27,7 @@ export { CreateProductsUseCase } from "./products/createProducts";
 export { DeleteProductUseCase } from "./products/deleteProduct";
 export { GetProductUseCase } from "./products/getProduct";
 export { GetProductsUseCase } from "./products/getProducts";
-export { GoogleMapSearchProductsUseCase } from "./products/googleMapSearchProducts";
+export { GoogleSearchProductsUseCase } from "./products/googleSearchProducts";
 export { UpdateProductUseCase } from "./products/updateProduct";
 export { VectorSearchProductsUseCase } from "./products/vectorSearchProducts";
 

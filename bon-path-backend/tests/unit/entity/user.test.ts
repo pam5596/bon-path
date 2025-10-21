@@ -1,7 +1,7 @@
 import { describe, expect, test } from "vitest";
 import { UserEntity } from "@models/entity";
 import { CreatedAt, Id, UserEmail, UserHashId, UserHashPassword, UserName, UserPassword } from "@models/valueObject";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 describe('UserEntityのテスト', () => {
     const testPrimitives = {

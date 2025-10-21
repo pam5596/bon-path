@@ -1,9 +1,6 @@
 export namespace StorePayloads {
     export namespace GET {
         export type Request = {
-            cookies: {
-                loginSessionId: string
-            },
             params: {
                 id: number
             }
@@ -24,9 +21,6 @@ export namespace StorePayloads {
 
     export namespace POST {
         export type Request = {
-            cookies: {
-                loginSessionId: string
-            },
             body: {
                 name: string
                 image?: string
@@ -45,9 +39,6 @@ export namespace StorePayloads {
 
     export namespace PATCH {
         export type Request = {
-            cookies: {
-                loginSessionId: string
-            },
             params: {
                 id: number
             },
@@ -63,9 +54,6 @@ export namespace StorePayloads {
 
     export namespace DELETE {
         export type Request = {
-            cookies: {
-                loginSessionId: string
-            },
             params: {
                 id: number
             }
@@ -75,9 +63,6 @@ export namespace StorePayloads {
     export namespace Stores {
         export namespace GET {
             export type Request = {
-                cookies: {
-                    loginSessionId: string
-                },
                 query: {
                     latitude?: number,
                     longitude?: number,
@@ -105,9 +90,6 @@ export namespace StorePayloads {
     export namespace Products {
         export namespace GET {
             export type Request = {
-                cookies: {
-                    loginSessionId: string
-                },
                 params: {
                     storeId: number
                 }
@@ -132,9 +114,6 @@ export namespace StorePayloads {
     export namespace VectorSearch {
         export namespace GET {
             export type Request = {
-                cookies: {
-                    loginSessionId: string
-                },
                 query: {
                     keyword: string,
                     limit?: number
@@ -160,9 +139,6 @@ export namespace StorePayloads {
     export namespace GoogleMapSearch {
         export namespace GET {
             export type Request = {
-                cookies: {
-                    loginSessionId: string
-                },
                 query: {
                     keyword: string,
                     limit?: number

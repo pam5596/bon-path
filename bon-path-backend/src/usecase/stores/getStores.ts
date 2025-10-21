@@ -1,6 +1,5 @@
-import { HonoJwtClient } from "@client";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
-import { UseCaseError } from "@error";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
+import { UseCaseError } from "@lib/error";
 import { StoresPayloadSchemas } from "@payload";
 import { StoreRepository } from "@repository";
 import { StorePayloads } from "@share/payloads";
@@ -11,16 +10,11 @@ export class GetStoresUseCase implements BaseUseCase<
     StorePayloads.Stores.GET.Response
 >{
     constructor(
-        public clients: { honoJwt: HonoJwtClient },
         public repositories: { store: StoreRepository },
-        public request: StoresPayloadSchemas.Stores.GET.Request
     ){}
 
-    async execute() {
-        await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
-        )
-        const { latitude, longitude, radius, limit } = this.request.toValueObjectParams()
+    async execute(request: StoresPayloadSchemas.Stores.GET.Request) {
+        const { latitude, longitude, radius, limit } = request.toValueObjectParams()
 
         if ((latitude || longitude || radius) && !(latitude && longitude && radius)) 
             throw new UseCaseError(
@@ -28,7 +22,7 @@ export class GetStoresUseCase implements BaseUseCase<
                 ERROR_MESSAGES.usecase.invalidLocationParams.detail,
                 ERROR_MESSAGES.usecase.invalidLocationParams.issues,
                 this.constructor.name,
-                this.request.getParams
+                request.getParams
             )
         
         const stores = await this.repositories.store.selectAll({
@@ -44,7 +38,7 @@ export class GetStoresUseCase implements BaseUseCase<
                     store => ({
                         ...store.toPrimitives,
                         id: store.id!.value,
-                        createdAt: store.created!.value
+                        createdAt: store.getCreatedAt!.value
                     })
                 )
             }

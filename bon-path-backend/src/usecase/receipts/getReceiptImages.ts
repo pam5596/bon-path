@@ -1,7 +1,6 @@
 import BaseUseCase from "@usecase/_interface";
 import { ReceiptPayloads } from "@share/payloads";
 import { ReceiptsPayloadSchemas } from "@payload";
-import { HonoJwtClient } from "@client";
 import { ReceiptImageRepository } from "@repository";
 
 export class GetReceiptImagesUsecase implements BaseUseCase<
@@ -9,16 +8,11 @@ export class GetReceiptImagesUsecase implements BaseUseCase<
     ReceiptPayloads.Images.GET.Response
 > {
     constructor(
-        public clients: { honoJwt: HonoJwtClient },
         public repositories: { receiptImage: ReceiptImageRepository },
-        public request: ReceiptsPayloadSchemas.Images.GET.Request
     ) {}
 
-    async execute() {
-        await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
-        )
-        const params = this.request.toValueObjectParams()
+    async execute(request: ReceiptsPayloadSchemas.Images.GET.Request) {
+        const params = request.toValueObjectParams()
 
         const images = await this.repositories.receiptImage.selectByReceiptId(params.receiptId);
 

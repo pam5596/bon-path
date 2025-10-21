@@ -1,4 +1,3 @@
-import { HonoJwtClient } from "@client";
 import { StoresPayloadSchemas } from "@payload";
 import { ProductRepository } from "@repository";
 import { StorePayloads } from "@share/payloads";
@@ -9,16 +8,11 @@ export class GetStoreProductsUseCase implements BaseUseCase<
     StorePayloads.Products.GET.Response
 >{
     constructor(
-        public clients: { honoJwt: HonoJwtClient },
         public repositories: { product: ProductRepository },
-        public request: StoresPayloadSchemas.Products.GET.Request
     ){}
 
-    async execute() {
-        await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
-        )
-        const params = this.request.toValueObjectParams()
+    async execute(request: StoresPayloadSchemas.Products.GET.Request) {
+        const params = request.toValueObjectParams()
 
         const products = await this.repositories.product.selectByStoreId(params.storeId)
 

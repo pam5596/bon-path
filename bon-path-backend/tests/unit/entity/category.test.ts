@@ -1,7 +1,7 @@
 import { describe, expect, test } from "vitest";
 import { CategoryEntity } from "@models/entity";
 import { Id, CategoryName } from "@models/valueObject";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 describe('CategoryEntityのテスト', () => {
     const testPrimitives = {

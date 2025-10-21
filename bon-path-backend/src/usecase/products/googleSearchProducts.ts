@@ -1,22 +1,19 @@
-import { HonoJwtClient, LangChainOpenAiClient } from "@client";
+import { LangChainOpenAiClient } from "@client";
 import { ProductsPayloadSchemas } from "@payload";
 import { ProductNameExtractService, SearchProductService } from "@service";
 import { ProductPayloads } from "@share/payloads";
 import BaseUseCase from "@usecase/_interface";
 import { CategoryRepository } from "@repository";
-import { OPEN_AI_PROMPTS } from "@constants/openAiPrompts";
+import { OPEN_AI_PROMPTS } from "@lib/constants/openAiPrompts";
 import { InteropZodType } from "@langchain/core/utils/types";
-import { UseCaseError } from "@error";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
+import { UseCaseError } from "@lib/error";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
-export class GoogleMapSearchProductsUseCase implements BaseUseCase<
+export class GoogleSearchProductsUseCase implements BaseUseCase<
     ProductPayloads.GoogleSearch.GET.Request,
     ProductPayloads.GoogleSearch.GET.Response
 >{
     constructor(
-        public clients: { 
-            honoJwt: HonoJwtClient
-        },
         public services: { 
             searchProduct: SearchProductService,
             productNameExtract: ProductNameExtractService
@@ -24,14 +21,10 @@ export class GoogleMapSearchProductsUseCase implements BaseUseCase<
         public repositories: {
             category: CategoryRepository
         },
-        public request: ProductsPayloadSchemas.GoogleSearch.GET.Request
     ){}
 
-    async execute() {
-        await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
-        )
-        const { keyword, limit } = this.request.toValueObjectQuery()
+    async execute(request: ProductsPayloadSchemas.GoogleSearch.GET.Request) {
+        const { keyword, limit } = request.toValueObjectQuery()
         
         const searchedProducts = await this.services.searchProduct.execute({
             query: keyword,
@@ -56,7 +49,7 @@ export class GoogleMapSearchProductsUseCase implements BaseUseCase<
                 ERROR_MESSAGES.usecase.invalidAiResponse.detail,
                 ERROR_MESSAGES.usecase.invalidAiResponse.issues,
                 this.constructor.name,
-                this.request.getQuery
+                request.getQuery
             )
 
         return new ProductsPayloadSchemas.GoogleSearch.GET.Response({
@@ -71,9 +64,5 @@ export class GoogleMapSearchProductsUseCase implements BaseUseCase<
                 )
             }
         })
-
-
-
-
     }
 }

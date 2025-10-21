@@ -1,6 +1,6 @@
 import { z } from "zod";
 import BaseValueObject from "./_abstruct";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 export default class PurchaseQuantity extends BaseValueObject<number> {
     constructor(value: number) {

@@ -1,7 +1,7 @@
 import { describe, expect, test } from "vitest";
 import { StoreEntity } from "@models/entity";
 import { CreatedAt, Id, StoreGoogleMapLink, StoreImage, StoreLatitude, StoreLongitude, StoreName } from "@models/valueObject";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 describe('StoreEntityのテスト', () => {
     const testPrimitives = {

@@ -1,7 +1,6 @@
 import BaseUseCase from "@usecase/_interface";
 import { ReceiptPayloads } from "@share/payloads";
 import { ReceiptsPayloadSchemas } from "@payload";
-import { HonoJwtClient } from "@client";
 import { PurchaseRepository } from "@repository";
 
 export class GetReceiptPurchasesUsecase implements BaseUseCase<
@@ -9,16 +8,11 @@ export class GetReceiptPurchasesUsecase implements BaseUseCase<
     ReceiptPayloads.Purchases.GET.Response
 > {
     constructor(
-        public clients: { honoJwt: HonoJwtClient },
         public repositories: { purchase: PurchaseRepository },
-        public request: ReceiptsPayloadSchemas.Purchases.GET.Request
     ) {}
 
-    async execute() {
-        await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
-        )
-        const params = this.request.toValueObjectParams()
+    async execute(request: ReceiptsPayloadSchemas.Purchases.GET.Request) {
+        const params = request.toValueObjectParams()
 
         const purchases = await this.repositories.purchase.selectByReceiptId(params.receiptId);
 

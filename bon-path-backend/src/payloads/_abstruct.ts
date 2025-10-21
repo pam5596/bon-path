@@ -24,16 +24,11 @@ export default abstract class BasePayload<T extends PayloadType> {
         return this._values?.cookies
     }
 
-    get getHeaders(): T['headers'] {
-        return this._values?.headers
-    }
-
     abstract schema(): {
         body?:      z.ZodObject<{[K in keyof T['body'   ]]: ZodType<unknown>}, z.core.$strict>,
         params?:    z.ZodObject<{[K in keyof T['params' ]]: ZodType<unknown>}, z.core.$strict>,
         query?:     z.ZodObject<{[K in keyof T['query'  ]]: ZodType<unknown>}, z.core.$strict>,
         cookies?:   z.ZodObject<{[K in keyof T['cookies']]: ZodType<unknown>}, z.core.$strict>,
-        headers?:   z.ZodObject<{[K in keyof T['headers']]: ZodType<unknown>}, z.core.$strict>,
     }
 
     toValueObjectBody?(): { 

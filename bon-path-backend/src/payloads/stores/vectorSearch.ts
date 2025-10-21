@@ -6,14 +6,11 @@ import { CreatedAt, Id, StoreGoogleMapLink, StoreImage, StoreLatitude, StoreLong
 export namespace VectorSearchSchemas {
     export namespace GET {
         export class Request extends BasePayload<StorePayloads.VectorSearch.GET.Request> {
-            schema(): { body?: z.ZodObject<{}, z.core.$strict> | undefined; params?: z.ZodObject<{}, z.core.$strict> | undefined; query?: z.ZodObject<{ keyword: z.ZodType<unknown, unknown, z.core.$ZodTypeInternals<unknown, unknown>>; limit?: z.ZodType<unknown, unknown, z.core.$ZodTypeInternals<unknown, unknown>> | undefined; }, z.core.$strict> | undefined; cookies?: z.ZodObject<{ loginSessionId: z.ZodType<unknown, unknown, z.core.$ZodTypeInternals<unknown, unknown>>; }, z.core.$strict> | undefined; headers?: z.ZodObject<{}, z.core.$strict> | undefined; } {
+            schema() {
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     query: z.strictObject({
                         keyword: StoreName.schema(),
-                        limit: z.number().optional()
+                        limit: z.coerce.number().int().min(1).optional()
                     })
                 }
             }
@@ -27,12 +24,12 @@ export namespace VectorSearchSchemas {
         }
 
         export class Response extends BasePayload<StorePayloads.VectorSearch.GET.Response> {
-            schema(): { body?: z.ZodObject<{ stores: z.ZodType<unknown, unknown, z.core.$ZodTypeInternals<unknown, unknown>>; }, z.core.$strict> | undefined; params?: z.ZodObject<{}, z.core.$strict> | undefined; query?: z.ZodObject<{}, z.core.$strict> | undefined; cookies?: z.ZodObject<{}, z.core.$strict> | undefined; headers?: z.ZodObject<{}, z.core.$strict> | undefined; } {
+            schema() {
                 return {
                     body: z.strictObject({
                         stores: z.array(
                             z.strictObject({
-                                id: Id.schema(),
+                                id: Id.paramSchema(),
                                 name: StoreName.schema(),
                                 image: StoreImage.schema().optional(),
                                 latitude: StoreLatitude.schema().optional(),

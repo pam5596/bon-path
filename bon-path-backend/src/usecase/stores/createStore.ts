@@ -1,4 +1,3 @@
-import { HonoJwtClient } from "@client";
 import { StoreEntity } from "@models/entity";
 import { StoresPayloadSchemas } from "@payload";
 import { StoreRepository } from "@repository";
@@ -10,16 +9,11 @@ export class CreateStoreUseCase implements BaseUseCase<
     StorePayloads.POST.Response
 > {
     constructor(
-        public clients: { honoJwt: HonoJwtClient },
         public repositories: { store: StoreRepository },
-        public request: StoresPayloadSchemas.POST.Request
     ){}
 
-    async execute() {
-        await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
-        )
-        const body = this.request.toValueObjectBody()
+    async execute(request: StoresPayloadSchemas.POST.Request) {
+        const body = request.toValueObjectBody()
 
         const store = new StoreEntity(body)
         const inserted_store = await this.repositories.store.insert(store)

@@ -8,18 +8,15 @@ export namespace ChildrenSchemas {
         export class Request extends BasePayload<CategoryPayloads.Children.GET.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     params: z.strictObject({
-                        parantId: Id.schema()
+                        parentId: Id.paramSchema()
                     })
                 }
             }
 
             toValueObjectParams() {
                 return {
-                    parantId: new Id(this.getParams.parantId)
+                    parentId: new Id(this.getParams.parentId)
                 }
             }
         }
@@ -30,8 +27,8 @@ export namespace ChildrenSchemas {
                     body: z.strictObject({
                         categories: z.array(
                             z.strictObject({
-                                id: Id.schema(),
-                                parentId: Id.schema().optional(),
+                                id: Id.paramSchema(),
+                                parentId: Id.paramSchema().optional(),
                                 name: CategoryName.schema()
                             })
                         )

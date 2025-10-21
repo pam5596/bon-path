@@ -57,7 +57,8 @@ export const ERROR_MESSAGES = {
         s3: "ストレージで予期せぬエラーが発生しました。開発者に問い合わせてください。",
         argon2: "パスワードの処理で予期せぬエラーが発生しました。開発者に問い合わせてください。",
         googleSearch: "Google検索処理で予期せぬエラーが発生しました。開発者に問い合わせてください。",
-        googleMapPlaces: "GoogleMap検索処理で予期せぬエラーが発生しました。開発者に問い合わせてください。"
+        googleMapPlaces: "GoogleMap検索処理で予期せぬエラーが発生しました。開発者に問い合わせてください。",
+        honoJwt: "トークンが無効です。ログインし直してください。"
     },
     service: {
         receiptOcr: "レシートのOCR処理で予期せぬエラーが発生しました。開発者に問い合わせてください。",
@@ -72,16 +73,20 @@ export const ERROR_MESSAGES = {
         productNameExtract: "商品の分析に失敗しまた。開発者に問い合わせてください。",
     },
     usecase: {
+        userConflict: {
+            detail: '入力されたメールアドレスは既に使用されています。',
+            issues: 'UserEmail already registered.'
+        },
         userNotFound: {
-            detial: "ユーザーが見つかりませんでした。アカウントを登録してください。",
+            detail: "ユーザーが見つかりませんでした。アカウントを登録してください。",
             issues: "User not found."
         },
-        emailsNotEqual: {
-            detail: "ユーザーのメールアドレス認証に失敗しました。再度アカウントを登録し直してください。",
-            issues: "The session payload email and The request body email are not equal."
+        userPasswordIncorrect: {
+            detail: "パスワードが間違えています。",
+            issues: "Incorrect user password."
         },
         receiptNotFound: {
-            detial: "レシート情報が見つかりませんでした。",
+            detail: "レシート情報が見つかりませんでした。",
             issues: "Receipt not found."
         },
         receiptNotAccessible: {
@@ -93,7 +98,7 @@ export const ERROR_MESSAGES = {
             issues: "The saved receipt isChecked and The request body isChecked are not equal."
         },
         receiptImageNotFound: {
-            detial: "レシート画像が見つかりませんでした。",
+            detail: "レシート画像が見つかりませんでした。",
             issues: "Receipt image not found."
         },
         purchaseNotFound: {
@@ -124,5 +129,24 @@ export const ERROR_MESSAGES = {
             detail: "商品カテゴリーが見つかりませんでした。",
             issues: "Category not found."
         },
+    },
+    route: {
+        unknown: "不明なエラーが発生しました。",
+        invalidLoginSession: {
+            detail: "ログインセッションの有効期限が切れました。ログインし直してください。",
+            issue: "LoginSessionId not found in cookie."
+        },
+        invalidVerifySession: {
+            detail: "メールアドレス確認用のセッションの有効期限が切れました。アカウントの登録をやり直してください。",
+            issue: "VerifySessionId not found in cookie."
+        },
+        invalidQuery: {
+            detail: 'クエリの形式が不正です。開発者に問い合わせてください。',
+            issue: 'Invalid query type.'
+        },
+        invalidParams: {
+            detail: 'クエリの形式が不正です。開発者に問い合わせてください。',
+            issue: 'Invalid params type.'
+        }
     }
 }

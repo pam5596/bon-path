@@ -5,8 +5,8 @@ import { HonoJwtClient } from "@client";
 import { UserRepository } from "@repository";
 import { UserPasswordHashService } from "@service";
 import { LoginSessionEntity } from "@models/entity";
-import { UseCaseError } from "@error";
-import { ERROR_MESSAGES } from "@constants/errorMessages";
+import { UseCaseError } from "@lib/error";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 export class UpdateUserUseCase implements BaseUseCase<
     UserPayloads.PATCH.Request
@@ -15,24 +15,23 @@ export class UpdateUserUseCase implements BaseUseCase<
         public clients: { honoJwt: HonoJwtClient },
         public repositories: { user: UserRepository },
         public services: { userPasswordHash: UserPasswordHashService },
-        public request: UsersPayloadSchemas.PATCH.Request
     ) {}
 
-    async execute() {
+    async execute(request: UsersPayloadSchemas.PATCH.Request) {
         const jwt_payload = await this.clients.honoJwt.verify(
-            this.request.getCookies.loginSessionId
+            request.getCookies.loginSessionId
         ) as LoginSessionEntity['toPrimitives']
         const session = LoginSessionEntity.fromPrimitives(jwt_payload)
 
         const user = await this.repositories.user.selectById(session.getValues.userId)
         if (!user) throw new UseCaseError(
             404,
-            ERROR_MESSAGES.usecase.userNotFound.detial,
+            ERROR_MESSAGES.usecase.userNotFound.detail,
             ERROR_MESSAGES.usecase.userNotFound.issues,
             this.constructor.name,
-            this.request.getBody
+            request.getBody
         )
-        user.newValues = this.request.toValueObjectBody()
+        user.newValues = request.toValueObjectBody()
 
         await this.repositories.user.update(user)
     }

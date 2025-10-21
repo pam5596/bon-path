@@ -12,14 +12,17 @@ export namespace ReceiptsSchemas {
                         loginSessionId: z.string()
                     }),
                     query: z.strictObject({
-                        isChecked: ReceiptIsChecked.schema().optional()
+                        isChecked: z.stringbool({
+                            truthy: ['true'],
+                            falsy: ['false']
+                        }).optional()
                     })
                 }
             }
 
             toValueObjectQuery() {
                 return {
-                    isChecked: this.getQuery.isChecked ? new ReceiptIsChecked(this.getQuery.isChecked) : undefined
+                    isChecked: this.getQuery.isChecked == undefined ? undefined : new ReceiptIsChecked(this.getQuery.isChecked)
                 }
             }
         }
@@ -30,7 +33,7 @@ export namespace ReceiptsSchemas {
                     body: z.strictObject({
                         receipts: z.array(
                             z.strictObject({
-                                id: Id.schema(),
+                                id: Id.paramSchema(),
                                 latitude: ReceiptLatitude.schema(),
                                 longitude: ReceiptLongitude.schema(),
                                 isChecked: ReceiptIsChecked.schema(),

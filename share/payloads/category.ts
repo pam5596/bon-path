@@ -1,9 +1,6 @@
 export namespace CategoryPayloads {
     export namespace GET {
         export type Request = {
-            cookies: {
-                loginSessionId: string
-            },
             params: {
                 id: number
             }
@@ -19,9 +16,6 @@ export namespace CategoryPayloads {
 
     export namespace POST {
         export type Request = {
-            cookies: {
-                loginSessionId: string
-            },
             body: {
                 categories: {
                     parentId?: number,
@@ -33,9 +27,6 @@ export namespace CategoryPayloads {
 
     export namespace DELETE {
         export type Request = {
-            cookies: {
-                loginSessionId: string
-            },
             params: {
                 id: number
             }
@@ -45,11 +36,8 @@ export namespace CategoryPayloads {
     export namespace Children {
         export namespace GET {
             export type Request = {
-                cookies: {
-                    loginSessionId: string
-                },
                 params: {
-                    parantId: number
+                    parentId: number
                 }
             }
     
@@ -68,9 +56,6 @@ export namespace CategoryPayloads {
     export namespace Products {
         export namespace GET {
             export type Request = {
-                cookies: {
-                    loginSessionId: string
-                },
                 params: {
                     categoryId: number
                 }

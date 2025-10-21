@@ -24,7 +24,7 @@ describe('AwsS3Clientの結合テスト', () => {
     })
 
     it('putObjectメソッドがファイルをを保存し、レスポンスを返すこと', async () => {
-        const file = await readFile('tests/fixtures/images/sample.png')
+        const file = await readFile('../../../../share/fixtures/images/sample.png')
         const response = await client.putObject(
             file,
             'sample/1.png'

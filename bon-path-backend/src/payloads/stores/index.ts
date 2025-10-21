@@ -17,11 +17,8 @@ export namespace StoresPayloadSchemas {
         export class Request extends BasePayload<StorePayloads.GET.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     params: z.strictObject({
-                        id: Id.schema()
+                        id: Id.paramSchema()
                     })
                 }
             }
@@ -64,9 +61,6 @@ export namespace StoresPayloadSchemas {
         export class Request extends BasePayload<StorePayloads.POST.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     body: z.strictObject({
                         name: StoreName.schema(),
                         image: StoreImage.schema().optional(),
@@ -92,7 +86,7 @@ export namespace StoresPayloadSchemas {
             schema() {
                 return {
                     body: z.strictObject({
-                        id: Id.schema()
+                        id: Id.paramSchema()
                     })
                 }
             }
@@ -109,11 +103,8 @@ export namespace StoresPayloadSchemas {
         export class Request extends BasePayload<StorePayloads.PATCH.Request> {
             schema(){
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     params: z.strictObject({
-                        id: Id.schema()
+                        id: Id.paramSchema()
                     }),
                     body: z.strictObject({
                         name: StoreName.schema(),
@@ -147,11 +138,8 @@ export namespace StoresPayloadSchemas {
         export class Request extends BasePayload<StorePayloads.DELETE.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
-                        loginSessionId: z.string()
-                    }),
                     params: z.strictObject({
-                        id: Id.schema()
+                        id: Id.paramSchema()
                     })
                 }
             }

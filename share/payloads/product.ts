@@ -1,9 +1,6 @@
 export namespace ProductPayloads {
     export namespace GET {
         export type Request = {
-            cookies: {
-                loginSessionId: string
-            },
             params: {
                 id: number
             }
@@ -24,9 +21,6 @@ export namespace ProductPayloads {
 
     export namespace POST {
         export type Request = {
-            cookies: {
-                loginSessionId: string
-            },
             body: {
                 products: {
                     storeId: number,
@@ -42,9 +36,6 @@ export namespace ProductPayloads {
 
     export namespace PATCH {
         export type Request = {
-            cookies: {
-                loginSessionId: string
-            },
             params: {
                 id: number
             },
@@ -60,9 +51,6 @@ export namespace ProductPayloads {
 
     export namespace DELETE {
         export type Request = {
-            cookies: {
-                loginSessionId: string
-            },
             params: {
                 id: number
             }
@@ -72,9 +60,6 @@ export namespace ProductPayloads {
     export namespace Products {
         export namespace GET {
             export type Request = {
-                cookies: {
-                    loginSessionId: string
-                },
                 query: {
                     sort?: 'price',
                     orderBy?: 'asc' | 'desc',
@@ -102,12 +87,9 @@ export namespace ProductPayloads {
     export namespace VectorSearch {
         export namespace GET {
             export type Request = {
-                cookies: {
-                    loginSessionId: string
-                },
                 query: {
                     keyword: string,
-                    storeId: number,
+                    storeId?: number,
                     limit?: number
                 }
             }
@@ -132,9 +114,6 @@ export namespace ProductPayloads {
     export namespace GoogleSearch {
         export namespace GET {
             export type Request = {
-                cookies: {
-                    loginSessionId: string
-                },
                 query: {
                     keyword: string,
                     limit?: number
