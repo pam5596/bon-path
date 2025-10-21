@@ -3,6 +3,7 @@ import { ProductsPayloadSchemas } from "@payload";
 import { VectorSearchProductsUseCase } from "@usecase/index";
 import { prismaVector } from "@lib/clients";
 import { productRepository, productVectorRepository } from "@lib/repositories";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 export class VectorSearchProductsRoute extends BaseRoute {
     constructor() {
@@ -15,14 +16,15 @@ export class VectorSearchProductsRoute extends BaseRoute {
                 successStatusCode: 200
             },
             async (context) => {
-                const query = context.req.query();
+                const query = new ProductsPayloadSchemas.VectorSearch.GET.Request()
+                    .schema().query.safeParse(context.req.query());
+                if (!query.success) throw this.createError(
+                    ERROR_MESSAGES.route.invalidQuery,
+                    query
+                )
 
                 const request = new ProductsPayloadSchemas.VectorSearch.GET.Request({
-                    query: {
-                        keyword: query.keyword,
-                        storeId: query.storeId ? Number(query.storeId) : undefined,
-                        limit: Number(query.limit) ? Number(query.limit) : undefined 
-                    }
+                    query: query.data
                 })
 
                 const response = await new VectorSearchProductsUseCase(

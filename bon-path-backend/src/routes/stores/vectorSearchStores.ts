@@ -15,13 +15,11 @@ export class VectorSearchStoresRoute extends BaseRoute {
                 successStatusCode: 200
             },
             async (context) => {
-                const { keyword, limit } = context.req.query()
+                const query = new StoresPayloadSchemas.VectorSearch.GET.Request()
+                    .schema().query.parse(context.req.query())
 
                 const request = new StoresPayloadSchemas.VectorSearch.GET.Request({
-                    query: {
-                        keyword: keyword,
-                        limit: limit ? Number(limit) : undefined
-                    }
+                    query
                 })
 
                 const response = await new VectorSearchStoresUseCase(

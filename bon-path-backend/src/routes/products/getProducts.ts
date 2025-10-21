@@ -2,6 +2,7 @@ import BaseRoute from "../_interface";
 import { ProductsPayloadSchemas } from "@payload";
 import { GetProductsUseCase } from "@usecase/index";
 import { productRepository } from "@lib/repositories";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 export class GetProductsRoute extends BaseRoute {
     constructor() {
@@ -14,13 +15,15 @@ export class GetProductsRoute extends BaseRoute {
                 successStatusCode: 200
             },
             async (context) => {
-                const query= context.req.query()
+                const query = new ProductsPayloadSchemas.Products.GET.Request()
+                    .schema().query.safeParse(context.req.query())
+                if (!query.success) throw this.createError(
+                    ERROR_MESSAGES.route.invalidQuery,
+                    query
+                )
 
                 const request = new ProductsPayloadSchemas.Products.GET.Request({
-                    query: {
-                        ...query,
-                        limit: Number(query.limit) ? Number(query.limit) : undefined 
-                    }
+                    query: query.data
                 })
 
                 const response = await new GetProductsUseCase(

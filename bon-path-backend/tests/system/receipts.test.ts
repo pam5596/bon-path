@@ -35,14 +35,14 @@ describe('receiptsエンドポイントのシステムテスト', () => {
             email: "yamada@example.com",
             password: "abc123"
         })
-
+        
         const res = await request('/receipts/1', {
             method: 'GET',
             headers: new Headers({
                 'Cookie': loginSessionId
             }),
         })
-
+        
         const body = await res.json()
         
         expect(res.status).toBe(200)
@@ -51,13 +51,53 @@ describe('receiptsエンドポイントのシステムテスト', () => {
         expect(body).toHaveProperty('latitude')
         expect(body).toHaveProperty('createdAt')
     })
+    
+    test('[GET]getReceiptPurchases レシートの購入履歴を取得できる', async () => {
+        const loginSessionId = await createLoginSession({
+            email: "yamada@example.com",
+            password: "abc123"
+        })
+
+        const res = await request('/receipts/2/purchases', {
+            method: 'GET',
+            headers: new Headers({
+                'Cookie': loginSessionId
+            })
+        })
+
+        const body = await res.json()
+        
+        expect(res.status).toBe(200)
+        expect(body).toHaveProperty('purchases')
+        expect(body.purchases.length).toBe(2)
+    })
+
+    test('[GET]getReceiptImages レシートの画像を取得できる', async () => {
+        const loginSessionId = await createLoginSession({
+            email: "yamada@example.com",
+            password: "abc123"
+        })
+
+        const res = await request('/receipts/2/images', {
+            method: 'GET',
+            headers: new Headers({
+                'Cookie': loginSessionId
+            })
+        })
+
+        const body = await res.json()
+        
+        expect(res.status).toBe(200)
+        expect(body).toHaveProperty('images')
+        expect(body.images.length).toBe(1)
+    })
 
     test('[PATCH]updateReceipt レシートを更新できること', async () => {
         const loginSessionId = await createLoginSession({
             email: "yamada@example.com",
             password: "abc123"
         })
-
+        
         const res = await request('/receipts/2', {
             method: 'PATCH',
             headers: new Headers({
@@ -86,45 +126,4 @@ describe('receiptsエンドポイントのシステムテスト', () => {
         
         expect(res.status).toBe(204)
     })
-
-    test('[GET]getReceiptPurchases レシートの購入履歴を取得できる', async () => {
-        const loginSessionId = await createLoginSession({
-            email: "yamada@example.com",
-            password: "abc123"
-        })
-
-        const res = await request('/receipts/2/purchases', {
-            method: 'GET',
-            headers: new Headers({
-                'Cookie': loginSessionId
-            })
-        })
-
-        const body = await res.json()
-        
-        expect(res.status).toBe(200)
-        expect(body).toHaveProperty('purchases')
-        expect(body.purchases.length).toBe(2)
-    })
-
-    test.only('[GET]getReceiptImages レシートの画像を取得できる', async () => {
-        const loginSessionId = await createLoginSession({
-            email: "yamada@example.com",
-            password: "abc123"
-        })
-
-        const res = await request('/receipts/2/images', {
-            method: 'GET',
-            headers: new Headers({
-                'Cookie': loginSessionId
-            })
-        })
-
-        const body = await res.json()
-        
-        expect(res.status).toBe(200)
-        expect(body).toHaveProperty('images')
-        expect(body.images.length).toBe(1)
-    })
-
 })

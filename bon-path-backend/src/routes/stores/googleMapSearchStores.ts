@@ -2,6 +2,7 @@ import BaseRoute from "../_interface";
 import { StoresPayloadSchemas } from "@payload";
 import { GoogleMapSearchStoresUseCase } from "@usecase/index";
 import { searchStorePlaceService } from "@lib/services";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 export class GoogleMapSearchStoresRoute extends BaseRoute {
     constructor() {
@@ -14,13 +15,15 @@ export class GoogleMapSearchStoresRoute extends BaseRoute {
                 successStatusCode: 200
             },
             async (context) => {
-                const query = context.req.query()
+                const query = new StoresPayloadSchemas.GoogleMapSearch.GET.Request()
+                    .schema().query.safeParse(context.req.query())
+                if (!query.success) throw this.createError(
+                    ERROR_MESSAGES.route.invalidQuery,
+                    query
+                )
                 
                 const request = new StoresPayloadSchemas.GoogleMapSearch.GET.Request({
-                    query: {
-                        keyword: query.keyword,
-                        limit: isNaN(Number(query.limit)) ? undefined: Number(query.limit)
-                    }
+                    query: query.data
                 })
 
                 const response = await new GoogleMapSearchStoresUseCase(
