@@ -14,10 +14,13 @@ export class GetProductsRoute extends BaseRoute {
                 successStatusCode: 200
             },
             async (context) => {
-                const query = context.req.query()
+                const query= context.req.query()
 
                 const request = new ProductsPayloadSchemas.Products.GET.Request({
-                    query
+                    query: {
+                        ...query,
+                        limit: Number(query.limit) ? Number(query.limit) : undefined 
+                    }
                 })
 
                 const response = await new GetProductsUseCase(

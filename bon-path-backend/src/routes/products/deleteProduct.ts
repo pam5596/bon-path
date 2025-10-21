@@ -28,6 +28,8 @@ export class DeleteProductRoute extends BaseRoute {
                 await new DeleteProductUseCase(
                     { product: productRepository }
                 ).execute(request)
+
+                return context.body(null, 204)
             },
             new ProductsPayloadSchemas.DELETE.Request()
         )

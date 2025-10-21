@@ -37,7 +37,7 @@ import {
     deleteProduct,
     getProduct,
     getProducts,
-    googleMapSearchProducts,
+    googleSearchProducts,
     updateProduct,
     vectorSearchProducts,
     createCategories,
@@ -56,7 +56,7 @@ const app = new OpenAPIHono({
             throw new HTTPException(
                 400,
                 {
-                    message: result.error.message,
+                    message: result.error.issues.map((i) => i.message).join(', '),
                     cause: result.error
                 }
             )
@@ -96,22 +96,22 @@ app.openapi(createPurchases.route, createPurchases.handler)
 app.openapi(deletePurchase.route, deletePurchase.handler)
 app.openapi(getPurchase.route, getPurchase.handler)
 
-app.openapi(createStore.route, createStore.handler)
 app.openapi(vectorSearchStores.route, vectorSearchStores.handler)
 app.openapi(googleMapSearchStores.route,googleMapSearchStores.handler)
 app.openapi(deleteStore.route, deleteStore.handler),
 app.openapi(getStore.route, getStore.handler),
-app.openapi(getStoreProducts.route, getStoreProducts.handler)
-app.openapi(getStores.route, getStores.handler)
 app.openapi(updateStore.route, updateStore.handler)
+app.openapi(getStoreProducts.route, getStoreProducts.handler)
+app.openapi(createStore.route, createStore.handler)
+app.openapi(getStores.route, getStores.handler)
 
-app.openapi(createProducts.route, createProducts.handler)
 app.openapi(vectorSearchProducts.route, vectorSearchProducts.handler)
-app.openapi(googleMapSearchProducts.route, googleMapSearchProducts.handler)
+app.openapi(googleSearchProducts.route, googleSearchProducts.handler)
 app.openapi(deleteProduct.route, deleteProduct.handler)
 app.openapi(getProduct.route, getProduct.handler)
-app.openapi(getProducts.route, getProducts.handler)
 app.openapi(updateProduct.route, updateProduct.handler)
+app.openapi(createProducts.route, createProducts.handler)
+app.openapi(getProducts.route, getProducts.handler)
 
 app.openapi(createCategories.route, createCategories.handler)
 app.openapi(deleteCategory.route, deleteCategory.handler)

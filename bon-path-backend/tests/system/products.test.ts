@@ -6,132 +6,16 @@ import { createLoginSession } from "./_createLoginSession";
 import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 import { createVerifySession } from "./_createVerifySession";
 
-describe('storesエンドポイントのシステムテスト', () => {
-    withTestFixtures(prisma, false)
+describe('productsエンドポイントのシステムテスト', () => {
+    withTestFixtures(prisma, true)
 
-    test('[GET]getStores 店舗一覧を取得できること', async () => {
+    test('[GET]getProducts 商品一覧を取得できること', async () => {
         const loginSessionId = await createLoginSession({
             email: "yamada@example.com",
             password: "abc123"
         })
 
-        const res = await request('/stores', {
-            method: 'GET',
-            headers: new Headers({
-                'Cookie': loginSessionId
-            })
-        })
-
-        const body = await res.json()
-        
-        expect(res.status).toBe(200)
-        expect(body).toHaveProperty('stores')
-        expect(body.stores.length).toBe(4)
-    })
-
-    test('[GET]getStores フィルタリングが機能すること', async () => {
-        const loginSessionId = await createLoginSession({
-            email: "yamada@example.com",
-            password: "abc123"
-        })
-
-        const res = await request('/stores?latitude=35.64693560971176&longitude=139.741831652267&radius=400&limit=2', {
-            method: 'GET',
-            headers: new Headers({
-                'Cookie': loginSessionId
-            })
-        })
-
-        const body = await res.json()
-        
-        expect(res.status).toBe(200)
-        expect(body).toHaveProperty('stores')
-        expect(body.stores.length).toBe(2)
-    })
-
-    test('[POST]createStores 店舗を登録できること', async () => {
-        const loginSessionId = await createLoginSession({
-            email: "yamada@example.com",
-            password: "abc123"
-        })
-
-        const res = await request('/stores', {
-            method: 'POST',
-            headers: new Headers({
-                'Cookie': loginSessionId
-            }),
-            body: JSON.stringify({
-                name: 'ＤＣＭ三田店'
-            })
-        })
-
-        const body = await res.json()
-        
-        expect(res.status).toBe(201)
-        expect(body).toHaveProperty('id')
-    })
-
-    test('[GET]getStore 店舗情報を取得できること', async () => {
-        const loginSessionId = await createLoginSession({
-            email: "yamada@example.com",
-            password: "abc123"
-        })
-
-        const res = await request('/stores/1', {
-            method: 'GET',
-            headers: new Headers({
-                'Cookie': loginSessionId
-            })
-        })
-
-        const body = await res.json()
-        
-        expect(res.status).toBe(200)
-        expect(body).toHaveProperty('name')
-    })
-
-    test('[PATCH]updateStore 店舗情報を更新できること', async () => {
-        const loginSessionId = await createLoginSession({
-            email: "yamada@example.com",
-            password: "abc123"
-        })
-
-        const res = await request('/stores/2', {
-            method: 'PATCH',
-            headers: new Headers({
-                'Cookie': loginSessionId
-            }),
-            body: JSON.stringify({
-                name: 'サミット 練馬店'
-            })
-        })
-        
-        expect(res.status).toBe(204)
-    })
-
-    test('[DELETE]deleteStore 店舗情報を削除できること', async () => {
-        const loginSessionId = await createLoginSession({
-            email: "yamada@example.com",
-            password: "abc123"
-        })
-
-        const res = await request('/stores/3', {
-            method: 'DELETE',
-            headers: new Headers({
-                'Cookie': loginSessionId
-            })
-        })
-
-        expect(res.status).toBe(204)
-    })
-
-    test('[GET]getStoreProducts 店舗の商品舗情報を取得できること', async () => {
-        const loginSessionId = await createLoginSession({
-            email: "yamada@example.com",
-            password: "abc123"
-        })
-
-        const res = await request('/stores/1/products', {
+        const res = await request('/products', {
             method: 'GET',
             headers: new Headers({
                 'Cookie': loginSessionId
@@ -144,13 +28,13 @@ describe('storesエンドポイントのシステムテスト', () => {
         expect(body).toHaveProperty('products')
     })
 
-    test('[GET]vectorSearchStore 店舗をベクトル検索できること', async () => {
+    test('[GET]getProducts フィルタリングが機能すること', async () => {
         const loginSessionId = await createLoginSession({
             email: "yamada@example.com",
             password: "abc123"
         })
 
-        const res = await request('/stores/vector-search?keyword=スーパーマーケット&limit=1', {
+        const res = await request('/products?sort=price&orderBy=asc&limit=3', {
             method: 'GET',
             headers: new Headers({
                 'Cookie': loginSessionId
@@ -160,17 +44,52 @@ describe('storesエンドポイントのシステムテスト', () => {
         const body = await res.json()
         
         expect(res.status).toBe(200)
-        expect(body).toHaveProperty('stores')
-        expect(body.stores.length).toBe(1)
+        expect(body).toHaveProperty('products')
     })
 
-    test('[GET]googleMapSearchStore 店舗をGoogleマップで検索できること', async () => {
+    test('[POST]createProducts 商品を登録できること', async () => {
         const loginSessionId = await createLoginSession({
             email: "yamada@example.com",
             password: "abc123"
         })
 
-        const res = await request('/stores/google-map-search?keyword=プラチナドンキ&limit=1', {
+        const res = await request('/products', {
+            method: 'POST',
+            headers: new Headers({
+                'Cookie': loginSessionId
+            }),
+            body: JSON.stringify({
+                products: [
+                    {
+                        storeId: 4,
+                        categoryId: 1,
+                        name: 'NONIO 歯ブラシ',
+                        image: 'https://nonio.lion.co.jp/img/modal/brush/pdt_typesharp_img_ava_l-jg.png',
+                        link: 'https://nonio.lion.co.jp/lineup/brush.html',
+                        price: 272
+                    },
+                    {
+                        storeId: 4,
+                        categoryId: 1,
+                        name: 'GBパウダーデオスプレー',
+                        image: 'https://item-shopping.c.yimg.jp/i/n/yyshop_4902806101621_i_20240614094439',
+                        link: 'https://joshinweb.jp/cg/30001116/4902806101638.html',
+                        price: 609
+                    }
+                ]
+            })
+        })
+        
+        expect(res.status).toBe(201)
+    })
+
+    test('[GET]getProduct 商品情報を取得できること', async () => {
+        const loginSessionId = await createLoginSession({
+            email: "yamada@example.com",
+            password: "abc123"
+        })
+
+        const res = await request('/products/1', {
             method: 'GET',
             headers: new Headers({
                 'Cookie': loginSessionId
@@ -180,7 +99,83 @@ describe('storesエンドポイントのシステムテスト', () => {
         const body = await res.json()
         
         expect(res.status).toBe(200)
-        expect(body).toHaveProperty('stores')
-        expect(body.stores.length).toBe(1)
+        expect(body).toHaveProperty('name')
+    })
+
+    test('[PATCH]updateProduct 商品情報を更新できること', async () => {
+        const loginSessionId = await createLoginSession({
+            email: "yamada@example.com",
+            password: "abc123"
+        })
+
+        const res = await request('/products/2', {
+            method: 'PATCH',
+            headers: new Headers({
+                'Cookie': loginSessionId
+            }),
+            body: JSON.stringify({
+                categoryId: 2,
+                name: 'ちぢれ麺 200g',
+                price: 100
+            })
+        })
+        
+        expect(res.status).toBe(204)
+    })
+
+    test('[DELETE]deleteProduct 商品情報を削除できること', async () => {
+        const loginSessionId = await createLoginSession({
+            email: "yamada@example.com",
+            password: "abc123"
+        })
+
+        const res = await request('/products/3', {
+            method: 'DELETE',
+            headers: new Headers({
+                'Cookie': loginSessionId
+            })
+        })
+
+        expect(res.status).toBe(204)
+    })
+
+    test('[GET]vectorSearchProducts 商品をベクトル検索できること', async () => {
+        const loginSessionId = await createLoginSession({
+            email: "yamada@example.com",
+            password: "abc123"
+        })
+
+        const res = await request('/products/vector-search?keyword=ラーメン系&storeId=1&limit=1', {
+            method: 'GET',
+            headers: new Headers({
+                'Cookie': loginSessionId
+            })
+        })
+
+        const body = await res.json()
+        
+        expect(res.status).toBe(200)
+        expect(body).toHaveProperty('products')
+        expect(body.products.length).toBe(1)
+    })
+
+    test('[GET]googleSearchStore 商品をGoogleで検索できること', async () => {
+        const loginSessionId = await createLoginSession({
+            email: "yamada@example.com",
+            password: "abc123"
+        })
+
+        const res = await request('/products/google-search?keyword=サントリークラフトボスブラック&limit=3', {
+            method: 'GET',
+            headers: new Headers({
+                'Cookie': loginSessionId
+            })
+        })
+
+        const body = await res.json()
+        
+        expect(res.status).toBe(200)
+        expect(body).toHaveProperty('products')
+        expect(body.products.length).toBe(3)
     })
 })
