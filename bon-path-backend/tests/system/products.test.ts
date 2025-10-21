@@ -7,7 +7,7 @@ import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 import { createVerifySession } from "./_createVerifySession";
 
 describe('productsエンドポイントのシステムテスト', () => {
-    withTestFixtures(prisma, true)
+    withTestFixtures(prisma, false)
 
     test('[GET]getProducts 商品一覧を取得できること', async () => {
         const loginSessionId = await createLoginSession({
