@@ -1,0 +1,112 @@
+import { z } from "@hono/zod-openapi";
+import BasePayload from "../_abstruct";
+import { PurchasePayloads } from "@share/payloads";
+import { CreatedAt, Id, PurchasePrice, PurchaseQuantity } from "@models/valueObject";
+import BaseValueObject from "@models/valueObject/_abstruct";
+
+export namespace PurchasesPayloadSchemas {
+    export namespace GET {
+        export class Request extends BasePayload<PurchasePayloads.GET.Request> {
+            schema() {
+                return {
+                    cookies: z.strictObject({
+                        loginSessionId: z.string()
+                    }),
+                    params: z.strictObject({
+                        id: Id.paramSchema()
+                    })
+                }
+            }
+
+            toValueObjectParams() {
+                return {
+                    id: new Id(this.getParams.id)
+                }
+            }
+        }
+
+        export class Response extends BasePayload<PurchasePayloads.GET.Response> {
+            schema() {
+                return {
+                    body: z.strictObject({
+                        receiptId: Id.paramSchema(),
+                        storeId: Id.paramSchema(),
+                        productId: Id.paramSchema(),
+                        price: PurchasePrice.schema(),
+                        quantity: PurchaseQuantity.schema(),
+                        createdAt: CreatedAt.schema()
+                    })
+                }
+            }
+
+            toValueObjectBody() {
+                return {
+                    receiptId: new Id(this.getBody.receiptId),
+                    storeId: new Id(this.getBody.storeId),
+                    productId: new Id(this.getBody.productId),
+                    price: new PurchasePrice(this.getBody.price),
+                    quantity: new PurchaseQuantity(this.getBody.quantity),
+                    createdAt: new CreatedAt(this.getBody.createdAt)
+                }
+            }
+        }
+    }
+
+    export namespace POST {
+        export class Request extends BasePayload<PurchasePayloads.POST.Request> {
+            schema() {
+                return {
+                    cookies: z.strictObject({
+                        loginSessionId: z.string()
+                    }),
+                    body: z.strictObject({
+                        purchases: z.array(
+                            z.strictObject({
+                                receiptId: Id.paramSchema(),
+                                storeId: Id.paramSchema(),
+                                productId: Id.paramSchema(),
+                                price: PurchasePrice.schema(),
+                                quantity: PurchaseQuantity.schema()
+                            }
+                        ))
+                    })
+                }
+            }
+
+            toValueObjectBody() {
+                return {
+                    purchases: this.getBody.purchases.map(
+                        purchase => ({
+                            receiptId: new Id(purchase.receiptId),
+                            storeId: new Id(purchase.storeId),
+                            productId: new Id(purchase.productId),
+                            price: new PurchasePrice(purchase.price),
+                            quantity: new PurchaseQuantity(purchase.quantity)
+                        })
+                    )
+                }
+            }
+        }
+    }
+
+    export namespace DELETE {
+        export class Request extends BasePayload<PurchasePayloads.DELETE.Request> {
+            schema() {
+                return {
+                    cookies: z.strictObject({
+                        loginSessionId: z.string()
+                    }),
+                    params: z.strictObject({
+                        id: Id.paramSchema()
+                    })
+                }
+            }
+
+            toValueObjectParams() {
+                return {
+                    id: new Id(this.getParams.id)
+                }
+            }
+        }
+    }
+}

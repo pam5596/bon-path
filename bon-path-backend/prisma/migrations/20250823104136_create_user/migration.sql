@@ -1,0 +1,17 @@
+-- CreateTable
+CREATE TABLE "public"."User" (
+    "id" SERIAL NOT NULL,
+    "hashedId" TEXT NOT NULL,
+    "name" VARCHAR(30) NOT NULL,
+    "email" TEXT NOT NULL,
+    "password" CHAR(32) NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "User_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_hashedId_key" ON "public"."User"("hashedId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_email_key" ON "public"."User"("email");

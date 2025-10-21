@@ -1,0 +1,93 @@
+import { z } from "@hono/zod-openapi";
+import BasePayload from "../_abstruct";
+import { CategoryPayloads } from "@share/payloads";
+import { CategoryName, Id } from "@models/valueObject";
+import { ChildrenSchemas } from "./children";
+import { ProductsSchemas } from "./products";
+
+export namespace CategoriesPayloadSchemas {
+    export import Children = ChildrenSchemas;
+    export import Products = ProductsSchemas;
+
+    export namespace GET {
+        export class Request extends BasePayload<CategoryPayloads.GET.Request> {
+            schema() {
+                return {
+                    params: z.strictObject({
+                        id: Id.paramSchema()
+                    })
+                }
+            }
+
+            toValueObjectParams() {
+                return {
+                    id: new Id(this.getParams.id)
+                }
+            }
+        }
+
+        export class Response extends BasePayload<CategoryPayloads.GET.Response> {
+            schema() {
+                return {
+                    body: z.strictObject({
+                        parentId: Id.paramSchema().optional(),
+                        name: CategoryName.schema()
+                    })
+                }
+            }
+
+            toValueObjectBody() {
+                return {
+                    parentId: this.getBody.parentId ? new Id(this.getBody.parentId) : undefined,
+                    name: new CategoryName(this.getBody.name)
+                }
+            }
+        }
+    }
+
+    export namespace POST {
+        export class Request extends BasePayload<CategoryPayloads.POST.Request> {
+            schema() {
+                return {
+                    body: z.strictObject({
+                        categories: z.array(
+                            z.strictObject({
+                                parentId: Id.paramSchema().optional(),
+                                name: CategoryName.schema()
+                            })
+                        )
+                    })
+                }
+            }
+
+            toValueObjectBody() {
+                return {
+                    categories: this.getBody.categories.map(
+                        category => ({
+                            parentId: category.parentId ? new Id(category.parentId) : undefined,
+                            name: new CategoryName(category.name)
+                        })
+                    )
+                }
+            }
+        }
+    }
+
+    export namespace DELETE {
+        export class Request extends BasePayload<CategoryPayloads.DELETE.Request> {
+            schema() {
+                return {
+                    params: z.strictObject({
+                        id: Id.paramSchema()
+                    })
+                }
+            }
+
+            toValueObjectParams() {
+                return {
+                    id: new Id(this.getParams.id)
+                }
+            }
+        }
+    }
+}

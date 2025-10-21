@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": false,
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "skipLibCheck": true,
+    "types": [
+      "node"
+    ],
+    "jsx": "react-jsx",
+    "jsxImportSource": "hono/jsx",
+    "ignoreDeprecations": "6.0",
+    "paths": {
+      "@lib/*": ["./src/lib/*"],
+      "@models/*": ["./src/models/*"],
+      "@valueObject": ["./src/models/valueObject"],
+      "@entity": ["./src/models/entity"],
+      "@repository": ["./src/repository"],
+      "@service": ["./src/service"],
+      "@client": ["./src/clients"],
+      "@payload": ["./src/payloads"],
+      "@usecase/*": ["./src/usecase/*"],
+      "@routes/*": ["./src/routes/*"],
+      "@share/*": ["../share/*"]
+    }
+  }
+}

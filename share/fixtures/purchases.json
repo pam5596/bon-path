@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "userId": 1,
+        "receiptId": 2,
+        "storeId": 1,
+        "productId": 1,
+        "quantity": 1,
+        "price": 95
+    },
+    {
+        "id": 2,
+        "userId": 1,
+        "receiptId": 2,
+        "storeId": 1,
+        "productId": 2,
+        "quantity": 1,
+        "price": 99
+    },
+    {
+        "id": 3,
+        "userId": 2,
+        "receiptId": 3,
+        "storeId": 2,
+        "productId": 3,
+        "quantity": 1,
+        "price": 358
+    }
+]

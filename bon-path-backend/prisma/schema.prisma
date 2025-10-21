@@ -1,0 +1,119 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/clients/prisma"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  extensions = [pgvector(map: "vector"), postgis]
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  hashedId  String    @unique @default(cuid())
+  name      String    @db.VarChar(30)
+  email     String    @unique
+  password  String
+  createdAt DateTime  @default(now())
+
+  receipts Receipt[]
+  purchases Purchase[]
+}
+
+model Receipt {
+  id        Int       @id @default(autoincrement())
+  userId    Int
+  latitude  Float
+  longitude Float
+  isChecked Boolean   @default(false)
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  images ReceiptImage[]
+  purchases Purchase[]
+}
+
+model ReceiptImage {
+  id        Int      @id @default(autoincrement())
+  receiptId Int
+  url       String
+  createdAt DateTime @default(now())
+
+  receipt Receipt @relation(fields: [receiptId], references: [id], onDelete: Cascade)
+}
+
+model Store {
+  id            Int       @id @default(autoincrement())
+  name          String
+  image         String?
+  latitude      Float?
+  longitude     Float?
+  googleMapLink String?
+  createdAt     DateTime  @default(now())
+
+  products Product[]
+  purchases Purchase[]
+  storeVector StoreVector?
+}
+
+model Category {
+  id            Int       @id @default(autoincrement())
+  parentId      Int?
+  name          String
+
+  parents Category? @relation("CategoryNestRelation", fields: [parentId], references: [id], onDelete: Cascade)
+  children Category[] @relation("CategoryNestRelation")
+  products Product[]
+}
+
+model Product {
+  id            Int       @id @default(autoincrement())
+  storeId       Int
+  categoryId    Int
+  name          String
+  image         String?
+  link          String?
+  price         Int
+  createdAt     DateTime  @default(now())
+  
+  store    Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  purchases Purchase[]
+  productVector ProductVector?
+}
+
+model Purchase {
+  id            Int       @id @default(autoincrement())
+  userId        Int
+  receiptId     Int
+  storeId       Int
+  productId     Int
+  quantity      Int       @default(1)
+  price         Int
+  createdAt     DateTime  @default(now())
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  receipt Receipt @relation(fields: [receiptId], references: [id], onDelete: Cascade)
+  store   Store   @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model ProductVector {
+  id            Int      @id @default(autoincrement())
+  productId     Int      @unique
+  content          String
+  emmbedding    Unsupported("vector")?
+
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model StoreVector {
+  id            Int      @id @default(autoincrement())
+  storeId       Int      @unique
+  content          String
+  emmbedding    Unsupported("vector")?
+
+  store     Store @relation(fields: [storeId], references: [id], onDelete: Cascade)
+}

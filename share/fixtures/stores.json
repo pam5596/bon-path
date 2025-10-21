@@ -1,0 +1,35 @@
+[
+    {
+        "id": 1,
+        "name": "サミット 三田店",
+        "image": "https://lh3.googleusercontent.com/gps-cs-s/AC9h4npigvAOTsf8ztUCvD-JNld2HOy_StD2yIIR88I0D6FnpF-HYpCDuzqKgi61RV2ntb70bzKuJFdtKdm4nODMW5P0MWAswB2mZYnjIttZcx7K0PbAsozhqtE-Tr-5nPuuqG4zQrCY4wva-XIE=w426-h240-k-no",
+        "latitude": 35.64569174174139, 
+        "longitude": 139.73851329605122,
+        "googleMapLink": "https://maps.app.goo.gl/gy1w4r1JstTjtCvn7"
+
+    },
+    {
+        "id": 2,
+        "name": "ライフ ムスブ田町店",
+        "image": "https://lh3.googleusercontent.com/gps-cs-s/AC9h4noUb9qdQaSMiS28G0k8nAXhqkMXR9MwPBcMr4G7z4ffx9wdN86ae4hq8NcR9SuC2ObJStaVWATWZI4HnfZLRwSiCbMpSUvQnnoO8XZT3EYfowC3deQLE9Ea-qJvQDR3ACOMhOb4bA=w408-h544-k-no",
+        "latitude": 35.64489937217276,
+        "longitude": 139.74898064031694,
+        "googleMapLink": "https://maps.app.goo.gl/Csx9goS4SxtMSmcp8"
+    },
+    {
+        "id": 3,
+        "name": "maruetsu petitプチ 三田二丁目店",
+        "image": "https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr1SARd0KCoeVhQo5nxEJDv7xiPGrdN6t2RsJQRG5hiUthmnG2FH2AVHJsAGj-Nar9H99gW-pqq3E7apIV9GgLEpoa1E5teBo8qTUoDAK7hTPgK_zzd7C75Gwgx5Wokum_2d_4GqedEe-R2=w408-h306-k-no",
+        "latitude": 35.64898865914099,
+        "longitude": 139.74449412889527,
+        "googleMapLink": "https://maps.app.goo.gl/oUNK8RBVYvuxEkfn9"
+    },
+    {
+        "id": 4,
+        "name": "ココカラファイン 三田店",
+        "image": "https://lh3.googleusercontent.com/gps-cs-s/AC9h4nosHcLrUzyTQSy9wXAwoP-Gs4cK8cova_GDoGK8Z4Bf9JSlWKqy1bBkFIkFSuUXZCCYywG9C9AHIerzbmpxcMPYSy_zVbKpEjrMbTDBzqCaIAIvPOh1DOIpMVSJ9BSLBe0xOA9I=w408-h306-k-no",
+        "latitude": 35.64768982114649,
+        "longitude": 139.74475016976734,
+        "googleMapLink": "https://maps.app.goo.gl/yjY2C5VPww12ghft6"
+    }
+]

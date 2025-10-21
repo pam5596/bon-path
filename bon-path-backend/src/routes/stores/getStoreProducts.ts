@@ -1,0 +1,38 @@
+import BaseRoute from "../_interface";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
+import { StoresPayloadSchemas } from "@payload";
+import { GetStoreProductsUseCase } from "@usecase/index";
+import { productRepository } from "@lib/repositories";
+
+export class GetStoreProductsRoute extends BaseRoute {
+    constructor() {
+        super(
+            {
+                method: 'get',
+                path: '/stores/:storeId/products',
+                tags: ['店舗情報をリソースとするルート', '商品情報をリソースとするルート'],
+                requestMediaType: 'application/json',
+                successStatusCode: 200
+            },
+            async (context) => {
+                const { storeId } = context.req.param()
+                if (isNaN(Number(storeId))) throw this.createError(
+                    ERROR_MESSAGES.route.invalidParams,
+                    context.req.param()
+                )
+
+                const request = new StoresPayloadSchemas.Products.GET.Request({
+                    params: { storeId: Number(storeId) }
+                })
+
+                const response = await new GetStoreProductsUseCase(
+                    { product: productRepository }
+                ).execute(request)
+
+                return context.json(response.getBody)
+            },
+            new StoresPayloadSchemas.Products.GET.Request(),
+            new StoresPayloadSchemas.Products.GET.Response()
+        )
+    }
+}

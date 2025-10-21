@@ -1,0 +1,55 @@
+services:
+  backend-dev:
+    container_name: bon-path-backend-develop
+    build: ./bon-path-backend
+    volumes:
+      - ./bon-path-backend:/bon-path-backend
+      - ./share:/share
+      - /bon-path-backend/node_modules
+    ports:
+      - "8080:8080"
+      - "5050:5050"
+    command: sh -c "rm -rf logs  && npm run migrate:dev && npm run generate && npm run app:dev"
+    depends_on:
+      - database
+      - storage
+  backend-test:
+    container_name: bon-path-backend-test
+    build: ./bon-path-backend
+    volumes:
+      - ./bon-path-backend:/bon-path-backend
+      - ./share:/share
+      - /bon-path-backend/node_modules
+    ports:
+      - "7070:7070"
+      - "4040:4040"
+    command: sh -c "rm -rf logs && npm run migrate:test npm run generate && npm run app:test"
+    depends_on:
+      - backend-dev
+      - database
+      - storage
+  database:
+    container_name: bon-path-database
+    build: ./bon-path-database
+    environment:
+      POSTGRES_USER: bonpath
+      POSTGRES_PASSWORD: bonpath
+      POSTGRES_DB: bonpath
+    ports:
+      - "5432:5432"
+  storage:
+    container_name: bon-path-storage
+    image: minio/minio:RELEASE.2025-09-07T16-13-09Z
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    entrypoint: >
+      /bin/sh -c "
+        mkdir -p /data/bonpath-test;
+        /usr/bin/minio server /data --console-address ':9001';
+      "
+    environment:
+      MINIO_ROOT_USER: bonpath-minio
+      MINIO_ROOT_PASSWORD: bonpath-minio
+    volumes:
+      - ./.minio-data:/data
