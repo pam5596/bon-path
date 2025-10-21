@@ -103,7 +103,6 @@ describe('categoriesエンドポイントのシステムテスト', () => {
         })
 
         const body = await res.json()
-        console.log(body)
         
         expect(res.status).toBe(200)
         expect(body).toHaveProperty('products')

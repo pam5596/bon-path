@@ -28,6 +28,8 @@ export class CreatePurchasesRoute extends BaseRoute {
                     { honoJwt: honoJwtLogin },
                     { purchase: purchaseRepository }
                 ).execute(request)
+
+                return context.body(null, 201)
             },
             new PurchasesPayloadSchemas.POST.Request()
         )

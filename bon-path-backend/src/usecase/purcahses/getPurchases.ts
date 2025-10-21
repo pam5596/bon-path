@@ -40,9 +40,10 @@ export class GetPurchasesUseCase implements BaseUseCase<
             request.getParams
         )
 
+        const { userId, ...values } = purchase.toPrimitives
         return new PurchasesPayloadSchemas.GET.Response({
             body: {
-                ...purchase.toPrimitives,
+                ...values,
                 createdAt: purchase.getCreatedAt!.value
             }
         })

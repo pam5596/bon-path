@@ -33,6 +33,8 @@ export class DeletePurchaseRoute extends BaseRoute {
                     { honoJwt: honoJwtLogin },
                     { purchase: purchaseRepository }
                 ).execute(request)
+
+                return context.body(null, 204)
             },
             new PurchasesPayloadSchemas.DELETE.Request()
         )
