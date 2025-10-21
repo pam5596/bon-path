@@ -93,10 +93,6 @@ export const ERROR_MESSAGES = {
             detail: "このレシート情報へのアクセス権限がありません。",
             issues: "Can't access this receipt."
         },
-        receiptIsCheckedNotEqual: {
-            detail: "レシート情報が改ざんされています。直ちに削除してください。",
-            issues: "The saved receipt isChecked and The request body isChecked are not equal."
-        },
         receiptImageNotFound: {
             detail: "レシート画像が見つかりませんでした。",
             issues: "Receipt image not found."

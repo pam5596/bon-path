@@ -2,6 +2,7 @@ import BaseRoute from "../_interface";
 import { StoresPayloadSchemas } from "@payload";
 import { GetStoresUseCase } from "@usecase/index";
 import { storeRepository } from "@lib/repositories";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 export class GetStoresRoute extends BaseRoute {
     constructor() {
@@ -14,14 +15,15 @@ export class GetStoresRoute extends BaseRoute {
                 successStatusCode: 200
             },
             async (context) => {
-                const query = context.req.query();
+                const query = new StoresPayloadSchemas.Stores.GET.Request()
+                    .schema().query.safeParse(context.req.query());
+                if (!query.success) throw this.createError(
+                    ERROR_MESSAGES.route.invalidQuery,
+                    query
+                )
 
                 const request = new StoresPayloadSchemas.Stores.GET.Request({
-                    query: Object.fromEntries(
-                        Object.entries(query).map(
-                            ([k,v]) => [k, isNaN(Number(v)) ? undefined : Number(v)]
-                        )
-                    )
+                    query: query.data
                 })
 
                 const response = await new GetStoresUseCase(

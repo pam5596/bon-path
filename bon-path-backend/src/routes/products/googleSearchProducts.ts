@@ -3,6 +3,7 @@ import { ProductsPayloadSchemas } from "@payload";
 import { GoogleSearchProductsUseCase } from "@usecase/index";
 import { productNameExtractService, searchProductService } from "@lib/services";
 import { categoryRepository } from "@lib/repositories";
+import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 export class GoogleSearchProductsRoute extends BaseRoute {
     constructor() {
@@ -15,13 +16,15 @@ export class GoogleSearchProductsRoute extends BaseRoute {
                 successStatusCode: 200
             },
             async (context) => {
-                const query = context.req.query() as any;
+                const query = new ProductsPayloadSchemas.GoogleSearch.GET.Request()
+                    .schema().query.safeParse(context.req.query())
+                if (!query.success) throw this.createError(
+                    ERROR_MESSAGES.route.invalidQuery,
+                    query
+                )
                 
                 const request = new ProductsPayloadSchemas.GoogleSearch.GET.Request({
-                    query: {
-                        keyword: query.keyword,
-                        limit: Number(query.limit) ? Number(query.limit) : undefined  
-                    }
+                    query: query.data
                 })
 
                 const response = await new GoogleSearchProductsUseCase(
