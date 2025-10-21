@@ -6,7 +6,7 @@ import { createLoginSession } from "./_createLoginSession";
 import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 describe('sessionLoginエンドポイントのシステムテスト', () => {
-    withTestFixtures(prisma)
+    withTestFixtures(prisma, false)
 
     test('[POST]sessionLogin ログインセッションIDをCookieで受け取れること', async () => {
         const res = await request('/session/login', {

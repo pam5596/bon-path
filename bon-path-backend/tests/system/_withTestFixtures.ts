@@ -9,6 +9,10 @@ import category_fixtures from "@share/fixtures/categories.json";
 import product_fixtures from "@share/fixtures/products.json";
 import purchase_fixtures from "@share/fixtures/purchases.json";
 
+import { ProductVectorRepository, StoreVectorRepository } from "@repository";
+import { prismaVector } from "@lib/clients";
+import { ProductEntity, StoreEntity } from "@models/entity";
+
 export function withTestFixtures(
     client: PrismaClient,
     checkDBAfterAll: boolean
@@ -58,7 +62,7 @@ export function withTestFixtures(
             `);
 
 
-            await client.store.createMany({ data: store_fixtures })
+            const stores = await client.store.createManyAndReturn({ data: store_fixtures })
             await client.$executeRawUnsafe(`
                 SELECT setval(
                     pg_get_serial_sequence('"Store"', 'id'),
@@ -76,7 +80,7 @@ export function withTestFixtures(
                 );
             `);
 
-            await client.product.createMany({ data: product_fixtures })
+            const products = await client.product.createManyAndReturn({ data: product_fixtures })
             await client.$executeRawUnsafe(`
                 SELECT setval(
                     pg_get_serial_sequence('"Product"', 'id'),
@@ -90,6 +94,24 @@ export function withTestFixtures(
                 SELECT setval(
                     pg_get_serial_sequence('"Purchase"', 'id'),
                     COALESCE((SELECT MAX(id) FROM "Purchase"), 0) + 1,
+                    false
+                );
+            `);
+
+            await new StoreVectorRepository(prismaVector).insertMany(stores.map((s) => StoreEntity.fromPrimitives(s)))
+            await client.$executeRawUnsafe(`
+                SELECT setval(
+                    pg_get_serial_sequence('"StoreVector"', 'id'),
+                    COALESCE((SELECT MAX(id) FROM "StoreVector"), 0) + 1,
+                    false
+                );
+            `);
+
+            await new ProductVectorRepository(prismaVector).insertMany(products.map((p) => ProductEntity.fromPrimitives(p)))
+            await client.$executeRawUnsafe(`
+                SELECT setval(
+                    pg_get_serial_sequence('"ProductVector"', 'id'),
+                    COALESCE((SELECT MAX(id) FROM "ProductVector"), 0) + 1,
                     false
                 );
             `);

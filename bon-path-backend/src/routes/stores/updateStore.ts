@@ -31,6 +31,8 @@ export class UpdateStoreRoute extends BaseRoute {
                 await new UpdateStoreUseCase(
                     { store: storeRepository }
                 ).execute(request)
+
+                return context.body(null, 204)
             },
             new StoresPayloadSchemas.PATCH.Request()
         )

@@ -24,7 +24,7 @@ export class CreateStoreRoute extends BaseRoute {
                     { store: storeRepository }
                 ).execute(request)
 
-                return context.json(response.getBody)
+                return context.json(response.getBody, 201)
             },
             new StoresPayloadSchemas.POST.Request(),
             new StoresPayloadSchemas.POST.Response()

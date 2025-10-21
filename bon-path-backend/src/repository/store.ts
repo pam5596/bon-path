@@ -30,16 +30,16 @@ export default class StoreRepository extends BaseRepository {
                 SELECT *, ST_DistanceSphere(
                     ST_MakePoint(longitude, latitude),
                     ST_MakePoint(
-                        ${filter.location.latitude.value}, 
-                        ${filter.location.longitude.value}
+                        ${filter.location.longitude.value},
+                        ${filter.location.latitude.value}
                     )
                 ) AS distance
                 FROM "Store"
                 WHERE ST_DistanceSphere(
                     ST_MakePoint(longitude, latitude),
                     ST_MakePoint(
-                        ${filter.location.latitude.value}, 
-                        ${filter.location.longitude.value}
+                        ${filter.location.longitude.value},
+                        ${filter.location.latitude.value}
                     )
                 ) <= ${filter.location.radius}
                 ORDER BY distance ASC

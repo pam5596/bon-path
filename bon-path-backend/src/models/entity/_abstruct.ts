@@ -44,7 +44,7 @@ export default abstract class BaseEntity<T extends Record<string, BaseValueObjec
     get toPrimitives(): AsPrimitives<T> {
         return Object.fromEntries(
             Object.entries(this._values).map(
-                ([key, valueObject]) => [key, valueObject.value]
+                ([key, valueObject]) => [key, valueObject ? valueObject.value : undefined]
             )
         ) as AsPrimitives<T>
     }

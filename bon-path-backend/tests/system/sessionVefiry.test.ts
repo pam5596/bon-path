@@ -6,7 +6,7 @@ import { prisma } from "@lib/clients";
 import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 describe('sessionVerifyエンドポイントのシステムテスト', () => {
-    withTestFixtures(prisma)
+    withTestFixtures(prisma, false)
 
     test('[POST]sessionVerify メアド確認セッションIDをCookieで受け取れること', async () => {
         const res = await request(`/session/verify`, {

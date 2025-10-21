@@ -50,7 +50,10 @@ export const googleSearch = new GoogleSearchAPIClient({
 
 export const argon2 = new Argon2Client({ type: argon2id });
 
-export const openAiEmbedding = new OpenAIEmbeddings();
+export const openAiEmbedding = new OpenAIEmbeddings({
+    model: 'text-embedding-3-small',
+    apiKey: process.env.OPEN_AI_API_KEY!,
+});
 
 export const prismaVector = new PrismaVectorClient(openAiEmbedding, prisma);
 

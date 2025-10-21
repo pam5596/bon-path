@@ -47,8 +47,21 @@ import {
     getCategoryProducts,
     gptOcr
 } from '@routes/index';
+import { HTTPException } from 'hono/http-exception';
+import { ZodError } from 'zod';
 
-const app = new OpenAPIHono()
+const app = new OpenAPIHono({
+    defaultHook: (result) => {
+        if (!result.success && result.error instanceof ZodError) 
+            throw new HTTPException(
+                400,
+                {
+                    message: result.error.message,
+                    cause: result.error
+                }
+            )
+    }
+})
 
 app.use('*', corsHandler)
 app.onError(errorHandler)
@@ -84,21 +97,21 @@ app.openapi(deletePurchase.route, deletePurchase.handler)
 app.openapi(getPurchase.route, getPurchase.handler)
 
 app.openapi(createStore.route, createStore.handler)
+app.openapi(vectorSearchStores.route, vectorSearchStores.handler)
+app.openapi(googleMapSearchStores.route,googleMapSearchStores.handler)
 app.openapi(deleteStore.route, deleteStore.handler),
 app.openapi(getStore.route, getStore.handler),
 app.openapi(getStoreProducts.route, getStoreProducts.handler)
 app.openapi(getStores.route, getStores.handler)
-app.openapi(googleMapSearchStores.route,googleMapSearchStores.handler)
 app.openapi(updateStore.route, updateStore.handler)
-app.openapi(vectorSearchStores.route, vectorSearchStores.handler)
 
 app.openapi(createProducts.route, createProducts.handler)
+app.openapi(vectorSearchProducts.route, vectorSearchProducts.handler)
+app.openapi(googleMapSearchProducts.route, googleMapSearchProducts.handler)
 app.openapi(deleteProduct.route, deleteProduct.handler)
 app.openapi(getProduct.route, getProduct.handler)
 app.openapi(getProducts.route, getProducts.handler)
-app.openapi(googleMapSearchProducts.route, googleMapSearchProducts.handler)
 app.openapi(updateProduct.route, updateProduct.handler)
-app.openapi(vectorSearchProducts.route, vectorSearchProducts.handler)
 
 app.openapi(createCategories.route, createCategories.handler)
 app.openapi(deleteCategory.route, deleteCategory.handler)
