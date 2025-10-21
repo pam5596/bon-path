@@ -5,6 +5,7 @@ services:
     volumes:
       - ./bon-path-backend:/bon-path-backend
       - ./share:/share
+      - /bon-path-backend/node_modules
     ports:
       - "8080:8080"
       - "5050:5050"
@@ -18,6 +19,7 @@ services:
     volumes:
       - ./bon-path-backend:/bon-path-backend
       - ./share:/share
+      - /bon-path-backend/node_modules
     ports:
       - "7070:7070"
       - "4040:4040"

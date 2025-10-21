@@ -5,16 +5,14 @@
   "scripts": {
     "app:dev": "NODE_ENV=development dotenv -e .env.develop -e .env -- tsx watch src/run.ts",
     "app:test": "NODE_ENV=test dotenv -e .env.test -e .env -- tsx watch src/run.ts",
+    "app:stage": "NODE_ENV=production dotenv -e .env -- tsx watch src/run.ts",
     "migrate:dev": "dotenv -e .env.develop -- npx prisma migrate dev",
     "migrate:test": "dotenv -e .env.test -- npx prisma migrate dev",
+    "migrate:stage": "dotenv -e .env -- npx prisma migrate deploy",
     "studio:dev": "dotenv -e .env.develop -- npx prisma studio -p 5050",
     "studio:test": "dotenv -e .env.test -- npx prisma studio -p 4040",
     "generate": "npx prisma generate",
-    "test": "dotenv -e .env.test -e .env -- vitest",
-    "build": "esbuild --bundle --outfile=./dist/index.js --platform=node --target=node20 ./src/index.ts",
-    "zip": "zip -j lambda.zip dist/index.js",
-    "update": "aws lambda update-function-code --zip-file fileb://lambda.zip --function-name hello",
-    "deploy": "run-s build zip update"
+    "test": "dotenv -e .env -e .env.test-- vitest"
   },
   "devDependencies": {
     "@types/node": "^24.5.2",
