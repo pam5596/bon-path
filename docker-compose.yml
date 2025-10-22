@@ -1,4 +1,15 @@
 services:
+  frontend:
+    container_name: bon-path-frontend
+    build: ./bon-path-frontend
+    volumes:
+      - ./bon-path-frontend:/bon-path-frontend
+      - /bon-path-frontend/node_modules
+    ports:
+      - "3000:3000"
+    command: sh -c "npm run dev"
+    depends_on:
+      - backend-dev
   backend-dev:
     container_name: bon-path-backend-develop
     build: ./bon-path-backend
