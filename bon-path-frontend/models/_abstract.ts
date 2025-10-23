@@ -1,13 +1,13 @@
 export default abstract class BaseModel<T> {
     constructor(
-        private _values: T
+        protected _values: T
     ) {}
 
     get getValues() {
         return this._values
     }
 
-    abstract setValues(values: Partial<T>): void
+    setValues?(values: Partial<T>): void
 
-    abstract equals(other: BaseModel<T>): boolean
+    abstract equals(other: this): boolean
 }
