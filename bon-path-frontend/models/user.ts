@@ -1,7 +1,7 @@
 import BaseModel from "./_abstract";
 
 export interface User {
-    readonly hashedId: number;
+    readonly hashedId: string;
     name: string;
     email: string;
     password: string;

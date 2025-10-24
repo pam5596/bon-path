@@ -27,6 +27,10 @@ export class ProductModel extends BaseModel<Product> {
         return this._values.storeId
     }
 
+    get categoryId() {
+        return this._values.categoryId
+    }
+
     equals(other: this): boolean {
         return this.id === other.id
     }
