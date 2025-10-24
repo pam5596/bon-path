@@ -4,7 +4,7 @@
         <form>
             <input placeholder="email">
             <input placeholder="password">
-            <button type="submit">送信</button>
+            <button type="submit">ログイン</button>
         </form>
         <button>アカウント登録はこちら</button>
     </div>
