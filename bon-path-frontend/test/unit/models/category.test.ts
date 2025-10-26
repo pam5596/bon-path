@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { CategoryModel } from '../../../models';
+import { CategoryModel } from '../../../app/models';
 
 describe('CategoryModelの単体テスト', () => { 
     const values = {

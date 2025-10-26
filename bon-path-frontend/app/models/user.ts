@@ -4,7 +4,7 @@ export interface User {
     readonly hashedId?: string;
     name: string;
     email: string;
-    password?: string;
+    password: string;
     readonly createdAt?: Date;
 }
 
