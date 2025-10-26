@@ -1,11 +1,11 @@
 import BaseModel from "./_abstract";
 
 export interface Receipt {
-    readonly id: number;
+    readonly id?: number;
     latitude: number;
     longitude: number;
     isChecked: boolean;
-    readonly createdAt: Date;
+    readonly createdAt?: Date;
 }
 
 export class ReceiptModel extends BaseModel<Receipt> {

@@ -1,17 +1,17 @@
 import BaseModel from "./_abstract";
 
 export interface Store {
-    readonly id: number;
+    readonly id?: number;
     name: string;
     image?: string;
     latitude?: number;
     longitude?: number;
     googleMapLink?: string;
-    readonly createdAt: Date;
+    readonly createdAt?: Date;
 }
 
 export class StoreModel extends BaseModel<Store> {
-    setValues(values: Partial<Omit<Store,'id'|'createdAt'>>): void {
+    override setValues(values: Partial<Omit<Store,'id'|'createdAt'>>): void {
         this._values = {
             ...this._values,
             ...values

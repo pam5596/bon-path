@@ -1,13 +1,13 @@
 import BaseModel from "./_abstract";
 
 export interface Purchase {
-    readonly id: number;
+    readonly id?: number;
     readonly receiptId: number;
     readonly storeId: number;
     readonly productId: number;
     quantity: number;
     price: number;
-    readonly createdAt: Date;
+    readonly createdAt?: Date;
 }
 
 export class PurchaseModel extends BaseModel<Purchase> {

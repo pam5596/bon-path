@@ -1,18 +1,18 @@
 import BaseModel from "./_abstract";
 
 export interface Product {
-    readonly id: number;
+    readonly id?: number;
     readonly storeId: number;
     categoryId: number;
     name: string;
     image?: string;
     link?: string;
     price: number;
-    readonly createdAt: Date;
+    readonly createdAt?: Date;
 }
 
 export class ProductModel extends BaseModel<Product> {
-    setValues(values: Partial<Omit<Product,'id'|'storeId'|'createdAt'>>): void {
+    override setValues(values: Partial<Omit<Product,'id'|'storeId'|'createdAt'>>): void {
         this._values = {
             ...this._values,
             ...values

@@ -1,15 +1,15 @@
 import BaseModel from "./_abstract";
 
 export interface User {
-    readonly hashedId: string;
+    readonly hashedId?: string;
     name: string;
     email: string;
-    password: string;
-    readonly createdAt: Date;
+    password?: string;
+    readonly createdAt?: Date;
 }
 
 export class UserModel extends BaseModel<User> {
-    setValues(values: Partial<Omit<User, 'hashedId'|'createdAt'|'password'>>): void {
+    override setValues(values: Partial<Omit<User, 'hashedId'|'createdAt'|'password'>>): void {
         this._values = {
             ...values,
             ...this._values

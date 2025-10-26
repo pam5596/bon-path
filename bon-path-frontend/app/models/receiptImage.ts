@@ -1,10 +1,10 @@
 import BaseModel from "./_abstract";
 
 export interface ReceiptImage {
-    readonly id: number;
+    readonly id?: number;
     readonly receiptId: number;
     url: string;
-    readonly createdAt: Date;
+    readonly createdAt?: Date;
 }
 
 export class ReceiptImageModel extends BaseModel<ReceiptImage> {
