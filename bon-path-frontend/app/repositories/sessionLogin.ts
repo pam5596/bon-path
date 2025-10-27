@@ -1,11 +1,11 @@
 import type { SessionPayloads } from '@share/payloads'
 
 export class SessionLoginRepository {
-    async post(body: SessionPayloads.Login.POST.Request['body']) {
+    async post(payload: SessionPayloads.Login.POST.Request) {
         return await useAPIFetch<undefined>(
             '/session/login', {
                 method: 'post',
-                body
+                body: payload.body
             }
         )
     }

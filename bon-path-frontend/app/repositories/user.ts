@@ -17,11 +17,11 @@ export class UserRepository {
         )
     }
 
-    async getReceipts(query?: UserPayloads.Receipts.GET.Request['query']) {
+    async getReceipts(payload: Omit<UserPayloads.Receipts.GET.Request,'cookies'>) {
         return await useAPIFetch<UserPayloads.Receipts.GET.Response['body']>(
             '/users/receipts', {
                 method: 'get',
-                query
+                query: payload.query
             }
         )
     }
@@ -34,11 +34,11 @@ export class UserRepository {
         )
     }
 
-    async patch(body: UserPayloads.PATCH.Request['body']) {
+    async patch(payload: Omit<UserPayloads.PATCH.Request,'cookies'>) {
         return await useAPIFetch<undefined>(
             '/users', {
                 method: 'patch',
-                body
+                body: payload.body
             }
         )
     }

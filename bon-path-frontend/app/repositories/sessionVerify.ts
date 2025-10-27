@@ -1,11 +1,11 @@
 import type { SessionPayloads } from '@share/payloads'
 
 export class SessionVerifyRepository {
-    async post(body: SessionPayloads.Verify.POST.Request['body']) {
+    async post(payload: SessionPayloads.Verify.POST.Request) {
         return await useAPIFetch<undefined>(
             '/session/verify', {
                 method: 'post',
-                body
+                body: payload.body
             }
         )
     }
