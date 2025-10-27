@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { PurchaseModel } from '../../../models';
+import { PurchaseModel } from '../../../app/models';
 
 describe('PurchaseModelの単体テスト', () => {
     const values = {

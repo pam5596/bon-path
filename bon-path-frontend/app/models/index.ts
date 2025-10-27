@@ -5,3 +5,4 @@ export { StoreModel, type Store } from "./store";
 export { ProductModel, type Product } from "./product";
 export { CategoryModel, type Category } from "./category";
 export { PurchaseModel, type Purchase } from "./purchase";
+export { type ServerError } from "./serverError"

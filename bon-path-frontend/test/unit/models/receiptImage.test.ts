@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { ReceiptImageModel } from '../../../models';
+import { ReceiptImageModel } from '../../../app/models';
 
 describe('ReceiptImageModelの単体テスト', () => { 
     const values = {

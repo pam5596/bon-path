@@ -1,7 +1,7 @@
 import BaseModel from "./_abstract";
 
 export interface Category {
-    readonly id: number;
+    readonly id?: number;
     readonly parentId: number;
     name: string;
 }
