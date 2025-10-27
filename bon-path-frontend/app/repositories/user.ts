@@ -1,5 +1,4 @@
 import type { UserPayloads } from '@share/payloads'
-import type { UserModel } from '~/models'
 
 export class UserRepository {
     async post() {
@@ -35,12 +34,11 @@ export class UserRepository {
         )
     }
 
-    async patch(payload: UserModel) {
-        const { name, email } = payload.getValues
+    async patch(body: UserPayloads.PATCH.Request['body']) {
         return await useAPIFetch<undefined>(
             '/users', {
                 method: 'patch',
-                body: { name, email }
+                body
             }
         )
     }
