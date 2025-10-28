@@ -2,7 +2,9 @@
   <div>
     <v-app>
       <NuxtLayout>
-        <NuxtPage />
+        <NuxtLayout name="loading-overlay">
+          <NuxtPage />
+        </NuxtLayout>
       </NuxtLayout>
     </v-app>
   </div>
