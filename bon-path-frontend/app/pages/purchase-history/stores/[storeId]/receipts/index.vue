@@ -1,25 +1,28 @@
 <template>
     <div>
-        <h1>PurchaseHistoryReceipts</h1>
         <p>{{ $route.params }}</p>
-        <p>店名</p>
-        <ul>
-            <li>
-                <p>日時</p>
-                <button>商品を見る</button>
-                <button>削除</button>
-            </li>
-            <li>
-                <p>日時</p>
-                <button>商品を見る</button>
-                <button>削除</button>
-            </li>
-            <li>
-                <p>日時</p>
-                <button>商品を見る</button>
-                <button>削除</button>
-            </li>
-        </ul>
+        <v-parallax></v-parallax>
+        <h1>店名</h1>
+        <div>
+            <v-card>
+                <v-avatar>
+                    <v-img></v-img>
+                </v-avatar>
+                <v-card-item>
+                    <v-card-title>
+                        2025/10/28 Fri. 10:00
+                    </v-card-title>
+                    <v-card-actions>
+                        <v-btn>
+                            商品を見る
+                        </v-btn>
+                        <v-btn>
+                            削除
+                        </v-btn>
+                    </v-card-actions>
+                </v-card-item>
+            </v-card>
+        </div>
     </div>
 </template>
 

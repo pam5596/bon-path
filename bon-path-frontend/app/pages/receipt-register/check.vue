@@ -15,14 +15,14 @@
                     <v-divider></v-divider>
                     <div>
                         <h2>商品一覧</h2>
-                        <v-list>
-                            <v-list-item>
+                        <div>
+                            <div>
                                 <v-avatar></v-avatar>
                                 <v-autocomplete></v-autocomplete>
                                 <p>100円</p>
                                 <p>×1</p>
-                            </v-list-item>
-                        </v-list>
+                            </div>
+                        </div>
                     </div>
                     <v-btn>登録する</v-btn>
                 </v-form>
