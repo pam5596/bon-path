@@ -1,7 +1,8 @@
 <template>
     <div>
-        <h1>EmailVerify</h1>
-        <button>もう一度送信する</button>
+        <h1>アカウント登録に成功しました</h1>
+        <p>※ベータ版ではメールアドレスの確認はありません</p>
+        <v-btn>ログインへ</v-btn>
     </div>
 </template>
 
