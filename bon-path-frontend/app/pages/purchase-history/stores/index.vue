@@ -1,20 +1,23 @@
 <template>
     <div>
-        <h1>PurchaseHistoryStores</h1>
-        <ul>
-            <li>
-                <p>店名</p>
-                <button>ここでの履歴を見る</button>
-            </li>
-            <li>
-                <p>店名</p>
-                <button>ここでの履歴を見る</button>
-            </li>
-            <li>
-                <p>店名</p>
-                <button>ここでの履歴を見る</button>
-            </li>
-        </ul>
+        <v-card>
+            <v-avatar>
+                <v-img></v-img>
+            </v-avatar>
+            <v-card-item>
+                <v-card-title>
+                    店名
+                </v-card-title>
+                <v-card-subtitle>
+                    ここで10回買い物をしました
+                </v-card-subtitle>
+                <v-card-actions>
+                    <v-btn>
+                        ここでの履歴を見る
+                    </v-btn>
+                </v-card-actions>
+            </v-card-item>
+        </v-card>
     </div>
 </template>
 
