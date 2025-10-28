@@ -17,5 +17,16 @@ export default defineNuxtConfig({
     '@share/*': fileURLToPath(new URL('../share/*', import.meta.url)),
     '@models': fileURLToPath(new URL('./src/models', import.meta.url)),
     '@repositories': fileURLToPath(new URL('./src/repositories', import.meta.url)),
+  },
+
+  routeRules: {
+    '/api/**' : {
+      cors: true,
+      proxy: { to: `${process.env.BACKEND_DOMAIN}/**`}
+    },
+    '/source/**' : {
+      cors: true,
+      proxy: { to: `${process.env.STORAGE_DOMAIN}/**`}
+    }
   }
 })
