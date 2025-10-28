@@ -5,7 +5,7 @@
   "scripts": {
     "test": "NODE_NO_WARNINGS=1 npx vitest",
     "build": "nuxt build",
-    "dev": "NODE_NO_WARNINGS=1 nuxt dev",
+    "dev": "NODE_NO_WARNINGS=1 nuxt dev --dotenv .env.develop",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
