@@ -12,7 +12,7 @@ export default async function() {
     }
 
     const getSessionLogin = async () => {
-        return await useFetch<SessionPayloads.Login.GET.Response['body']>(
+        return await $fetch<SessionPayloads.Login.GET.Response['body']>(
             '/api/session/login'
         )
     }

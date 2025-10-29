@@ -10,7 +10,7 @@ export default async function() {
     }
 
     const getUser = async () => {
-        return await useFetch<UserPayloads.GET.Response['body']>(
+        return await $fetch<UserPayloads.GET.Response['body']>(
             '/api/users'
         )
     }
@@ -18,7 +18,7 @@ export default async function() {
     const getUserReceipts = async (
         payload: Omit<UserPayloads.Receipts.GET.Request,'cookies'>
     ) => {
-        return await useFetch<UserPayloads.Receipts.GET.Response['body']>(
+        return await $fetch<UserPayloads.Receipts.GET.Response['body']>(
             '/api/users/receipts', {
                 query: payload.query
             }
@@ -26,7 +26,7 @@ export default async function() {
     }
 
     const getUserPurchases = async () => {
-        return await useFetch<UserPayloads.Purchases.GET.Response['body']>(
+        return await $fetch<UserPayloads.Purchases.GET.Response['body']>(
             '/api/users/purchases'
         )
     }

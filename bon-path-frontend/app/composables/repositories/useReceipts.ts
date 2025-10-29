@@ -15,7 +15,7 @@ export default async function() {
     const getReceipt = async (
         payload: Omit<ReceiptPayloads.GET.Request,'cookies'>
     ) => {
-        return await useFetch<ReceiptPayloads.GET.Response['body']>(
+        return await $fetch<ReceiptPayloads.GET.Response['body']>(
             `/api/receipts/${payload.params.id}`
         )
     }
@@ -23,7 +23,7 @@ export default async function() {
     const getReceiptPurchases = async (
         payload: ReceiptPayloads.Purchases.GET.Request
     ) => {
-        return await useFetch<ReceiptPayloads.Purchases.GET.Response['body']>(
+        return await $fetch<ReceiptPayloads.Purchases.GET.Response['body']>(
             `/api/receipts/${payload.params.receiptId}/purchases`
         )
     }
@@ -31,7 +31,7 @@ export default async function() {
     const getReceiptImages = async (
         payload: ReceiptPayloads.Images.GET.Request
     ) => {
-        return await useFetch<ReceiptPayloads.Images.GET.Response['body']>(
+        return await $fetch<ReceiptPayloads.Images.GET.Response['body']>(
             `/api/receipts/${payload.params.receiptId}/images`
         )
     }

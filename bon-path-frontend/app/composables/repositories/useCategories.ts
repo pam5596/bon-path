@@ -15,7 +15,7 @@ export default async function() {
     const getCategory = async (
         payload: CategoryPayloads.GET.Request
     ) => {
-        return await useFetch<CategoryPayloads.GET.Response['body']>(
+        return await $fetch<CategoryPayloads.GET.Response['body']>(
             `/api/categories/${payload.params.id}`
         )
     }
@@ -23,7 +23,7 @@ export default async function() {
     const getCategoryChildren = async (
         payload: CategoryPayloads.Children.GET.Request
     ) => {
-        return await useFetch<CategoryPayloads.Children.GET.Response['body']>(
+        return await $fetch<CategoryPayloads.Children.GET.Response['body']>(
             `/api/categories/${payload.params.parentId}/children`
         )
     }
@@ -31,7 +31,7 @@ export default async function() {
     const getCategoryProducts = async (
         payload: CategoryPayloads.Products.GET.Request
     ) => {
-        return await useFetch<CategoryPayloads.Products.GET.Response['body']>(
+        return await $fetch<CategoryPayloads.Products.GET.Response['body']>(
             `/api/categories/${payload.params.categoryId}/products`
         )
     }

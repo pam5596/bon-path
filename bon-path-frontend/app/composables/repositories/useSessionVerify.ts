@@ -13,7 +13,7 @@ export default async function() {
     }
 
     const getSessionVerify = async () => {
-        return await useFetch<SessionPayloads.Verify.GET.Response['body']>(
+        return await $fetch<SessionPayloads.Verify.GET.Response['body']>(
             '/api/session/verify'
         )
     }

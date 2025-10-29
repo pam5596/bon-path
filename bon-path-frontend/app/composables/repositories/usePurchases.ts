@@ -15,7 +15,7 @@ export default async function() {
     const getPurchase = async (
         payload: Omit<PurchasePayloads.GET.Request,'cookies'>
     ) => {
-        return await useFetch<PurchasePayloads.GET.Response['body']>(
+        return await $fetch<PurchasePayloads.GET.Response['body']>(
             `/api/purchases/${payload.params.id}`
         )
     }

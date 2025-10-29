@@ -15,7 +15,7 @@ export default async function() {
     const getProducts = async (
         payload: ProductPayloads.Products.GET.Request
     ) => {
-        return await useFetch<ProductPayloads.Products.GET.Response['body']>(
+        return await $fetch<ProductPayloads.Products.GET.Response['body']>(
             `/api/products`, {
                 query: payload.query
             }
@@ -25,7 +25,7 @@ export default async function() {
     const getProduct = async (
         payload: ProductPayloads.GET.Request
     ) => {
-        return await useFetch<ProductPayloads.GET.Response['body']>(
+        return await $fetch<ProductPayloads.GET.Response['body']>(
             `/api/products/${payload.params.id}`
         )
     }
@@ -33,7 +33,7 @@ export default async function() {
     const getProductsVectorSearch = async (
         payload: ProductPayloads.VectorSearch.GET.Request
     ) => {
-        return await useFetch<ProductPayloads.VectorSearch.GET.Response['body']>(
+        return await $fetch<ProductPayloads.VectorSearch.GET.Response['body']>(
             `/api/products/vector-search`, {
                 query: payload.query
             }
@@ -43,7 +43,7 @@ export default async function() {
     const getProductsGoogleSearch = async (
         payload: ProductPayloads.GoogleSearch.GET.Request
     ) => {
-        return await useFetch<ProductPayloads.GoogleSearch.GET.Response['body']>(
+        return await $fetch<ProductPayloads.GoogleSearch.GET.Response['body']>(
             `/api/products/google-search`, {
                 query: payload.query
             }

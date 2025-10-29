@@ -15,7 +15,7 @@ export default async function() {
     const getStores = async (
         payload: StorePayloads.Stores.GET.Request
     ) => {
-        return await useFetch<StorePayloads.Stores.GET.Response['body']>(
+        return await $fetch<StorePayloads.Stores.GET.Response['body']>(
             `/api/stores`, {
                 query: payload.query
             }
@@ -25,7 +25,7 @@ export default async function() {
     const getStore = async (
         payload: StorePayloads.GET.Request
     ) => {
-        return await useFetch<StorePayloads.GET.Response['body']>(
+        return await $fetch<StorePayloads.GET.Response['body']>(
             `/api/stores/${payload.params.id}`
         )
     }
@@ -33,7 +33,7 @@ export default async function() {
     const getStoreProducts = async (
         payload: StorePayloads.Products.GET.Request
     ) => {
-        return await useFetch<StorePayloads.Products.GET.Response['body']>(
+        return await $fetch<StorePayloads.Products.GET.Response['body']>(
             `/api/stores/${payload.params.storeId}/products`
         )
     }
