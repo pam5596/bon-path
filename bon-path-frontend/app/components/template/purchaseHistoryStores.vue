@@ -3,7 +3,7 @@
         <article>
             <h1>登録履歴</h1>
             <div>
-                <!-- [organism]ここにGoogleMap -->
+                <!-- [molecule]ここにGoogleMap -->
             </div>
             <v-dialog>
                 <v-card>
@@ -26,6 +26,7 @@
                 </v-card>
             </v-dialog>
         </article>
+        <OrganismHomeNavigation />
     </main>
 </template>
 

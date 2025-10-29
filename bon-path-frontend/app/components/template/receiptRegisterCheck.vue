@@ -30,7 +30,7 @@
                 </v-card-text>
             </v-card>
         </article>
-        <!-- [organism]ここにbottom-navigation -->
+        <OrganismHomeNavigation />
     </main>
 </template>
 

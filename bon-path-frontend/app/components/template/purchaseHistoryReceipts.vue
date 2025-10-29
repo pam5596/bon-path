@@ -25,7 +25,7 @@
                 </v-card>
             </div>
         </article>
-        <!-- [organism]ここにbottom-navigation -->
+        <OrganismHomeNavigation />
     </main>
 </template>
 

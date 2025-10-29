@@ -1,8 +1,8 @@
 <template>
     <main>
         <div>
-            <!-- [organism]ここにcamera canvas -->
-            <v-btn></v-btn>
+            <!-- [molecule]ここにcamera canvas -->
+            <v-btn>撮影</v-btn>
             <v-btn>次へ</v-btn>
         </div>
         <v-dialog>
@@ -27,6 +27,7 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
+        <OrganismHomeNavigation />
     </main>
 </template>
 

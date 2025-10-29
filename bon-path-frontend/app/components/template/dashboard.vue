@@ -29,8 +29,7 @@
                 </div>
             </section>
         </article>
-        
-        <!-- [organism]ここにbottom-navigation -->
+        <OrganismHomeNavigation />
     </main>
 </template>
 

@@ -31,7 +31,7 @@
                 </v-card-actions>
             </v-card>
         </article>
-        <!-- [organism]ここにbottom-navigation -->
+        <OrganismHomeNavigation />
     </main>
 </template>
 
