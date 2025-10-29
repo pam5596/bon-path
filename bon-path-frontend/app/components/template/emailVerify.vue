@@ -1,9 +1,11 @@
 <template>
-    <div>
-        <h1>アカウント登録に成功しました</h1>
-        <p>※ベータ版ではメールアドレスの確認はありません</p>
-        <v-btn>ログインへ</v-btn>
-    </div>
+    <main>
+        <article>
+            <h1>アカウント登録に成功しました</h1>
+            <p>※ベータ版ではメールアドレスの確認はありません</p>
+            <v-btn>ログインへ</v-btn>
+        </article>
+    </main>
 </template>
 
 <script setup lang="ts">
