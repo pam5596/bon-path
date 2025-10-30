@@ -1,7 +1,6 @@
 <template>
     <section>
-        <!-- [molecule]ここにcamera canvas -->
-        <v-btn>撮影</v-btn>
+        <v-file-input></v-file-input>
     </section>
 </template>
 

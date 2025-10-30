@@ -6,22 +6,15 @@
             </v-card-title>
             <v-card-text>
                 <v-form>
-                    <div>
-                        <h2>店舗</h2>
-                        <v-avatar></v-avatar>
-                        <v-autocomplete></v-autocomplete>
-                    </div>
+                    <MoleculeReceiptRegisterCheckStoreSelector />
                     <v-divider></v-divider>
                     <div>
                         <h2>商品一覧</h2>
-                        <div>
-                            <div>
-                                <v-avatar></v-avatar>
-                                <v-autocomplete></v-autocomplete>
-                                <p>100円</p>
-                                <p>×1</p>
-                            </div>
-                        </div>
+                        <v-list>
+                            <MoleculeReceiptRegisterCheckProductListItem />
+                            <MoleculeReceiptRegisterCheckProductListItem />
+                            <MoleculeReceiptRegisterCheckProductListItem />
+                        </v-list>
                     </div>
                     <v-btn>登録する</v-btn>
                 </v-form>

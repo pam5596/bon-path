@@ -9,14 +9,11 @@
             </v-card-subtitle>
             <v-divider></v-divider>
             <v-card-text>
-                <div>
-                    <div>
-                        <v-avatar></v-avatar>
-                        <p>商品名</p>
-                        <p>100円</p>
-                        <p>×2</p>
-                    </div>
-                </div>
+                <v-list lines="one">
+                    <MoleculePurchaseHistoryReceiptProductListItem />
+                    <MoleculePurchaseHistoryReceiptProductListItem />
+                    <MoleculePurchaseHistoryReceiptProductListItem />
+                </v-list>
             </v-card-text>
             <v-divider></v-divider>
             <v-card-text>
