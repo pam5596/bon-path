@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="app">
-        <v-parallax></v-parallax>
+        <OrganismReceiptRegisterCheckReceiptParallax />
         <OrganismReceiptRegisterCheckInformationArticle />
     </NuxtLayout>
 </template>
