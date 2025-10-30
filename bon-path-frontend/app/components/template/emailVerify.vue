@@ -1,9 +1,8 @@
 <template>
-    <div>
-        <h1>アカウント登録に成功しました</h1>
-        <p>※ベータ版ではメールアドレスの確認はありません</p>
-        <v-btn>ログインへ</v-btn>
-    </div>
+    <NuxtLayout name="auth">
+        <OrganismEmailVerifySuccessMsgArticle />
+        <OrganismEmailVerifyFailedMsgArticle />
+    </NuxtLayout>
 </template>
 
 <script setup lang="ts">

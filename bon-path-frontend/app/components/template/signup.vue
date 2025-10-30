@@ -1,12 +1,8 @@
 <template>
-    <div>
-        <v-form>
-            <v-text-field label="メールアドレス" />
-            <v-text-field label="パスワード" />
-            <v-btn>ログイン</v-btn>
-        </v-form>
+    <NuxtLayout name="auth">
+        <OrganismSignupForm />
         <v-btn>アカウント登録はこちら</v-btn>
-    </div>
+    </NuxtLayout>
 </template>
 
 <script setup lang="ts">
