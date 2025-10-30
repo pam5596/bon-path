@@ -1,7 +1,8 @@
 <template>
-    <section>
+    <v-form>
         <v-file-input></v-file-input>
-    </section>
+        <v-btn>次へ</v-btn>
+    </v-form>
 </template>
 
 <script setup lang="ts">

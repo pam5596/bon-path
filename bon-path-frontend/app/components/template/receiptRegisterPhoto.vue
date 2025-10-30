@@ -1,7 +1,7 @@
 <template>
     <NuxtLayout name="app">
-        <OrganismReceiptRegisterPhotoUploadSection />
-        <OrganismReceiptRegisterPhotoShowSection />
+        <OrganismReceiptRegisterPhotoUploadForm />
+        <OrganismReceiptRegisterPhotoPreviewArticle/>
     </NuxtLayout>
 </template>
 

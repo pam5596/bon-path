@@ -6,7 +6,10 @@
             </v-card-title>
             <v-card-text>
                 <v-form>
-                    <MoleculeReceiptRegisterCheckStoreSelector />
+                    <div>
+                        <h2>店舗</h2>
+                        <MoleculeReceiptRegisterCheckStoreSelector />
+                    </div>
                     <v-divider></v-divider>
                     <div>
                         <h2>商品一覧</h2>
