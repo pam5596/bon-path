@@ -2,7 +2,7 @@
     <main>
         <!-- <p>{{ $route.params }}</p> -->
         <v-parallax></v-parallax>
-        <OrganismPurchaseHistoryReceiptsStoreReceiptsArticle />
+        <OrganismPurchaseHistoryReceiptsPerStoreArticle />
         <OrganismHomeNavigation />
     </main>
 </template>
