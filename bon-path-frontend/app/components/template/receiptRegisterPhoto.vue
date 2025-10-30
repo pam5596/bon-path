@@ -1,11 +1,8 @@
 <template>
-    <main>
-        <article>
-            <OrganismReceiptRegisterPhotoCameraSection />
-            <OrganismReceiptRegisterPhotoShowSection />
-        </article>
-        <OrganismHomeNavigation />
-    </main>
+    <NuxtLayout name="app">
+        <OrganismReceiptRegisterPhotoCameraSection />
+        <OrganismReceiptRegisterPhotoShowSection />
+    </NuxtLayout>
 </template>
 
 <script setup lang="ts">

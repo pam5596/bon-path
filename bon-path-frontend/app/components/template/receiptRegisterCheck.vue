@@ -1,9 +1,8 @@
 <template>
-    <main>
+    <NuxtLayout name="app">
         <v-parallax></v-parallax>
         <OrganismReceiptRegisterCheckInformationArticle />
-        <OrganismHomeNavigation />
-    </main>
+    </NuxtLayout>
 </template>
 
 <script setup lang="ts">

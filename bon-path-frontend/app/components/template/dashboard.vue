@@ -1,12 +1,9 @@
 <template>
-    <main>
-        <article>
-            <h1>ダッシュボード</h1>
-            <OrganismDashboardUserInfoSection />
-            <OrganismDashboardUnCheckedReceiptsSection />
-        </article>
-        <OrganismHomeNavigation />
-    </main>
+    <NuxtLayout name="app">
+        <h1>ダッシュボード</h1>
+        <OrganismDashboardUserInfoSection />
+        <OrganismDashboardUnCheckedReceiptsSection />
+    </NuxtLayout>
 </template>
 
 <script setup lang="ts">

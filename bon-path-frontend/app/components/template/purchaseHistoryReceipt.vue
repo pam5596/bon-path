@@ -1,10 +1,9 @@
 <template>
-    <main>
+    <NuxtLayout name="app">
         <!-- <p>{{ $route.params }}</p> -->
         <v-parallax></v-parallax>
         <OrganismPurchaseHistoryReceiptInformationArticle />
-        <OrganismHomeNavigation />
-    </main>
+    </NuxtLayout>
 </template>
 
 <script setup lang="ts">

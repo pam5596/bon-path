@@ -1,8 +1,8 @@
 <template>
-    <main>
+    <NuxtLayout name="auth">
         <OrganismSigninForm />
         <v-btn>ログインはこちら</v-btn>
-    </main>
+    </NuxtLayout>
 </template>
 
 <script setup lang="ts">

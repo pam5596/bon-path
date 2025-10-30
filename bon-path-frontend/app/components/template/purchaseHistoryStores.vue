@@ -1,8 +1,7 @@
 <template>
-    <main>
+    <NuxtLayout name="app">
         <OrganismPurchaseHistoryStoresArticle />
-        <OrganismHomeNavigation />
-    </main>
+    </NuxtLayout>
 </template>
 
 <script setup lang="ts">
