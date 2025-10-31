@@ -16,20 +16,21 @@ export default function() {
         alertContent.value = null
     }
 
-    onMounted(()=> {
-        onAlert({
-            type: 'info',
-            title: 'test',
-            text: 'text',
-            forDeveloper: {
-                code: 500,
-                path: '/users',
-                detail: 'ああああ',
-                issue: 'user not found.',
-                instance: 'Service'
-            }
-        })
-    })
+    // [FIXIT]動作テスト用
+    // onMounted(()=> {
+    //     onAlert({
+    //         type: 'info',
+    //         title: 'test',
+    //         text: 'text',
+    //         forDeveloper: {
+    //             code: 500,
+    //             path: '/users',
+    //             detail: 'ああああ',
+    //             issue: 'user not found.',
+    //             instance: 'Service'
+    //         }
+    //     })
+    // })
 
     return {
         dialogIsOpen,
