@@ -1,7 +1,7 @@
 <template>
-    <v-dialog>
-        <AtomAlert />
-    </v-dialog>
+    <v-alert>
+        Alert
+    </v-alert>
 </template>
 
 <script setup lang="ts">
