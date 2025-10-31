@@ -3,7 +3,7 @@ export default function() {
     // * userHashedId: string - ユーザーのハッシュID
     
     // [mount]:
-    // * [POST]/users
+    // * [POST]/users - ユーザーを登録する
 
     
     // [events]:
