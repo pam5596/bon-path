@@ -1,6 +1,6 @@
 <template>
     <v-card-title>
-        撮影したレシート
+        title
     </v-card-title>
 </template>
 

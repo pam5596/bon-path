@@ -1,6 +1,6 @@
 <template>
     <v-card-title>
-        cardCreatedAt
+        createdAt
     </v-card-title>
 </template>
 
