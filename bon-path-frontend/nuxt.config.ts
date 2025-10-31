@@ -31,7 +31,6 @@ export default defineNuxtConfig({
   alias: {
     '@share/*': fileURLToPath(new URL('../share/*', import.meta.url)),
     '@models': fileURLToPath(new URL('./src/models', import.meta.url)),
-    '@repositories': fileURLToPath(new URL('./src/repositories', import.meta.url)),
   },
 
   routeRules: {
