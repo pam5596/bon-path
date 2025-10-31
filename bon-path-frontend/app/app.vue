@@ -2,8 +2,8 @@
   <div>
     <v-app>
       <NuxtLayout>
-        <NuxtLayout name="alert-dialog">
-          <NuxtLayout name="loading-overlay">
+        <NuxtLayout name="alert">
+          <NuxtLayout name="loading">
             <NuxtPage />
           </NuxtLayout>
         </NuxtLayout>
