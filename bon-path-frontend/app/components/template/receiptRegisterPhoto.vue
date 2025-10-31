@@ -1,5 +1,6 @@
 <template>
     <NuxtLayout name="app">
+        <!-- <p>{{ $route.params }}</p> -->
         <OrganismReceiptRegisterPhotoUploadForm />
         <OrganismReceiptRegisterPhotoPreviewArticle/>
     </NuxtLayout>
