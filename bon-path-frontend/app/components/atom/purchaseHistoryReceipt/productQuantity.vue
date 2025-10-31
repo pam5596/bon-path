@@ -1,5 +1,7 @@
 <template>
-    <v-parallax />
+    <v-list-item-subtitle>
+        productQuantity
+    </v-list-item-subtitle>
 </template>
 
 <script setup lang="ts">

@@ -1,5 +1,7 @@
 <template>
-    <v-parallax />
+    <v-card-title>
+        storeName
+    </v-card-title>
 </template>
 
 <script setup lang="ts">
