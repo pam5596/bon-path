@@ -3,6 +3,7 @@ export default function() {
     // * receiptImages: ReceiptImage[] - レシート画像
     // * stores: StoreModel[] - 店舗情報
     // * products: ProductModel[] - 商品情報
+    // * purchases: PurchaseModel[] - 購入履歴
     
     // [mount]:
     // * [POST] /gpt-ocr - レシートをOCR分析する
