@@ -1,7 +1,5 @@
 <template>
-    <v-overlay>
-        <AtomProgress />
-    </v-overlay>
+    <v-progress-circular />
 </template>
 
 <script setup lang="ts">
