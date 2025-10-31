@@ -1,9 +1,7 @@
 <template>
     <div>
         <slot />
-        <v-overlay>
-            <v-progress-circular></v-progress-circular>
-        </v-overlay>
+        <OrganismAlertDialog />
     </div>
 </template>
 

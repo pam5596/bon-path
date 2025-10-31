@@ -1,6 +1,6 @@
 <template>
-    <v-img></v-img>
-    <h1>BON PATH</h1>
+    <AtomAppSymbol />
+    <AtomTypography />
 </template>
 
 <script setup lang="ts">

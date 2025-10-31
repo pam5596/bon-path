@@ -1,9 +1,6 @@
 <template>
     <div>
-        <slot />
-        <v-dialog>
-            <v-alert></v-alert>
-        </v-dialog>
+        Typography
     </div>
 </template>
 

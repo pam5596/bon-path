@@ -1,11 +1,7 @@
 <template>
     <section>
-        <h1>商品登録が終わってないレシートがあります！</h1>
-        <div>
-            <MoleculeDashboardReceiptCard />
-            <MoleculeDashboardReceiptCard />
-            <MoleculeDashboardReceiptCard />
-        </div>
+        <AtomTypography />
+        <MoleculeDashboardReceiptsList />
     </section>
 </template>
 

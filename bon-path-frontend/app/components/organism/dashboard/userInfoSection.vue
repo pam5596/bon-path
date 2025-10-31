@@ -1,7 +1,7 @@
 <template>
     <section>
-        <p>アカウント名</p>
-        <p>メールアドレス</p>
+        <AtomTypography />
+        <AtomTypography />
     </section>
 </template>
 

@@ -1,23 +1,12 @@
 <template>
     <v-card>
-        <v-card-title>
-            撮影したレシート
-        </v-card-title>
+        <AtomReceiptRegisterPhotoTitle />
         <v-card-text>
-            <v-avatar>
-                <v-img></v-img>
-            </v-avatar>
-            <v-avatar>
-                <v-img></v-img>
-            </v-avatar>
-            <v-avatar>
-                <v-img></v-img>
-            </v-avatar>
+            <AtomReceiptRegisterPhotoAvatar />
+            <AtomReceiptRegisterPhotoAvatar />
+            <AtomReceiptRegisterPhotoAvatar />
         </v-card-text>
-        <v-card-actions>
-            <v-btn>登録する</v-btn>
-            <v-btn>キャンセル</v-btn>
-        </v-card-actions>
+        <MoleculeReceiptRegisterPhotoPreviewCardActions />
     </v-card>
 </template>
 
