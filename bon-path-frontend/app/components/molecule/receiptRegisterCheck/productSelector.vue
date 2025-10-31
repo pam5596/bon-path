@@ -1,5 +1,7 @@
 <template>
-    <v-autocomplete></v-autocomplete>
+    <v-autocomplete>
+        <AtomReceiptRegisterCheckProductOption />
+    </v-autocomplete>
 </template>
 
 <script setup lang="ts">

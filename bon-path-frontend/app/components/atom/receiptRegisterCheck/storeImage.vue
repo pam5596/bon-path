@@ -1,5 +1,5 @@
 <template>
-    <v-parallax />
+    <v-img />
 </template>
 
 <script setup lang="ts">

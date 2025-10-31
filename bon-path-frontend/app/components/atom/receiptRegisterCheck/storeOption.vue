@@ -1,5 +1,7 @@
 <template>
-    <v-parallax />
+    <v-list-item>
+        storeOption
+    </v-list-item>
 </template>
 
 <script setup lang="ts">
