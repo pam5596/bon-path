@@ -1,6 +1,7 @@
 <template>
     <div>
         <main>
+            <AtomTypography />
             <slot />
         </main>
         <footer>

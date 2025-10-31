@@ -1,6 +1,5 @@
 <template>
     <NuxtLayout name="app">
-        <AtomTypography />
         <OrganismDashboardUserInfoSection />
         <OrganismDashboardUnCheckedReceiptsSection />
     </NuxtLayout>
