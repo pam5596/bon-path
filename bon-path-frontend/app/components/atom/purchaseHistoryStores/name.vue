@@ -1,7 +1,7 @@
 <template>
-    <v-dialog>
-        <MoleculePurchaseHistoryStoresCard />
-    </v-dialog>
+    <v-card-title>
+        name
+    </v-card-title>
 </template>
 
 <script setup lang="ts">

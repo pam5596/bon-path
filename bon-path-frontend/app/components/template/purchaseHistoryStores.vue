@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="app">
-        <h1>登録履歴</h1>
+        <AtomTypography />
         <OrganismPurchaseHistoryStoresGoogleMapFrame />
         <OrganismPurchaseHistoryStoresInfoDialog />
     </NuxtLayout>

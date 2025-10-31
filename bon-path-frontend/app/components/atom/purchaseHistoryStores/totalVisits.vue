@@ -1,7 +1,7 @@
 <template>
-    <v-dialog>
-        <MoleculePurchaseHistoryStoresCard />
-    </v-dialog>
+    <v-card-subtitle>
+        totalVisits
+    </v-card-subtitle>
 </template>
 
 <script setup lang="ts">
