@@ -11,8 +11,8 @@ export default function() {
     // * [GET] /receipts/:receiptId - レシート情報を取得する
     // * [GET] /receipts/:receiptId/images - レシート画像を取得する
     // * [GET] /receipts/:receiptId/purchases - レシートの購入履歴を取得する
-    // * [GET] /products/:productId - 商品情報を取得する
-    
+    // * [GET] /products/:productId - 商品情報
+
     // [events]:
     // * onDeleteReceipt: ボタン押下でレシートを削除する
 }
