@@ -1,6 +1,5 @@
 <template>
-    <AtomAppSymbol />
-    <AtomTypography />
+    <v-img />
 </template>
 
 <script setup lang="ts">
