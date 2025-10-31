@@ -1,6 +1,6 @@
 <template>
     <section>
-        <h1>商品登録が終わってないレシートがあります！</h1>
+        <AtomTypography />
         <div>
             <MoleculeDashboardReceiptCard />
             <MoleculeDashboardReceiptCard />
