@@ -2,7 +2,7 @@
     <article>
         <v-card>
             <AtomPurchaseHistoryReceiptStoreName />
-            <AtomPurchaseHistoryReceiptPurchasedAt />
+            <AtomPurchaseHistoryReceiptCreatedAt />
             <v-divider />
             <v-card-text>
                 <MoleculePurchaseHistoryReceiptInfoProducts />

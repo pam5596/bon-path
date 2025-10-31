@@ -1,6 +1,6 @@
 <template>
     <v-card-subtitle>
-        purchasedAt
+        createdAt
     </v-card-subtitle>
 </template>
 

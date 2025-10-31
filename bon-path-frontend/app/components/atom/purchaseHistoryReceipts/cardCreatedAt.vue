@@ -1,5 +1,7 @@
 <template>
-    <v-parallax />
+    <v-card-title>
+        cardCreatedAt
+    </v-card-title>
 </template>
 
 <script setup lang="ts">

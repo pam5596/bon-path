@@ -1,11 +1,7 @@
 <template>
     <section>
         <AtomTypography />
-        <div>
-            <MoleculeDashboardReceiptCard />
-            <MoleculeDashboardReceiptCard />
-            <MoleculeDashboardReceiptCard />
-        </div>
+        <MoleculeDashboardReceiptsList />
     </section>
 </template>
 

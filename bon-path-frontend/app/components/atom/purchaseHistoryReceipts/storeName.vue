@@ -1,5 +1,5 @@
 <template>
-    <v-parallax />
+    <AtomTypography />
 </template>
 
 <script setup lang="ts">
