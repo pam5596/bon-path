@@ -1,10 +1,10 @@
 <template>
     <v-card>
         <v-avatar>
-            <AtomPurchaseHistoryReceiptsCardImage />
+            <AtomPurchaseHistoryReceiptsImage />
         </v-avatar>
         <v-card-item>
-            <AtomPurchaseHistoryReceiptsCardCreatedAt />
+            <AtomPurchaseHistoryReceiptsCreatedAt />
             <MoleculePurchaseHistoryReceiptsCardActions />
         </v-card-item>
     </v-card>
