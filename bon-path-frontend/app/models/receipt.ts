@@ -6,6 +6,8 @@ export interface Receipt {
     longitude: number;
     isChecked: boolean;
     readonly createdAt?: Date;
+    
+    images: ReceiptImageModel[];
 }
 
 export class ReceiptModel extends BaseModel<Receipt> {

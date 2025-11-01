@@ -1,8 +1,8 @@
 import type { VAlert } from "vuetify/components"
 import { FetchError } from 'ofetch'
 
-export default function (
-    event: () => Promise<void>,
+export default function <ParamsT>(
+    event: (args: ParamsT) => Promise<void>,
     successMessage?: {
         title: VAlert['title'],
         text: VAlert['text']
@@ -11,10 +11,10 @@ export default function (
     const { overlayIsOpen } = useLoading()
     const { onAlert } = useAlert()
 
-    return async () => {
+    return async (args: ParamsT) => {
         overlayIsOpen.value = true
         try {
-            await event()
+            await event(args)
             if (successMessage) onAlert({
                 type: 'success',
                 ...successMessage
