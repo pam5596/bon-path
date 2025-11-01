@@ -1,6 +1,6 @@
 import type { ReceiptImagePayloads } from '@share/payloads'
 
-export default async function() {
+export default function() {
     const postReceiptImages = async (
         payload: ReceiptImagePayloads.POST.Request
     ) => {

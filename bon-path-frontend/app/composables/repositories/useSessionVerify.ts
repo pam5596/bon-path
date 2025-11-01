@@ -1,6 +1,6 @@
 import type { SessionPayloads } from '@share/payloads'
 
-export default async function() {
+export default function() {
     const postSessionVerify = async (
         payload: SessionPayloads.Verify.POST.Request
     ) => {

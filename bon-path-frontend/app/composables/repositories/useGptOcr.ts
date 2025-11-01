@@ -1,6 +1,6 @@
 import type { GptOcrPayloads } from "@share/payloads";
 
-export default async function() {
+export default function() {
     const postGptOcr = async (
         payload: GptOcrPayloads.POST.Request
     ) => {

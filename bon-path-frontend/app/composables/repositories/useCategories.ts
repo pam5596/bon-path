@@ -1,6 +1,6 @@
 import type { CategoryPayloads } from "@share/payloads";
 
-export default async function() {
+export default function() {
     const postCategories = async (
         payload: CategoryPayloads.POST.Request
     ) => {

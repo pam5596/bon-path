@@ -1,6 +1,6 @@
 import type { StorePayloads } from "@share/payloads";
 
-export default async function() {
+export default function() {
     const postStore = async (
         payload: StorePayloads.POST.Request
     ) => {

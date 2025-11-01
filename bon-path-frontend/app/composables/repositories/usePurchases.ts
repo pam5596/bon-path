@@ -1,6 +1,6 @@
 import type { PurchasePayloads } from '@share/payloads'
 
-export default async function() {
+export default function() {
     const postPurchases = async (
         payload: Omit<PurchasePayloads.POST.Request, 'cookies'>
     ) => {

@@ -8,6 +8,11 @@ export default defineNuxtConfig({
   build: {
     transpile: ['vuetify']
   },
+  imports: {
+    dirs: [
+      '~/composables/**',
+    ]
+  },
   modules: [
     '@nuxt/test-utils/module',
     '@nuxt/icon',

@@ -1,6 +1,6 @@
 import type { UserPayloads } from '@share/payloads'
 
-export default async function() {
+export default function() {
     const postUser = async () => {
         return await $fetch<UserPayloads.POST.Response['body']>(
             '/api/users', {
