@@ -3,7 +3,7 @@ import { FetchError } from 'ofetch'
 
 export default function (
     event: () => Promise<void>,
-    successMessage: {
+    successMessage?: {
         title: VAlert['title'],
         text: VAlert['text']
     }
@@ -15,7 +15,7 @@ export default function (
         overlayIsOpen.value = true
         try {
             await event()
-            onAlert({
+            if (successMessage) onAlert({
                 type: 'success',
                 ...successMessage
             })

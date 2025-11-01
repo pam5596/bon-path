@@ -4,7 +4,7 @@ import type { ServerError } from "~/models"
 export default async function <ResponseT>(
     key: Parameters<typeof useAsyncData>[0],
     handler: Parameters<typeof useAsyncData<ResponseT>>[1],
-    successMessage: {
+    successMessage?: {
         title: VAlert['title'],
         text: VAlert['text']
     }
@@ -25,7 +25,7 @@ export default async function <ResponseT>(
     })
 
     watch(status, (status) => {
-        if (status === 'success') onAlert({
+        if (successMessage && status === 'success') onAlert({
             type: 'success',
             ...successMessage
         })
