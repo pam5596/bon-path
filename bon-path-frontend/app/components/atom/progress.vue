@@ -1,5 +1,5 @@
 <template>
-    <v-progress-circular />
+    <v-progress-circular indeterminate />
 </template>
 
 <script setup lang="ts">
