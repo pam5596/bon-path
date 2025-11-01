@@ -1,10 +1,8 @@
 export default function() {
-    const dialogIsOpen = ref(false)
     const alertContent = useState<STATE_TYPES['ALERT']>(STATE_KEYS.ALERT, () => null)
-
+    
     const onAlert = (newAlertContent: STATE_TYPES['ALERT']) => {
         alertContent.value = newAlertContent
-        dialogIsOpen.value = true
 
         setTimeout(() => {
             onCloseAlert()
@@ -12,7 +10,6 @@ export default function() {
     }
 
     const onCloseAlert = () => {
-        dialogIsOpen.value = false
         alertContent.value = null
     }
 
@@ -33,7 +30,6 @@ export default function() {
     // })
 
     return {
-        dialogIsOpen,
         alertContent,
         onAlert,
         onCloseAlert
