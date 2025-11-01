@@ -27,8 +27,7 @@ export default async function <ResponseT>(
     watch(status, (status) => {
         if (status === 'success') onAlert({
             type: 'success',
-            title: successMessage.title,
-            text: successMessage.text
+            ...successMessage
         })
     })
 
