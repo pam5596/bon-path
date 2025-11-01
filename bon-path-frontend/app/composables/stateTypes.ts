@@ -1,5 +1,4 @@
 import type { VAlert } from 'vuetify/components';
-import type { ServerError } from '~/models';
 
 export interface STATE_TYPES {
     ALERT: {
