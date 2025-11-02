@@ -9,7 +9,7 @@ export interface Store {
     googleMapLink?: string;
     readonly createdAt?: Date;
 
-    purchases: PurchaseModel[]
+    purchases?: PurchaseModel[]
 }
 
 export class StoreModel extends BaseModel<Store> {

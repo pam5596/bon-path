@@ -5,6 +5,8 @@ export default function() {
     return useAsyncOnRender(
         'render-purchase-history-stores-usecase',
         async () => {
+            // [TODO]: いずれここの処理はひとつのAPIFetchで完結する可能性がある
+            // [GET] - /users/purchases/stores
             const purchases = await getUserPurchases()
 
             const unique_store_ids = [
