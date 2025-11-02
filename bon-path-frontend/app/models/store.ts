@@ -8,6 +8,8 @@ export interface Store {
     longitude?: number;
     googleMapLink?: string;
     readonly createdAt?: Date;
+
+    purchases: PurchaseModel[]
 }
 
 export class StoreModel extends BaseModel<Store> {
