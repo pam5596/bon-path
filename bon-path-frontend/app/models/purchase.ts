@@ -8,6 +8,8 @@ export interface Purchase {
     quantity: number;
     price: number;
     readonly createdAt?: Date;
+
+    product?: ProductModel
 }
 
 export class PurchaseModel extends BaseModel<Purchase> {
