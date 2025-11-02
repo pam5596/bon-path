@@ -8,6 +8,7 @@ import {
     deleteLoginSession,
     getVerifySession,
     createVerifySession,
+    deleteVerifySession,
     createUser,
     getUser,
     updateUser,
@@ -74,6 +75,7 @@ app.openapi(createLoginSession.route, createLoginSession.handler)
 app.openapi(deleteLoginSession.route, deleteLoginSession.handler)
 app.openapi(getVerifySession.route, getVerifySession.handler)
 app.openapi(createVerifySession.route, createVerifySession.handler)
+app.openapi(deleteVerifySession.route, deleteVerifySession.handler)
 
 app.openapi(createUser.route, createUser.handler)
 app.openapi(getUser.route, getUser.handler)

@@ -13,4 +13,8 @@ export const verifySessionPaths: {
         path: '/users',
         method: 'post'
     },
+    {
+        path: '/session/verify',
+        method: 'delete'
+    },
 ]

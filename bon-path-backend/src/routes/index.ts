@@ -13,6 +13,9 @@ export const getVerifySession = new GetVerifySessionRoute()
 import { CreateVerifySessionRoute } from "./session/createVerifySession";
 export const createVerifySession = new CreateVerifySessionRoute()
 
+import { DeleteVerifySessionRoute } from "./session/deleteVerifySession";
+export const deleteVerifySession = new DeleteVerifySessionRoute()
+
 import { CreateUserRoute } from "./users/createUser";
 export const createUser = new CreateUserRoute()
 
