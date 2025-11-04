@@ -8,12 +8,15 @@ import {
     deleteLoginSession,
     getVerifySession,
     createVerifySession,
+    deleteVerifySession,
     createUser,
     getUser,
     updateUser,
     deleteUser,
     getUserReceipts,
     getUserPurchases,
+    getUserPurchasesStores,
+    getUserPurchasesStoreReceipts,
     createReceipt,
     deleteReceipt,
     getReceipt,
@@ -74,6 +77,7 @@ app.openapi(createLoginSession.route, createLoginSession.handler)
 app.openapi(deleteLoginSession.route, deleteLoginSession.handler)
 app.openapi(getVerifySession.route, getVerifySession.handler)
 app.openapi(createVerifySession.route, createVerifySession.handler)
+app.openapi(deleteVerifySession.route, deleteVerifySession.handler)
 
 app.openapi(createUser.route, createUser.handler)
 app.openapi(getUser.route, getUser.handler)
@@ -81,6 +85,8 @@ app.openapi(updateUser.route, updateUser.handler)
 app.openapi(deleteUser.route, deleteUser.handler)
 app.openapi(getUserReceipts.route, getUserReceipts.handler)
 app.openapi(getUserPurchases.route, getUserPurchases.handler)
+app.openapi(getUserPurchasesStores.route, getUserPurchasesStores.handler)
+app.openapi(getUserPurchasesStoreReceipts.route, getUserPurchasesStoreReceipts.handler)
 
 app.openapi(createReceipt.route, createReceipt.handler)
 app.openapi(deleteReceipt.route, deleteReceipt.handler)

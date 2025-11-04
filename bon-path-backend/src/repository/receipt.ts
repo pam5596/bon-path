@@ -32,7 +32,7 @@ export default class ReceiptRepository extends BaseRepository {
 
     @queryHandler
     async selectByUserId(userId: Id, filter?: { isChecked: ReceiptIsChecked }) {
-        const find_result = await this.client.receipt.findMany({
+        const find_results = await this.client.receipt.findMany({
             where: {
                 userId: userId.value,
                 ...filter ? Object.fromEntries(
@@ -41,7 +41,23 @@ export default class ReceiptRepository extends BaseRepository {
             }
         });
 
-        return find_result.map((receipt) => ReceiptEntity.fromPrimitives(receipt))
+        return find_results.map((receipt) => ReceiptEntity.fromPrimitives(receipt))
+    }
+
+    @queryHandler
+    async selectByUserPurchasesStore(userId: Id, storeId: Id) {
+        const find_results = await this.client.receipt.findMany({
+            where: {
+                purchases: {
+                    some: { 
+                        userId: userId.value, 
+                        storeId: storeId.value 
+                    }
+                }
+            },
+            distinct: ['id']
+        })
+        return find_results.map((receipt) => ReceiptEntity.fromPrimitives(receipt))
     }
 
     @queryHandler
