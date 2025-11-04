@@ -4,6 +4,7 @@ export type PathsEnum =
     '/users' |
     '/users/receipts' |
     '/users/purchases' |
+    '/users/purchases/stores' |
     '/receipts' |
     '/receipts/:id' |
     '/receipts/:receiptId/purchases' |
