@@ -16,6 +16,7 @@ import {
     getUserReceipts,
     getUserPurchases,
     getUserPurchasesStores,
+    getUserPurchasesStoreReceipts,
     createReceipt,
     deleteReceipt,
     getReceipt,
@@ -85,6 +86,7 @@ app.openapi(deleteUser.route, deleteUser.handler)
 app.openapi(getUserReceipts.route, getUserReceipts.handler)
 app.openapi(getUserPurchases.route, getUserPurchases.handler)
 app.openapi(getUserPurchasesStores.route, getUserPurchasesStores.handler)
+app.openapi(getUserPurchasesStoreReceipts.route, getUserPurchasesStoreReceipts.handler)
 
 app.openapi(createReceipt.route, createReceipt.handler)
 app.openapi(deleteReceipt.route, deleteReceipt.handler)

@@ -12,6 +12,7 @@ export const ROUTE_DESCRIPTIONS = {
     getUserReceipts: 'ユーザーのレシート一覧を取得する。',
     getUserPurchases: 'ユーザーの購入履歴一覧を取得する。',
     getUserPurchasesStores: 'ユーザーの購入履歴の店舗一覧を取得する。',
+    getUserPurchasesStoreReceipts: 'ユーザーの購入履歴の店舗ごとのレシート一覧を取得する。',
     createReceipt: '新規のレシート情報を登録し、IDを返す。',
     getReceipt: 'パスパラメータのIDからレシート情報を返す。',
     updateReceipt: 'パスパラメータのIDからレシート情報を更新する。',

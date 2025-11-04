@@ -1,7 +1,8 @@
 import { z } from "@hono/zod-openapi";
 import BasePayload from "../_abstruct";
 import { UserPayloads } from "@share/payloads";
-import { CreatedAt, Id, PurchasePrice, PurchaseQuantity, StoreGoogleMapLink, StoreImage, StoreLatitude, StoreLongitude, StoreName } from "@models/valueObject";
+import { CreatedAt, Id, PurchasePrice, PurchaseQuantity, ReceiptIsChecked, ReceiptLatitude, ReceiptLongitude, StoreGoogleMapLink, StoreImage, StoreLatitude, StoreLongitude, StoreName } from "@models/valueObject";
+import BaseValueObject from "@models/valueObject/_abstruct";
 
 export namespace PurchasesSchemas {
     export namespace GET {
@@ -96,6 +97,61 @@ export namespace PurchasesSchemas {
                                 createdAt: new CreatedAt(store.createdAt)
                             })
                         )
+                    }
+                }
+            }
+        }
+
+        export namespace Receipts {
+            export namespace GET {
+                export class Request extends BasePayload<UserPayloads.Purchases.Stores.Receipts.GET.Request> {
+                    schema() {
+                        return {
+                            cookies: z.strictObject({
+                                loginSessionId: z.string()
+                            }),
+                            params: z.strictObject({
+                                storeId: Id.paramSchema()
+                            })
+                        }
+                    }
+
+                    toValueObjectParams() {
+                        return {
+                            storeId: new Id(this.getParams.storeId)
+                        }
+                    }
+                }
+                
+                export class Response extends BasePayload<UserPayloads.Purchases.Stores.Receipts.GET.Response> {
+                    schema() {
+                        return {
+                            body: z.strictObject({
+                                receipts: z.array(
+                                    z.strictObject({
+                                        id: Id.paramSchema(),
+                                        latitude: ReceiptLatitude.schema(),
+                                        longitude: ReceiptLongitude.schema(),
+                                        isChecked: ReceiptIsChecked.schema(),
+                                        createdAt: CreatedAt.schema()
+                                    })
+                                )
+                            })
+                        }
+                    }
+        
+                    toValueObjectBody() {
+                        return {
+                            receipts: this.getBody.receipts.map(
+                                (receipt) => ({
+                                    id: new Id(receipt.id),
+                                    latitude: new ReceiptLatitude(receipt.latitude),
+                                    longitude: new ReceiptLongitude(receipt.longitude),
+                                    isChecked: new ReceiptIsChecked(receipt.isChecked),
+                                    createdAt: new CreatedAt(receipt.createdAt)
+                                })
+                            )
+                        }
                     }
                 }
             }

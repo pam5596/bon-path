@@ -119,6 +119,31 @@ export namespace UserPayloads {
                     }
                 }
             }
+
+            export namespace Receipts {
+                export namespace GET {
+                    export type Request = {
+                        cookies: {
+                            loginSessionId: string
+                        },
+                        params: {
+                            storeId: number
+                        }
+                    }
+
+                    export type Response = {
+                        body: {
+                            receipts: {
+                                id: number,
+                                latitude: number,
+                                longitude: number,
+                                isChecked: boolean,
+                                createdAt: Date
+                            }[]
+                        }
+                    }
+                }
+            }
         }
     }
 }
