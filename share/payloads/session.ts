@@ -70,5 +70,13 @@ export namespace SessionPayloads {
                 }
             }
         }
+
+        export namespace DELETE {
+            export type Request = {
+                cookies: {
+                    verifySessionId: string
+                }
+            }
+        }
     }
 }

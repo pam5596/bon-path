@@ -7,12 +7,12 @@ import { DefaultArgs } from "@prisma/client/runtime/library";
 
 export default class ProductRepository extends BaseRepository {
     @queryHandler
-    async insertMany(products: ProductEntity[]) {
-        const create_result = await this.client.product.createManyAndReturn({
-            data: products.map((product) => product.toPrimitives)
+    async insert(product: ProductEntity) {
+        const result = await this.client.product.create({
+            data: product.toPrimitives
         })
 
-        return create_result.map((product) => ProductEntity.fromPrimitives(product))
+        return ProductEntity.fromPrimitives(result)
     }
 
     @queryHandler
