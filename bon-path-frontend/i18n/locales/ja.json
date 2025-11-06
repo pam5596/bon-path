@@ -57,5 +57,17 @@
             "productsHeading": "商品情報一覧",
             "onSubmitBtn": "登録する"
         }
+    },
+    "receiptRegisterPhoto": {
+        "previewCard": {
+            "title": "撮影したレシート",
+            "actions": {
+                "toCheckBtn": "今すぐ登録する",
+                "toDashBoardBtn": "あとで登録する"
+            }
+        },
+        "uploadForm": {
+            "onOpenDialogBtn": "次へ"
+        }
     }
 }

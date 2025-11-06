@@ -1,6 +1,8 @@
 <template>
     <v-card>
-        <AtomReceiptRegisterPhotoTitle />
+        <AtomReceiptRegisterPhotoTitle>
+            {{ $t("receiptRegisterPhoto.previewCard.title") }}
+        </AtomReceiptRegisterPhotoTitle>
         <v-card-text>
             <AtomReceiptRegisterPhotoAvatar />
             <AtomReceiptRegisterPhotoAvatar />
