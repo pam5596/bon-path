@@ -69,5 +69,22 @@
         "uploadForm": {
             "onOpenDialogBtn": "次へ"
         }
+    },
+    "signIn": {
+        "form": {
+            "name": "ユーザー名",
+            "email": "メールアドレス",
+            "password": "パスワード",
+            "onSubmitBtn": "アカウント登録"
+        },
+        "toSignUpBtn": "ログインはこちら"
+    },
+    "signUp": {
+        "form": {
+            "email": "メールアドレス",
+            "password": "パスワード",
+            "onSubmitBtn": "ログイン"
+        },
+        "toSignInBtn": "アカウント登録はこちら"
     }
 }
