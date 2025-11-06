@@ -1,4 +1,4 @@
-import type { StorePayloads } from "@share/payloads";
+import type { StorePayloads } from "@@/../share/payloads";
 
 export default function() {
     const postStore = async (

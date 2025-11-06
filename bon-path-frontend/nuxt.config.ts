@@ -44,10 +44,8 @@ export default defineNuxtConfig({
     },
   },
   alias: {
-    '@share/*': fileURLToPath(new URL('../share/*', import.meta.url)),
-    '@models': fileURLToPath(new URL('./src/models', import.meta.url)),
+    '@models': fileURLToPath(new URL('./src/models', import.meta.url))
   },
-
   routeRules: {
     '/api/**' : {
       cors: true,

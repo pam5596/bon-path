@@ -1,4 +1,4 @@
-import type { CategoryPayloads } from "@share/payloads";
+import type { CategoryPayloads } from "@@/../share/payloads";
 
 export default function() {
     const postCategories = async (

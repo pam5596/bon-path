@@ -1,4 +1,4 @@
-import type { PurchasePayloads } from '@share/payloads'
+import type { PurchasePayloads } from '@@/../share/payloads'
 
 export default function() {
     const postPurchases = async (
