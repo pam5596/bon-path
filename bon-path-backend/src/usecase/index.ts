@@ -7,6 +7,11 @@ export { GetUserUseCase } from "./users/getUser";
 export { CreateUserUseCase } from "./users/createUser";
 export { UpdateUserUseCase } from "./users/updateUser";
 export { DeleteUserUseCase } from "./users/deleteUser";
+export { GetUserReceiptsUseCase } from "./users/getUserReceipts";
+export { GetUserPurchasesUseCase } from "./users/getUserPurchases";
+export { GetUserPurchasesStoresUseCase } from "./users/getUserPurchasesStores";
+export { GetUserPurchasesStoreReceiptsUseCase } from "./users/getUserPurchasesStoreReceipts"
+
 export { GetReceiptPurchasesUsecase } from "./receipts/getReceiptPutchases";
 export { GetReceiptImagesUsecase } from "./receipts/getReceiptImages";
 

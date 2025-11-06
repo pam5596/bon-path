@@ -68,4 +68,16 @@ export namespace VerifySchemas {
             }
         }
     }
+
+    export namespace DELETE {
+            export class Request extends BasePayload<SessionPayloads.Verify.DELETE.Request> {
+                schema() {
+                    return {
+                        cookies: z.strictObject({
+                            verifySessionId: z.string()
+                        })
+                    }
+                }
+            }
+        }
 }

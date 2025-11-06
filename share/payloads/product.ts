@@ -22,14 +22,18 @@ export namespace ProductPayloads {
     export namespace POST {
         export type Request = {
             body: {
-                products: {
-                    storeId: number,
-                    categoryId: number,
-                    name: string,
-                    image?: string,
-                    link?: string,
-                    price: number
-                }[]
+                storeId: number,
+                categoryId: number,
+                name: string,
+                image?: string,
+                link?: string,
+                price: number
+            }
+        }
+
+        export type Response = {
+            body: {
+                id: number;
             }
         }
     }

@@ -14,9 +14,8 @@ export class CreateProductsUseCase implements BaseUseCase<
     async execute(request: ProductsPayloadSchemas.POST.Request) {
         const body = request.toValueObjectBody()
 
-        const products = body.products.map(
-            product => new ProductEntity(product)
-        )
-        await this.repositories.product.insertMany(products)
+        const product = new ProductEntity(body)
+        
+        await this.repositories.product.insert(product)
     }
 }
