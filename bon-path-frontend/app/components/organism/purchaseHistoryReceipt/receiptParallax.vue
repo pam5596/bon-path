@@ -6,7 +6,7 @@
 const { receiptImagesFixture } = useFixtures()
 const { receiptId } = useIdParams(['receiptId', 'storeId'])
 
-const receiptImage = ref(receiptImagesFixture.find(
+const receiptImage = computed(() => receiptImagesFixture.find(
     (image) => image.receiptId == receiptId )
 )
 

@@ -14,7 +14,7 @@
             "receiptCard": {
                 "actions": {
                     "toCheckBtn": "今すぐ登録する",
-                    "onDeleteBtn": "削除する"
+                    "onDeleteBtn": "レシートを削除する"
                 }
             }
         }
@@ -37,6 +37,12 @@
             "quantityUnit": "x"
         },
         "infoActions": {
+            "onDeleteBtn": "購入履歴を削除する"
+        }
+    },
+    "purchaseHistoryReceipts": {
+        "cardActions": {
+            "toReceiptBtn": "商品一覧を見る",
             "onDeleteBtn": "購入履歴を削除する"
         }
     }
