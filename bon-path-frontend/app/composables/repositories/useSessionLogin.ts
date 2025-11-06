@@ -1,6 +1,6 @@
 import type { SessionPayloads } from '@share/payloads'
 
-export default async function() {
+export default function() {
     const postSessionLogin = async (
         payload: SessionPayloads.Login.POST.Request
     ) => {

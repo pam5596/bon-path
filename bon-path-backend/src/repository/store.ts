@@ -72,16 +72,30 @@ export default class StoreRepository extends BaseRepository {
 
     @queryHandler
     async selectByIds(ids: Id[]) {
-        const find_result = await this.client.store.findMany({
+        const find_results = await this.client.store.findMany({
             where: {
                 id: { 
                     in: ids.map(id => id.value)
                 }
             }
         })
-        return find_result.map((store) => StoreEntity.fromPrimitives(store));
+        return find_results.map((store) => StoreEntity.fromPrimitives(store));
     }
     
+
+    @queryHandler
+    async selectByUserPurchases(userId: Id) {
+        const find_results = await this.client.store.findMany({
+            where: {
+                purchases: {
+                    some: { userId: userId.value }
+                }
+            },
+            distinct: ['id']
+        })
+
+        return find_results.map((store) => StoreEntity.fromPrimitives(store));
+    }
 
     @queryHandler
     async update(store: StoreEntity) {

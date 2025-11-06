@@ -6,6 +6,8 @@ export interface Receipt {
     longitude: number;
     isChecked: boolean;
     readonly createdAt?: Date;
+    
+    images: ReceiptImageModel[];
 }
 
 export class ReceiptModel extends BaseModel<Receipt> {
@@ -18,6 +20,15 @@ export class ReceiptModel extends BaseModel<Receipt> {
 
     get id() {
         return this._values.id
+    }
+
+    get images() {
+        return this._values.images
+    }
+
+    get getModelValues() {
+        const { images, ...values } = this._values
+        return values;
     }
 
     equals(other: this): boolean {

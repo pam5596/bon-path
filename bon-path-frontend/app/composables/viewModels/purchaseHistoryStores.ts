@@ -1,6 +1,5 @@
 export default function() {
     // [ref]: 
-    // * purchases: Purchases[] - 購入履歴
     // * stores: StoreModel[] - 店舗情報
     
     // [mount]:

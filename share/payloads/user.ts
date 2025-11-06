@@ -96,5 +96,54 @@ export namespace UserPayloads {
                 }
             }
         }
+
+        export namespace Stores {
+            export namespace GET {
+                export type Request = {
+                    cookies: {
+                        loginSessionId: string
+                    }
+                }
+    
+                export type Response = {
+                    body: {
+                        stores: {
+                            id: number,
+                            name: string,
+                            image?: string,
+                            latitude?: number,
+                            longitude?: number,
+                            googleMapLink?: string,
+                            createdAt: Date
+                        }[]
+                    }
+                }
+            }
+
+            export namespace Receipts {
+                export namespace GET {
+                    export type Request = {
+                        cookies: {
+                            loginSessionId: string
+                        },
+                        params: {
+                            storeId: number
+                        }
+                    }
+
+                    export type Response = {
+                        body: {
+                            receipts: {
+                                id: number,
+                                latitude: number,
+                                longitude: number,
+                                isChecked: boolean,
+                                createdAt: Date
+                            }[]
+                        }
+                    }
+                }
+            }
+        }
     }
 }

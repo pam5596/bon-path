@@ -13,6 +13,9 @@ export const getVerifySession = new GetVerifySessionRoute()
 import { CreateVerifySessionRoute } from "./session/createVerifySession";
 export const createVerifySession = new CreateVerifySessionRoute()
 
+import { DeleteVerifySessionRoute } from "./session/deleteVerifySession";
+export const deleteVerifySession = new DeleteVerifySessionRoute()
+
 import { CreateUserRoute } from "./users/createUser";
 export const createUser = new CreateUserRoute()
 
@@ -30,6 +33,12 @@ export const getUserReceipts = new GetUserReceiptsRoute()
 
 import { GetUserPurchasesRoute } from "./users/getUserPurchases";
 export const getUserPurchases = new GetUserPurchasesRoute()
+
+import { GetUserPurchasesStoresRoute } from "./users/getUserPurchasesStores";
+export const getUserPurchasesStores = new GetUserPurchasesStoresRoute()
+
+import { GetUserPurchasesStoreReceiptsRoute } from "./users/getUserPurchaseStoreReceipts";
+export const getUserPurchasesStoreReceipts = new GetUserPurchasesStoreReceiptsRoute()
 
 import { CreateReceiptRoute } from "./receipts/createReceipt";
 export const createReceipt = new CreateReceiptRoute()
