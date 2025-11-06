@@ -50,5 +50,12 @@
         "cardActions": {
             "toReceiptsBtn": "ここでの購入履歴を見る"
         }
+    },
+    "receiptRegisterCheck": {
+        "form": {
+            "storeHeading": "店舗情報",
+            "productsHeading": "商品情報一覧",
+            "onSubmitBtn": "登録する"
+        }
     }
 }
