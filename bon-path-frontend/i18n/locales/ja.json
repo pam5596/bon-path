@@ -7,6 +7,12 @@
             "unknownError": "位置情報が取得できませんでした。"
         }
     },
+    "appNavigation": {
+        "toDashBoardBtn": "ダッシュボード",
+        "toPurchaseHistoryBtn": "購入履歴",
+        "toReceiptRegisterBtn": "レシート登録",
+        "signOutBtn": "ログアウト"
+    },
     "dashboard": {
         "heading": "ダッシュボード",
         "unCheckedReceiptsSection": {
