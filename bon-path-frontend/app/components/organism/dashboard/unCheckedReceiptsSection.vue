@@ -1,6 +1,8 @@
 <template>
     <section>
-        <AtomTypography />
+        <AtomTypography>
+            {{ $t('dashboard.unCheckedReceiptsSection.heading') }}
+        </AtomTypography>
         <MoleculeDashboardReceiptsList />
     </section>
 </template>

@@ -1,10 +1,10 @@
 <template>
     <v-card-actions>
         <v-btn>
-            今すぐ商品を登録する
+            {{ $t("dashboard.unCheckedReceiptsSection.receiptCard.actions.toCheckBtn") }}
         </v-btn>
         <v-btn>
-            削除する
+            {{ $t("dashboard.unCheckedReceiptsSection.receiptCard.actions.deleteBtn") }}
         </v-btn>
     </v-card-actions>
 </template>

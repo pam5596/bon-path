@@ -1,6 +1,6 @@
 <template>
     <v-card-title>
-        receiptCreatedAt
+        {{ new Date().toLocaleString() }}
     </v-card-title>
 </template>
 

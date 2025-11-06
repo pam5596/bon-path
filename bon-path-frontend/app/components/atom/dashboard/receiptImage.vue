@@ -1,8 +1,10 @@
 <template>
-    <v-img />
+    <v-img :src="receiptImage?.url" />
 </template>
 
 <script setup lang="ts">
+const { receiptImagesFixture } = useFixtures()
+const receiptImage = ref(receiptImagesFixture[0])
 
 </script>
 

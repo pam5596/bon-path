@@ -1,0 +1,14 @@
+{
+    "dashboard": {
+        "heading": "ダッシュボード",
+        "unCheckedReceiptsSection": {
+            "heading": "未確認のレシートがあります",
+            "receiptCard": {
+                "actions": {
+                    "toCheckBtn": "今すぐ登録する",
+                    "deleteBtn": "削除する"
+                }
+            }
+        }
+    }
+}

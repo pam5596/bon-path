@@ -6,13 +6,17 @@ import receiptsFixture from "@@/../share/fixtures/receipts.json";
 import storesFixtures from "@@/../share/fixtures/stores.json";
 import usersFixture from "@@/../share/fixtures/users.json";
 
-
 export default function() {
     return {
         categoriesFixture,
         productsFixture,
         purchasesFixture,
-        receiptImagesFixture,
+        receiptImagesFixture: receiptImagesFixture.map(
+            (image) => ({
+                ...image,
+                url: `/_nuxt/@fs/share/fixtures/images${image.url}`
+            })
+        ),
         receiptsFixture,
         storesFixtures,
         usersFixture
