@@ -1,60 +1,73 @@
 export default function () {
+    const { receiptId } = useIdParams(['receiptId'])
     const { postStore } = useStores()
-    // const { postProduct } = useProducts()
+    const { postProduct } = useProducts()
     const { postPurchases } = usePurchases()
+    const { patchReceipt } = useReceipts()
 
-    const store = ref<StoreModel>()
-    const purchases = ref<PurchaseModel[]>([])
+    const payloadStore = ref<StoreModel>()
+    const payloadPurchases = ref<PurchaseModel[]>([])
 
     return useAsyncOnEvent(
         async (params: {
             store: StoreModel,
             purchases: PurchaseModel[]
         }) => {
-            store.value = params.store
-            purchases.value = params.purchases
+            payloadStore.value = params.store
+            payloadPurchases.value = params.purchases
 
             if (!params.store.id) {
                 const { id: storeId } = await postStore({
                     body: params.store.getValues
                 })
-                store.value = new StoreModel({
+                payloadStore.value = new StoreModel({
                     id: storeId,
                     ...params.store.getValues
                 })
             }
 
-            if (params.purchases.some(purchase => purchase.product!.id)) {
-                purchases.value = await Promise.all(
-                    params.purchases.map(
-                        async (purchase) => {
-                            if (!purchase.product!.id) {
-                                // [TODO]: [POST] /productを叩き、単体で追加＆ID取得を行う
-                                const { id: productId } = { id: 1 }
-                                return new PurchaseModel({
-                                    ...purchase.getValues,
-                                    storeId: store.value!.id!,
-                                    product: new ProductModel({
-                                        ...purchase.product!.getValues,
-                                        id: productId,
-                                        storeId: store.value?.id
-                                    })
+            payloadPurchases.value = await Promise.all(
+                params.purchases.map(
+                    async (purchase) => {
+                        if (!purchase.product.id) {
+                            const { id: productId } = await postProduct({ 
+                                body: {
+                                    ...purchase.product.getValues,
+                                    storeId: payloadStore.value!.id!,
+                                }
+                            })
+
+                            return new PurchaseModel({
+                                ...purchase.getValues,
+                                productId,
+                                product: new ProductModel({
+                                    ...purchase.product.getValues,
+                                    id: productId,
+                                    storeId: payloadStore.value!.id
                                 })
-                            } else {
-                                return new PurchaseModel({
-                                    ...purchase.getValues,
-                                    storeId: store.value!.id!
-                                })
-                            }
+                            })
+                        } else {
+                            return purchase
                         }
-                    )
+                    }
                 )
-            }
+            )
 
             await postPurchases({
-                body: { purchases: purchases.value.map(
-                    purchase => purchase.getValues
-                ) }
+                body: { 
+                    purchases: payloadPurchases.value.map(
+                        purchase => ({
+                            ...purchase.getModelValues,
+                            storeId: payloadStore.value!.id!,
+                            productId: purchase.product.id!
+                        })
+                    )
+                }
+            })
+
+            await patchReceipt({
+                body: { isChecked: true },
+                params: { id: receiptId! }
             })
         }
     )

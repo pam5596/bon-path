@@ -4,21 +4,36 @@ export default function() {
     const { postGptOcr } = useGptOcr()
 
     return useAsyncOnRender(
-        'render-receipt-register-photo-usecase',
+        'render-receipt-register-check-usecase',
         async () => {
             const receipt_images = await getReceiptImages({ params: { receiptId: receiptId! }})
-            const ocr_result = await postGptOcr({ body: {
+            const ocrResult = await postGptOcr({ body: {
                 images: receipt_images.images.map(image => image.url)
             }})
 
             return {
-                receipt_images: receipt_images.images.map(
+                receiptImages: receipt_images.images.map(
                     image => new ReceiptImageModel(image)
                 ),
-                store: new StoreModel(ocr_result.store),
-                products: ocr_result.products.map(
-                    product => new ProductModel(product)
-                )
+                store: new StoreModel(ocrResult.store),
+                products: ocrResult.products.map(
+                    product => new ProductModel({
+                        ...product,
+                        categoryId: 1
+                    })
+                ),
+                purchases: ocrResult.products.map(
+                    purchase => new PurchaseModel({
+                        receiptId: receiptId!,
+                        price: purchase.price,
+                        quantity: purchase.quantity,
+                        product: new ProductModel({
+                            categoryId: 1,
+                            name: purchase.name,
+                            price: purchase.price
+                        })
+                    })
+                ),
             }
         }
     )

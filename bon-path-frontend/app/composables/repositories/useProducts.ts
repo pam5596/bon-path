@@ -1,10 +1,10 @@
 import type { ProductPayloads } from '@share/payloads'
 
 export default function() {
-    const postProducts = async (
+    const postProduct = async (
         payload: ProductPayloads.POST.Request
     ) => {
-        return await $fetch<undefined>(
+        return await $fetch<ProductPayloads.POST.Response['body']>(
             `/api/products`, {
                 method: 'post',
                 body: payload.body
@@ -72,7 +72,7 @@ export default function() {
     }
 
     return {
-        postProducts,
+        postProduct,
         getProducts,
         getProduct,
         getProductsGoogleSearch,
