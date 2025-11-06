@@ -1,17 +1,17 @@
 <template>
     <section>
         <AtomTypography>
-            {{ user.name }}
+            {{ user.getValues.name }}
         </AtomTypography>
         <AtomTypography>
-            {{ user.email }}
+            {{ user.getValues.email }}
         </AtomTypography>
     </section>
 </template>
 
 <script setup>
 const { usersFixture } = useFixtures()
-const user = ref(usersFixture[0])
+const user = computed(()=>new UserModel(usersFixture[0]))
 
 </script>
 

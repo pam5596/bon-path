@@ -1,10 +1,13 @@
 <template>
-    <v-img :src="receiptImage?.url" />
+    <v-img :src="props.src" />
 </template>
 
 <script setup lang="ts">
-const { receiptImagesFixture } = useFixtures()
-const receiptImage = ref(receiptImagesFixture[0])
+import type { VImg } from 'vuetify/components';
+
+const props = defineProps<{
+    src: VImg['src']
+}>()
 
 </script>
 
