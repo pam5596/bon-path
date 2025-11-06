@@ -41,7 +41,7 @@ export default async function <ResponseT>(
         } else if (typeof error?.data == 'string') {
             onAlert({
                 type: 'error',
-                title: '不明なエラーが発生しました。',
+                title: $t("_errors.unknownError"),
                 text: error.data
             })
         }
