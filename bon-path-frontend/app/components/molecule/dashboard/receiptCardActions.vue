@@ -4,7 +4,7 @@
             {{ $t("dashboard.unCheckedReceiptsSection.receiptCard.actions.toCheckBtn") }}
         </v-btn>
         <v-btn>
-            {{ $t("dashboard.unCheckedReceiptsSection.receiptCard.actions.deleteBtn") }}
+            {{ $t("dashboard.unCheckedReceiptsSection.receiptCard.actions.onDeleteBtn") }}
         </v-btn>
     </v-card-actions>
 </template>

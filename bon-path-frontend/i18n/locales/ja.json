@@ -14,7 +14,7 @@
             "receiptCard": {
                 "actions": {
                     "toCheckBtn": "今すぐ登録する",
-                    "deleteBtn": "削除する"
+                    "onDeleteBtn": "削除する"
                 }
             }
         }
@@ -29,6 +29,15 @@
             "heading": "アカウント登録に失敗しました。",
             "annotation": "登録フォームから再度やり直してください",
             "toSignInBtn": "アカウント登録へ戻る"
+        }
+    },
+    "purchaseHistoryReceipt": {
+        "productValues": {
+            "priceUnit": "￥",
+            "quantityUnit": "x"
+        },
+        "infoActions": {
+            "onDeleteBtn": "購入履歴を削除する"
         }
     }
 }
