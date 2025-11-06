@@ -1,6 +1,6 @@
 <template>
     <v-card-title>
-        name
+        <slot />
     </v-card-title>
 </template>
 

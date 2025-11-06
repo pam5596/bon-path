@@ -45,5 +45,10 @@
             "toReceiptBtn": "商品一覧を見る",
             "onDeleteBtn": "購入履歴を削除する"
         }
+    },
+    "purchaseHistoryStores": {
+        "cardActions": {
+            "toReceiptsBtn": "ここでの購入履歴を見る"
+        }
     }
 }
