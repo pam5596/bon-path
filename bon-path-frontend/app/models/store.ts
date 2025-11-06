@@ -24,6 +24,15 @@ export class StoreModel extends BaseModel<Store> {
         return this._values.id
     }
 
+    get purchases() {
+        return this._values.purchases
+    }
+
+    get getModelValues() {
+        const { purchases, ...values } = this._values
+        return values
+    }
+
     equals(other: this): boolean {
         return this.id === other.id
     }

@@ -3,7 +3,7 @@ import BaseModel from "./_abstract";
 export interface Product {
     readonly id?: number;
     readonly storeId?: number;
-    categoryId?: number;
+    categoryId: number;
     name: string;
     image?: string;
     link?: string;

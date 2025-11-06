@@ -22,6 +22,15 @@ export class ReceiptModel extends BaseModel<Receipt> {
         return this._values.id
     }
 
+    get images() {
+        return this._values.images
+    }
+
+    get getModelValues() {
+        const { images, ...values } = this._values
+        return values;
+    }
+
     equals(other: this): boolean {
         return this.id === other.id
     }
