@@ -18,5 +18,17 @@
                 }
             }
         }
+    },
+    "emailVerify": {
+        "successMsgArticle": {
+            "heading": "アカウント登録に成功しました。",
+            "annotation": "※β版はメールアドレスの確認機能がありません",
+            "toDashBoardBtn": "アプリのダッシュボードへ"
+        },
+        "failedMsgArticle": {
+            "heading": "アカウント登録に失敗しました。",
+            "annotation": "登録フォームから再度やり直してください",
+            "toSignInBtn": "アカウント登録へ戻る"
+        }
     }
 }
