@@ -1,9 +1,16 @@
 <template>
     <div v-if="alertContent" class="alert-overlay">
-        <AtomAlert 
-            :content="alertContent"
-            @close="onCloseAlert"
-        />
+        <v-alert
+            :type="alertContent.type"
+            :title="alertContent.title"
+            :text="alertContent.text"
+            closable
+            @click:close="onCloseAlert"
+        >   
+            <MoleculeAlertCaption 
+                :content="alertContent.forDeveloper"
+            />
+        </v-alert>
     </div>
 </template>
 
@@ -13,6 +20,8 @@ const { alertContent, onCloseAlert } = useAlert()
 
 <style scoped>
 .alert-overlay {
+    width: 100%;
+    padding: 1rem;
     position: fixed;
     top: 0;
 }
