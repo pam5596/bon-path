@@ -1,5 +1,5 @@
 <template>
-    <section class="contents">
+    <section>
         <AtomTypography class="text-h6">
             <v-icon>
                 mdi-information-slab-box
@@ -28,7 +28,7 @@ const receipts = computed(() => receiptsFixture.map(
 </script>
 
 <style scoped>
-.contents {
+section {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;

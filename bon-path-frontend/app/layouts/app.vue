@@ -3,8 +3,11 @@
         <div>
             <slot name="parallax" />
         </div>
-        <main class="main-container">
-            <AtomTypography class="text-h4">
+        <main 
+            class="main-container"
+            :style="props.pageTitle && 'gap: 1rem;'"
+        >
+            <AtomTypography class="text-h4" >
                 {{ props.pageTitle }}
             </AtomTypography>
             <div>
@@ -28,6 +31,5 @@ const props = defineProps<{
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
 }
 </style>
