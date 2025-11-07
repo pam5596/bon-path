@@ -22,12 +22,14 @@ const props = defineProps<{
 
 <style scoped>
 .contents {
+    height: 8rem;
     display: flex;
     justify-content: space-between;
 }
 
 .avatar {
     height: auto;
+    object-fit: cover;
     border-radius: 0;
     min-width: 30%;
 
