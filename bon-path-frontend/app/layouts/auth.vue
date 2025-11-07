@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         <header>
             <OrganismAuthFirstView />
         </header>
@@ -14,5 +14,14 @@
 </script>
 
 <style scoped>
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
 
+header {
+    display: flex;
+    justify-content: center;
+}
 </style>
