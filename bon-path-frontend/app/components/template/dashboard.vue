@@ -1,7 +1,9 @@
 <template>
-    <NuxtLayout name="app">
-        <OrganismDashboardUserInfoSection />
-        <OrganismDashboardUnCheckedReceiptsSection />
+    <NuxtLayout name="app" :page-title="$t('dashboard.heading')">
+        <template #main>
+            <OrganismDashboardUserInfoSection />
+            <OrganismDashboardUnCheckedReceiptsSection />
+        </template>
     </NuxtLayout>
 </template>
 

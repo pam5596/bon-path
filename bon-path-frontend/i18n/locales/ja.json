@@ -53,6 +53,7 @@
         }
     },
     "purchaseHistoryStores": {
+        "heading": "購入履歴",
         "cardActions": {
             "toReceiptsBtn": "ここでの購入履歴を見る"
         }
@@ -65,6 +66,7 @@
         }
     },
     "receiptRegisterPhoto": {
+        "heading": "レシート登録",
         "previewCard": {
             "title": "撮影したレシート",
             "actions": {

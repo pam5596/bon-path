@@ -1,8 +1,9 @@
 <template>
-    <NuxtLayout name="app">
-        <!-- <p>{{ $route.params }}</p> -->
-        <OrganismReceiptRegisterPhotoUploadForm />
-        <OrganismReceiptRegisterPhotoPreviewArticle/>
+    <NuxtLayout name="app" :page-title="$t('receiptRegisterPhoto.heading')">
+        <template #main>
+            <OrganismReceiptRegisterPhotoUploadForm />
+            <OrganismReceiptRegisterPhotoPreviewArticle/>
+        </template>
     </NuxtLayout>
 </template>
 
