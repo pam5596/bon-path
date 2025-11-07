@@ -29,6 +29,7 @@ export default defineNuxtConfig({
       })
     },
   ],
+  css: ['~/assets/global.css'],
   fonts: {
     families: [
       {
