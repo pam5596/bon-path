@@ -1,7 +1,9 @@
 <template>
     <v-form>
-        <v-file-input></v-file-input>
-        <v-btn>次へ</v-btn>
+        <v-file-input />
+        <v-btn>
+            {{ $t("receiptRegisterPhoto.uploadForm.onOpenDialogBtn") }}
+        </v-btn>
     </v-form>
 </template>
 

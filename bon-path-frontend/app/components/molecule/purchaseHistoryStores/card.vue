@@ -1,18 +1,23 @@
 <template>
     <v-card>
         <v-avatar>
-            <AtomPurchaseHistoryStoresImage />
+            <AtomPurchaseHistoryStoresImage 
+                :src="props.store.getValues.image"
+            />
         </v-avatar>
         <v-card-item>
-            <AtomPurchaseHistoryStoresName />
-            <AtomPurchaseHistoryStoresTotalVisits />
+            <AtomPurchaseHistoryStoresName>
+                {{ props.store.getValues.name }}
+            </AtomPurchaseHistoryStoresName>
             <MoleculePurchaseHistoryStoresCardActions />
         </v-card-item>
     </v-card>
 </template>
 
 <script setup lang="ts">
-
+const props = defineProps<{
+    store: StoreModel
+}>()
 </script>
 
 <style scoped>

@@ -1,6 +1,6 @@
 <template>
     <v-card-subtitle>
-        createdAt
+        <slot />
     </v-card-subtitle>
 </template>
 

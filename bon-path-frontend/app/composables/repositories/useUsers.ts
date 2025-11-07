@@ -1,4 +1,4 @@
-import type { UserPayloads } from '@share/payloads'
+import type { UserPayloads } from '@@/../share/payloads'
 
 export default function() {
     const postUser = async () => {

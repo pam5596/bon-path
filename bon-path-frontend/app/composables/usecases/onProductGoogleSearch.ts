@@ -1,4 +1,4 @@
-import type { ProductPayloads } from "@share/payloads";
+import type { ProductPayloads } from "@@/../share/payloads";
 
 export default function () {
     const { getProductsGoogleSearch } = useProducts()

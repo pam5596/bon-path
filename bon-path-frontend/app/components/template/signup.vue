@@ -1,7 +1,9 @@
 <template>
     <NuxtLayout name="auth">
         <OrganismSignupForm />
-        <v-btn>アカウント登録はこちら</v-btn>
+        <v-btn>
+            {{ $t("signUp.toSignInBtn") }}
+        </v-btn>
     </NuxtLayout>
 </template>
 

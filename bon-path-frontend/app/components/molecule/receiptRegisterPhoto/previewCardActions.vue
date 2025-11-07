@@ -1,7 +1,11 @@
 <template>
     <v-card-actions>
-        <v-btn>登録する</v-btn>
-        <v-btn>キャンセル</v-btn>
+        <v-btn>
+            {{ $t("receiptRegisterPhoto.previewCard.actions.toCheckBtn") }}
+        </v-btn>
+        <v-btn>
+            {{ $t("receiptRegisterPhoto.previewCard.actions.toDashBoardBtn") }}
+        </v-btn>
     </v-card-actions>
 </template>
 

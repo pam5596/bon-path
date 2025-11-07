@@ -1,10 +1,17 @@
 <template>
     <v-bottom-navigation>
-        <AtomNavigationBtn />
-        <AtomNavigationBtn />
-        <AtomNavigationBtn />
-        <AtomNavigationBtn />
-        <AtomNavigationBtn />
+        <AtomNavigationBtn>
+            {{ $t("appNavigation.toDashBoardBtn") }}
+        </AtomNavigationBtn>
+        <AtomNavigationBtn>
+            {{ $t("appNavigation.toPurchaseHistoryBtn") }}
+        </AtomNavigationBtn>
+        <AtomNavigationBtn>
+            {{ $t("appNavigation.toReceiptRegisterBtn") }}
+        </AtomNavigationBtn>
+        <AtomNavigationBtn>
+            {{ $t("appNavigation.signOutBtn") }}
+        </AtomNavigationBtn>
     </v-bottom-navigation>
 </template>
 

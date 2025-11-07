@@ -21,6 +21,7 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@nuxt/eslint',
     '@nuxt/image',
+    '@nuxtjs/i18n',
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
         // @ts-expect-error - vite config typing mismatch: config.plugins is not typed as extensible here
@@ -28,6 +29,13 @@ export default defineNuxtConfig({
       })
     },
   ],
+  i18n: {
+    locales: [
+      { code: 'ja', name: '日本語', file: 'ja.json' }
+    ],
+    defaultLocale: 'ja',
+    langDir: 'locales/'
+  },
   vite: {
     vue: {
       template: {
@@ -36,10 +44,8 @@ export default defineNuxtConfig({
     },
   },
   alias: {
-    '@share/*': fileURLToPath(new URL('../share/*', import.meta.url)),
-    '@models': fileURLToPath(new URL('./src/models', import.meta.url)),
+    '@models': fileURLToPath(new URL('./src/models', import.meta.url))
   },
-
   routeRules: {
     '/api/**' : {
       cors: true,

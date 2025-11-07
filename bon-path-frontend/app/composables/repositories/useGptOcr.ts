@@ -1,4 +1,4 @@
-import type { GptOcrPayloads } from "@share/payloads";
+import type { GptOcrPayloads } from "@@/../share/payloads";
 
 export default function() {
     const postGptOcr = async (
