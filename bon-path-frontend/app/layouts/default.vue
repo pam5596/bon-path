@@ -1,5 +1,5 @@
 <template>
-    <div class="layout-default">
+    <div class="wrapper">
         <slot />
     </div>
 </template>
@@ -9,10 +9,10 @@
 </script>
 
 <style scoped>
-.layout-default {
+.wrapper {
     padding: 1rem;
     background: linear-gradient(#b1aaff, #8ec5fc);
-    height: 100vh;
+    min-height: 100vh;
 }
 
 </style>
