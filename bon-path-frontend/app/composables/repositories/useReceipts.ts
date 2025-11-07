@@ -1,4 +1,4 @@
-import type { ReceiptPayloads } from '@share/payloads'
+import type { ReceiptPayloads } from '@@/../share/payloads'
 
 export default function() {
     const postReceipt = async (

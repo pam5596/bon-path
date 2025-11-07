@@ -1,8 +1,14 @@
 <template>
     <article>
-        <AtomTypography />
-        <AtomTypography />
-        <v-btn>アカウント登録へ</v-btn>
+        <AtomTypography>
+            {{  $t("emailVerify.failedMsgArticle.heading") }}
+        </AtomTypography>
+        <AtomTypography>
+            {{  $t("emailVerify.failedMsgArticle.annotation") }}
+        </AtomTypography>
+        <v-btn>
+            {{ $t("emailVerify.failedMsgArticle.toSignInBtn") }}
+        </v-btn>
     </article>
 </template>
 

@@ -1,10 +1,10 @@
 <template>
     <v-card-actions>
         <v-btn>
-            商品を見る
+            {{ $t("purchaseHistoryReceipts.cardActions.toReceiptBtn") }}
         </v-btn>
         <v-btn>
-            削除
+            {{ $t("purchaseHistoryReceipts.cardActions.onDeleteBtn") }}
         </v-btn>
     </v-card-actions>
 </template>

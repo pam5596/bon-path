@@ -1,6 +1,6 @@
 <template>
     <v-card-actions>
-        <v-btn>削除</v-btn>
+        <v-btn>{{ $t("purchaseHistoryReceipt.infoActions.onDeleteBtn") }}</v-btn>
     </v-card-actions>
 </template>
 

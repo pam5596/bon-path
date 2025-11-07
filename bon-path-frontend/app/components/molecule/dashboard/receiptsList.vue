@@ -1,12 +1,15 @@
 <template>
-    <div>
-        <MoleculeDashboardReceiptCard />
-        <MoleculeDashboardReceiptCard />
-        <MoleculeDashboardReceiptCard />
+    <div v-for="(receipt, index) in props.receipts" :key="index">
+        <MoleculeDashboardReceiptCard
+            :receipt="receipt"
+        />
     </div>
 </template>
 
 <script setup lang="ts">
+const props = defineProps<{
+    receipts: ReceiptModel[]
+}>()
 
 </script>
 

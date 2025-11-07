@@ -23,7 +23,7 @@ export default function <ParamsT>(
             if (e instanceof FetchError) {
                 onAlert({
                     type: 'error',
-                    title: e.data?.detail || '不明なエラーが発生しました。',
+                    title: e.data?.detail || $t("_errors.unknownError"),
                     text: e.data?.issue || e.data,
                     forDeveloper: typeof e.data == 'object' ? e.data : undefined
                 })

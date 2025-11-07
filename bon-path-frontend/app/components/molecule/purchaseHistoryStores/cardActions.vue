@@ -1,7 +1,7 @@
 <template>
     <v-card-actions>
         <v-btn>
-            ここでの履歴を見る
+            {{  $t("purchaseHistoryStores.cardActions.toReceiptsBtn") }}
         </v-btn>
     </v-card-actions>
 </template>

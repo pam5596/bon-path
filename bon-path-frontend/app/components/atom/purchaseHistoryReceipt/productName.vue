@@ -1,6 +1,6 @@
 <template>
     <v-list-item-title>
-        productTitle
+        <slot />
     </v-list-item-title>
 </template>
 

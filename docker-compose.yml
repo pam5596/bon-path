@@ -4,6 +4,7 @@ services:
     build: ./bon-path-frontend
     volumes:
       - ./bon-path-frontend:/bon-path-frontend
+      - ./share:/share
       - /bon-path-frontend/node_modules
     ports:
       - "3000:3000"

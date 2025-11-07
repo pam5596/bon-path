@@ -1,11 +1,10 @@
 <template>
     <v-card-title>
-        storeName
+        <slot />
     </v-card-title>
 </template>
 
 <script setup lang="ts">
-
 </script>
 
 <style scoped>

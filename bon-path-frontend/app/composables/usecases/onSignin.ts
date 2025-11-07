@@ -1,4 +1,4 @@
-import type { SessionPayloads } from "@share/payloads"
+import type { SessionPayloads } from "@@/../share/payloads"
 
 export default function () {
     const { postSessionVerify } = useSessionVerify()

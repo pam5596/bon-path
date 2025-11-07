@@ -1,6 +1,6 @@
 <template>
     <v-btn>    
-        NavigationBtn
+        <slot />
     </v-btn>
 </template>
 

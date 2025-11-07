@@ -1,0 +1,96 @@
+{
+    "_errors": {
+        "unknownError": "不明なエラーが発生しました。",
+        "geoLocal": {
+            "unSupported": "お使いのブラウザでは位置情報機能がサポートされていません。",
+            "unAvailable": "位置情報機能がオンになっていません。ブラウザの設定を確認してください。",
+            "unknownError": "位置情報が取得できませんでした。"
+        }
+    },
+    "appNavigation": {
+        "toDashBoardBtn": "ダッシュボード",
+        "toPurchaseHistoryBtn": "購入履歴",
+        "toReceiptRegisterBtn": "レシート登録",
+        "signOutBtn": "ログアウト"
+    },
+    "dashboard": {
+        "heading": "ダッシュボード",
+        "unCheckedReceiptsSection": {
+            "heading": "未確認のレシートがあります",
+            "receiptCard": {
+                "actions": {
+                    "toCheckBtn": "今すぐ登録する",
+                    "onDeleteBtn": "レシートを削除する"
+                }
+            }
+        }
+    },
+    "emailVerify": {
+        "successMsgArticle": {
+            "heading": "アカウント登録に成功しました。",
+            "annotation": "※β版はメールアドレスの確認機能がありません",
+            "toDashBoardBtn": "アプリのダッシュボードへ"
+        },
+        "failedMsgArticle": {
+            "heading": "アカウント登録に失敗しました。",
+            "annotation": "登録フォームから再度やり直してください",
+            "toSignInBtn": "アカウント登録へ戻る"
+        }
+    },
+    "purchaseHistoryReceipt": {
+        "productValues": {
+            "priceUnit": "￥",
+            "quantityUnit": "x"
+        },
+        "infoActions": {
+            "onDeleteBtn": "購入履歴を削除する"
+        }
+    },
+    "purchaseHistoryReceipts": {
+        "cardActions": {
+            "toReceiptBtn": "商品一覧を見る",
+            "onDeleteBtn": "購入履歴を削除する"
+        }
+    },
+    "purchaseHistoryStores": {
+        "cardActions": {
+            "toReceiptsBtn": "ここでの購入履歴を見る"
+        }
+    },
+    "receiptRegisterCheck": {
+        "form": {
+            "storeHeading": "店舗情報",
+            "productsHeading": "商品情報一覧",
+            "onSubmitBtn": "登録する"
+        }
+    },
+    "receiptRegisterPhoto": {
+        "previewCard": {
+            "title": "撮影したレシート",
+            "actions": {
+                "toCheckBtn": "今すぐ登録する",
+                "toDashBoardBtn": "あとで登録する"
+            }
+        },
+        "uploadForm": {
+            "onOpenDialogBtn": "次へ"
+        }
+    },
+    "signIn": {
+        "form": {
+            "name": "ユーザー名",
+            "email": "メールアドレス",
+            "password": "パスワード",
+            "onSubmitBtn": "アカウント登録"
+        },
+        "toSignUpBtn": "ログインはこちら"
+    },
+    "signUp": {
+        "form": {
+            "email": "メールアドレス",
+            "password": "パスワード",
+            "onSubmitBtn": "ログイン"
+        },
+        "toSignInBtn": "アカウント登録はこちら"
+    }
+}
