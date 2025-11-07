@@ -1,5 +1,5 @@
 <template>
-    <v-card class="contents">
+    <v-card class="card">
         <v-avatar class="avatar">
             <AtomDashboardReceiptImage
                 :src="props.receipt.images[0]!.getValues.url"
@@ -21,22 +21,20 @@ const props = defineProps<{
 </script>
 
 <style scoped>
-.contents {
+.card {
     height: 8rem;
     display: flex;
-    justify-content: space-between;
 }
 
 .avatar {
     height: auto;
     object-fit: cover;
     border-radius: 0;
-    min-width: 30%;
-
+    width: 30%;
 }
 
 .item {
-    min-width: 70%;
+    width: 70%;
     padding: 0.5rem;
 }
 </style>

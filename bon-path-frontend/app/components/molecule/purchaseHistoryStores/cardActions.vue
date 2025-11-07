@@ -14,7 +14,5 @@
 .actions {
     flex-direction: column;
     align-items: end;
-    padding: 0;
-    min-height: auto;
 }
 </style>
