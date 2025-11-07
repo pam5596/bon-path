@@ -1,8 +1,10 @@
 <template>
     <NuxtLayout name="app" :page-title="$t('dashboard.heading')">
         <template #main>
-            <OrganismDashboardUserInfoSection />
-            <OrganismDashboardUnCheckedReceiptsSection />
+            <div class="contents">
+                <OrganismDashboardUserInfoSection />
+                <OrganismDashboardUnCheckedReceiptsSection />
+            </div>
         </template>
     </NuxtLayout>
 </template>
@@ -12,5 +14,9 @@
 </script>
 
 <style scoped>
-
+.contents {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
 </style>

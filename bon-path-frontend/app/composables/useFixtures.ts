@@ -14,7 +14,7 @@ export default function() {
         receiptImagesFixture: receiptImagesFixture.map(
             (image) => ({
                 ...image,
-                url: `/_nuxt/@fs/share/fixtures/images${image.url}`
+                url: `https://dailyportalz.jp/b/2016/09/30/a/img/pc/0005.jpg`
             })
         ),
         receiptsFixture,

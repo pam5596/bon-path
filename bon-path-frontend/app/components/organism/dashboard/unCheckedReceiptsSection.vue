@@ -1,7 +1,12 @@
 <template>
-    <section>
-        <AtomTypography>
-            {{ $t('dashboard.unCheckedReceiptsSection.heading') }}
+    <section class="contents">
+        <AtomTypography class="text-h6">
+            <v-icon>
+                mdi-information-slab-box
+            </v-icon>
+            <span>
+                {{ $t('dashboard.unCheckedReceiptsSection.heading') }}
+            </span>
         </AtomTypography>
         <MoleculeDashboardReceiptsList :receipts="receipts"/>
     </section>
@@ -23,5 +28,9 @@ const receipts = computed(() => receiptsFixture.map(
 </script>
 
 <style scoped>
-
+.contents {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <v-card-title>
+    <v-card-title class="content">
         {{ props.value.toLocaleString() }}
     </v-card-title>
 </template>

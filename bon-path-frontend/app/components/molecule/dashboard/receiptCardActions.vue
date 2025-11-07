@@ -1,5 +1,5 @@
 <template>
-    <v-card-actions>
+    <v-card-actions class="actions">
         <v-btn>
             {{ $t("dashboard.unCheckedReceiptsSection.receiptCard.actions.toCheckBtn") }}
         </v-btn>
@@ -14,5 +14,10 @@
 </script>
 
 <style scoped>
-
+.actions {
+    flex-direction: column;
+    align-items: end;
+    padding: 0;
+    min-height: auto;
+}
 </style>
