@@ -1,5 +1,5 @@
 <template>
-    <v-card-subtitle>
+    <v-card-subtitle class="subtitle">
         <slot />
     </v-card-subtitle>
 </template>
@@ -9,5 +9,7 @@
 </script>
 
 <style scoped>
-
+.subtitle {
+    text-align: right;
+}
 </style>

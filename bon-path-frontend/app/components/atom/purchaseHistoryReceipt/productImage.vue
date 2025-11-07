@@ -1,7 +1,7 @@
 <template>
-    <v-list-img>
+    <v-avatar>
         <v-img :src="props.src" />
-    </v-list-img>
+    </v-avatar>
 </template>
 
 <script setup lang="ts">

@@ -1,6 +1,7 @@
 <template>
-    <v-list v-for="(purchase, index) in props.purchases" :key="index">
+    <v-list class="list">
         <MoleculePurchaseHistoryReceiptProductListItem 
+            v-for="(purchase, index) in props.purchases"
             :key="index"
             :purchase="purchase"
         />
@@ -15,5 +16,9 @@ const props = defineProps<{
 </script>
 
 <style scoped>
-
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
 </style>

@@ -1,14 +1,12 @@
 <template>
     <v-list-item>
-        <AtomPurchaseHistoryReceiptProductImage 
-            :src="props.purchase.product.getValues.image"
+        <MoleculePurchaseHistoryReceiptProductProfile 
+            :image="props.purchase.product.getValues.image"
+            :name="props.purchase.product.getValues.name"
         />
-        <AtomPurchaseHistoryReceiptProductName>
-            {{ props.purchase.product.getValues.name }}
-        </AtomPurchaseHistoryReceiptProductName>
         <MoleculePurchaseHistoryReceiptProductValues 
-            :price="purchase.getValues.price"
-            :quantity="purchase.getValues.quantity"
+            :price="props.purchase.getValues.price"
+            :quantity="props.purchase.getValues.quantity"
         />
     </v-list-item>
 </template>

@@ -1,5 +1,5 @@
 <template>
-    <v-card-actions>
+    <v-card-actions class="actions">
         <v-btn>{{ $t("purchaseHistoryReceipt.infoActions.onDeleteBtn") }}</v-btn>
     </v-card-actions>
 </template>
@@ -9,5 +9,8 @@
 </script>
 
 <style scoped>
-
+.actions {
+    flex-direction: column;
+    align-items: end;
+}
 </style>
