@@ -12,6 +12,7 @@ const { overlayIsOpen } = useLoading()
 .loading-overlay {
     position: fixed;
     top: 0;
+    z-index: 1005;
     width: 100vw;
     height: 100vh;
     background: #00000080;
