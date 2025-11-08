@@ -67,6 +67,15 @@
     },
     "receiptRegisterPhoto": {
         "heading": "レシート登録",
+        "descriptionArticle": {
+            "heading": "レシートの画像をアップロードしてください。",
+            "description": {
+                "numberOfRegistration": "一度の登録で可能なレシートは１枚までです。",
+                "splitShooting": "写真１枚に収まりきらない場合は複数に分けて撮影してください。",
+                "photoConditions": "店名・商品名・価格がはっきり写っていること。",
+                "receiptCondition": "おり、色褪せ・汚れ・掠れ等がないこと。"
+            }
+        },
         "previewCard": {
             "title": "撮影したレシート",
             "actions": {

@@ -1,6 +1,6 @@
 <template>
-    <v-avatar>
-        <v-img :src="props.src"/>
+    <v-avatar class="avatar" size="200">
+        <v-img class="img" :src="props.src"/>
     </v-avatar>
 </template>
 
@@ -13,5 +13,12 @@ const props = defineProps<{
 </script>
 
 <style scoped>
+.avatar {
+    border-radius: 0.5rem;
+}
+
+.img {
+    object-fit: fill;
+}
 
 </style>

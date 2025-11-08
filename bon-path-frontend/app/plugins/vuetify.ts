@@ -28,9 +28,14 @@ export default defineNuxtPlugin((app) => {
             },
             VList: {
                 class: 'pa-0',
+                bgColor: "transparent"
             },
             VListItem: {
                 class: 'pa-0',
+                style: 'min-height: 0;'
+            },
+            VFileInput: {
+                
             }
         }
     })

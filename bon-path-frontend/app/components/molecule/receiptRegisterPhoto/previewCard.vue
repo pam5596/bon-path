@@ -1,13 +1,11 @@
 <template>
-    <v-card>
+    <v-card class="card">
         <AtomReceiptRegisterPhotoTitle>
             {{ $t("receiptRegisterPhoto.previewCard.title") }}
         </AtomReceiptRegisterPhotoTitle>
-        <v-card-text v-for="(url, index) in props.imageUrls" :key="index">
-            <AtomReceiptRegisterPhotoAvatar 
-                :src="url"
-            />
-        </v-card-text>
+        <MoleculeReceiptRegisterPhotoPreviewCardList 
+            :image-urls="props.imageUrls"
+        />
         <MoleculeReceiptRegisterPhotoPreviewCardActions />
     </v-card>
 </template>
@@ -19,5 +17,11 @@ const props = defineProps<{
 </script>
 
 <style scoped>
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+}
 
 </style>

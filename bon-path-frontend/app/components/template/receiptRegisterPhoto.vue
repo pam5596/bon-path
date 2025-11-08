@@ -1,8 +1,10 @@
 <template>
     <NuxtLayout name="app" :page-title="$t('receiptRegisterPhoto.heading')">
         <template #main>
-            <OrganismReceiptRegisterPhotoUploadForm />
-            <OrganismReceiptRegisterPhotoPreviewArticle/>
+            <div class="contents">
+                <OrganismReceiptRegisterPhotoDescriptionArticle />
+                <OrganismReceiptRegisterPhotoUploadForm />
+            </div>
         </template>
     </NuxtLayout>
 </template>
@@ -12,5 +14,9 @@
 </script>
 
 <style scoped>
-
+.contents {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
 </style>
