@@ -1,6 +1,8 @@
 <template>
-    <NuxtLayout name="app">
-        <OrganismPurchaseHistoryStoresListArticle />
+    <NuxtLayout name="app" :page-title="$t('purchaseHistoryStores.heading')">
+        <template #main>
+            <OrganismPurchaseHistoryStoresListArticle />
+        </template>
     </NuxtLayout>
 </template>
 

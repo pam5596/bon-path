@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="content">
         <slot />
     </div>
 </template>
@@ -9,5 +9,7 @@
 </script>
 
 <style scoped>
-
+.content {
+    font-family: 'Julius Sans One', sans-serif;
+}
 </style>

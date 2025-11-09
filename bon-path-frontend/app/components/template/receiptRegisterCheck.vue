@@ -1,7 +1,11 @@
 <template>
     <NuxtLayout name="app">
-        <OrganismReceiptRegisterCheckReceiptParallax />
-        <OrganismReceiptRegisterCheckInformationArticle />
+        <template #parallax>
+            <OrganismReceiptRegisterCheckReceiptParallax />
+        </template>
+        <template #main>
+            <OrganismReceiptRegisterCheckInformationArticle />
+        </template>
     </NuxtLayout>
 </template>
 

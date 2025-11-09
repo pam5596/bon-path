@@ -1,15 +1,17 @@
 <template>
     <v-list-item>
-        <AtomPurchaseHistoryReceiptProductImage 
-            :src="props.purchase.product.getValues.image"
-        />
-        <AtomPurchaseHistoryReceiptProductName>
-            {{ props.purchase.product.getValues.name }}
-        </AtomPurchaseHistoryReceiptProductName>
-        <MoleculePurchaseHistoryReceiptProductValues 
-            :price="purchase.getValues.price"
-            :quantity="purchase.getValues.quantity"
-        />
+        <div class="contents">
+            <AtomPurchaseHistoryReceiptProductImage 
+                :src="props.purchase.product.getValues.image"
+            />
+            <AtomPurchaseHistoryReceiptProductName>
+                {{ props.purchase.product.getValues.name }}
+            </AtomPurchaseHistoryReceiptProductName>
+            <MoleculePurchaseHistoryReceiptProductValues 
+                :price="props.purchase.getValues.price"
+                :quantity="props.purchase.getValues.quantity"
+            />
+        </div>
     </v-list-item>
 </template>
 
@@ -21,5 +23,9 @@ const props = defineProps<{
 </script>
 
 <style scoped>
-
+.contents {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
 </style>

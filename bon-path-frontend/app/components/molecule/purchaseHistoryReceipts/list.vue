@@ -1,6 +1,10 @@
 <template>
-    <div v-for="(receipt, index) in props.receipts" :key="index">
-        <MoleculePurchaseHistoryReceiptsCard :receipt="receipt" />
+    <div class="contents">
+        <MoleculePurchaseHistoryReceiptsCard
+            v-for="(receipt, index) in props.receipts" 
+            :key="index"
+            :receipt="receipt" 
+        />
     </div>
 </template>
 
@@ -11,5 +15,9 @@ const props = defineProps<{
 </script>
 
 <style scoped>
-
+.contents {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
 </style>

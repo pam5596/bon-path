@@ -1,6 +1,6 @@
 <template>
     <article>
-        <v-card>
+        <v-card class="wrapper">
             <AtomPurchaseHistoryReceiptStoreName>
                 {{ store?.name }}
             </AtomPurchaseHistoryReceiptStoreName>
@@ -8,7 +8,6 @@
                 {{ new Date().toLocaleString() }}
             </AtomPurchaseHistoryReceiptCreatedAt>
             <v-divider />
-            
             <v-card-text>
                 <MoleculePurchaseHistoryReceiptInfoProducts :purchases="purchases"/>
             </v-card-text>
@@ -39,5 +38,10 @@ const purchases = computed(() => purchasesFixture.map(
 </script>
 
 <style scoped>
-
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+}
 </style>

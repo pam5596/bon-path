@@ -1,7 +1,7 @@
 <template>
-    <v-list-img>
+    <v-avatar class="content">
         <v-img :src="props.src" />
-    </v-list-img>
+    </v-avatar>
 </template>
 
 <script setup lang="ts">
@@ -13,5 +13,7 @@ const props = defineProps<{
 </script>
 
 <style scoped>
-
+.content {
+    border-radius: 0.5rem;
+}
 </style>

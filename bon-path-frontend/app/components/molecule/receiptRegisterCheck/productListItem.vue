@@ -1,11 +1,11 @@
 <template>
     <v-list-item>
-        <AtomReceiptRegisterCheckProductImage 
-            :src="props.purchase.product.getValues.image"
+        <MoleculeReceiptRegisterCheckProductSelector 
+            :products="Array(10).fill(props.purchase.product)"
         />
-        <MoleculeReceiptRegisterCheckProductSelector />
-        <v-text-field>{{ purchase.getValues.price }}</v-text-field>
-        <v-text-field>{{ purchase.getValues.quantity }}</v-text-field>
+        <MoleculeReceiptRegisterCheckProductValues 
+            :purchase="props.purchase"
+        />
     </v-list-item>
 </template>
 

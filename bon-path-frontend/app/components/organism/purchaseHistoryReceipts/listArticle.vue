@@ -1,6 +1,6 @@
 <template>
     <article>
-        <AtomTypography>
+        <AtomTypography class="store-name">
             {{ store.getValues.name }}
         </AtomTypography>
         <MoleculePurchaseHistoryReceiptsList 
@@ -33,5 +33,13 @@ const receipts = computed(()=>purchasesFixture.filter(
 </script>
 
 <style scoped>
+article {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
 
+.store-name {
+    font-size: 1.25rem;
+}
 </style>

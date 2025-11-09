@@ -29,6 +29,15 @@ export default defineNuxtConfig({
       })
     },
   ],
+  css: ['~/assets/global.css'],
+  fonts: {
+    families: [
+      {
+        name: 'Julius Sans One',
+        src: '~/assets/JuliusSansOne-Regular.ttf'
+      }
+    ]
+  },
   i18n: {
     locales: [
       { code: 'ja', name: '日本語', file: 'ja.json' }

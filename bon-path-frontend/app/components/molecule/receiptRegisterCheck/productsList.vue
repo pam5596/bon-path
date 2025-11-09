@@ -1,6 +1,8 @@
 <template>
-    <v-list v-for="(purchase, index) in props.purchases" :key="index">
+    <v-list class="contents">
         <MoleculeReceiptRegisterCheckProductListItem 
+            v-for="(purchase, index) in props.purchases" 
+            :key="index"
             :purchase="purchase"
         />
     </v-list>
@@ -13,5 +15,9 @@ const props = defineProps<{
 </script>
 
 <style scoped>
-
+.contents {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
 </style>

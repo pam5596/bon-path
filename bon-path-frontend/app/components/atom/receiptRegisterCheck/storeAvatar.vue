@@ -1,17 +1,19 @@
 <template>
-    <v-list-img>
+    <v-avatar class="content">
         <v-img :src="props.src"/>
-    </v-list-img>
+    </v-avatar>
 </template>
 
 <script setup lang="ts">
 import type { VImg } from 'vuetify/components';
 
 const props = defineProps<{
-    src?: VImg['src']
+    src: VImg['src']
 }>()
 </script>
 
 <style scoped>
-
+.content {
+    border-radius: 0.5rem;
+}
 </style>

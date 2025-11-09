@@ -1,6 +1,6 @@
 <template>
-    <v-card-actions>
-        <v-btn>
+    <v-card-actions class="contents">
+        <v-btn color="primary" variant="flat">
             {{  $t("purchaseHistoryStores.cardActions.toReceiptsBtn") }}
         </v-btn>
     </v-card-actions>
@@ -11,5 +11,8 @@
 </script>
 
 <style scoped>
-
+.contents {
+    flex-direction: column;
+    align-items: end;
+}
 </style>

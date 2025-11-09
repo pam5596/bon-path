@@ -1,8 +1,11 @@
 <template>
     <NuxtLayout name="app">
-        <!-- <p>{{ $route.params }}</p> -->
-        <OrganismPurchaseHistoryReceiptsStoreParallax />
-        <OrganismPurchaseHistoryReceiptsListArticle/>
+        <template #parallax>
+            <OrganismPurchaseHistoryReceiptsStoreParallax />
+        </template>
+        <template #main>
+            <OrganismPurchaseHistoryReceiptsListArticle/>
+        </template>
     </NuxtLayout>
 </template>
 
