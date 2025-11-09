@@ -1,5 +1,5 @@
 <template>
-    <v-card-actions class="card-actions">
+    <v-card-actions class="contents">
         <v-btn>
             {{ $t("receiptRegisterPhoto.previewCard.actions.toCheckBtn") }}
         </v-btn>
@@ -14,7 +14,7 @@
 </script>
 
 <style scoped>
-.card-actions {
+.contents {
     display: flex;
     gap: 0.5rem;
 }

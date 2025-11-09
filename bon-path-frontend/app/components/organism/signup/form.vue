@@ -1,8 +1,8 @@
 <template>
-    <v-form>
+    <v-form class="wrapper">
         <v-text-field :label="$t('signUp.form.email')" />
         <v-text-field :label="$t('signUp.form.password')" />
-        <v-btn>
+        <v-btn color="primary">
             {{ $t("signUp.form.onSubmitBtn") }}
         </v-btn>
     </v-form>
@@ -13,5 +13,8 @@
 </script>
 
 <style scoped>
-
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
 </style>

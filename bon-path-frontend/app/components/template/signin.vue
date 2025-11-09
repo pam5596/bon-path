@@ -1,9 +1,11 @@
 <template>
     <NuxtLayout name="auth">
-        <OrganismSigninForm />
-        <v-btn>
-            {{ $t("signIn.toSignUpBtn") }}
-        </v-btn>
+        <div class="container">
+            <OrganismSigninForm />
+            <v-btn color="secondary">
+                {{ $t("signIn.toSignUpBtn") }}
+            </v-btn>
+        </div>
     </NuxtLayout>
 </template>
 
@@ -12,5 +14,9 @@
 </script>
 
 <style scoped>
-
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
 </style>

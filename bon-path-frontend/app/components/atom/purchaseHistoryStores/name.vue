@@ -1,5 +1,5 @@
 <template>
-    <v-card-title class="title">
+    <v-card-title class="content">
         <slot />
     </v-card-title>
 </template>
@@ -9,7 +9,7 @@
 </script>
 
 <style scoped>
-.title {
+.content {
     font-size: 1rem;
 }
 </style>

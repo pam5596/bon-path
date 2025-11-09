@@ -1,6 +1,6 @@
 <template>
     <article>
-        <v-card class="card">
+        <v-card class="wrapper">
             <v-card-title>
                 {{ new Date().toLocaleString() }}
             </v-card-title>
@@ -17,7 +17,7 @@
 </script>
 
 <style scoped>
-.card {
+.wrapper {
     padding: 1rem;
     display: flex;
     flex-direction: column;

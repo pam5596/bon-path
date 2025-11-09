@@ -1,11 +1,12 @@
 <template>
-    <div class="wrapper">
+    <div class="contents">
         <v-text-field
             v-model="purchaseValues.price"
             :label="$t('receiptRegisterCheck.form.productValues.price.label')"
             type="number"
             :rules="[(v: unknown) => !!v || $t('receiptRegisterCheck.form.productValues.price.required')]"
             :prefix="$t('receiptRegisterCheck.form.productValues.price.prefix')"
+            variant="filled"
         />
         <v-text-field
             v-model="purchaseValues.quantity"
@@ -13,6 +14,7 @@
             type="number"
             :rules="[(v: unknown) => !!v || $t('receiptRegisterCheck.form.productValues.quantity.required')]"
             :prefix="$t('receiptRegisterCheck.form.productValues.quantity.prefix')"
+            variant="filled"
         />
     </div>
 </template>
@@ -29,7 +31,7 @@ const purchaseValues = reactive({
 </script>
 
 <style scoped>
-.wrapper {
+.contents {
     display: flex;
     gap: 1rem;
 }

@@ -1,5 +1,5 @@
 <template>
-    <v-card-text class="card-text">
+    <v-card-text class="contents">
         <AtomReceiptRegisterPhotoAvatar 
             v-for="(url, index) in props.imageUrls" 
             :key="index"
@@ -15,7 +15,7 @@ const props = defineProps<{
 </script>
 
 <style scoped>
-.card-text {
+.contents {
     display: flex;
     gap: 0.5rem;
     overflow-x: auto;

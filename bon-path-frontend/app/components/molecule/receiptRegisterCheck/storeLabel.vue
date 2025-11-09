@@ -1,5 +1,5 @@
 <template>
-    <div class="label">
+    <div class="contents">
         <AtomReceiptRegisterCheckStoreAvatar 
             :src="props.store.getValues.image!"
         />
@@ -16,7 +16,7 @@ const props = defineProps<{
 </script>
 
 <style scoped>
-.label {
+.contents {
     display: flex;
     align-items: center;
     gap: 0.5rem;

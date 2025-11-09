@@ -1,8 +1,8 @@
 <template>
     <div class="wrapper">
         <AtomAppSymbol />
-        <AtomTypography class="text-h3 text-center">
-            BON PATH
+        <AtomTypography class="app-name">
+            {{ $t("app-name") }}
         </AtomTypography>
     </div>
 </template>
@@ -14,5 +14,11 @@
 <style scoped>
 .wrapper {
     max-width: 16rem;
+}
+
+.app-name {
+    font-size: 3rem;
+    text-align: center;
+    color: white;
 }
 </style>

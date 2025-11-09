@@ -1,5 +1,5 @@
 <template>
-    <v-card class="container" color="blue-darken-4" variant="tonal">
+    <v-card class="contents" color="blue-darken-4" variant="tonal">
         <AtomTypography class="content">
             {{ props.content }}
         </AtomTypography>
@@ -14,7 +14,7 @@ const props = defineProps<{
 </script>
 
 <style scoped>
-.container {
+.contents {
     width: 100%;
     padding: 0.5rem;
 }

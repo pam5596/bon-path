@@ -1,6 +1,6 @@
 <template>
     <section>
-        <AtomTypography class="text-h6">
+        <AtomTypography class="title">
             <v-icon>
                 mdi-information-slab-box
             </v-icon>
@@ -32,5 +32,9 @@ section {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+}
+
+.title {
+    font-size: 1.25rem;
 }
 </style>

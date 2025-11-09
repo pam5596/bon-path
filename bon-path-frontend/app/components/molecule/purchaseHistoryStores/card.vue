@@ -1,5 +1,5 @@
 <template>
-    <v-card class="card">
+    <v-card class="contents">
         <v-avatar class="avatar">
             <AtomPurchaseHistoryStoresImage 
                 :src="props.store.getValues.image"
@@ -21,8 +21,8 @@ const props = defineProps<{
 </script>
 
 <style scoped>
-.card {
-    height: 5rem;
+.contents {
+    max-height: 5rem;
     display: flex;
 }
 

@@ -1,5 +1,5 @@
 <template>
-    <AtomTypography class="alert-caption">
+    <AtomTypography class="content">
         {{ props.content }}
     </AtomTypography>
 </template>
@@ -12,7 +12,7 @@ const props = defineProps<{
 </script>
 
 <style scoped>
-.caption {
+.content {
     font-size: 0.75rem;
     white-space: pre-wrap;
     font-family: courier, monospace;

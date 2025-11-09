@@ -1,5 +1,5 @@
 <template>
-    <div class="atom-typography">
+    <div class="content">
         <slot />
     </div>
 </template>
@@ -9,7 +9,7 @@
 </script>
 
 <style scoped>
-.atom-typography {
+.content {
     font-family: 'Julius Sans One', sans-serif;
 }
 </style>

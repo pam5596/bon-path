@@ -1,6 +1,6 @@
 <template>
     <article>
-        <AtomTypography class="text-h6">
+        <AtomTypography class="store-name">
             {{ store.getValues.name }}
         </AtomTypography>
         <MoleculePurchaseHistoryReceiptsList 
@@ -37,5 +37,9 @@ article {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+}
+
+.store-name {
+    font-size: 1.25rem;
 }
 </style>

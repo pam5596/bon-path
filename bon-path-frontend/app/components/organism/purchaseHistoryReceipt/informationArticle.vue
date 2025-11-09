@@ -1,6 +1,6 @@
 <template>
     <article>
-        <v-card class="card">
+        <v-card class="wrapper">
             <AtomPurchaseHistoryReceiptStoreName>
                 {{ store?.name }}
             </AtomPurchaseHistoryReceiptStoreName>
@@ -38,7 +38,7 @@ const purchases = computed(() => purchasesFixture.map(
 </script>
 
 <style scoped>
-.card {
+.wrapper {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;

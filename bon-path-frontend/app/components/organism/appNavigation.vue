@@ -1,6 +1,7 @@
 <template>
     <v-bottom-navigation
         v-model="value"
+        mode="shift"
         active
         grow
     >
@@ -24,8 +25,10 @@
 </template>
 
 <script setup lang="ts">
-const value = ref(0)
+import { VBottomNavigation } from 'vuetify/components';
 
+const value = ref(0)
+console.log(VBottomNavigation.style)
 </script>
 
 <style scoped>

@@ -1,6 +1,8 @@
 <template>
-    <div v-for="(store, index) in stores" :key="index">
+    <div class="wrapper">
         <MoleculePurchaseHistoryStoresCard 
+            v-for="(store, index) in stores" 
+            :key="index"
             :store="store"
         />
     </div>
@@ -15,5 +17,9 @@ const stores = computed(()=>storesFixture.map(
 </script>
 
 <style scoped>
-
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div v-if="overlayIsOpen" class="loading-overlay">
+    <div v-if="overlayIsOpen" class="wrapper">
         <AtomProgress />
     </div>
 </template>
@@ -9,7 +9,7 @@ const { overlayIsOpen } = useLoading()
 </script>
 
 <style scoped>
-.loading-overlay {
+.wrapper {
     position: fixed;
     top: 0;
     z-index: 1005;

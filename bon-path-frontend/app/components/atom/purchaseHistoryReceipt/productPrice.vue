@@ -1,5 +1,5 @@
 <template>
-    <v-list-item-subtitle class="subtitle">
+    <v-list-item-subtitle class="content">
         {{ $t("purchaseHistoryReceipt.productValues.priceUnit") + props.value }}
     </v-list-item-subtitle>
 </template>
@@ -11,7 +11,7 @@ const props = defineProps<{
 </script>
 
 <style scoped>
-.subtitle {
+.content {
     text-align: end;
 }
 </style>

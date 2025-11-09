@@ -1,5 +1,5 @@
 <template>
-    <div class="field">
+    <div class="contents">
         <AtomTypography class="text-h6">
             {{  $t("receiptRegisterCheck.form.productsHeading") }}
         </AtomTypography>
@@ -26,7 +26,7 @@ const purchases = computed(()=> purchasesFixture.filter(
 </script>
 
 <style scoped>
-.field {
+.contents {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;

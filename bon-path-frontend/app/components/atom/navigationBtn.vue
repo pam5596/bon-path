@@ -1,7 +1,10 @@
 <template>
     <v-btn class="content">
-        <v-icon>{{ props.mdiIcon }}</v-icon>
-        <span>{{ props.name }}</span>
+        <v-icon
+            size="30"
+            class="icon"
+        >{{ props.mdiIcon }}</v-icon>
+        <span class="name">{{ props.name }}</span>
     </v-btn>
 </template>
 
@@ -16,6 +19,19 @@ const props =  defineProps<{
 
 <style scoped>
 .content {
-    padding: 0
+    padding: 0;
 }
+
+.icon {
+    background: linear-gradient(90deg, #b1aaff, #8ec5fc);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.name {
+    color: rgb(159, 159, 159);
+    font-weight: bold;
+}
+
+
 </style>

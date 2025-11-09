@@ -1,5 +1,5 @@
 <template>
-    <div class="values">
+    <div class="contents">
         <AtomPurchaseHistoryReceiptProductPrice :value="props.price" />
         <AtomPurchaseHistoryReceiptProductQuantity :value="props.quantity" />
     </div>
@@ -14,8 +14,9 @@ const props = defineProps<{
 </script>
 
 <style scoped>
-.values {
+.contents {
     display: flex;
     flex-direction: column;
+    margin-left: auto;
 }
 </style>

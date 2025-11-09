@@ -4,10 +4,10 @@
             <slot name="parallax" />
         </div>
         <main 
-            class="main-container"
+            class="container"
             :style="props.pageTitle && 'gap: 1rem;'"
         >
-            <AtomTypography class="text-h4" >
+            <AtomTypography class="app-page-title" >
                 {{ props.pageTitle }}
             </AtomTypography>
             <div>
@@ -27,9 +27,14 @@ const props = defineProps<{
 </script>
 
 <style scoped>
-.main-container {
+.app-page-title {
+    font-size: 2rem;
+}
+
+.container {
     padding: 1rem;
     display: flex;
     flex-direction: column;
+    color: white;
 }
 </style>

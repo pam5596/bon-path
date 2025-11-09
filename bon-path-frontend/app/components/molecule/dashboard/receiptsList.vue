@@ -1,6 +1,8 @@
 <template>
-    <div v-for="(receipt, index) in props.receipts" :key="index">
+    <div>
         <MoleculeDashboardReceiptCard
+            v-for="(receipt, index) in props.receipts" 
+            :key="index"
             :receipt="receipt"
         />
     </div>

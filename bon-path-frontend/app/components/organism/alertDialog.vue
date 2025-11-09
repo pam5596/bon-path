@@ -1,5 +1,5 @@
 <template>
-    <div v-if="alertContent" class="alert-overlay">
+    <div v-if="alertContent" class="wrapper">
         <v-alert
             :type="alertContent.type"
             :title="alertContent.title"
@@ -19,7 +19,7 @@ const { alertContent, onCloseAlert } = useAlert()
 </script>
 
 <style scoped>
-.alert-overlay {
+.wrapper {
     width: 100%;
     padding: 1rem;
     position: fixed;

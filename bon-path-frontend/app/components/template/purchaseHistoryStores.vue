@@ -1,9 +1,7 @@
 <template>
     <NuxtLayout name="app" :page-title="$t('purchaseHistoryStores.heading')">
         <template #main>
-            <div class="contents">
-                <OrganismPurchaseHistoryStoresListArticle />
-            </div>
+            <OrganismPurchaseHistoryStoresListArticle />
         </template>
     </NuxtLayout>
 </template>
@@ -13,9 +11,5 @@
 </script>
 
 <style scoped>
-.contents {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
+
 </style>

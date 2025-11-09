@@ -1,5 +1,5 @@
 <template>
-    <v-card class="card">
+    <v-card class="contents">
         <AtomReceiptRegisterPhotoTitle>
             {{ $t("receiptRegisterPhoto.previewCard.title") }}
         </AtomReceiptRegisterPhotoTitle>
@@ -17,7 +17,7 @@ const props = defineProps<{
 </script>
 
 <style scoped>
-.card {
+.contents {
     display: flex;
     flex-direction: column;
     gap: 1rem;

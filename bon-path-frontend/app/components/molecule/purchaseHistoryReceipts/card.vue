@@ -1,5 +1,5 @@
 <template>
-    <v-card class="card">
+    <v-card class="contents">
         <v-avatar class="avatar">
             <AtomPurchaseHistoryReceiptsImage 
                 :src="props.receipt.images[0]!.getValues.url"
@@ -21,7 +21,7 @@ const props = defineProps<{
 </script>
 
 <style scoped>
-.card {
+.contents {
     height: 8rem;
     display: flex;
 }

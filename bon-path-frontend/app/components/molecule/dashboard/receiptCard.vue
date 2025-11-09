@@ -1,5 +1,5 @@
 <template>
-    <v-card class="card">
+    <v-card class="contents">
         <v-avatar class="avatar">
             <AtomDashboardReceiptImage
                 :src="props.receipt.images[0]!.getValues.url"
@@ -21,8 +21,8 @@ const props = defineProps<{
 </script>
 
 <style scoped>
-.card {
-    height: 8rem;
+.contents {
+    max-height: 8rem;
     display: flex;
 }
 
