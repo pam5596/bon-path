@@ -62,7 +62,19 @@
         "form": {
             "storeHeading": "店舗情報",
             "productsHeading": "商品情報一覧",
-            "onSubmitBtn": "登録する"
+            "onSubmitBtn": "登録する",
+            "productValues": {
+                "price": {
+                    "label": "価格",
+                    "required": "商品の購入価格を入力してください。",
+                    "prefix": "￥"
+                },
+                "quantity": {
+                    "label": "数量",
+                    "required": "商品の購入価格を入力してください。",
+                    "prefix": "x"
+                }
+            }
         }
     },
     "receiptRegisterPhoto": {

@@ -34,9 +34,6 @@ export default defineNuxtPlugin((app) => {
                 class: 'pa-0',
                 style: 'min-height: 0;'
             },
-            VFileInput: {
-                
-            }
         }
     })
     app.vueApp.use(vuetify)

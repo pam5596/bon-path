@@ -10,7 +10,6 @@
 
 <style scoped>
 .atom-typography {
-    color: white;
     font-family: 'Julius Sans One', sans-serif;
 }
 </style>
