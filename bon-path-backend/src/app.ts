@@ -138,10 +138,6 @@ if (process.env.NODE_ENV == 'development') {
         },
     })
     app.get("/docs", swaggerUI({ url: "/doc" }))
-} else if (process.env.NODE_ENV == 'test') {
-    app.get('/signup', (c) => c.text('Redirect test: /signup'))
-    app.get('/signin/email-verify', (c) => c.text('Redirect test: /signin/email-verify'))
-    app.get('/login', (c) => c.text('Redirect test: /login'))
 }
 
 export default app
