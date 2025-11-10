@@ -55,7 +55,8 @@ import { ZodError } from 'zod';
 
 const app = new OpenAPIHono({
     defaultHook: (result) => {
-        if (!result.success && result.error instanceof ZodError) 
+        if (process.env.NODE_ENV == 'development') console.log(result)
+        if (!result.success && result.error instanceof ZodError) {
             throw new HTTPException(
                 400,
                 {
@@ -63,6 +64,7 @@ const app = new OpenAPIHono({
                     cause: result.error
                 }
             )
+        }
     }
 })
 
