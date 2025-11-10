@@ -4,25 +4,16 @@
             {{  $t("receiptRegisterCheck.form.productsHeading") }}
         </AtomTypography>
         <MoleculeReceiptRegisterCheckProductsList 
-            :purchases="purchases"
+            :purchases="props.purchases"
         />
     </div>
 </template>
 
 <script setup lang="ts">
-const { purchasesFixture, productsFixture } = useFixtures()
-const { receiptId } = useIdParams(['receiptId'])
+const props = defineProps<{
+    purchases: PurchaseModel[]
+}>()
 
-const purchases = computed(()=> purchasesFixture.filter(
-    purchase => purchase.receiptId == receiptId
-).map(
-    purchase => new PurchaseModel({
-        ...purchase,
-        product: new ProductModel(
-        productsFixture.find(product => product.id == purchase.productId)!
-    )
-    })
-))
 </script>
 
 <style scoped>

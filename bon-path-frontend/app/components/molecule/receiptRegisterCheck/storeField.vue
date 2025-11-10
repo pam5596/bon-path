@@ -4,17 +4,16 @@
             {{ $t("receiptRegisterCheck.form.storeHeading") }}
         </AtomTypography>
         <MoleculeReceiptRegisterCheckStoreSelector 
-            :stores="stores"
+            :stores="props.stores"
         />
     </div>
 </template>
 
 <script setup lang="ts">
-const { storesFixture } = useFixtures()
+const props = defineProps<{
+    stores: StoreModel[]
+}>()
 
-const stores = computed(()=> storesFixture.map(
-    store => new StoreModel(store)
-))
 </script>
 
 <style scoped>

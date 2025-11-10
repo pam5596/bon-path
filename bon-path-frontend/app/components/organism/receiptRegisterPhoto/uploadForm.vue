@@ -1,13 +1,5 @@
 <template>
     <v-form class="form">
-        <!-- <v-file-input
-            prepend-icon="mdi-receipt-send"
-            accept="image/*"
-            chips
-            multiple
-            :placeholder="$t('receiptRegisterPhoto.uploadForm.placeholder')"
-            variant="outlined"
-        /> -->
         <v-file-upload
             multiple
             accept="image/*"
@@ -20,11 +12,17 @@
         <v-btn color="primary">
             {{ $t("receiptRegisterPhoto.uploadForm.onOpenDialogBtn") }}
         </v-btn>
-        <MoleculeReceiptRegisterPhotoPreviewDialog />
+        <MoleculeReceiptRegisterPhotoPreviewDialog 
+            :image-urls="imageUrls"
+        />
     </v-form>
 </template>
 
 <script setup lang="ts">
+const { receiptImagesFixture } = useFixtures()
+const imageUrls = computed(() => receiptImagesFixture.map(
+    image => image.url
+))
 
 </script>
 
