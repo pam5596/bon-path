@@ -2,11 +2,12 @@ import z from "zod"
 
 export default function(names: string[]) {
     const route = useRoute()
+    const idRule = useIdRule()
 
     const object_schema = z.strictObject(
         Object.fromEntries(
             names.map(
-                name => [name, IdValueObject.schema()]
+                name => [name, idRule]
             )
         )
     )
