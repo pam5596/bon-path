@@ -1,4 +1,5 @@
 export default function() {
+    const config = useRuntimeConfig()
     const alertContent = useState<STATE_TYPES['ALERT']>(STATE_KEYS.ALERT, () => null)
     
     const onAlert = (newAlertContent: STATE_TYPES['ALERT']) => {
@@ -6,7 +7,7 @@ export default function() {
 
         setTimeout(() => {
             onCloseAlert()
-        }, 5000)
+        }, config.app.alertKeepTime)
     }
 
     const onCloseAlert = () => {
