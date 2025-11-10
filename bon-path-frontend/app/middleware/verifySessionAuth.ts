@@ -1,9 +1,5 @@
-export default defineNuxtRouteMiddleware(async (_to, _from) => {
+export default defineNuxtRouteMiddleware(async (_to) => {
     const response = await $fetch('/api/session/verify').catch(() => null)
     
-    if (response) {
-        return abortNavigation()
-    } else {
-        return navigateTo('/signin')
-    }
+    if (!response) return navigateTo('/signin')
 })

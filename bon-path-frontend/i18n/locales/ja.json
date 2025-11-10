@@ -45,7 +45,7 @@
         "successMsgArticle": {
             "heading": "アカウント登録に成功しました。",
             "annotation": "※β版はメールアドレスの確認機能がありません",
-            "toDashBoardBtn": "アプリのダッシュボードへ"
+            "toSignUpBtn": "ログインへ"
         },
         "failedMsgArticle": {
             "heading": "アカウント登録に失敗しました。",

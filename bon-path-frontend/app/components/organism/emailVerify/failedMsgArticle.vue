@@ -6,13 +6,14 @@
         <AtomTypography>
             {{  $t("emailVerify.failedMsgArticle.annotation") }}
         </AtomTypography>
-        <v-btn color="secondary">
+        <v-btn color="secondary" @click="toSigninEvent">
             {{ $t("emailVerify.failedMsgArticle.toSignInBtn") }}
         </v-btn>
     </article>
 </template>
 
 <script setup lang="ts">
+const { toSigninEvent } = useEmailVerifyViewModel()
 
 </script>
 

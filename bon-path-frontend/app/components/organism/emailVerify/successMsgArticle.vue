@@ -4,15 +4,16 @@
             {{ $t("emailVerify.successMsgArticle.heading") }}
         </AtomTypography>
         <AtomTypography>
-            {{  $t("emailVerify.successMsgArticle.annotation") }}
+            {{ $t("emailVerify.successMsgArticle.annotation") }}
         </AtomTypography>
-        <v-btn color="primary">
-            {{ $t("emailVerify.successMsgArticle.toDashBoardBtn") }}
+        <v-btn color="primary" @click="toSignupEvent">
+            {{ $t("emailVerify.successMsgArticle.toSignUpBtn") }}
         </v-btn>
     </article>
 </template>
 
 <script setup lang="ts">
+const { toSignupEvent } = useEmailVerifyViewModel()
 
 </script>
 

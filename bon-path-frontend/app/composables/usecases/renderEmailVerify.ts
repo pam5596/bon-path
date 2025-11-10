@@ -1,11 +1,12 @@
 export default function() {
     const { postUser } = useUsers()
+    const { deleteSessionVerify } = useSessionVerify()
 
     return useAsyncOnRender(
         'render-email-verify-usecase',
         async () => {
             const { hashedId } = await postUser()
-            // [TODO]: ここに/session/verify - DELETEの処理が必要
+            await deleteSessionVerify()
 
             return hashedId
         }
