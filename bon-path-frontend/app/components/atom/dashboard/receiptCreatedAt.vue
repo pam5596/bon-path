@@ -1,6 +1,6 @@
 <template>
     <v-card-title>
-        {{ props.value.toLocaleString() }}
+        {{ localeStringDate }}
     </v-card-title>
 </template>
 
@@ -8,6 +8,8 @@
 const props = defineProps<{
     value: Date
 }>()
+const localeStringDate = computed(()=>props.value.toLocaleString())
+
 </script>
 
 <style scoped>

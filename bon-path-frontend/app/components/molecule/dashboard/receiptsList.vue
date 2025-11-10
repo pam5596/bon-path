@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="contents">
         <MoleculeDashboardReceiptCard
             v-for="(receipt, index) in props.receipts" 
             :key="index"
@@ -10,11 +10,15 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-    receipts: ReceiptModel[]
+    receipts?: ReceiptModel[]
 }>()
 
 </script>
 
 <style scoped>
-
+.contents {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
 </style>

@@ -10,6 +10,7 @@
 </template>
 
 <script setup lang="ts">
+// const { toReceiptRegisterCheck, onDeleteReceiptEvent } = useDashboardViewModel()
 
 </script>
 

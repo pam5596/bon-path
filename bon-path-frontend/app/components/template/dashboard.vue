@@ -10,6 +10,8 @@
 </template>
 
 <script setup lang="ts">
+const { execute } = useDashboardViewModel()
+onMounted(async()=>await execute())
 
 </script>
 

@@ -1,17 +1,17 @@
 <template>
     <section>
         <AtomTypography>
-            {{ user.getValues.name }}
+            {{ data?.user.getValues.name }}
         </AtomTypography>
         <AtomTypography>
-            {{ user.getValues.email }}
+            {{ data?.user.getValues.email }}
         </AtomTypography>
     </section>
 </template>
 
 <script setup>
-const { usersFixture } = useFixtures()
-const user = computed(()=>new UserModel(usersFixture[0]))
+const { data } = useDashboardViewModel()
+watch(data, (data) => console.log(data.user.getValues.createdAt))
 
 </script>
 

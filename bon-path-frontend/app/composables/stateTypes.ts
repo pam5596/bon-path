@@ -9,4 +9,9 @@ export interface STATE_TYPES {
     } | null;
 
     IS_LOADING: boolean;
+
+    DASHBOARD_COLLECTION: {
+        user: UserModel | null,
+        receipts: ReceiptModel[]
+    }
 }

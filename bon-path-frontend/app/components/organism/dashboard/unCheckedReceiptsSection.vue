@@ -8,22 +8,12 @@
                 {{ $t('dashboard.unCheckedReceiptsSection.heading') }}
             </span>
         </AtomTypography>
-        <MoleculeDashboardReceiptsList :receipts="receipts"/>
+        <MoleculeDashboardReceiptsList :receipts="data?.receipts"/>
     </section>
 </template>
 
 <script setup lang="ts">
-const { receiptsFixture, receiptImagesFixture } = useFixtures()
-const receipts = computed(() => receiptsFixture.map(
-    (receipt) => new ReceiptModel({
-        ...receipt,
-        images: receiptImagesFixture.filter(
-            image => image.receiptId == receipt.id
-        ).map(
-            image => new ReceiptImageModel(image)
-        )
-    })
-))
+const { data } = useDashboardViewModel()
 
 </script>
 

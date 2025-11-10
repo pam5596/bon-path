@@ -7,7 +7,7 @@
         </v-avatar>
         <v-card-item class="item">
             <AtomDashboardReceiptCreatedAt 
-                :value="new Date()"
+                :value="props.receipt.getValues.createdAt!"
             />
             <MoleculeDashboardReceiptCardActions />
         </v-card-item>
@@ -18,6 +18,7 @@
 const props = defineProps<{
     receipt: ReceiptModel
 }>()
+
 </script>
 
 <style scoped>
