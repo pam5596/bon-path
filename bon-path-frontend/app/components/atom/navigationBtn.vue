@@ -13,8 +13,9 @@ import type { VIcon } from 'vuetify/components';
 
 const props =  defineProps<{
     mdiIcon: string,
-    name: string
+    name: string,
 }>()
+
 </script>
 
 <style scoped>
