@@ -2,7 +2,7 @@
     <NuxtLayout name="auth">
         <div class="container">
             <OrganismSigninForm />
-            <v-btn color="secondary" @click="toSignupEvent">
+            <v-btn color="primary" @click="toSignupEvent">
                 {{ $t("signIn.toSignUpBtn") }}
             </v-btn>
         </div>

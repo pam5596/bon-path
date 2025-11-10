@@ -10,6 +10,7 @@ export default function <ParamsT>(
 ) {
     const { overlayIsOpen } = useLoading()
     const { onAlert } = useAlert()
+    const { t } = useI18n()
 
     const event = async (args: ParamsT) => {
         overlayIsOpen.value = true
@@ -21,9 +22,10 @@ export default function <ParamsT>(
             })
         } catch (e) {
             if (e instanceof FetchError) {
+                console.error(e)
                 onAlert({
                     type: 'error',
-                    title: e.data?.detail || $t("_errors.unknownError"),
+                    title: e.data?.detail || t("_errors.unknownError"),
                     text: e.data?.issue || e.data,
                     forDeveloper: typeof e.data == 'object' ? e.data : undefined
                 })

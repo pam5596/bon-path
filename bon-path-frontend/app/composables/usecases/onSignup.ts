@@ -6,6 +6,7 @@ export default function () {
     return useAsyncOnEvent(
         async (form: SessionPayloads.Login.POST.Request['body']) => {
             await postSessionLogin({ body: form })
+            navigateTo('/dashboard')
         }
     )
 }

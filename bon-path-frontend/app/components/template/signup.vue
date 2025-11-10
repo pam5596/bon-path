@@ -2,7 +2,7 @@
     <NuxtLayout name="auth">
         <div class="container">
             <OrganismSignupForm />
-            <v-btn color="secondary">
+            <v-btn color="secondary" @click="toSigninEvent">
                 {{ $t("signUp.toSignInBtn") }}
             </v-btn>
         </div>
@@ -10,6 +10,7 @@
 </template>
 
 <script setup lang="ts">
+const { toSigninEvent } = useSignupViewModel()
 
 </script>
 

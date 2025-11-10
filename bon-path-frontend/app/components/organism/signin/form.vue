@@ -19,7 +19,7 @@
         />
         <v-btn 
             type="submit"
-            color="primary"
+            color="secondary"
             :loading="isLoading"
         >
             {{ $t('signIn.form.onSubmitBtn') }}
