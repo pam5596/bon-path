@@ -65,3 +65,17 @@ services:
       MINIO_ROOT_PASSWORD: bonpath-minio
     volumes:
       - ./.minio-data:/data
+  storage-mc:
+    container_name: bon-path-storage-mc
+    image: minio/mc
+    depends_on:
+      - storage
+    entrypoint: >
+      /bin/sh -c "
+        sleep 10 &&
+        mc alias set local http://storage:9000 bonpath-minio bonpath-minio &&
+        mc mb local/bonpath-dev || true && 
+        mc anonymous set download local/bonpath-dev &&
+        mc mb local/bonpath-test || true && 
+        mc anonymous set download local/bonpath-test
+      "
