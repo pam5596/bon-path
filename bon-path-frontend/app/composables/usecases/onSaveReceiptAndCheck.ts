@@ -20,7 +20,7 @@ export default function () {
                     images: request.images
                 }
             })
-            navigateTo(`/dashboard`)
+            navigateTo(`/receipt-register/check/${id}`)
         }
     )
 }

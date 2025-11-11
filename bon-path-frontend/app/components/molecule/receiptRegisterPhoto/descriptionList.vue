@@ -1,6 +1,9 @@
 <template>
     <v-list>
         <MoleculeReceiptRegisterPhotoDescriptionListItem 
+            :description="$t('receiptRegisterPhoto.descriptionArticle.description.allowGeoLocation')"
+        />
+        <MoleculeReceiptRegisterPhotoDescriptionListItem 
             :description="$t('receiptRegisterPhoto.descriptionArticle.description.numberOfRegistration')"
         />
         <MoleculeReceiptRegisterPhotoDescriptionListItem 

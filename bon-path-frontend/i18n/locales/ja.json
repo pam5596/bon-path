@@ -101,11 +101,12 @@
                 "numberOfRegistration": "一度の登録で可能なレシートは１枚までです。",
                 "splitShooting": "写真１枚に収まりきらない場合は複数に分けて撮影してください。",
                 "photoConditions": "店名・商品名・価格がはっきり写っていること。",
-                "receiptCondition": "おり、色褪せ・汚れ・掠れ等がないこと。"
+                "receiptCondition": "おり、色褪せ・汚れ・掠れ等がないこと。",
+                "allowGeoLocation": "位置情報の取得を許可してください。"
             }
         },
         "previewCard": {
-            "title": "撮影したレシート",
+            "title": "店舗と商品も登録しますか？",
             "actions": {
                 "toCheckBtn": "今すぐ登録する",
                 "toDashBoardBtn": "あとで登録する"

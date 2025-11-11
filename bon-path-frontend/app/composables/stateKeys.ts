@@ -3,5 +3,5 @@ export const STATE_KEYS = {
     IS_LOADING: 'isLoading',
     SIGNIN_FORM: 'signinFormValues',
     SIGNUP_FORM: 'signUpFormValues',
-    DASHBOARD_COLLECTION: 'dashboardCollection'
+    DASHBOARD_COLLECTION: 'dashboardCollection',
 }

@@ -26,6 +26,7 @@ export default function() {
                         images: receipt.images.map(
                             (image) => new ReceiptImageModel({
                                 ...image,
+                                url: `/source${image.url}`,
                                 createdAt: new Date(image.createdAt)
                             })
                         )
