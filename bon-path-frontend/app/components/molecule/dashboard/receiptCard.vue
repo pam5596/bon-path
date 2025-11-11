@@ -1,5 +1,5 @@
 <template>
-    <v-card class="contents">
+    <v-card class="content">
         <v-avatar class="avatar">
             <AtomDashboardReceiptImage
                 :src="props.receipt.images[0]!.getValues.url"
@@ -9,7 +9,10 @@
             <AtomDashboardReceiptCreatedAt 
                 :value="props.receipt.getValues.createdAt!"
             />
-            <MoleculeDashboardReceiptCardActions />
+            <MoleculeDashboardReceiptCardActions 
+                @click-delete-receipt="emit('click-delete-receipt')"
+                @click-navigate-to-check="emit('click-navigate-to-check')"
+            />
         </v-card-item>
     </v-card>
 </template>
@@ -19,12 +22,15 @@ const props = defineProps<{
     receipt: ReceiptModel
 }>()
 
+const emit = defineEmits(['click-navigate-to-check', 'click-delete-receipt'])
+
 </script>
 
 <style scoped>
-.contents {
+.content {
     max-height: 8rem;
     display: flex;
+    flex-direction: row;
 }
 
 .avatar {

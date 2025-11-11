@@ -11,7 +11,7 @@ export default function <ResponseT>(
     const { overlayIsOpen } = useLoading()
     const { onAlert } = useAlert()
 
-    const { data, error, pending, status, execute } = useAsyncData<ResponseT, ServerError>(
+    const asyncData = useAsyncData<ResponseT, ServerError>(
         key, 
         handler, 
         {
@@ -20,18 +20,18 @@ export default function <ResponseT>(
         }
     )
 
-    watch(pending, (pending) => {
+    watch(asyncData.pending, (pending) => {
         overlayIsOpen.value = pending
     })
 
-    watch(status, (status) => {
+    watch(asyncData.status, (status) => {
         if (successMessage && status === 'success') onAlert({
             type: 'success',
             ...successMessage
         })
     })
 
-    watch(error, (error) => {
+    watch(asyncData.error, (error) => {
         if (typeof error?.data == 'object') {
             onAlert({
                 type: 'error',
@@ -48,5 +48,5 @@ export default function <ResponseT>(
         }
     })
 
-    return { data, error, pending, status, execute }
+    return asyncData
 }

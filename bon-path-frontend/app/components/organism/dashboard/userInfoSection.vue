@@ -11,7 +11,6 @@
 
 <script setup>
 const { data } = useDashboardViewModel()
-watch(data, (data) => console.log(data.user.getValues.createdAt))
 
 </script>
 

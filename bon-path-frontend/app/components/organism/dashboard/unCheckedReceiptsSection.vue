@@ -8,12 +8,16 @@
                 {{ $t('dashboard.unCheckedReceiptsSection.heading') }}
             </span>
         </AtomTypography>
-        <MoleculeDashboardReceiptsList :receipts="data?.receipts"/>
+        <MoleculeDashboardReceiptsList 
+            :receipts="data?.receipts"
+            @click-delete-receipt="onDeleteReceiptEvent"
+            @click-navigate-to-check="toReceiptRegisterCheck"
+        />
     </section>
 </template>
 
 <script setup lang="ts">
-const { data } = useDashboardViewModel()
+const { data, onDeleteReceiptEvent, toReceiptRegisterCheck } = useDashboardViewModel()
 
 </script>
 

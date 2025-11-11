@@ -1,10 +1,11 @@
 export default function() {
-    const { data, execute } = renderDashboard()
+    const { data, execute, refresh } = renderDashboard()
 
     const toReceiptRegisterCheck = (id: number) => 
         navigateTo(`/receipt-register/check/${id}`)
 
-    const { isLoading, event: onDeleteReceiptEvent } = onDeleteReceipt()
+    const { isLoading, event: onDeleteReceiptEvent } = onDeleteReceipt(refresh)
+
 
     return {
         data,
