@@ -15,7 +15,6 @@ import { argon2id } from "argon2";
 export const awsS3 = new AwsS3Client({
     bucketName: process.env.AWS_S3_BUCKET_NAME!,
     region: process.env.AWS_S3_REGION,
-    endpoint: process.env.AWS_S3_ENDPOINT,
     forcePathStyle: true,
     credentials: {
         accessKeyId: process.env.AWS_S3_ACCESS_KEY_ID!,
