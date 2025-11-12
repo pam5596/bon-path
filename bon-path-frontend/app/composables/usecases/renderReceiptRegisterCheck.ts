@@ -1,6 +1,7 @@
 export default function() {
     const config = useRuntimeConfig()
     const { receiptId } = useIdParams(['receiptId'])
+    const { location, getLocation } = useGeoLocation()
     const { getReceipt, getReceiptImages } = useReceipts()
     const { getStoresGoogleMapSearch, getStoresVectorSearch } = useStores()
     const { getProductsGoogleSearch, getProductsVectorSearch } = useProducts()
@@ -9,6 +10,7 @@ export default function() {
     return useAsyncOnRender(
         'render-receipt-register-check-usecase',
         async () => {
+            getLocation()
             const receipt = await getReceipt({ params: { id: receiptId! }})
             const receiptImages = await getReceiptImages({ params: { receiptId: receiptId! }})
             const ocrResult = await postGptOcr({ body: {
@@ -23,13 +25,15 @@ export default function() {
             })
 
             const searchResultStores = [
-                ...vectorSearchStores.stores,
                 ...(await getStoresGoogleMapSearch({
                     query: {
                         keyword: ocrResult.store.name,
-                        limit: config.app.defaultLimitOfSearch
+                        limit: config.app.defaultLimitOfSearch,
+                        latitude: location.value?.latitude,
+                        longitude: location.value?.longitude
                     }
-                })).stores
+                })).stores,
+                ...vectorSearchStores.stores,
             ]
 
             const searchResultProducts = await Promise.all(
@@ -37,16 +41,16 @@ export default function() {
                     async (product) => ({
                         ...product,
                         searchResults: [
+                            ...(await getProductsGoogleSearch({
+                                query: {
+                                    keyword: "商品画像" + product.name,
+                                    limit: config.app.defaultLimitOfSearch
+                                }
+                            })).products,
                             ...(await getProductsVectorSearch({
                                 query: {
                                     keyword: product.name,
                                     storeId: (searchResultStores[0] as { id?: number }).id || undefined,
-                                    limit: config.app.defaultLimitOfSearch
-                                }
-                            })).products,
-                            ...(await getProductsGoogleSearch({
-                                query: {
-                                    keyword: product.name,
                                     limit: config.app.defaultLimitOfSearch
                                 }
                             })).products

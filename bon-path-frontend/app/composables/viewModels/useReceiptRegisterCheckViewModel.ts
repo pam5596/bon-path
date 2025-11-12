@@ -40,14 +40,14 @@ export default function() {
                             limit: config.app.defaultLimitOfSearch
                         })
                         await onProductGoogleMapSearchDispatch.event({
-                            keyword: product.getValues.name,
+                            keyword: `マーケット商品 ${product.getValues.name}`,
                             limit: config.app.defaultLimitOfSearch,
                             price: product.getValues.price
                         })
 
                         const mergedSearchResults = [
+                            ...google_search_products.value,
                             ...vector_search_products.value,
-                            ...google_search_products.value
                         ] as ProductModel[]
             
                         return new ProductModel({
@@ -71,10 +71,19 @@ export default function() {
     }
 
     const { isLoading: isSubmitting, event } = onSavePurchases()
-    const onSavePurchasesEvent = () => event({
-        store: form.value.store!,
-        purchases: form.value.purchases
-    })
+    const onSavePurchasesEvent = async () => {
+        await event({
+            store: form.value.store!,
+            purchases: form.value.purchases
+        })
+        form.value = {
+            purchases: []
+        }
+        collection.value = {
+            storesSearchResult: [],
+            productsSearchResult: []
+        }
+    }
 
     return {
         data,
