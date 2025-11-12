@@ -67,7 +67,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     app: {
-      alertKeepTime: 30000
+      alertKeepTime: 30000,
+      defaultLimitOfSearch: 30,
     }
   }
 })

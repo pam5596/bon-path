@@ -9,6 +9,8 @@ export interface Product {
     link?: string;
     price: number;
     readonly createdAt?: Date;
+
+    searchResults?: ProductModel[]
 }
 
 export class ProductModel extends BaseModel<Product> {
@@ -29,6 +31,15 @@ export class ProductModel extends BaseModel<Product> {
 
     get categoryId() {
         return this._values.categoryId
+    }
+
+    get searchResults() {
+        return this._values.searchResults
+    }
+
+    get getModelValues() {
+        const { searchResults, ...values } = this._values
+        return values
     }
 
     equals(other: this): boolean {

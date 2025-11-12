@@ -1,6 +1,6 @@
 <template>
     <v-select
-        v-model="select"
+        v-model="modelProduct"
         :items="props.products"
         :list-props="{ 
             bgColor: 'white',
@@ -25,7 +25,17 @@
 const props = defineProps<{
     products: ProductModel[]
 }>()
-const select = shallowRef(props.products[0])
+
+const model = defineModel<PurchaseModel>()
+const modelProduct = computed({
+    get: () => model.value?.getValues.product,
+    set: (value) => {
+        model.value = new PurchaseModel({
+            ...model.value!.getValues,
+            product: value!
+        })
+    }
+})
 
 </script>
 

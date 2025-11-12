@@ -1,33 +1,28 @@
 <template>
     <div class="contents">
-        <v-text-field
-            v-model="purchaseValues.price"
+        <v-number-input
+            v-model="priceModel"
             :label="$t('receiptRegisterCheck.form.productValues.price.label')"
-            type="number"
             :rules="[(v: unknown) => !!v || $t('receiptRegisterCheck.form.productValues.price.required')]"
             :prefix="$t('receiptRegisterCheck.form.productValues.price.prefix')"
             variant="filled"
+            control-variant="hidden"
         />
-        <v-text-field
-            v-model="purchaseValues.quantity"
+        <v-number-input
+            v-model="quantityModel"
             :label="$t('receiptRegisterCheck.form.productValues.quantity.label')"
-            type="number"
             :rules="[(v: unknown) => !!v || $t('receiptRegisterCheck.form.productValues.quantity.required')]"
             :prefix="$t('receiptRegisterCheck.form.productValues.quantity.prefix')"
             variant="filled"
+            control-variant="split"
         />
     </div>
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
-    purchase: PurchaseModel
-}>()
+const priceModel = defineModel<number>('price')
+const quantityModel = defineModel<number>('quantity')
 
-const purchaseValues = reactive({
-    price: props.purchase.getValues.price,
-    quantity: props.purchase.getModelValues.quantity
-})
 </script>
 
 <style scoped>

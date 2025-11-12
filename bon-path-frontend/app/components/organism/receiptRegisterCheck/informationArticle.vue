@@ -2,7 +2,7 @@
     <article>
         <v-card class="wrapper">
             <v-card-title>
-                {{ new Date().toLocaleString() }}
+                {{ createdAt }}
             </v-card-title>
             <v-divider />
             <v-card-text>
@@ -13,6 +13,8 @@
 </template>
 
 <script setup lang="ts">
+const { data } = useReceiptRegisterCheckViewModel()
+const createdAt = computed(() => data.value?.receipt.getValues.createdAt?.toLocaleString())
 
 </script>
 

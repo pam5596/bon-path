@@ -4,14 +4,14 @@
             {{  $t("receiptRegisterCheck.form.productsHeading") }}
         </AtomTypography>
         <MoleculeReceiptRegisterCheckProductsList 
-            :purchases="props.purchases"
+            :products="props.products"
         />
     </div>
 </template>
 
 <script setup lang="ts">
 const props = defineProps<{
-    purchases: PurchaseModel[]
+    products: ProductModel[]
 }>()
 
 </script>

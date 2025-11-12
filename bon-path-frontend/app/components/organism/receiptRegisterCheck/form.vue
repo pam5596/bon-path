@@ -1,36 +1,29 @@
 <template>
     <v-form class="wrapper">
         <MoleculeReceiptRegisterCheckStoreField 
-            :stores="stores"
+            :stores="collection.storesSearchResult"
         />
         <v-divider />
-        <MoleculeReceiptRegisterCheckProductsField 
-            :purchases="purchases"
+        <MoleculeReceiptRegisterCheckProductsField
+            :products="collection.productsSearchResult"
         />
-        <v-btn color="primary">
+        <v-btn 
+            color="primary"
+            :loading="isSubmitting"
+            @click="onSavePurchasesEvent"
+        >
             {{ $t("receiptRegisterCheck.form.onSubmitBtn") }}
         </v-btn>
     </v-form>
 </template>
 
 <script setup lang="ts">
-const { purchasesFixture, productsFixture, storesFixture } = useFixtures()
-const { receiptId } = useIdParams(['receiptId'])
+const { 
+    collection, 
+    isSubmitting,
+    onSavePurchasesEvent 
+} = useReceiptRegisterCheckViewModel()
 
-const stores = computed(()=> storesFixture.map(
-    store => new StoreModel(store)
-))
-
-const purchases = computed(()=> purchasesFixture.filter(
-    purchase => purchase.receiptId == receiptId
-).map(
-    purchase => new PurchaseModel({
-        ...purchase,
-        product: new ProductModel(
-        productsFixture.find(product => product.id == purchase.productId)!
-    )
-    })
-))
 </script>
 
 <style scoped>

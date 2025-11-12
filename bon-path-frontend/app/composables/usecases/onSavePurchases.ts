@@ -18,11 +18,11 @@ export default function () {
 
             if (!params.store.id) {
                 const { id: storeId } = await postStore({
-                    body: params.store.getValues
+                    body: params.store.getModelValues
                 })
                 payloadStore.value = new StoreModel({
                     id: storeId,
-                    ...params.store.getValues
+                    ...params.store.getModelValues
                 })
             }
 
@@ -32,7 +32,7 @@ export default function () {
                         if (!purchase.product.id) {
                             const { id: productId } = await postProduct({ 
                                 body: {
-                                    ...purchase.product.getValues,
+                                    ...purchase.product.getModelValues,
                                     storeId: payloadStore.value!.id!,
                                 }
                             })
@@ -41,7 +41,7 @@ export default function () {
                                 ...purchase.getValues,
                                 productId,
                                 product: new ProductModel({
-                                    ...purchase.product.getValues,
+                                    ...purchase.product.getModelValues,
                                     id: productId,
                                     storeId: payloadStore.value!.id
                                 })
@@ -69,6 +69,8 @@ export default function () {
                 body: { isChecked: true },
                 params: { id: receiptId! }
             })
+
+            navigateTo(`/purchase-history/stores/${payloadStore.value?.id}/receipts/${receiptId}`)
         }
     )
 }

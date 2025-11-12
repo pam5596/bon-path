@@ -12,7 +12,7 @@ const { overlayIsOpen } = useLoading()
 .wrapper {
     position: fixed;
     top: 0;
-    z-index: 1005;
+    z-index: 3000;
     width: 100vw;
     height: 100vh;
     background: #00000080;

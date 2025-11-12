@@ -1,6 +1,6 @@
 <template>
     <v-select
-        v-model="select"
+        v-model="model"
         :items="props.stores"
         :list-props="{ 
             bgColor: 'white',
@@ -26,8 +26,7 @@ const props = defineProps<{
     stores: StoreModel[]
 }>()
 
-const select = shallowRef(props.stores[0])
-
+const model = defineModel<StoreModel>()
 </script>
 
 <style scoped>

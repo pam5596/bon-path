@@ -79,6 +79,7 @@
             "storeHeading": "店舗情報",
             "productsHeading": "商品情報一覧",
             "onSubmitBtn": "登録する",
+            "onRemovePurchaseBtn": "商品を削除する", 
             "productValues": {
                 "price": {
                     "label": "価格",

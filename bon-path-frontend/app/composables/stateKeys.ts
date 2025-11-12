@@ -3,5 +3,6 @@ export const STATE_KEYS = {
     IS_LOADING: 'isLoading',
     SIGNIN_FORM: 'signinFormValues',
     SIGNUP_FORM: 'signUpFormValues',
-    DASHBOARD_COLLECTION: 'dashboardCollection',
+    RECEIPT_REGISTER_CHECK_FORM: 'receiptRegisterCheckFormValues',
+    RECEIPT_REGISTER_CHECK_COLLECTION: 'receiptRegisterCheckCollection'
 }

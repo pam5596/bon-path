@@ -1,17 +1,26 @@
 <template>
     <v-list class="contents">
         <MoleculeReceiptRegisterCheckProductListItem 
-            v-for="(purchase, index) in props.purchases" 
+            v-for="(product, index) in props.products" 
             :key="index"
-            :purchase="purchase"
+            v-model="modelItem(index).value"
+            :product="product"
+            @delete="onRemovePurchaseEvent(index)"
         />
     </v-list>
 </template>
 
 <script setup lang="ts">
 const props = defineProps<{
-    purchases: PurchaseModel[]
+    products: ProductModel[]
 }>()
+
+const { form, onRemovePurchaseEvent } = useReceiptRegisterCheckViewModel()
+const modelItem = (index: number) => computed({
+    get: () => form.value.purchases[index],
+    set: (value) => (form.value.purchases[index] = value!)
+})
+
 </script>
 
 <style scoped>

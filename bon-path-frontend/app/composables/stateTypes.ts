@@ -10,8 +10,13 @@ export interface STATE_TYPES {
 
     IS_LOADING: boolean;
 
-    DASHBOARD_COLLECTION: {
-        user: UserModel | null,
-        receipts: ReceiptModel[]
+    RECEIPT_REGISTER_CHECK_FORM: {
+        store?: StoreModel,
+        purchases: PurchaseModel[]
+    }
+
+    RECEIPT_REGISTER_CHECK_COLLECTION: {
+        storesSearchResult: StoreModel[],
+        productsSearchResult: ProductModel[]
     }
 }
