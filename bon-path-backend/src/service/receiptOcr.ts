@@ -33,7 +33,7 @@ export class ReceiptOCRService implements BaseService {
                     ...request.query.map((url) => ({ 
                         type: "image_url", 
                         image_url: { url: 
-                            `${process.env.AWS_S3_ENDPOINT}/${process.env.AWS_S3_BUCKET_NAME}${url.value}` 
+                            `${process.env.AWS_S3_ENDPOINT}${url.value}` 
                         } 
                     })),
                 ],

@@ -1,6 +1,6 @@
 import { StoreEntity } from "@models/entity";
 import { StoresPayloadSchemas } from "@payload";
-import { StoreRepository } from "@repository";
+import { StoreRepository, StoreVectorRepository } from "@repository";
 import { StorePayloads } from "@share/payloads";
 import BaseUseCase from "@usecase/_interface";
 
@@ -9,7 +9,10 @@ export class CreateStoreUseCase implements BaseUseCase<
     StorePayloads.POST.Response
 > {
     constructor(
-        public repositories: { store: StoreRepository },
+        public repositories: { 
+            store: StoreRepository,
+            storeVector: StoreVectorRepository
+        },
     ){}
 
     async execute(request: StoresPayloadSchemas.POST.Request) {
@@ -17,6 +20,8 @@ export class CreateStoreUseCase implements BaseUseCase<
 
         const store = new StoreEntity(body)
         const inserted_store = await this.repositories.store.insert(store)
+
+        await this.repositories.storeVector.insertMany([inserted_store])
 
         return new StoresPayloadSchemas.POST.Response({
             body: { 

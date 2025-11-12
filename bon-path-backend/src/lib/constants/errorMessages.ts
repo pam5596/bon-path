@@ -117,10 +117,6 @@ export const ERROR_MESSAGES = {
             detail: "商品が見つかりませんでした。",
             issues: "Product not found."
         },
-        invalidAiResponse: {
-            detail: "AIの処理でエラーが発生しました。最初からやりなおしてください。",
-            issues: "Google Search results and AI results are different."
-        },
         categoryNotFound: {
             detail: "商品カテゴリーが見つかりませんでした。",
             issues: "Category not found."

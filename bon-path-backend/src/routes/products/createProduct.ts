@@ -1,9 +1,9 @@
 import BaseRoute from "../_interface";
 import { ProductsPayloadSchemas } from "@payload";
-import { CreateProductsUseCase } from "@usecase/index";
-import { productRepository } from "@lib/repositories";
+import { CreateProductUseCase } from "@usecase/index";
+import { productRepository, productVectorRepository } from "@lib/repositories";
 
-export class CreateProductsRoute extends BaseRoute {
+export class CreateProductRoute extends BaseRoute {
     constructor() {
         super(
             {
@@ -20,11 +20,11 @@ export class CreateProductsRoute extends BaseRoute {
                     body
                 })
 
-                await new CreateProductsUseCase(
-                    { product: productRepository }
+                const response = await new CreateProductUseCase(
+                    { product: productRepository, productVector: productVectorRepository }
                 ).execute(request)
 
-                return context.body(null, 201)
+                return context.json(response.getBody)
             },
             new ProductsPayloadSchemas.POST.Request()
         )

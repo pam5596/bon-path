@@ -1,7 +1,7 @@
 import BaseRoute from "../_interface";
 import { StoresPayloadSchemas } from "@payload";
 import { CreateStoreUseCase } from "@usecase/index";
-import { storeRepository } from "@lib/repositories";
+import { storeRepository, storeVectorRepository } from "@lib/repositories";
 
 export class CreateStoreRoute extends BaseRoute {
     constructor() {
@@ -21,7 +21,7 @@ export class CreateStoreRoute extends BaseRoute {
                 });
 
                 const response = await new CreateStoreUseCase(
-                    { store: storeRepository }
+                    { store: storeRepository, storeVector: storeVectorRepository }
                 ).execute(request)
 
                 return context.json(response.getBody, 201)

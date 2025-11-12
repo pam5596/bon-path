@@ -36,7 +36,7 @@ import {
     googleMapSearchStores,
     updateStore,
     vectorSearchStores,
-    createProducts,
+    createProduct,
     deleteProduct,
     getProduct,
     getProducts,
@@ -118,7 +118,7 @@ app.openapi(googleSearchProducts.route, googleSearchProducts.handler)
 app.openapi(deleteProduct.route, deleteProduct.handler)
 app.openapi(getProduct.route, getProduct.handler)
 app.openapi(updateProduct.route, updateProduct.handler)
-app.openapi(createProducts.route, createProducts.handler)
+app.openapi(createProduct.route, createProduct.handler)
 app.openapi(getProducts.route, getProducts.handler)
 
 app.openapi(createCategories.route, createCategories.handler)
