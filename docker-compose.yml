@@ -1,4 +1,30 @@
 services:
+  frontend:
+    container_name: bon-path-frontend
+    build: ./bon-path-frontend
+    volumes:
+      - ./bon-path-frontend:/bon-path-frontend
+      - ./share:/share
+      - /bon-path-frontend/node_modules
+    ports:
+      - "3000:3000"
+    command: sh -c "npm run stage"
+    depends_on:
+      - backend-dev
+  backend-stage:
+    container_name: bon-path-backend-stage
+    build: ./bon-path-backend
+    volumes:
+      - ./bon-path-backend:/bon-path-backend
+      - ./share:/share
+      - /bon-path-backend/node_modules
+    ports:
+      - "9090:9090"
+      - "6060:6060"
+    command: sh -c "rm -rf logs  && npm run migrate:stage && npm run generate && npm run app:stage"
+    depends_on:
+      - database
+      - storage
   backend-dev:
     container_name: bon-path-backend-develop
     build: ./bon-path-backend
@@ -25,7 +51,6 @@ services:
       - "4040:4040"
     command: sh -c "rm -rf logs && npm run migrate:test npm run generate && npm run app:test"
     depends_on:
-      - backend-dev
       - database
       - storage
   database:
@@ -53,3 +78,17 @@ services:
       MINIO_ROOT_PASSWORD: bonpath-minio
     volumes:
       - ./.minio-data:/data
+  storage-mc:
+    container_name: bon-path-storage-mc
+    image: minio/mc
+    depends_on:
+      - storage
+    entrypoint: >
+      /bin/sh -c "
+        sleep 10 &&
+        mc alias set local http://storage:9000 bonpath-minio bonpath-minio &&
+        mc mb local/bonpath-dev || true && 
+        mc anonymous set download local/bonpath-dev &&
+        mc mb local/bonpath-test || true && 
+        mc anonymous set download local/bonpath-test
+      "

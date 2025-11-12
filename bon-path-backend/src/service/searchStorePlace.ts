@@ -13,9 +13,10 @@ export class SearchStorePlaceService implements BaseService {
 
     async execute(request: {
         query: StoreName,
-        maxCount?: number
+        maxCount?: number,
+        location?: { longitude: number, latitude: number }
     }): Promise<StoreEntity[]> {
-        const response = await this.client.searchPlaces(request.query.value, request.maxCount);
+        const response = await this.client.searchPlaces(request.query.value, request.maxCount, request.location);
 
         if (!response.data.places) throw new ServiceError(
             ERROR_MESSAGES.service.searchStorePlace.detail,

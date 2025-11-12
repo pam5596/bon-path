@@ -13,7 +13,7 @@ export namespace ReceiptsPayloadSchemas {
         export class Request extends BasePayload<ReceiptPayloads.GET.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
+                    cookies: z.object({
                         loginSessionId: z.string()
                     }),
                     params: z.strictObject({
@@ -56,7 +56,7 @@ export namespace ReceiptsPayloadSchemas {
         export class Request extends BasePayload<ReceiptPayloads.POST.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
+                    cookies: z.object({
                         loginSessionId: z.string()
                     }),
                     body: z.strictObject({
@@ -95,7 +95,7 @@ export namespace ReceiptsPayloadSchemas {
         export class Request extends BasePayload<ReceiptPayloads.PATCH.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
+                    cookies: z.object({
                         loginSessionId: z.string()
                     }),
                     params: z.strictObject({
@@ -125,7 +125,7 @@ export namespace ReceiptsPayloadSchemas {
         export class Request extends BasePayload<ReceiptPayloads.DELETE.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
+                    cookies: z.object({
                         loginSessionId: z.string()
                     }),
                     params: z.strictObject({

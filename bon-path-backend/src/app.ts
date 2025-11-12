@@ -8,12 +8,15 @@ import {
     deleteLoginSession,
     getVerifySession,
     createVerifySession,
+    deleteVerifySession,
     createUser,
     getUser,
     updateUser,
     deleteUser,
     getUserReceipts,
     getUserPurchases,
+    getUserPurchasesStores,
+    getUserPurchasesStoreReceipts,
     createReceipt,
     deleteReceipt,
     getReceipt,
@@ -33,7 +36,7 @@ import {
     googleMapSearchStores,
     updateStore,
     vectorSearchStores,
-    createProducts,
+    createProduct,
     deleteProduct,
     getProduct,
     getProducts,
@@ -52,7 +55,8 @@ import { ZodError } from 'zod';
 
 const app = new OpenAPIHono({
     defaultHook: (result) => {
-        if (!result.success && result.error instanceof ZodError) 
+        if (process.env.NODE_ENV == 'development') console.log(result)
+        if (!result.success && result.error instanceof ZodError) {
             throw new HTTPException(
                 400,
                 {
@@ -60,6 +64,7 @@ const app = new OpenAPIHono({
                     cause: result.error
                 }
             )
+        }
     }
 })
 
@@ -74,6 +79,7 @@ app.openapi(createLoginSession.route, createLoginSession.handler)
 app.openapi(deleteLoginSession.route, deleteLoginSession.handler)
 app.openapi(getVerifySession.route, getVerifySession.handler)
 app.openapi(createVerifySession.route, createVerifySession.handler)
+app.openapi(deleteVerifySession.route, deleteVerifySession.handler)
 
 app.openapi(createUser.route, createUser.handler)
 app.openapi(getUser.route, getUser.handler)
@@ -81,6 +87,8 @@ app.openapi(updateUser.route, updateUser.handler)
 app.openapi(deleteUser.route, deleteUser.handler)
 app.openapi(getUserReceipts.route, getUserReceipts.handler)
 app.openapi(getUserPurchases.route, getUserPurchases.handler)
+app.openapi(getUserPurchasesStores.route, getUserPurchasesStores.handler)
+app.openapi(getUserPurchasesStoreReceipts.route, getUserPurchasesStoreReceipts.handler)
 
 app.openapi(createReceipt.route, createReceipt.handler)
 app.openapi(deleteReceipt.route, deleteReceipt.handler)
@@ -110,7 +118,7 @@ app.openapi(googleSearchProducts.route, googleSearchProducts.handler)
 app.openapi(deleteProduct.route, deleteProduct.handler)
 app.openapi(getProduct.route, getProduct.handler)
 app.openapi(updateProduct.route, updateProduct.handler)
-app.openapi(createProducts.route, createProducts.handler)
+app.openapi(createProduct.route, createProduct.handler)
 app.openapi(getProducts.route, getProducts.handler)
 
 app.openapi(createCategories.route, createCategories.handler)
@@ -130,10 +138,6 @@ if (process.env.NODE_ENV == 'development') {
         },
     })
     app.get("/docs", swaggerUI({ url: "/doc" }))
-} else if (process.env.NODE_ENV == 'test') {
-    app.get('/signup', (c) => c.text('Redirect test: /signup'))
-    app.get('/signin/email-verify', (c) => c.text('Redirect test: /signin/email-verify'))
-    app.get('/login', (c) => c.text('Redirect test: /login'))
 }
 
 export default app

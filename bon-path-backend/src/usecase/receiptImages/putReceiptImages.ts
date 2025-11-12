@@ -20,7 +20,7 @@ export class PutReceiptImagesUsecase implements BaseUseCase<
             images.map(
                 async (image) => {
                     const buffer = Buffer.from(await image.arrayBuffer())
-                    const fileKey = `/receipts/${Date.now()}-${image.name}`
+                    const fileKey = `receipts/${Date.now()}-${image.name}`
 
                     await this.clients.awsS3.putObject(
                         buffer,
@@ -29,7 +29,7 @@ export class PutReceiptImagesUsecase implements BaseUseCase<
                     
                     const receiptImage = ReceiptImageEntity.fromPrimitives({
                         receiptId: receiptId.value,
-                        url: fileKey
+                        url: `/${fileKey}`
                     })
 
                     try {

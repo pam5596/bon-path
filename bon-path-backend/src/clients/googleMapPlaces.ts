@@ -11,13 +11,19 @@ export class GoogleMapPlacesAPIClient extends places_v1.Places {
         this.key = apiKey
     }
 
-    async searchPlaces(textQuery: string, maxResultCount?: number) {
+    async searchPlaces(textQuery: string, maxResultCount?: number, center?: { longitude: number, latitude: number }) {
         try {
             return await this.places.searchText({
                 fields: '*',
                 key: this.key,
                 requestBody: {
                     textQuery,
+                    locationBias: {
+                        circle: {
+                            center,
+                            radius: 5000
+                        }
+                    },
                     maxResultCount,
                     languageCode: 'ja'
                 }

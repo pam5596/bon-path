@@ -8,7 +8,7 @@ export namespace VerifySchemas {
         export class Request extends BasePayload<SessionPayloads.Verify.GET.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
+                    cookies: z.object({
                         verifySessionId: z.string()
                     })
                 }
@@ -61,11 +61,23 @@ export namespace VerifySchemas {
         export class Response extends BasePayload<SessionPayloads.Verify.POST.Response> {
             schema() {
                 return {
-                    cookies: z.strictObject({
+                    cookies: z.object({
                         verifySessionId: z.string()
                     })
                 }
             }
         }
     }
+
+    export namespace DELETE {
+            export class Request extends BasePayload<SessionPayloads.Verify.DELETE.Request> {
+                schema() {
+                    return {
+                        cookies: z.object({
+                            verifySessionId: z.string()
+                        })
+                    }
+                }
+            }
+        }
 }

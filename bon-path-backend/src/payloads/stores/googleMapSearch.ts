@@ -10,7 +10,9 @@ export namespace GoogleMapSearchSchemas {
                 return {
                     query: z.strictObject({
                         keyword: StoreName.schema(),
-                        limit: z.coerce.number().int().min(1).optional()
+                        longitude: StoreLongitude.querySchema().optional(),
+                        latitude: StoreLatitude.querySchema().optional(),
+                        limit: z.coerce.number().int().min(1).optional(),
                     })
                 }
             }
@@ -18,6 +20,8 @@ export namespace GoogleMapSearchSchemas {
             toValueObjectQuery() {
                 return {
                     keyword: new StoreName(this.getQuery.keyword),
+                    longitude: this.getQuery.longitude ? new StoreLongitude(this.getQuery.longitude) : undefined,
+                    latitude: this.getQuery.latitude ? new StoreLatitude(this.getQuery.latitude) : undefined,
                     limit: this.getQuery.limit
                 }
             }

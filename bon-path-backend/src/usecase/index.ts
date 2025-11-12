@@ -7,6 +7,11 @@ export { GetUserUseCase } from "./users/getUser";
 export { CreateUserUseCase } from "./users/createUser";
 export { UpdateUserUseCase } from "./users/updateUser";
 export { DeleteUserUseCase } from "./users/deleteUser";
+export { GetUserReceiptsUseCase } from "./users/getUserReceipts";
+export { GetUserPurchasesUseCase } from "./users/getUserPurchases";
+export { GetUserPurchasesStoresUseCase } from "./users/getUserPurchasesStores";
+export { GetUserPurchasesStoreReceiptsUseCase } from "./users/getUserPurchasesStoreReceipts"
+
 export { GetReceiptPurchasesUsecase } from "./receipts/getReceiptPutchases";
 export { GetReceiptImagesUsecase } from "./receipts/getReceiptImages";
 
@@ -23,7 +28,7 @@ export { GoogleMapSearchStoresUseCase } from "./stores/googleMapSearchStores";
 export { UpdateStoreUseCase } from "./stores/updateStore";
 export { VectorSearchStoresUseCase } from "./stores/vectorSearchStores"
 
-export { CreateProductsUseCase } from "./products/createProducts";
+export { CreateProductUseCase } from "./products/createProduct";
 export { DeleteProductUseCase } from "./products/deleteProduct";
 export { GetProductUseCase } from "./products/getProduct";
 export { GetProductsUseCase } from "./products/getProducts";
