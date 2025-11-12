@@ -7,8 +7,6 @@ export default function() {
     return useAsyncOnRender(
         'render-purchase-history-receipt-usecase',
         async () => {
-            // [TODO]: いずれここの処理はひとつのAPIFetchで完結する可能性がある
-            // [GET] - /users/purchases/stores/:storeId/receipts/:receiptId
             const store = await getStore({ params: { id: storeId! }})
             const receipt = await getReceipt({ params: { id: receiptId! }})
             const receipt_images = await getReceiptImages({ params: { receiptId: receiptId! }})
@@ -28,7 +26,10 @@ export default function() {
                 receipt: new ReceiptModel({ 
                     ...receipt,
                     images: receipt_images.images.map(
-                        image => new ReceiptImageModel(image)
+                        image => new ReceiptImageModel({
+                            ...image,
+                            url: `/source${image.url}`
+                        })
                     )
                 }),
                 purchases: purchases_products.map(

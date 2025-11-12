@@ -1,10 +1,14 @@
 <template>
     <v-card-subtitle class="content">
-        <slot />
+        {{ createdAt }}
     </v-card-subtitle>
 </template>
 
 <script setup lang="ts">
+const props = defineProps<{
+    value?: Date
+}>()
+const createdAt = computed(()=>props.value?.toLocaleString())
 
 </script>
 

@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-    purchases: PurchaseModel[]
+    purchases?: PurchaseModel[]
 }>()
 
 </script>
