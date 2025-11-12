@@ -27,7 +27,7 @@ export class ProductNameExtractService implements BaseService {
     }
 
     async execute(request: {
-        query: ProductName[],
+        query: ProductName,
         categories: CategoryEntity[],
         parser: StructuredOutputParser<any>,
         prompt: ChatPromptTemplate
@@ -47,7 +47,7 @@ export class ProductNameExtractService implements BaseService {
                         this.parseCategoryName(category, request.categories)
                     }`
                 ).join('\n'),
-                query: request.query.map((name) => name.value).join('\n')
+                query: request.query.value
             });
 
             const response = await this.client.invoke([{
@@ -62,12 +62,8 @@ export class ProductNameExtractService implements BaseService {
             ) as z.infer<typeof OPEN_AI_PROMPTS.productNameExtract.zodSchema>
 
             return {
-                products: json_response.products.map(
-                    product => ({
-                        name: new ProductName(product.name),
-                        categoryId: new Id(product.categoryId)
-                    })
-                )
+                name: new ProductName(json_response.name),
+                categoryId: new Id(json_response.categoryId)
             }
         } catch (e) {
             if (e instanceof Error) {

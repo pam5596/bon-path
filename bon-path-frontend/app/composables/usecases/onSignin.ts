@@ -6,6 +6,7 @@ export default function () {
     return useAsyncOnEvent(
         async (form: SessionPayloads.Verify.POST.Request['body']) => {
             await postSessionVerify({ body: form })
+            navigateTo('/email-verify')
         }
     )
 }

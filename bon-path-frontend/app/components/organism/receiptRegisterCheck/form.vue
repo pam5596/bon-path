@@ -1,15 +1,28 @@
 <template>
     <v-form class="wrapper">
-        <MoleculeReceiptRegisterCheckStoreField />
+        <MoleculeReceiptRegisterCheckStoreField 
+            :stores="collection.storesSearchResult"
+        />
         <v-divider />
-        <MoleculeReceiptRegisterCheckProductsField />
-        <v-btn color="primary">
+        <MoleculeReceiptRegisterCheckProductsField
+            :products="collection.productsSearchResult"
+        />
+        <v-btn 
+            color="primary"
+            :loading="isSubmitting"
+            @click="onSavePurchasesEvent"
+        >
             {{ $t("receiptRegisterCheck.form.onSubmitBtn") }}
         </v-btn>
     </v-form>
 </template>
 
 <script setup lang="ts">
+const { 
+    collection, 
+    isSubmitting,
+    onSavePurchasesEvent 
+} = useReceiptRegisterCheckViewModel()
 
 </script>
 

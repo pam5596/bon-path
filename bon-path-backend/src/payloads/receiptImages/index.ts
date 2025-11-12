@@ -10,7 +10,7 @@ export namespace ReceiptImagesPayloadSchemas {
                 return {
                     body: z.strictObject({
                         receiptId: Id.paramSchema(),
-                        images: z.array(z.any())
+                        images: z.any()
                     })
                 }
             }

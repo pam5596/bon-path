@@ -9,7 +9,7 @@ export namespace PurchasesPayloadSchemas {
         export class Request extends BasePayload<PurchasePayloads.GET.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
+                    cookies: z.object({
                         loginSessionId: z.string()
                     }),
                     params: z.strictObject({
@@ -56,7 +56,7 @@ export namespace PurchasesPayloadSchemas {
         export class Request extends BasePayload<PurchasePayloads.POST.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
+                    cookies: z.object({
                         loginSessionId: z.string()
                     }),
                     body: z.strictObject({
@@ -93,7 +93,7 @@ export namespace PurchasesPayloadSchemas {
         export class Request extends BasePayload<PurchasePayloads.DELETE.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
+                    cookies: z.object({
                         loginSessionId: z.string()
                     }),
                     params: z.strictObject({

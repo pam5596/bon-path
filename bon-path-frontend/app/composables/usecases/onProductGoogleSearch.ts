@@ -6,7 +6,7 @@ export default function () {
 
     return {
         google_search_products,
-        onProductGoogleMapSearch: useAsyncOnEvent(
+        onProductGoogleMapSearchDispatch: useAsyncOnEvent(
             async (query: ProductPayloads.GoogleSearch.GET.Request['query'] & { price: number }) => {
                 const products = await getProductsGoogleSearch({ query })
                 google_search_products.value = products.products.map(

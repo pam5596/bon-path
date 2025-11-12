@@ -2,14 +2,16 @@
     <article>
         <v-card class="wrapper">
             <AtomPurchaseHistoryReceiptStoreName>
-                {{ store?.name }}
+                {{ props.store?.getValues.name }}
             </AtomPurchaseHistoryReceiptStoreName>
-            <AtomPurchaseHistoryReceiptCreatedAt>
-                {{ new Date().toLocaleString() }}
-            </AtomPurchaseHistoryReceiptCreatedAt>
+            <AtomPurchaseHistoryReceiptCreatedAt 
+                :value="props.receipt?.getValues.createdAt"
+            />
             <v-divider />
             <v-card-text>
-                <MoleculePurchaseHistoryReceiptInfoProducts :purchases="purchases"/>
+                <MoleculePurchaseHistoryReceiptInfoProducts 
+                    :purchases="props.purchases"
+                />
             </v-card-text>
             <v-divider />
             <MoleculePurchaseHistoryReceiptInfoActions />
@@ -18,22 +20,11 @@
 </template>
 
 <script setup lang="ts">
-const { storesFixture, purchasesFixture, productsFixture } = useFixtures()
-const { storeId } = useIdParams(['storeId', 'receiptId'])
-
-const store = computed(() => storesFixture.find(
-    (store) => store.id == storeId
-))
-const purchases = computed(() => purchasesFixture.map(
-    (purchase) => new PurchaseModel({
-        ...purchase,
-        product: new ProductModel({
-            ...productsFixture.find(
-                (product) => purchase.productId == product.id
-            )!
-        })
-    })
-))
+const props = defineProps<{
+    store?: StoreModel,
+    receipt?: ReceiptModel,
+    purchases?: PurchaseModel[]
+}>()
 
 </script>
 

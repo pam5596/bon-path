@@ -18,6 +18,6 @@ const props = defineProps<{
 .contents {
     display: flex;
     gap: 0.5rem;
-    overflow-x: auto;
+    /* overflow-x: auto; */
 }
 </style>

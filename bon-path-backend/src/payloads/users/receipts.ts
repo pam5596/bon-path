@@ -8,7 +8,7 @@ export namespace ReceiptsSchemas {
         export class Request extends BasePayload<UserPayloads.Receipts.GET.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
+                    cookies: z.object({
                         loginSessionId: z.string()
                     }),
                     query: z.strictObject({

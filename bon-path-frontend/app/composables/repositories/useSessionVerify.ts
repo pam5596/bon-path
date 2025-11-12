@@ -18,8 +18,17 @@ export default function() {
         )
     }
 
+    const deleteSessionVerify = async () => {
+        return await $fetch(
+            '/api/session/verify', {
+                method: 'DELETE'
+            }
+        )
+    }
+
     return {
         postSessionVerify,
-        getSessionVerify
+        getSessionVerify,
+        deleteSessionVerify
     }
 }

@@ -1,18 +1,17 @@
 <template>
     <div class="wrapper">
         <MoleculePurchaseHistoryStoresCard 
-            v-for="(store, index) in stores" 
+            v-for="(store, index) in data" 
             :key="index"
             :store="store"
+            @to-receipts="toReceiptsEvent(store.id!)"
         />
     </div>
 </template>
 
 <script setup lang="ts">
-const { storesFixture } = useFixtures()
-const stores = computed(()=>storesFixture.map(
-    store => new StoreModel(store))
-)
+const { data, execute, toReceiptsEvent } = usePurchaseHistoryStoresViewModel()
+onMounted(async()=>await execute())
 
 </script>
 

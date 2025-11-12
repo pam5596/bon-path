@@ -27,5 +27,6 @@ export class DeleteReceiptImageUseCase implements BaseUseCase<
         )
 
         await this.repositories.receiptImage.deleteById(params.id)
+        await this.clients.awsS3.deleteObject(receiptImage.toPrimitives.url.slice(1))
     }
 }

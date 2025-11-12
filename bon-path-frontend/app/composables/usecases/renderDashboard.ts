@@ -18,12 +18,17 @@ export default function() {
             )
 
             return {
-                user: new UserModel(user),
+                user: new UserModel({ ...user, createdAt: new Date(user.createdAt)}),
                 receipts: receipts_with_images.map(
                     (receipt) => new ReceiptModel({
                         ...receipt,
+                        createdAt: new Date(receipt.createdAt),
                         images: receipt.images.map(
-                            (image) => new ReceiptImageModel(image)
+                            (image) => new ReceiptImageModel({
+                                ...image,
+                                url: `/source${image.url}`,
+                                createdAt: new Date(image.createdAt)
+                            })
                         )
                     })
                 )

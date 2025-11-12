@@ -9,4 +9,14 @@ export interface STATE_TYPES {
     } | null;
 
     IS_LOADING: boolean;
+
+    RECEIPT_REGISTER_CHECK_FORM: {
+        store?: StoreModel,
+        purchases: PurchaseModel[]
+    }
+
+    RECEIPT_REGISTER_CHECK_COLLECTION: {
+        storesSearchResult: StoreModel[],
+        productsSearchResult: ProductModel[]
+    }
 }

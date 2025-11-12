@@ -8,7 +8,7 @@ export namespace LoginSchemas {
         export class Request extends BasePayload<SessionPayloads.Login.GET.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
+                    cookies: z.object({
                         loginSessionId: z.string()
                     })
                 }
@@ -54,7 +54,7 @@ export namespace LoginSchemas {
         export class Response extends BasePayload<SessionPayloads.Login.POST.Response> {
             schema() {
                 return {
-                    cookies: z.strictObject({
+                    cookies: z.object({
                         loginSessionId: z.string()
                     })
                 }
@@ -66,7 +66,7 @@ export namespace LoginSchemas {
         export class Request extends BasePayload<SessionPayloads.Login.DELETE.Request> {
             schema() {
                 return {
-                    cookies: z.strictObject({
+                    cookies: z.object({
                         loginSessionId: z.string()
                     })
                 }

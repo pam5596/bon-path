@@ -10,11 +10,11 @@ export class DeleteLoginSessionRoute extends BaseRoute {
                 path: '/session/login',
                 tags: ['ログインセッションをリソースとするルート'],
                 requestMediaType: 'application/json',
-                successStatusCode: 302
+                successStatusCode: 204
             },
             (context) => {
                 deleteCookie(context, 'loginSessionId')
-                return context.redirect(process.env.FRONTEND_DOMAIN + '/signup')
+                return context.body(null, 204)
             },
             new SessionPayloadSchemas.Login.DELETE.Request(),
         )

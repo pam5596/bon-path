@@ -1,5 +1,5 @@
 <template>
-    <v-btn class="content">
+    <v-btn class="content" @click="emit('click-navigate')">
         <v-icon
             size="30"
             class="icon"
@@ -13,8 +13,10 @@ import type { VIcon } from 'vuetify/components';
 
 const props =  defineProps<{
     mdiIcon: string,
-    name: string
+    name: string,
 }>()
+const emit = defineEmits(['click-navigate'])
+
 </script>
 
 <style scoped>

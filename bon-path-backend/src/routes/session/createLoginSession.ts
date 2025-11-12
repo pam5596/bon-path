@@ -15,7 +15,7 @@ export class CreateLoginSessionRoute extends BaseRoute {
                 path: '/session/login',
                 tags: ['ログインセッションをリソースとするルート'],
                 requestMediaType: 'application/json',
-                successStatusCode: 302
+                successStatusCode: 201
             },
             async (context) => {
                 const body = await context.req.json()
@@ -33,7 +33,7 @@ export class CreateLoginSessionRoute extends BaseRoute {
                     maxAge: TIMES.loginSessionMaxAge
                 })
                 
-                return context.redirect(process.env.FRONTEND_DOMAIN + '/dashboard')
+                return context.body(null, 201)
             },
             new SessionPayloadSchemas.Login.POST.Request(),
             new SessionPayloadSchemas.Login.POST.Response()

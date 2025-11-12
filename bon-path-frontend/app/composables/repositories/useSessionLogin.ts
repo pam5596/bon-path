@@ -6,6 +6,7 @@ export default function() {
     ) => {
         return await $fetch<undefined>(
             '/api/session/login', {
+                method: 'post',
                 body: payload.body
             }
         )

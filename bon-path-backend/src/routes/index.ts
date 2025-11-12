@@ -97,8 +97,8 @@ export const updateStore = new UpdateStoreRoute()
 import { VectorSearchStoresRoute } from "./stores/vectorSearchStores";
 export const vectorSearchStores = new VectorSearchStoresRoute()
 
-import { CreateProductsRoute } from "./products/createProducts";
-export const createProducts = new CreateProductsRoute()
+import { CreateProductRoute } from "./products/createProduct";
+export const createProduct = new CreateProductRoute()
 
 import { DeleteProductRoute } from "./products/deleteProduct";
 export const deleteProduct = new DeleteProductRoute()

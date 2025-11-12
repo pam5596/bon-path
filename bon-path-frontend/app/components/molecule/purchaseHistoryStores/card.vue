@@ -9,7 +9,9 @@
             <AtomPurchaseHistoryStoresName>
                 {{ props.store.getValues.name }}
             </AtomPurchaseHistoryStoresName>
-            <MoleculePurchaseHistoryStoresCardActions />
+            <MoleculePurchaseHistoryStoresCardActions 
+                @to-receipts="emit('to-receipts')"
+            />
         </v-card-item>
     </v-card>
 </template>
@@ -18,6 +20,8 @@
 const props = defineProps<{
     store: StoreModel
 }>()
+
+const emit = defineEmits(['to-receipts'])
 </script>
 
 <style scoped>

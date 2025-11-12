@@ -1,5 +1,5 @@
 <template>
-    <v-card class="contents">
+    <v-card class="content">
         <v-avatar class="avatar">
             <AtomPurchaseHistoryReceiptsImage 
                 :src="props.receipt.images[0]!.getValues.url"
@@ -7,9 +7,12 @@
         </v-avatar>
         <v-card-item class="item">
             <AtomPurchaseHistoryReceiptsCreatedAt 
-                :value="new Date()"
+                :value="props.receipt.getValues.createdAt"
             />
-            <MoleculePurchaseHistoryReceiptsCardActions />
+            <MoleculePurchaseHistoryReceiptsCardActions 
+                @to-receipt="emit('to-receipt')"
+                @delete-receipt="emit('delete-receipt')"
+            />
         </v-card-item>
     </v-card>
 </template>
@@ -18,12 +21,15 @@
 const props = defineProps<{
     receipt: ReceiptModel
 }>()
+
+const emit = defineEmits(['delete-receipt', 'to-receipt'])
 </script>
 
 <style scoped>
-.contents {
+.content {
     height: 8rem;
     display: flex;
+    flex-direction: row;
 }
 
 .avatar {

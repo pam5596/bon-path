@@ -64,5 +64,11 @@ export default defineNuxtConfig({
       cors: true,
       proxy: { to: `${process.env.STORAGE_DOMAIN}/**`}
     }
+  },
+  runtimeConfig: {
+    app: {
+      alertKeepTime: 30000,
+      defaultLimitOfSearch: 10,
+    }
   }
 })

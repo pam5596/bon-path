@@ -141,6 +141,8 @@ export namespace StorePayloads {
             export type Request = {
                 query: {
                     keyword: string,
+                    longitude?: number,
+                    latitude?: number,
                     limit?: number
                 }
             }

@@ -31,11 +31,10 @@ export default function() {
                 }
             }
         )
-
-        return location.value!
     }
 
     return {
+        location,
         getLocation
     }
 }

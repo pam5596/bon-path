@@ -18,7 +18,7 @@ export class GoogleSearchAPIClient extends customsearch_v1.Customsearch {
             return await this.cse.list({
                 auth: this.auth,
                 cx: this.cx,
-                q,
+                q: '商品-' + q.trim().replace(/　/g, ''),
                 searchType: 'image',
                 num
             })
@@ -30,7 +30,10 @@ export class GoogleSearchAPIClient extends customsearch_v1.Customsearch {
                     e.message,
                     this.constructor.name,
                     'searchImages',
-                    q
+                    {
+                        q,
+                        num
+                    }
                 )
             } else {
                 throw e

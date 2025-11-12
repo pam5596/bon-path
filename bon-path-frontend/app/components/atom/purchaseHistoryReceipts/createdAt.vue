@@ -1,13 +1,14 @@
 <template>
     <v-card-title>
-        {{ props.value.toLocaleString() }}
+        {{ createdAt }}
     </v-card-title>
 </template>
 
 <script setup lang="ts">
 const props = defineProps<{
-    value: Date
+    value?: Date
 }>()
+const createdAt = computed(() => props.value?.toLocaleString())
 </script>
 
 <style scoped>

@@ -23,7 +23,7 @@ export class SearchProductService implements BaseService {
             ERROR_MESSAGES.service.searchProduct.detail,
             ERROR_MESSAGES.service.searchProduct.issue,
             this.constructor.name,
-            request
+            response
         )
 
         return response.data.items

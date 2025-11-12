@@ -1,19 +1,21 @@
 <template>
-    <v-dialog v-model="dialog">
+    <v-dialog v-model="model">
         <MoleculeReceiptRegisterPhotoPreviewCard 
-            :image-urls="imageUrls"
+            :image-urls="props.imageUrls"
+            @click-save-receipt="emit('click-save-receipt')"
+            @click-save-receipt-and-check="emit('click-save-receipt-and-check')"
         />
     </v-dialog>
 </template>
 
 <script setup lang="ts">
-const dialog = ref(false)
-// onMounted(()=>dialog.value = true)
+const props = defineProps<{
+    imageUrls: string[]
+}>()
 
-const { receiptImagesFixture } = useFixtures()
-const imageUrls = computed(() => receiptImagesFixture.map(
-    image => image.url
-))
+const emit = defineEmits(['click-save-receipt', 'click-save-receipt-and-check'])
+
+const model = defineModel({ type: Boolean })
 
 </script>
 

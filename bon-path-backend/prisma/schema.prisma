@@ -46,7 +46,7 @@ model ReceiptImage {
 
 model Store {
   id            Int       @id @default(autoincrement())
-  name          String
+  name          String    @unique
   image         String?
   latitude      Float?
   longitude     Float?
@@ -61,7 +61,7 @@ model Store {
 model Category {
   id            Int       @id @default(autoincrement())
   parentId      Int?
-  name          String
+  name          String    @unique
 
   parents Category? @relation("CategoryNestRelation", fields: [parentId], references: [id], onDelete: Cascade)
   children Category[] @relation("CategoryNestRelation")
@@ -72,7 +72,7 @@ model Product {
   id            Int       @id @default(autoincrement())
   storeId       Int
   categoryId    Int
-  name          String
+  name          String    @unique
   image         String?
   link          String?
   price         Int

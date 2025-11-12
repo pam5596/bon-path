@@ -15,7 +15,7 @@ export class CreateVerifySessionRoute extends BaseRoute {
                 path: '/session/verify',
                 tags: ['メアド確認用セッションをリソースとするルート'],
                 requestMediaType: 'application/json',
-                successStatusCode: 302
+                successStatusCode: 201
             },
             async(context) => {
                 const body = await context.req.json();
@@ -33,7 +33,7 @@ export class CreateVerifySessionRoute extends BaseRoute {
                     maxAge: TIMES.verifySessionMaxAge
                 })
 
-                return context.redirect(process.env.FRONTEND_DOMAIN + '/signin/email-verify')
+                return context.body(null, 201)
             },
             new SessionPayloadSchemas.Verify.POST.Request(),
             new SessionPayloadSchemas.Verify.POST.Response()

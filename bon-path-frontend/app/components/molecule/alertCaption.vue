@@ -22,5 +22,8 @@ const props = defineProps<{
     font-size: 0.5rem;
     white-space: pre-wrap;
     font-family: courier, monospace;
+    max-height: 10rem;
+    overflow-y: auto;
+    color: white;
 }
 </style>

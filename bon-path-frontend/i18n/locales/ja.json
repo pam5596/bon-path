@@ -6,6 +6,21 @@
             "unSupported": "お使いのブラウザでは位置情報機能がサポートされていません。",
             "unAvailable": "位置情報機能がオンになっていません。ブラウザの設定を確認してください。",
             "unknownError": "位置情報が取得できませんでした。"
+        },
+        "valueObjects": {
+            "userName": {
+                "min": "ユーザー名は1文字以上で入力してください。",
+                "max": "ユーザー名は30文字以下で入力してください。",
+                "empty": "ユーザー名を空白にすることはできません。"
+            },
+            "userEmail": {
+                "email": "有効なメールアドレスの形式で入力してください。"
+            },
+            "userPassword": {
+                "min": "パスワードは6文字以上で入力してください。",
+                "max": "パスワードは32文字以下で入力してください。",
+                "regex": "パスワードは半角英数字（大文字・小文字・数字）のみ使用可能です。"
+            }
         }
     },
     "appNavigation": {
@@ -30,7 +45,7 @@
         "successMsgArticle": {
             "heading": "アカウント登録に成功しました。",
             "annotation": "※β版はメールアドレスの確認機能がありません",
-            "toDashBoardBtn": "アプリのダッシュボードへ"
+            "toSignUpBtn": "ログインへ"
         },
         "failedMsgArticle": {
             "heading": "アカウント登録に失敗しました。",
@@ -64,6 +79,7 @@
             "storeHeading": "店舗情報",
             "productsHeading": "商品情報一覧",
             "onSubmitBtn": "登録する",
+            "onRemovePurchaseBtn": "商品を削除する", 
             "productValues": {
                 "price": {
                     "label": "価格",
@@ -83,14 +99,16 @@
         "descriptionArticle": {
             "heading": "レシートの画像をアップロードしてください。",
             "description": {
+                "allowGeoLocation": "位置情報の取得を許可してください。",
                 "numberOfRegistration": "一度の登録で可能なレシートは１枚までです。",
-                "splitShooting": "写真１枚に収まりきらない場合は複数に分けて撮影してください。",
+                "rangeOfReceipt": "合計金額より下部に記載の、クーポンや広告などは必要ありません。",
                 "photoConditions": "店名・商品名・価格がはっきり写っていること。",
-                "receiptCondition": "おり、色褪せ・汚れ・掠れ等がないこと。"
+                "splitShooting": "写真１枚に収まりきらない場合は複数枚に分けて撮影してください。",
+                "errorHandle": "店舗・商品情報の登録時にエラーが発生した場合、同じレシートを再度登録しないでください。"
             }
         },
         "previewCard": {
-            "title": "撮影したレシート",
+            "title": "店舗と商品も登録しますか？",
             "actions": {
                 "toCheckBtn": "今すぐ登録する",
                 "toDashBoardBtn": "あとで登録する"

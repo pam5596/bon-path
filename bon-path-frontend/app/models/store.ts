@@ -10,6 +10,7 @@ export interface Store {
     readonly createdAt?: Date;
 
     purchases?: PurchaseModel[]
+    searchResults?: StoreModel[]
 }
 
 export class StoreModel extends BaseModel<Store> {
@@ -29,8 +30,12 @@ export class StoreModel extends BaseModel<Store> {
     }
 
     get getModelValues() {
-        const { purchases, ...values } = this._values
+        const { purchases, searchResults, ...values } = this._values
         return values
+    }
+
+    get searchResults() {
+        return this._values.searchResults
     }
 
     equals(other: this): boolean {

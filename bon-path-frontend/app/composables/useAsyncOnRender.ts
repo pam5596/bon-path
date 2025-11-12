@@ -1,6 +1,6 @@
 import type { VAlert } from "vuetify/components"
 
-export default async function <ResponseT>(
+export default function <ResponseT>(
     key: Parameters<typeof useAsyncData>[0],
     handler: Parameters<typeof useAsyncData<ResponseT>>[1],
     successMessage?: {
@@ -11,26 +11,27 @@ export default async function <ResponseT>(
     const { overlayIsOpen } = useLoading()
     const { onAlert } = useAlert()
 
-    const { data, error, pending, status } = useAsyncData<ResponseT, ServerError>(
+    const asyncData = useAsyncData<ResponseT, ServerError>(
         key, 
         handler, 
         {
+            immediate: false,
             server: false
         }
     )
 
-    watch(pending, (pending) => {
+    watch(asyncData.pending, (pending) => {
         overlayIsOpen.value = pending
     })
 
-    watch(status, (status) => {
+    watch(asyncData.status, (status) => {
         if (successMessage && status === 'success') onAlert({
             type: 'success',
             ...successMessage
         })
     })
 
-    watch(error, (error) => {
+    watch(asyncData.error, (error) => {
         if (typeof error?.data == 'object') {
             onAlert({
                 type: 'error',
@@ -47,5 +48,5 @@ export default async function <ResponseT>(
         }
     })
 
-    return { data }
+    return asyncData
 }

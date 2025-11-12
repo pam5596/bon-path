@@ -6,8 +6,9 @@ export const OPEN_AI_PROMPTS = {
         system: `
             You are an receipt OCR assistant.
             Extract text from each receipt image and return JSON only.
-
-            store.name should include the store address.
+            
+            If the extracted text contains only hiragana or katakana, infer its meaning and convert it to the correct written form (including kanji or English if appropriate).
+            store name should include the store place address.
             Does not include "合計", "小計", and "消費税".
             {format_instructions}
         `,
@@ -27,9 +28,9 @@ export const OPEN_AI_PROMPTS = {
     },
     productNameExtract: {
         system: `
-            Extract the product name from website titles.
+            Extract the product name from website title.
             Including weight and brand name.
-            And categorize the products into one of the following categories from the website title.
+            And categorize the product into one of the following categories from the website title.
             Return the extracted name and id of category to JSON.
 
             [categories]
@@ -40,12 +41,8 @@ export const OPEN_AI_PROMPTS = {
         `,
         human: "WebsiteTitles: {query}",
         zodSchema: z.object({
-            products: z.array(
-                z.object({
-                    name: ProductName.schema().describe('Product Name from website title'),
-                    categoryId: Id.schema().describe('Id number of category')
-                })
-            )
+            name: ProductName.schema().describe('Product Name from website title'),
+            categoryId: Id.schema().describe('Id number of category')
         })
     },
 }

@@ -6,8 +6,6 @@ import BaseUseCase from "@usecase/_interface";
 import { CategoryRepository } from "@repository";
 import { OPEN_AI_PROMPTS } from "@lib/constants/openAiPrompts";
 import { InteropZodType } from "@langchain/core/utils/types";
-import { UseCaseError } from "@lib/error";
-import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 
 export class GoogleSearchProductsUseCase implements BaseUseCase<
     ProductPayloads.GoogleSearch.GET.Request,
@@ -32,32 +30,27 @@ export class GoogleSearchProductsUseCase implements BaseUseCase<
         })
         const categories = await this.repositories.category.selectAll()
 
-        const extractProducts = await this.services.productNameExtract.execute({
-            query: searchedProducts.map(product => product.name),
-            categories,
-            parser: LangChainOpenAiClient.createParserFromZodSchema(
-                OPEN_AI_PROMPTS.productNameExtract.zodSchema as unknown as InteropZodType
-            ),
-            prompt: LangChainOpenAiClient.createPromptFromMessage(
-                OPEN_AI_PROMPTS.productNameExtract
+        const extractProducts = await Promise.all(
+            searchedProducts.map(
+                async (product) => await this.services.productNameExtract.execute({
+                    query: product.name,
+                    categories,
+                    parser: LangChainOpenAiClient.createParserFromZodSchema(
+                        OPEN_AI_PROMPTS.productNameExtract.zodSchema as unknown as InteropZodType
+                    ),
+                    prompt: LangChainOpenAiClient.createPromptFromMessage(
+                        OPEN_AI_PROMPTS.productNameExtract
+                    )
+                })
             )
-        })
-
-        if (searchedProducts.length != extractProducts.products.length) 
-            throw new UseCaseError(
-                422,
-                ERROR_MESSAGES.usecase.invalidAiResponse.detail,
-                ERROR_MESSAGES.usecase.invalidAiResponse.issues,
-                this.constructor.name,
-                request.getQuery
-            )
+        )
 
         return new ProductsPayloadSchemas.GoogleSearch.GET.Response({
             body: {
                 products: searchedProducts.map(
                     (product, i) => ({
-                        categoryId: extractProducts.products[i].categoryId.value,
-                        name: extractProducts.products[i].name.value,
+                        categoryId: extractProducts[i].categoryId.value,
+                        name: extractProducts[i].name.value,
                         image: product.image?.value,
                         link: product.link?.value
                     })
