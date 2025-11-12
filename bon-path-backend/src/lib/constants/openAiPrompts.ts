@@ -6,8 +6,9 @@ export const OPEN_AI_PROMPTS = {
         system: `
             You are an receipt OCR assistant.
             Extract text from each receipt image and return JSON only.
-
-            store.name should include the store address.
+            
+            If the extracted text contains only hiragana or katakana, infer its meaning and convert it to the correct written form (including kanji or English if appropriate).
+            store name should include the store place address.
             Does not include "合計", "小計", and "消費税".
             {format_instructions}
         `,

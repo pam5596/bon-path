@@ -5,9 +5,10 @@ import { InteropZodType } from "@langchain/core/utils/types";
 
 export class LangChainOpenAiClient extends ChatOpenAI {
     constructor(options: {
-        model: 'gpt-4.1' | 'gpt-4o-mini', 
+        model: 'gpt-4.1-mini' | 'gpt-4o-mini', 
         apiKey: string,
-        temperature: 0
+        temperature: 0,
+        maxRetries: 3
     }) {
         super(options)
     }
