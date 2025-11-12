@@ -8,25 +8,25 @@
             value="dashboard"
             mdi-icon="mdi-view-dashboard"
             :name="$t('appNavigation.toDashBoardBtn')"
-            @click="()=>navigateTo('/dashboard')"
+            :to="'/dashboard'"
         />
         <AtomNavigationBtn 
             value="purchase-history"
             mdi-icon="mdi-store-marker"
             :name="$t('appNavigation.toPurchaseHistoryBtn')"
-            @click="()=>navigateTo('/purchase-history/stores')"
+            :to="'/purchase-history/stores'"
         />
         <AtomNavigationBtn 
             value="receipt-register"
             mdi-icon="mdi-receipt-text-plus"
             :name="$t('appNavigation.toReceiptRegisterBtn')"
-            @click="()=>navigateTo('/receipt-register/photo')"
+            :to="'/receipt-register/photo'"
         />
         <AtomNavigationBtn
             value="logout"
             mdi-icon="mdi-logout"
             :name="$t('appNavigation.signOutBtn')"
-            @click="onSignoutEvent"
+            @click-navigate="onSignoutEvent"
         />
     </v-bottom-navigation>
 </template>
