@@ -26,7 +26,7 @@
             value="logout"
             mdi-icon="mdi-logout"
             :name="$t('appNavigation.signOutBtn')"
-            @click="onLogoutEvent"
+            @click="onSignoutEvent"
         />
     </v-bottom-navigation>
 </template>
@@ -35,7 +35,7 @@
 const route = useRoute()
 const value = ref(route.path.split('/')[1])
 
-const onLogoutEvent = () => {}
+const { event: onSignoutEvent } = onSignout()
 
 </script>
 
