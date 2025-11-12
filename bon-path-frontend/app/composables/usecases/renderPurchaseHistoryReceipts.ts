@@ -1,44 +1,43 @@
 export default function() {
     const { storeId } = useIdParams(['storeId'])
-    const { getUserPurchases } = useUsers()
+    const { getUserPurchaseStoresReceipts } = useUsers()
     const { getStore } = useStores()
-    const { getReceipt, getReceiptImages } = useReceipts()
+    const { getReceiptImages } = useReceipts()
 
     return useAsyncOnRender(
         'render-purchase-history-receipts-usecase',
         async () => {
-            // [TODO]: いずれここの処理はひとつのAPIFetchで完結する可能性がある
-            // [GET] - /users/purchases/stores/:storeId/receipts
             const store = await getStore({ params: { id: storeId! }})
 
-            const purchases = await getUserPurchases()
-            const store_purchases = purchases.purchases.filter(
-                purchase => purchase.storeId == storeId
-            )
-
-            const unique_receipt_ids = [
-                ...new Map(store_purchases.map(
-                    purchase => [purchase.receiptId, purchase]
-                )).keys()
-            ]
-
-            const receipts = await Promise.all(
-                unique_receipt_ids.map(
-                    async (id) => ({
-                        id,
-                        ...await getReceipt({ params: { id }}),
-                        images: (await getReceiptImages({ params: { receiptId: id }})).images
+            const receipts = await getUserPurchaseStoresReceipts({
+                params: {
+                    storeId: storeId!
+                }
+            })
+            const receipt_with_images = await Promise.all(
+                receipts.receipts.map(
+                    async (receipt) => ({
+                        ...receipt,
+                        images: await getReceiptImages({
+                            params: {
+                                receiptId: receipt.id
+                            }
+                        })
                     })
                 )
             )
 
             return {
                 store: new StoreModel(store),
-                receipts: receipts.map(
+                receipts: receipt_with_images.map(
                     (receipt) => new ReceiptModel({
                         ...receipt,
-                        images: receipt.images.map(
-                            image => new ReceiptImageModel(image)
+                        createdAt: new Date(receipt.createdAt),
+                        images: receipt.images.images.map(
+                            image => new ReceiptImageModel({
+                                ...image,
+                                url: `/source${image.url}`
+                            })
                         )
                     })
                 )

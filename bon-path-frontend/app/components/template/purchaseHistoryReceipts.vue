@@ -1,15 +1,22 @@
 <template>
     <NuxtLayout name="app">
         <template #parallax>
-            <OrganismPurchaseHistoryReceiptsStoreParallax />
+            <OrganismPurchaseHistoryReceiptsStoreParallax 
+                :src="data?.store.getValues.image"
+            />
         </template>
         <template #main>
-            <OrganismPurchaseHistoryReceiptsListArticle/>
+            <OrganismPurchaseHistoryReceiptsListArticle 
+                :store="data?.store"
+                :receipts="data?.receipts"
+            />
         </template>
     </NuxtLayout>
 </template>
 
 <script setup lang="ts">
+const { data, execute } = usePurchaseHistoryReceiptsViewModel()
+onMounted(async()=>await execute())
 
 </script>
 

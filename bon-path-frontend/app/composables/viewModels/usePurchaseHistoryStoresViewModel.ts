@@ -1,11 +1,12 @@
 export default function() {
+    const route = useRoute()
     const { data, execute } = renderPurchaseHistoryStores()
 
-    const toReceipts = (storeId: number) => navigateTo(`/purchase-history/stores/${storeId}/receipts`)
+    const toReceiptsEvent = (storeId: number) => navigateTo(`${route.path}/${storeId}/receipts`)
 
     return {
         data,
         execute,
-        toReceipts
+        toReceiptsEvent
     }
 }

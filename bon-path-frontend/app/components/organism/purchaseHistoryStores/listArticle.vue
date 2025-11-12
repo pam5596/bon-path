@@ -4,13 +4,13 @@
             v-for="(store, index) in data" 
             :key="index"
             :store="store"
-            @to-receipts="toReceipts(store.id!)"
+            @to-receipts="toReceiptsEvent(store.id!)"
         />
     </div>
 </template>
 
 <script setup lang="ts">
-const { data, execute, toReceipts } = usePurchaseHistoryStoresViewModel()
+const { data, execute, toReceiptsEvent } = usePurchaseHistoryStoresViewModel()
 onMounted(async()=>await execute())
 
 </script>

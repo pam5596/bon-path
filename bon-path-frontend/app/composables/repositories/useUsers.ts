@@ -37,6 +37,14 @@ export default function() {
         )
     }
 
+    const getUserPurchaseStoresReceipts = async (
+        payload: Omit<UserPayloads.Purchases.Stores.Receipts.GET.Request,'cookies'>
+    ) => {
+        return await $fetch<UserPayloads.Purchases.Stores.Receipts.GET.Response['body']>(
+            `/api/users/purchases/stores/${payload.params.storeId}/receipts`
+        )
+    }
+
     const patchUser = async (
         payload: Omit<UserPayloads.PATCH.Request,'cookies'>
     ) => {
@@ -62,6 +70,7 @@ export default function() {
         getUserReceipts,
         getUserPurchases,
         getUserPurchasesStores,
+        getUserPurchaseStoresReceipts,
         patchUser,
         deleteUser
     }
