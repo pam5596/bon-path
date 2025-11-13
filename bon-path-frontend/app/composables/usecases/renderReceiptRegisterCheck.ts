@@ -78,7 +78,7 @@ export default function() {
                     images: receiptImages.images.map(
                         image => new ReceiptImageModel({
                             ...image,
-                            url: `/source${image.url}`
+                            url: `${config.public.sourceBase}${image.url}`
                         })
                     )
                 }),

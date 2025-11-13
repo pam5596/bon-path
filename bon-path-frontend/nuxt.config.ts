@@ -67,19 +67,12 @@ export default defineNuxtConfig({
   alias: {
     '@models': fileURLToPath(new URL('./src/models', import.meta.url))
   },
-  routeRules: {
-    '/api/**' : {
-      cors: true,
-      proxy: { to: `${process.env.BACKEND_DOMAIN}/**`}
-    },
-    '/source/**' : {
-      cors: true,
-      proxy: { to: `${process.env.STORAGE_DOMAIN}/**`}
-    }
-  },
+  
   runtimeConfig: {
     public: {
-      alertKeepTime: 5000,
+      apiBase: process.env.NUXT_PUBLIC_BACKEND_DOMAIN,
+      sourceBase: process.env.NUXT_PUBLIC_STORAGE_DOMAIN,
+      alertKeepTime: 10000,
       defaultLimitOfSearch: 10,
     }
   }

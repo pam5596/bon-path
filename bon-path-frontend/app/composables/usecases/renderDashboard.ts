@@ -1,4 +1,5 @@
 export default function() {
+    const config = useRuntimeConfig()
     const { getUser, getUserReceipts } = useUsers()
     const { getReceiptImages } = useReceipts()
 
@@ -26,7 +27,7 @@ export default function() {
                         images: receipt.images.map(
                             (image) => new ReceiptImageModel({
                                 ...image,
-                                url: `/source${image.url}`,
+                                url: `${config.public.sourceBase}${image.url}`,
                                 createdAt: new Date(image.createdAt)
                             })
                         )

@@ -1,4 +1,5 @@
 export default function() {
+    const config = useRuntimeConfig()
     const { storeId } = useIdParams(['storeId'])
     const { getUserPurchaseStoresReceipts } = useUsers()
     const { getStore } = useStores()
@@ -36,7 +37,7 @@ export default function() {
                         images: receipt.images.images.map(
                             image => new ReceiptImageModel({
                                 ...image,
-                                url: `/source${image.url}`
+                                url: `${config.public.sourceBase}${image.url}`
                             })
                         )
                     })

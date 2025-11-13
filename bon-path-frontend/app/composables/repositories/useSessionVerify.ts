@@ -1,27 +1,34 @@
 import type { SessionPayloads } from '@@/../share/payloads'
 
 export default function() {
+    const config = useRuntimeConfig()
+
     const postSessionVerify = async (
         payload: SessionPayloads.Verify.POST.Request
     ) => {
         return await $fetch<undefined>(
-            '/api/session/verify', {
+            `${config.public.apiBase}/session/verify`, {
                 method: 'post',
-                body: payload.body
+                body: payload.body,
+                credentials: 'include'
             }
         )
     }
 
     const getSessionVerify = async () => {
         return await $fetch<SessionPayloads.Verify.GET.Response['body']>(
-            '/api/session/verify'
+            `${config.public.apiBase}/session/verify`,
+            {
+                credentials: 'include'
+            }
         )
     }
 
     const deleteSessionVerify = async () => {
         return await $fetch(
-            '/api/session/verify', {
-                method: 'DELETE'
+            `${config.public.apiBase}/session/verify`, {
+                method: 'DELETE',
+                credentials: 'include'
             }
         )
     }

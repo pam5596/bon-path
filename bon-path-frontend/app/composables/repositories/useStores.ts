@@ -1,13 +1,16 @@
 import type { StorePayloads } from "@@/../share/payloads";
 
 export default function() {
+    const config = useRuntimeConfig()
+
     const postStore = async (
         payload: StorePayloads.POST.Request
     ) => {
         return await $fetch<StorePayloads.POST.Response['body']>(
-            '/api/stores', {
+            `${config.public.apiBase}/stores`, {
                 method: 'post',
-                body: payload.body
+                body: payload.body,
+                credentials: 'include'
             }
         )
     }
@@ -16,8 +19,9 @@ export default function() {
         payload: StorePayloads.Stores.GET.Request
     ) => {
         return await $fetch<StorePayloads.Stores.GET.Response['body']>(
-            `/api/stores`, {
-                query: payload.query
+            `${config.public.apiBase}/stores`, {
+                query: payload.query,
+                credentials: 'include'
             }
         )
     }
@@ -26,7 +30,10 @@ export default function() {
         payload: StorePayloads.GET.Request
     ) => {
         return await $fetch<StorePayloads.GET.Response['body']>(
-            `/api/stores/${payload.params.id}`
+            `${config.public.apiBase}/stores/${payload.params.id}`,
+            {
+                credentials: 'include'
+            }
         )
     }
 
@@ -34,7 +41,10 @@ export default function() {
         payload: StorePayloads.Products.GET.Request
     ) => {
         return await $fetch<StorePayloads.Products.GET.Response['body']>(
-            `/api/stores/${payload.params.storeId}/products`
+            `${config.public.apiBase}/stores/${payload.params.storeId}/products`,
+            {
+                credentials: 'include'
+            }
         )
     }
 
@@ -42,8 +52,9 @@ export default function() {
         payload: StorePayloads.VectorSearch.GET.Request
     ) => {
         return await $fetch<StorePayloads.VectorSearch.GET.Response['body']>(
-            `/api/stores/vector-search`, {
-                query: payload.query
+            `${config.public.apiBase}/stores/vector-search`, {
+                query: payload.query,
+                credentials: 'include'
             }
         )
     }
@@ -52,8 +63,9 @@ export default function() {
         payload: StorePayloads.GoogleMapSearch.GET.Request
     ) => {
         return await $fetch<StorePayloads.GoogleMapSearch.GET.Response['body']>(
-            `/api/stores/google-map-search`, {
-                query: payload.query
+            `${config.public.apiBase}/stores/google-map-search`, {
+                query: payload.query,
+                credentials: 'include'
             }
         )
     }
@@ -62,9 +74,10 @@ export default function() {
         payload: StorePayloads.PATCH.Request
     ) => {
         return await $fetch<undefined>(
-            `/api/stores/${payload.params.id}`, {
+            `${config.public.apiBase}/stores/${payload.params.id}`, {
                 method: 'patch',
-                body: payload.body
+                body: payload.body,
+                credentials: 'include'
             }
         )
     }
@@ -73,8 +86,9 @@ export default function() {
         payload: StorePayloads.DELETE.Request
     ) => {
         return await $fetch<undefined>(
-            `/api/stores/${payload.params.id}`, {
+            `${config.public.apiBase}/stores/${payload.params.id}`, {
                 method: 'delete',
+                credentials: 'include'
             }
         )
     }

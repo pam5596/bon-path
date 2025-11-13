@@ -1,17 +1,23 @@
 import type { UserPayloads } from '@@/../share/payloads'
 
 export default function() {
+    const config = useRuntimeConfig()
+
     const postUser = async () => {
         return await $fetch<UserPayloads.POST.Response['body']>(
-            '/api/users', {
-                method: 'post'
+            `${config.public.apiBase}/users`, {
+                method: 'post',
+                credentials: 'include'
             }
         )
     }
 
     const getUser = async () => {
         return await $fetch<UserPayloads.GET.Response['body']>(
-            '/api/users'
+            `${config.public.apiBase}/users`,
+            {
+                credentials: 'include'
+            }
         )
     }
 
@@ -19,21 +25,28 @@ export default function() {
         payload: Omit<UserPayloads.Receipts.GET.Request,'cookies'>
     ) => {
         return await $fetch<UserPayloads.Receipts.GET.Response['body']>(
-            '/api/users/receipts', {
-                query: payload.query
+            `${config.public.apiBase}/users/receipts`, {
+                query: payload.query,
+                credentials: 'include'
             }
         )
     }
 
     const getUserPurchases = async () => {
         return await $fetch<UserPayloads.Purchases.GET.Response['body']>(
-            '/api/users/purchases'
+            `${config.public.apiBase}/users/purchases`,
+            {
+                credentials: 'include'
+            }
         )
     }
 
     const getUserPurchasesStores = async () => {
         return await $fetch<UserPayloads.Purchases.Stores.GET.Response['body']>(
-            '/api/users/purchases/stores'
+            `${config.public.apiBase}/users/purchases/stores`,
+            {
+                credentials: 'include'
+            }
         )
     }
 
@@ -41,7 +54,10 @@ export default function() {
         payload: Omit<UserPayloads.Purchases.Stores.Receipts.GET.Request,'cookies'>
     ) => {
         return await $fetch<UserPayloads.Purchases.Stores.Receipts.GET.Response['body']>(
-            `/api/users/purchases/stores/${payload.params.storeId}/receipts`
+            `${config.public.apiBase}/users/purchases/stores/${payload.params.storeId}/receipts`,
+            {
+                credentials: 'include'
+            }
         )
     }
 
@@ -49,17 +65,19 @@ export default function() {
         payload: Omit<UserPayloads.PATCH.Request,'cookies'>
     ) => {
         return await $fetch<undefined>(
-            '/api/users', {
+            `${config.public.apiBase}/users`, {
                 method: 'patch',
-                body: payload.body
+                body: payload.body,
+                credentials: 'include'
             }
         )
     }
 
     const deleteUser = async () => {
         return await $fetch<undefined>(
-            '/api/users', {
-                method: 'delete'
+            `${config.public.apiBase}/users`, {
+                method: 'delete',
+                credentials: 'include'
             }
         )
     }

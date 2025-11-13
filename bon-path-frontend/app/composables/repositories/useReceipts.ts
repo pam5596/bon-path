@@ -1,13 +1,16 @@
 import type { ReceiptPayloads } from '@@/../share/payloads'
 
 export default function() {
+    const config = useRuntimeConfig()
+
     const postReceipt = async (
         payload: Omit<ReceiptPayloads.POST.Request,'cookies'>
     ) => {
         return await $fetch<ReceiptPayloads.POST.Response['body']>(
-            '/api/receipts', {
+            `${config.public.apiBase}/receipts`, {
                 method: 'post',
-                body: payload.body
+                body: payload.body,
+                credentials: 'include'
             }
         )
     }
@@ -16,7 +19,10 @@ export default function() {
         payload: Omit<ReceiptPayloads.GET.Request,'cookies'>
     ) => {
         return await $fetch<ReceiptPayloads.GET.Response['body']>(
-            `/api/receipts/${payload.params.id}`
+            `${config.public.apiBase}/receipts/${payload.params.id}`,
+            {
+                credentials: 'include'
+            }
         )
     }
 
@@ -24,7 +30,10 @@ export default function() {
         payload: ReceiptPayloads.Purchases.GET.Request
     ) => {
         return await $fetch<ReceiptPayloads.Purchases.GET.Response['body']>(
-            `/api/receipts/${payload.params.receiptId}/purchases`
+            `${config.public.apiBase}/receipts/${payload.params.receiptId}/purchases`,
+            {
+                credentials: 'include'
+            }
         )
     }
 
@@ -32,7 +41,10 @@ export default function() {
         payload: ReceiptPayloads.Images.GET.Request
     ) => {
         return await $fetch<ReceiptPayloads.Images.GET.Response['body']>(
-            `/api/receipts/${payload.params.receiptId}/images`
+            `${config.public.apiBase}/receipts/${payload.params.receiptId}/images`,
+            {
+                credentials: 'include'
+            }
         )
     }
 
@@ -40,9 +52,10 @@ export default function() {
         payload: Omit<ReceiptPayloads.PATCH.Request,'cookies'>
     ) => {
         return await $fetch<undefined>(
-            `/api/receipts/${payload.params.id}`, {
+            `${config.public.apiBase}/receipts/${payload.params.id}`, {
                 method: 'patch',
-                body: payload.body
+                body: payload.body,
+                credentials: 'include'
             }
         )
     }
@@ -51,8 +64,9 @@ export default function() {
         payload: Omit<ReceiptPayloads.DELETE.Request, 'cookies'>
     ) => {
         return await $fetch<undefined>(
-            `/api/receipts/${payload.params.id}`, {
+            `${config.public.apiBase}/receipts/${payload.params.id}`, {
                 method: 'delete',
+                credentials: 'include'
             }
         )
     }

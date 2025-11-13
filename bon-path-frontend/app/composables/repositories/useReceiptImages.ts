@@ -1,6 +1,8 @@
 import type { ReceiptImagePayloads } from '@@/../share/payloads'
 
 export default function() {
+    const config = useRuntimeConfig()
+    
     const postReceiptImages = async (
         payload: ReceiptImagePayloads.POST.Request
     ) => {
@@ -11,9 +13,10 @@ export default function() {
         )
 
         return await $fetch<undefined>(
-            `/api/receipt-images`, {
+            `${config.public.apiBase}/receipt-images`, {
                 method: 'post',
-                body: form
+                body: form,
+                credentials: 'include'
             }
         )
     }
@@ -22,7 +25,7 @@ export default function() {
         payload: ReceiptImagePayloads.DELETE.Request
     ) => {
         return await $fetch<undefined>(
-            `/api/receipt-images/${payload.params.id}`, {
+            `${config.public.apiBase}/receipt-images/${payload.params.id}`, {
                 method: 'delete'
             }
         )

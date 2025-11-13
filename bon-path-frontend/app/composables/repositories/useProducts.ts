@@ -1,13 +1,16 @@
 import type { ProductPayloads } from '@@/../share/payloads'
 
 export default function() {
+    const config = useRuntimeConfig()
+    
     const postProduct = async (
         payload: ProductPayloads.POST.Request
     ) => {
         return await $fetch<ProductPayloads.POST.Response['body']>(
-            `/api/products`, {
+            `${config.public.apiBase}/products`, {
                 method: 'post',
-                body: payload.body
+                body: payload.body,
+                credentials: 'include'
             }
         )
     }
@@ -16,8 +19,9 @@ export default function() {
         payload: ProductPayloads.Products.GET.Request
     ) => {
         return await $fetch<ProductPayloads.Products.GET.Response['body']>(
-            `/api/products`, {
-                query: payload.query
+            `${config.public.apiBase}/products`, {
+                query: payload.query,
+                credentials: 'include'
             }
         )
     }
@@ -26,7 +30,10 @@ export default function() {
         payload: ProductPayloads.GET.Request
     ) => {
         return await $fetch<ProductPayloads.GET.Response['body']>(
-            `/api/products/${payload.params.id}`
+            `${config.public.apiBase}/products/${payload.params.id}`,
+            {
+                credentials: 'include'
+            }
         )
     }
 
@@ -34,8 +41,9 @@ export default function() {
         payload: ProductPayloads.VectorSearch.GET.Request
     ) => {
         return await $fetch<ProductPayloads.VectorSearch.GET.Response['body']>(
-            `/api/products/vector-search`, {
-                query: payload.query
+            `${config.public.apiBase}/products/vector-search`, {
+                query: payload.query,
+                credentials: 'include'
             }
         )
     }
@@ -44,8 +52,9 @@ export default function() {
         payload: ProductPayloads.GoogleSearch.GET.Request
     ) => {
         return await $fetch<ProductPayloads.GoogleSearch.GET.Response['body']>(
-            `/api/products/google-search`, {
-                query: payload.query
+            `${config.public.apiBase}/products/google-search`, {
+                query: payload.query,
+                credentials: 'include'
             }
         )
     }
@@ -54,9 +63,10 @@ export default function() {
         payload: ProductPayloads.PATCH.Request
     ) => {
         return await $fetch<undefined>(
-            `/api/products/${payload.params.id}`, {
+            `${config.public.apiBase}/products/${payload.params.id}`, {
                 method: 'patch',
-                body: payload.body
+                body: payload.body,
+                credentials: 'include'
             }
         )
     }
@@ -65,8 +75,9 @@ export default function() {
         payload: ProductPayloads.DELETE.Request
     ) => {
         return await $fetch<undefined>(
-            `/api/products/${payload.params.id}`, {
+            `${config.public.apiBase}/products/${payload.params.id}`, {
                 method: 'delete',
+                credentials: 'include'
             }
         )
     }
