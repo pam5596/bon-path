@@ -3,7 +3,19 @@ import { fileURLToPath } from 'node:url';
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 export default defineNuxtConfig({
+  app: {
+    head: {
+      title: 'BON PATH',
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.svg' },
+      ]
+    }
+  },
+  nitro: {
+    preset: 'static',
+  },
   compatibilityDate: '2025-07-15',
+  ssr: false,
   devtools: { enabled: true },
   build: {
     transpile: ['vuetify']
@@ -66,8 +78,8 @@ export default defineNuxtConfig({
     }
   },
   runtimeConfig: {
-    app: {
-      alertKeepTime: 30000,
+    public: {
+      alertKeepTime: 5000,
       defaultLimitOfSearch: 10,
     }
   }

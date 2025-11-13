@@ -7,7 +7,7 @@ export default function() {
 
         setTimeout(() => {
             onCloseAlert()
-        }, config.app.alertKeepTime)
+        }, config.public.alertKeepTime)
     }
 
     const onCloseAlert = () => {

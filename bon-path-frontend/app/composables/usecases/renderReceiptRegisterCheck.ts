@@ -20,7 +20,7 @@ export default function() {
             const googleSearchStores = await getStoresGoogleMapSearch({
                 query: {
                     keyword: ocrResult.store.name,
-                    limit: config.app.defaultLimitOfSearch,
+                    limit: config.public.defaultLimitOfSearch,
                     latitude: location.value?.latitude,
                     longitude: location.value?.longitude
                 }
@@ -29,7 +29,7 @@ export default function() {
             const vectorSearchStores = await getStoresVectorSearch({
                 query: {
                     keyword: ocrResult.store.name,
-                    limit: config.app.defaultLimitOfSearch
+                    limit: config.public.defaultLimitOfSearch
                 }
             })
 
@@ -53,14 +53,14 @@ export default function() {
                                 ...(await getProductsGoogleSearch({
                                     query: {
                                         keyword: product.name,
-                                        limit: config.app.defaultLimitOfSearch
+                                        limit: config.public.defaultLimitOfSearch
                                     }
                                 }).catch(()=>({ products: []}))).products,
                                 ...(await getProductsVectorSearch({
                                     query: {
                                         keyword: product.name,
                                         storeId: (searchResultStores[0] as { id?: number }).id || undefined,
-                                        limit: config.app.defaultLimitOfSearch
+                                        limit: config.public.defaultLimitOfSearch
                                     }
                                 }).catch(()=>({ products: []}))).products
                             ].map(

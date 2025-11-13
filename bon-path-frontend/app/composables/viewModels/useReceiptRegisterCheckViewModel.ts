@@ -37,11 +37,11 @@ export default function() {
                         await onProductVectorSearchDispatch.event({
                             keyword: product.getValues.name,
                             storeId: store.id,
-                            limit: config.app.defaultLimitOfSearch
+                            limit: config.public.defaultLimitOfSearch
                         })
                         await onProductGoogleMapSearchDispatch.event({
                             keyword: product.getValues.name,
-                            limit: config.app.defaultLimitOfSearch,
+                            limit: config.public.defaultLimitOfSearch,
                             price: product.getValues.price
                         })
 
