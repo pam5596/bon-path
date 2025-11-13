@@ -30,6 +30,7 @@ export class CreateLoginSessionRoute extends BaseRoute {
                 setCookie(context, 'loginSessionId', response.getCookies.loginSessionId, {
                     secure: true,
                     httpOnly: true,
+                    sameSite: 'None',
                     maxAge: TIMES.loginSessionMaxAge
                 })
                 

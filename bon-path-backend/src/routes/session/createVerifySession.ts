@@ -30,6 +30,7 @@ export class CreateVerifySessionRoute extends BaseRoute {
                 setCookie(context, 'verifySessionId', response.getCookies.verifySessionId, {
                     secure: true,
                     httpOnly: true,
+                    sameSite: 'None',
                     maxAge: TIMES.verifySessionMaxAge
                 })
 
