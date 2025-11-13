@@ -1,5 +1,6 @@
 <template>
     <article>
+        <MoleculeReceiptRegisterCheckDescriptionList />
         <v-card class="wrapper">
             <v-card-title>
                 {{ createdAt }}
@@ -19,6 +20,11 @@ const createdAt = computed(() => data.value?.receipt.getValues.createdAt?.toLoca
 </script>
 
 <style scoped>
+article {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
 .wrapper {
     padding: 1rem;
     display: flex;

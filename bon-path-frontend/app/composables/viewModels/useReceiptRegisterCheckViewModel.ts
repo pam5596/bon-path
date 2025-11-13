@@ -40,7 +40,7 @@ export default function() {
                             limit: config.app.defaultLimitOfSearch
                         })
                         await onProductGoogleMapSearchDispatch.event({
-                            keyword: `マーケット商品 ${product.getValues.name}`,
+                            keyword: product.getValues.name,
                             limit: config.app.defaultLimitOfSearch,
                             price: product.getValues.price
                         })

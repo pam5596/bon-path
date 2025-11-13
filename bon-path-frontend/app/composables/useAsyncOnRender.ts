@@ -16,7 +16,7 @@ export default function <ResponseT>(
         handler, 
         {
             immediate: false,
-            server: false
+            server: false,
         }
     )
 
@@ -32,6 +32,7 @@ export default function <ResponseT>(
     })
 
     watch(asyncData.error, (error) => {
+        console.error(error?.data)
         if (typeof error?.data == 'object') {
             onAlert({
                 type: 'error',

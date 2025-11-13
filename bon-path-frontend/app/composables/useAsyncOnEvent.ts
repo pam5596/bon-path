@@ -22,7 +22,7 @@ export default function <ParamsT>(
             })
         } catch (e) {
             if (e instanceof FetchError) {
-                console.error(e)
+                console.error(e.data)
                 onAlert({
                     type: 'error',
                     title: e.data?.detail || t("_errors.unknownError"),

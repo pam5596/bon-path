@@ -15,9 +15,6 @@
         <MoleculeReceiptRegisterPhotoDescriptionListItem 
             :description="$t('receiptRegisterPhoto.descriptionArticle.description.splitShooting')"
         />
-        <MoleculeReceiptRegisterPhotoDescriptionListItem 
-            :description="$t('receiptRegisterPhoto.descriptionArticle.description.errorHandle')"
-        />
     </v-list>
 </template>
 

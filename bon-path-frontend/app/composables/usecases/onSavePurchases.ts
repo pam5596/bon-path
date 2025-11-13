@@ -55,7 +55,9 @@ export default function () {
 
             await postPurchases({
                 body: { 
-                    purchases: payloadPurchases.value.map(
+                    purchases: payloadPurchases.value.filter(
+                        purchase => !purchase.id
+                    ).map(
                         purchase => ({
                             ...purchase.getModelValues,
                             storeId: payloadStore.value!.id!,

@@ -78,6 +78,7 @@
         "form": {
             "storeHeading": "店舗情報",
             "productsHeading": "商品情報一覧",
+            "productNamePrefix": "読み取られた商品名:",
             "onSubmitBtn": "登録する",
             "onRemovePurchaseBtn": "商品を削除する", 
             "productValues": {
@@ -92,6 +93,11 @@
                     "prefix": "x"
                 }
             }
+        },
+        "description": {
+            "whenErrorRaised": "登録時にエラーが発生した場合、ダッシュボードからレシートを削除してください。",
+            "disturbingKatakana": "商品名がカタカナだけの場合、うまく読み取られないことがあります。",
+            "wrongReadProduct": "選択欄に購入した商品がないか、間違って読み取られている場合、「商品を削除」ボタンで商品を削除できます。"
         }
     },
     "receiptRegisterPhoto": {
@@ -103,8 +109,7 @@
                 "numberOfRegistration": "一度の登録で可能なレシートは１枚までです。",
                 "rangeOfReceipt": "合計金額より下部に記載の、クーポンや広告などは必要ありません。",
                 "photoConditions": "店名・商品名・価格がはっきり写っていること。",
-                "splitShooting": "写真１枚に収まりきらない場合は複数枚に分けて撮影してください。",
-                "errorHandle": "店舗・商品情報の登録時にエラーが発生した場合、同じレシートを再度登録しないでください。"
+                "splitShooting": "写真１枚に収まりきらない場合は複数枚に分けて撮影してください。"
             }
         },
         "previewCard": {
