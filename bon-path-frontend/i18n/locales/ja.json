@@ -80,15 +80,21 @@
             "productsHeading": "商品情報一覧",
             "onSubmitBtn": "登録する",
             "onRemovePurchaseBtn": "商品を削除する", 
+            "productSelector": {
+                "name": {
+                    "label": "レシート記載の商品名",
+                    "required": "商品名は必須です。"
+                }
+            },
             "productValues": {
                 "price": {
                     "label": "価格",
-                    "required": "商品の購入価格を入力してください。",
+                    "required": "商品の購入価格は必須です。",
                     "prefix": "￥"
                 },
                 "quantity": {
                     "label": "数量",
-                    "required": "商品の購入価格を入力してください。",
+                    "required": "商品の購入価格は必須です。",
                     "prefix": "x"
                 }
             }
