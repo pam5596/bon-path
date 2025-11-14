@@ -29,6 +29,7 @@
             variant="filled"
             append-inner-icon="mdi-image-search"
             :rules="[(v: unknown) => !!v || $t('receiptRegisterCheck.form.productSelector.name.required')]"
+            :readonly="textFiledIsReadOnly"
             @click:append-inner="emit('search')"
         />
     </div>
@@ -36,8 +37,9 @@
 
 <script setup lang="ts">
 const emit = defineEmits(['search'])
-
 const model = defineModel<PurchaseModel>()
+const originalProductName = ref(model.value!.product.getValues.name)
+
 const modelProductImage = computed({
     get: () => model.value?.product.getValues.image,
     set: (value) => {
@@ -48,9 +50,10 @@ const modelProductImage = computed({
         model.value = new PurchaseModel({
             ...model.value!.getValues,
             product: new ProductModel({
-                ...model.value!.product.getValues,
-                image: value,
-                name: target?.id ? target.name : model.value!.product.getValues.name
+                ...target!,
+                name: target?.id ? target.name : originalProductName.value,
+                price: model.value!.getValues.price,
+                searchResults: model.value!.product.searchResults
             })
         })
     }
@@ -71,7 +74,7 @@ const modelProductName = computed({
         })
     }
 })
-
+const textFiledIsReadOnly= computed(()=>model.value?.product.id ? true : false)
 
 </script>
 
