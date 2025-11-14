@@ -1,16 +1,15 @@
 import type { ReceiptPayloads } from '@@/../share/payloads'
 
 export default function() {
-    const config = useRuntimeConfig()
+    const fetcher = useFetcher()
 
     const postReceipt = async (
         payload: Omit<ReceiptPayloads.POST.Request,'cookies'>
     ) => {
-        return await $fetch<ReceiptPayloads.POST.Response['body']>(
-            `${config.public.apiBase}/receipts`, {
+        return await fetcher<ReceiptPayloads.POST.Response['body']>(
+            `/receipts`, {
                 method: 'post',
-                body: payload.body,
-                credentials: 'include'
+                body: payload.body
             }
         )
     }
@@ -18,44 +17,34 @@ export default function() {
     const getReceipt = async (
         payload: Omit<ReceiptPayloads.GET.Request,'cookies'>
     ) => {
-        return await $fetch<ReceiptPayloads.GET.Response['body']>(
-            `${config.public.apiBase}/receipts/${payload.params.id}`,
-            {
-                credentials: 'include'
-            }
+        return await fetcher<ReceiptPayloads.GET.Response['body']>(
+            `/receipts/${payload.params.id}`
         )
     }
 
     const getReceiptPurchases = async (
         payload: ReceiptPayloads.Purchases.GET.Request
     ) => {
-        return await $fetch<ReceiptPayloads.Purchases.GET.Response['body']>(
-            `${config.public.apiBase}/receipts/${payload.params.receiptId}/purchases`,
-            {
-                credentials: 'include'
-            }
+        return await fetcher<ReceiptPayloads.Purchases.GET.Response['body']>(
+            `/receipts/${payload.params.receiptId}/purchases`
         )
     }
 
     const getReceiptImages = async (
         payload: ReceiptPayloads.Images.GET.Request
     ) => {
-        return await $fetch<ReceiptPayloads.Images.GET.Response['body']>(
-            `${config.public.apiBase}/receipts/${payload.params.receiptId}/images`,
-            {
-                credentials: 'include'
-            }
+        return await fetcher<ReceiptPayloads.Images.GET.Response['body']>(
+            `/receipts/${payload.params.receiptId}/images`
         )
     }
 
     const patchReceipt = async (
         payload: Omit<ReceiptPayloads.PATCH.Request,'cookies'>
     ) => {
-        return await $fetch<undefined>(
-            `${config.public.apiBase}/receipts/${payload.params.id}`, {
+        return await fetcher<undefined>(
+            `/receipts/${payload.params.id}`, {
                 method: 'patch',
                 body: payload.body,
-                credentials: 'include'
             }
         )
     }
@@ -63,10 +52,9 @@ export default function() {
     const deleteReceipt = async (
         payload: Omit<ReceiptPayloads.DELETE.Request, 'cookies'>
     ) => {
-        return await $fetch<undefined>(
-            `${config.public.apiBase}/receipts/${payload.params.id}`, {
+        return await fetcher<undefined>(
+            `/receipts/${payload.params.id}`, {
                 method: 'delete',
-                credentials: 'include'
             }
         )
     }

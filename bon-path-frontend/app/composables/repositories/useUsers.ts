@@ -1,83 +1,67 @@
 import type { UserPayloads } from '@@/../share/payloads'
 
 export default function() {
-    const config = useRuntimeConfig()
+    const fetcher = useFetcher()
 
     const postUser = async () => {
-        return await $fetch<UserPayloads.POST.Response['body']>(
-            `${config.public.apiBase}/users`, {
+        return await fetcher<UserPayloads.POST.Response['body']>(
+            `/users`, {
                 method: 'post',
-                credentials: 'include'
             }
         )
     }
 
     const getUser = async () => {
-        return await $fetch<UserPayloads.GET.Response['body']>(
-            `${config.public.apiBase}/users`,
-            {
-                credentials: 'include'
-            }
+        return await fetcher<UserPayloads.GET.Response['body']>(
+            `/users`
         )
     }
 
     const getUserReceipts = async (
         payload: Omit<UserPayloads.Receipts.GET.Request,'cookies'>
     ) => {
-        return await $fetch<UserPayloads.Receipts.GET.Response['body']>(
-            `${config.public.apiBase}/users/receipts`, {
+        return await fetcher<UserPayloads.Receipts.GET.Response['body']>(
+            `/users/receipts`, {
                 query: payload.query,
-                credentials: 'include'
             }
         )
     }
 
     const getUserPurchases = async () => {
-        return await $fetch<UserPayloads.Purchases.GET.Response['body']>(
-            `${config.public.apiBase}/users/purchases`,
-            {
-                credentials: 'include'
-            }
+        return await fetcher<UserPayloads.Purchases.GET.Response['body']>(
+            `/users/purchases`
         )
     }
 
     const getUserPurchasesStores = async () => {
-        return await $fetch<UserPayloads.Purchases.Stores.GET.Response['body']>(
-            `${config.public.apiBase}/users/purchases/stores`,
-            {
-                credentials: 'include'
-            }
+        return await fetcher<UserPayloads.Purchases.Stores.GET.Response['body']>(
+            `/users/purchases/stores`
         )
     }
 
     const getUserPurchaseStoresReceipts = async (
         payload: Omit<UserPayloads.Purchases.Stores.Receipts.GET.Request,'cookies'>
     ) => {
-        return await $fetch<UserPayloads.Purchases.Stores.Receipts.GET.Response['body']>(
-            `${config.public.apiBase}/users/purchases/stores/${payload.params.storeId}/receipts`,
-            {
-                credentials: 'include'
-            }
+        return await fetcher<UserPayloads.Purchases.Stores.Receipts.GET.Response['body']>(
+            `/users/purchases/stores/${payload.params.storeId}/receipts`
         )
     }
 
     const patchUser = async (
         payload: Omit<UserPayloads.PATCH.Request,'cookies'>
     ) => {
-        return await $fetch<undefined>(
-            `${config.public.apiBase}/users`, {
+        return await fetcher<undefined>(
+            `/users`, {
                 method: 'patch',
                 body: payload.body,
-                credentials: 'include'
             }
         )
     }
 
     const deleteUser = async () => {
-        return await $fetch<undefined>(
-            `${config.public.apiBase}/users`, {
+        return await fetcher<undefined>(
+            `/users`, {
                 method: 'delete',
-                credentials: 'include'
             }
         )
     }

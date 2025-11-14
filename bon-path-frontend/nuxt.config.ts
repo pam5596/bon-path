@@ -68,10 +68,11 @@ export default defineNuxtConfig({
     '@models': fileURLToPath(new URL('./src/models', import.meta.url))
   },
   
+  // [!] build時には有効にならないため、環境変数をruntimeConfig呼び出し箇所に手動で埋め込む
   runtimeConfig: {
     public: {
-      apiBase: process.env.NUXT_PUBLIC_BACKEND_DOMAIN,
-      sourceBase: process.env.NUXT_PUBLIC_STORAGE_DOMAIN,
+      apiBase: process.env.NUXT_PUBLIC_API_BASE,
+      sourceBase: process.env.NUXT_PUBLIC_SOURCE_BASE,
       alertKeepTime: 10000,
       defaultLimitOfSearch: 10,
     }

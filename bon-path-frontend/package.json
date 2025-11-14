@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "test": "NODE_NO_WARNINGS=1 npx vitest",
-    "build": "nuxt build",
+    "build": "nuxt build --dotenv .env",
     "dev": "NODE_NO_WARNINGS=1 nuxt dev --dotenv .env.develop",
     "stage": "NODE_NO_WARNINGS=1 nuxt dev --dotenv .env",
     "generate": "nuxt generate",

@@ -1,16 +1,15 @@
 import type { PurchasePayloads } from '@@/../share/payloads'
 
 export default function() {
-    const config = useRuntimeConfig()
+    const fetcher = useFetcher()
 
     const postPurchases = async (
         payload: Omit<PurchasePayloads.POST.Request, 'cookies'>
     ) => {
-        return await $fetch<undefined>(
-            `${config.public.apiBase}/purchases`, {
+        return await fetcher<undefined>(
+            `/purchases`, {
                 method: 'post',
                 body: payload.body,
-                credentials: 'include'
             }
         )
     }
@@ -18,21 +17,17 @@ export default function() {
     const getPurchase = async (
         payload: Omit<PurchasePayloads.GET.Request,'cookies'>
     ) => {
-        return await $fetch<PurchasePayloads.GET.Response['body']>(
-            `${config.public.apiBase}/purchases/${payload.params.id}`,
-            {
-                credentials: 'include'
-            }
+        return await fetcher<PurchasePayloads.GET.Response['body']>(
+            `/purchases/${payload.params.id}`
         )
     }
 
     const deletePurchase = async (
         payload: Omit<PurchasePayloads.DELETE.Request,'cookies'>
     ) => {
-        return await $fetch<undefined>(
-            `${config.public.apiBase}/purchases/${payload.params.id}`, {
+        return await fetcher<undefined>(
+            `/purchases/${payload.params.id}`, {
                 method: 'delete',
-                credentials: 'include'
             }
         )
     }
