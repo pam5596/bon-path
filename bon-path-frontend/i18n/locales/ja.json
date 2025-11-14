@@ -84,6 +84,9 @@
                 "name": {
                     "label": "レシート記載の商品名",
                     "required": "商品名は必須です。"
+                },
+                "image": {
+                    "label": "商品画像"
                 }
             },
             "productValues": {
@@ -100,9 +103,10 @@
             }
         },
         "description": {
-            "whenErrorRaised": "登録時にエラーが発生した場合、ダッシュボードからレシートを削除してください。",
-            "disturbingKatakana": "商品名がカタカナだけの場合、うまく読み取られないことがあります。",
-            "wrongReadProduct": "選択欄に購入した商品がないか、間違って読み取られている場合、「商品を削除」ボタンで商品を削除できます。"
+            "whenErrorRaised": "登録時にエラーが発生した場合、無理に登録せずダッシュボードからレシートを削除してください。",
+            "noProductImage-before": "購入した商品と同じ画像が選択一覧にない場合、「レシート記載の商品名」にキーワードを入力して、",
+            "noProductImage-after": "を押すことで再検索します。検索結果は再度選択一覧に反映されます。",
+            "dontForgetProductName": "商品名の入力欄を検索で使用した後、商品名はレシートと同じ記載に直してください。"
         }
     },
     "receiptRegisterPhoto": {

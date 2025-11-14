@@ -2,7 +2,7 @@
     <v-list-item no-title>
         <v-avatar class="avatar" size="100">
             <v-img 
-                :src="props.product.getValues.image"
+                :src="props.src"
             />
         </v-avatar>
         <template #title>
@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-    product: ProductModel
+    src?: string
 }>()
 </script>
 

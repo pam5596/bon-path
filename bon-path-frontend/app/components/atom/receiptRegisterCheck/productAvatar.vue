@@ -1,5 +1,5 @@
 <template>
-    <v-avatar class="content">
+    <v-avatar class="content" size="120">
         <v-img 
             aspect-ratio="1/1"
             :src="props.src"

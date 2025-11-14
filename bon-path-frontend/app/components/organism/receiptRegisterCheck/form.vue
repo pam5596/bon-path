@@ -1,12 +1,8 @@
 <template>
     <v-form class="wrapper">
-        <MoleculeReceiptRegisterCheckStoreField 
-            :stores="collection.storesSearchResult"
-        />
+        <MoleculeReceiptRegisterCheckStoreField />
         <v-divider />
-        <MoleculeReceiptRegisterCheckProductsField
-            :products="collection.productsSearchResult"
-        />
+        <MoleculeReceiptRegisterCheckProductsField />
         <v-btn 
             color="primary"
             :loading="isSubmitting"
@@ -18,8 +14,7 @@
 </template>
 
 <script setup lang="ts">
-const { 
-    collection, 
+const {
     isSubmitting,
     onSavePurchasesEvent 
 } = useReceiptRegisterCheckViewModel()

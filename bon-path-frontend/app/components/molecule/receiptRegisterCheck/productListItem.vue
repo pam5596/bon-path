@@ -2,7 +2,7 @@
     <v-list-item>
         <MoleculeReceiptRegisterCheckProductSelector
             v-model="model"
-            :products="props.product.searchResults!"
+            @search="emit('search')"
         />
         <MoleculeReceiptRegisterCheckProductValues 
             v-model:price="modelPrice"
@@ -20,10 +20,7 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
-    product: ProductModel
-}>()
-
+const emit = defineEmits(['delete', 'search'])
 const model = defineModel<PurchaseModel>()
 const modelPrice = computed({
     get: () => model.value?.getModelValues.price,
@@ -43,8 +40,6 @@ const modelQuantity = computed({
         })
     }
 })
-
-const emit = defineEmits(['delete'])
 
 </script>
 

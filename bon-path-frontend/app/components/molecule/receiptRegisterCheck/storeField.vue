@@ -3,24 +3,11 @@
         <AtomTypography class="text-h6">
             {{ $t("receiptRegisterCheck.form.storeHeading") }}
         </AtomTypography>
-        <MoleculeReceiptRegisterCheckStoreSelector 
-            v-model="storeModel"
-            :stores="props.stores"
-        />
+        <MoleculeReceiptRegisterCheckStoreSelector />
     </div>
 </template>
 
 <script setup lang="ts">
-const { form } = useReceiptRegisterCheckViewModel()
-
-const props = defineProps<{
-    stores: StoreModel[]
-}>()
-
-const storeModel = computed({
-    get: () => form.value.store,
-    set: (value) => (form.value.store = value)
-})
 
 </script>
 
