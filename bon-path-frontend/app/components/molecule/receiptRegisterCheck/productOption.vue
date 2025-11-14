@@ -1,14 +1,12 @@
 <template>
-    <v-list-item>
-        <template #prepend>
-            <v-avatar class="avatar">
-                <v-img 
-                    :src="props.product.getValues.image"
-                />
-            </v-avatar>
-        </template>
+    <v-list-item no-title>
+        <v-avatar class="avatar" size="150">
+            <v-img 
+                :src="props.product.getValues.image"
+            />
+        </v-avatar>
         <template #title>
-            {{ props.product.getValues.name }}
+            <span />
         </template>
     </v-list-item>
 </template>

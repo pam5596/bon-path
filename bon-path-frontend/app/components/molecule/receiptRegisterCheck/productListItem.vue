@@ -1,8 +1,5 @@
 <template>
     <v-list-item>
-        <AtomTypography>
-            {{ $t('receiptRegisterCheck.form.productNamePrefix') + product.getValues.name }}
-        </AtomTypography>
         <MoleculeReceiptRegisterCheckProductSelector
             v-model="model"
             :products="props.product.searchResults!"

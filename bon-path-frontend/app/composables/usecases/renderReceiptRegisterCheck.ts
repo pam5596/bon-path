@@ -16,6 +16,30 @@ export default function() {
             const ocrResult = await postGptOcr({ body: {
                 images: receiptImages.images.map(image => image.url)
             }})
+            
+            // [FIXIT] OCRの連投を避けるためにサンプルデータを用意
+            // const ocrResult = {
+            //     store: {
+            //         name: "ファミリーマート 三田聖坂下店"
+            //     },
+            //     products: [
+            //         {
+            //             name: "ヤクルトY1000",
+            //             price: 162,
+            //             quantity: 1
+            //         },
+            //         {
+            //             name: "えびマヨおにぎり",
+            //             price: 258,
+            //             quantity: 1
+            //         },
+            //         {
+            //             name: "あじの塩焼き",
+            //             price: 329,
+            //             quantity: 1,
+            //         }
+            //     ]
+            // }
 
             const googleSearchStores = await getStoresGoogleMapSearch({
                 query: {
@@ -95,6 +119,7 @@ export default function() {
                         searchResults: product.searchResults.map(
                             result => new ProductModel({
                                 ...result,
+                                name: product.name,
                                 price: product.price
                             })
                         )
@@ -107,6 +132,7 @@ export default function() {
                         quantity: product.quantity,
                         product: new ProductModel({
                             ...product.searchResults[0]!,
+                            name: product.name,
                             price: product.price
                         })
                     })

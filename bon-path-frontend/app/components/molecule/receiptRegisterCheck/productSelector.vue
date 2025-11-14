@@ -4,7 +4,7 @@
         :items="props.products"
         :list-props="{ 
             bgColor: 'white',
-            class: 'd-flex flex-column pd-10',
+            class: 'd-flex flex-row ga-4',
         }"
     >
         <template #selection="{ item }">
@@ -16,6 +16,7 @@
             <MoleculeReceiptRegisterCheckProductOption
                 v-bind="itemProps"
                 :product="item.value"
+                no-title
             />
         </template>
     </v-select>
