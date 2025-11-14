@@ -11,7 +11,7 @@ export default function () {
                 const products = await getProductsGoogleSearch({ query: {
                     keyword: query.keyword,
                     limit: query.limit
-                }})
+                }}).catch(()=>({products: []}))
                 google_search_products.value = products.products.map(
                     product => new ProductModel({ ...product, price: query.price })
                 )

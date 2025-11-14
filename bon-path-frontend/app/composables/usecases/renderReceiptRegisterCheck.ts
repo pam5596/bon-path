@@ -77,7 +77,7 @@ export default function() {
                                             keyword: product.name,
                                             limit: config.public.defaultLimitOfSearch
                                         }
-                                    })
+                                    }).catch(()=>({products: []}))
                                 ).products,
                                 ...(await getProductsVectorSearch({
                                     query: {
@@ -85,7 +85,7 @@ export default function() {
                                         storeId: searchResultStores[0]?.id,
                                         limit: config.public.defaultLimitOfSearch
                                         }
-                                    })
+                                    }).catch(()=>({products: []}))
                                 ).products
                             ].map(
                                 product => [product.image, product]
