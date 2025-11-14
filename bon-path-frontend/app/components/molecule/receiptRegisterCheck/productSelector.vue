@@ -1,25 +1,30 @@
 <template>
-    <v-select
-        v-model="modelProduct"
-        :items="props.products"
-        :list-props="{ 
-            bgColor: 'white',
-            class: 'd-flex flex-row ga-4',
-        }"
-    >
-        <template #selection="{ item }">
-            <MoleculeReceiptRegisterCheckProductLabel 
-                :product="item.value"
-            />
-        </template>
-        <template #item="{ props: itemProps, item }">
-            <MoleculeReceiptRegisterCheckProductOption
-                v-bind="itemProps"
-                :product="item.value"
-                no-title
-            />
-        </template>
-    </v-select>
+    <div class="content">
+        <AtomReceiptRegisterCheckProductAvatar 
+            :src="modelProduct?.getValues.image"
+        />
+        <v-select
+            v-model="modelProduct"
+            :items="props.products"
+            :list-props="{ 
+                bgColor: 'white',
+                class: 'd-flex flex-row',
+            }"
+        >
+            <template #selection="{ item }">
+                <MoleculeReceiptRegisterCheckProductLabel 
+                    :product="item.value"
+                />
+            </template>
+            <template #item="{ props: itemProps, item }">
+                <MoleculeReceiptRegisterCheckProductOption
+                    v-bind="itemProps"
+                    :product="item.value"
+                    no-title
+                />
+            </template>
+        </v-select>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -41,5 +46,9 @@ const modelProduct = computed({
 </script>
 
 <style scoped>
+.content {
+    display: flex;
+    gap: 1rem;
+}
 
 </style>

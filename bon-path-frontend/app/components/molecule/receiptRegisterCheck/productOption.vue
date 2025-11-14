@@ -1,6 +1,6 @@
 <template>
     <v-list-item no-title>
-        <v-avatar class="avatar" size="150">
+        <v-avatar class="avatar" size="100">
             <v-img 
                 :src="props.product.getValues.image"
             />

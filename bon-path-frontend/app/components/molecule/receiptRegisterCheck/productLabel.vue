@@ -1,8 +1,5 @@
 <template>
     <div class="contents">
-        <AtomReceiptRegisterCheckProductAvatar 
-            :src="props.product.getValues.image!"
-        />
         <AtomTypography>
             {{ props.product.getValues.name }}
         </AtomTypography>
