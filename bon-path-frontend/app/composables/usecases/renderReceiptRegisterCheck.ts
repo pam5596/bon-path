@@ -118,7 +118,7 @@ export default function() {
                         price: product.price,
                         quantity: product.quantity,
                         product: new ProductModel({
-                            name: product.name,
+                            name: searchResultProducts[i]![0]?.id ? searchResultProducts[i]![0]?.name : product.name,
                             price: product.price,
                             image: searchResultProducts[i]![0]?.image,
                             searchResults: searchResultProducts[i]?.map(
