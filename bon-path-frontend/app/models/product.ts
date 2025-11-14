@@ -11,6 +11,8 @@ export interface Product {
     readonly createdAt?: Date;
 
     searchResults?: {
+        id?: number,
+        name: string,
         categoryId?: number;
         image?: string;
         link?: string;

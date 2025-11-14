@@ -41,11 +41,16 @@ const model = defineModel<PurchaseModel>()
 const modelProductImage = computed({
     get: () => model.value?.product.getValues.image,
     set: (value) => {
+        const target = model.value!.product.searchResults?.find(
+            result => result.image == value
+        )
+
         model.value = new PurchaseModel({
             ...model.value!.getValues,
             product: new ProductModel({
                 ...model.value!.product.getValues,
-                image: value
+                image: value,
+                name: target?.id ? target.name : model.value!.product.getValues.name
             })
         })
     }

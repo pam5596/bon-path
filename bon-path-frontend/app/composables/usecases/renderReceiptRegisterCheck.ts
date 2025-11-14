@@ -66,7 +66,7 @@ export default function() {
                         store => [store.name, store]
                     )
                 ).values()
-            ) as Store[]
+            ) as Omit<Store, 'searchResults'|'purchases'>[]
 
             const searchResultProducts = await Promise.all(
                 ocrResult.products.map(
@@ -93,7 +93,7 @@ export default function() {
                         ).values()
                     )
                 )
-            ) as Product[][]
+            ) as Omit<Product, 'searchResults'>[][]
 
             return {
                 receipt: new ReceiptModel({
@@ -118,14 +118,17 @@ export default function() {
                         price: product.price,
                         quantity: product.quantity,
                         product: new ProductModel({
+                            ...searchResultProducts[i]![0],
                             name: searchResultProducts[i]![0]?.id ? searchResultProducts[i]![0]?.name : product.name,
                             price: product.price,
                             image: searchResultProducts[i]![0]?.image,
                             searchResults: searchResultProducts[i]?.map(
-                                (results) => ({
-                                    categoryId: results.categoryId,
-                                    image: results.image,
-                                    link: results.link
+                                (result) => ({
+                                    id: result.id,
+                                    categoryId: result.categoryId,
+                                    image: result.image,
+                                    link: result.link,
+                                    name: result.name
                                 })
                             )
                         })
