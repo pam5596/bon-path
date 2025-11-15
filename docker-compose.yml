@@ -35,7 +35,7 @@ services:
     ports:
       - "8080:8080"
       - "5050:5050"
-    command: sh -c "rm -rf logs  && npm run migrate:dev && npm run generate && npm run app:dev"
+    command: sh -c "rm -rf logs && npm run reset  && npm run migrate:dev && npm run generate && npm run app:dev"
     depends_on:
       - database
       - storage
@@ -49,7 +49,7 @@ services:
     ports:
       - "7070:7070"
       - "4040:4040"
-    command: sh -c "rm -rf logs && npm run migrate:test npm run generate && npm run app:test"
+    command: sh -c "rm -rf logs && npm run reset && npm run migrate:test npm run generate && npm run app:test"
     depends_on:
       - database
       - storage
