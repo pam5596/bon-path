@@ -12,7 +12,7 @@
     "studio:dev": "dotenv -e .env.develop -- npx prisma studio -p 5050",
     "studio:test": "dotenv -e .env.test -- npx prisma studio -p 4040",
     "generate": "npx prisma generate",
-    "reset": "npx prisma migrate reset",
+    "reset": "npx prisma migrate reset --force",
     "test": "dotenv -e .env -e .env.test-- vitest"
   },
   "devDependencies": {
