@@ -1,5 +1,9 @@
 <template>
-    <v-form class="wrapper" @submit.prevent="onSignupEvent(form)">
+    <v-form 
+        v-model="modelForm"
+        class="wrapper" 
+        @submit.prevent="onSignupEvent(form)"
+    >
         <v-text-field
             v-model="form.email"
             type="email"
@@ -16,6 +20,7 @@
             type="submit"
             color="primary"
             :loading="isLoading"
+            :disabled="!modelForm"
         >
             {{ $t("signUp.form.onSubmitBtn") }}
         </v-btn>
@@ -24,6 +29,7 @@
 
 <script setup lang="ts">
 const { form, rules, isLoading, onSignupEvent } = useSignupViewModel()
+const modelForm = ref(false)
 
 </script>
 

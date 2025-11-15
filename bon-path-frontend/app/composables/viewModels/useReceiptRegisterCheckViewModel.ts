@@ -88,6 +88,12 @@ export default function() {
         execute,
         onRemovePurchaseEvent,
         onSearchProductEvent,
-        onSavePurchasesEvent
+        onSavePurchasesEvent,
+        rules: {
+            productImage: [useRule(useProductImage())],
+            productName: [useRule(useProductName())],
+            purchasePrice: [useRule(usePurchasePrice())],
+            purchaseQuantity: [useRule(usePurchaseQuantity())]
+        }
     }
 }

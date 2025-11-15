@@ -4,6 +4,7 @@
             v-model="modelProductImage"
             :label="$t('receiptRegisterCheck.form.productSelector.image.label')"
             class="select"
+            :rules="rules.productImage"
             :items="selectItems"
             :list-props="{ 
                 bgColor: 'white',
@@ -28,14 +29,15 @@
             :label="$t('receiptRegisterCheck.form.productSelector.name.label')"
             variant="filled"
             append-inner-icon="mdi-image-search"
-            :rules="[(v: unknown) => !!v || $t('receiptRegisterCheck.form.productSelector.name.required')]"
-            :readonly="textFiledIsReadOnly"
+            :rules="rules.productName"
             @click:append-inner="emit('search')"
         />
     </div>
 </template>
 
 <script setup lang="ts">
+const { rules } = useReceiptRegisterCheckViewModel()
+
 const emit = defineEmits(['search'])
 const model = defineModel<PurchaseModel>()
 const originalProductName = ref(model.value!.product.getValues.name)
@@ -74,7 +76,6 @@ const modelProductName = computed({
         })
     }
 })
-const textFiledIsReadOnly= computed(()=>model.value?.product.id ? true : false)
 
 </script>
 

@@ -1,5 +1,9 @@
 <template>
-    <v-form class="wrapper" @submit.prevent="onSigninEvent(form)">
+    <v-form 
+        v-model="modelForm"
+        class="wrapper" 
+        @submit.prevent="onSigninEvent(form)"
+    >
         <v-text-field 
             v-model="form.name"
             :label="$t('signIn.form.name')"
@@ -21,6 +25,7 @@
             type="submit"
             color="secondary"
             :loading="isLoading"
+            :disabled="!modelForm"
         >
             {{ $t('signIn.form.onSubmitBtn') }}
         </v-btn>
@@ -29,6 +34,7 @@
 
 <script setup lang="ts">
 const { form, rules, isLoading, onSigninEvent } = useSigninViewModel()
+const modelForm = ref(false)
 
 </script>
 

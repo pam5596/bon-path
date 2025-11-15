@@ -1,7 +1,7 @@
 <template>
     <v-list class="contents">
         <MoleculeReceiptRegisterCheckDescriptionListItem>
-            {{ $t('receiptRegisterCheck.description.whenErrorRaised') }}
+            {{ $t('receiptRegisterCheck.description.howToPreviewReceipt') }}
         </MoleculeReceiptRegisterCheckDescriptionListItem>
         <MoleculeReceiptRegisterCheckDescriptionListItem>
             {{ $t('receiptRegisterCheck.description.noProductImage-before') }}
