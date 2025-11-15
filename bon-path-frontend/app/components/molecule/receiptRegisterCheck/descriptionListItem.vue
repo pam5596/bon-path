@@ -6,15 +6,13 @@
             </v-icon>
         </template>
         <v-list-item-title class="title">
-            {{ props.description }}
+            <slot />
         </v-list-item-title>
     </v-list-item>
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
-    description: string;
-}>()
+
 </script>
 
 <style scoped>

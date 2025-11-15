@@ -66,34 +66,34 @@ export default function() {
                         store => [store.name, store]
                     )
                 ).values()
-            )
+            ) as Omit<Store, 'searchResults'|'purchases'>[]
 
             const searchResultProducts = await Promise.all(
                 ocrResult.products.map(
-                    async (product) => ({
-                        ...product,
-                        searchResults: Array.from(
-                            new Map([
+                    async (product) => Array.from(
+                        new Map([
                                 ...(await getProductsGoogleSearch({
-                                    query: {
-                                        keyword: product.name,
-                                        limit: config.public.defaultLimitOfSearch
-                                    }
-                                }).catch(()=>({ products: []}))).products,
+                                        query: {
+                                            keyword: product.name,
+                                            limit: config.public.defaultLimitOfSearch
+                                        }
+                                    }).catch(()=>({products: []}))
+                                ).products,
                                 ...(await getProductsVectorSearch({
                                     query: {
                                         keyword: product.name,
-                                        storeId: (searchResultStores[0] as { id?: number }).id || undefined,
+                                        storeId: searchResultStores[0]?.id,
                                         limit: config.public.defaultLimitOfSearch
-                                    }
-                                }).catch(()=>({ products: []}))).products
+                                        }
+                                    }).catch(()=>({products: []}))
+                                ).products
                             ].map(
-                                product => [product.name, product]
-                            )).values()
-                        )
-                    })
+                                product => [product.image, product]
+                            )
+                        ).values()
+                    )
                 )
-            )
+            ) as Omit<Product, 'searchResults'>[][]
 
             return {
                 receipt: new ReceiptModel({
@@ -112,28 +112,25 @@ export default function() {
                         result => new StoreModel(result)
                     )
                 }),
-                products: searchResultProducts.map(
-                    product => new ProductModel({
-                        ...product,
-                        categoryId: 1,
-                        searchResults: product.searchResults.map(
-                            result => new ProductModel({
-                                ...result,
-                                name: product.name,
-                                price: product.price
-                            })
-                        )
-                    })
-                ),
-                purchases: searchResultProducts.map(
-                    product => new PurchaseModel({
+                purchases: ocrResult.products.map(
+                    (product, i) => new PurchaseModel({
                         receiptId: receiptId!,
                         price: product.price,
                         quantity: product.quantity,
                         product: new ProductModel({
-                            ...product.searchResults[0]!,
-                            name: product.name,
-                            price: product.price
+                            ...searchResultProducts[i]![0],
+                            name: searchResultProducts[i]![0]?.id ? searchResultProducts[i]![0]?.name : product.name,
+                            price: product.price,
+                            image: searchResultProducts[i]![0]?.image,
+                            searchResults: searchResultProducts[i]?.map(
+                                (result) => ({
+                                    id: result.id,
+                                    categoryId: result.categoryId,
+                                    image: result.image,
+                                    link: result.link,
+                                    name: result.name
+                                })
+                            )
                         })
                     })
                 ),

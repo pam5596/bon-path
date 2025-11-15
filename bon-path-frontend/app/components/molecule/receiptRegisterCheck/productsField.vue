@@ -3,16 +3,11 @@
         <AtomTypography class="text-h6">
             {{  $t("receiptRegisterCheck.form.productsHeading") }}
         </AtomTypography>
-        <MoleculeReceiptRegisterCheckProductsList 
-            :products="props.products"
-        />
+        <MoleculeReceiptRegisterCheckProductsList />
     </div>
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
-    products: ProductModel[]
-}>()
 
 </script>
 

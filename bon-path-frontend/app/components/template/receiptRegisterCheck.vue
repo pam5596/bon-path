@@ -12,8 +12,15 @@
 </template>
 
 <script setup lang="ts">
-const { data, execute } = useReceiptRegisterCheckViewModel()
+const { data, form, execute } = useReceiptRegisterCheckViewModel()
 onMounted(async()=>await execute())
+watch(data, 
+    async (data) => {
+        form.value.store = data?.store
+        form.value.purchases = data?.purchases || []
+    },
+)
+
 
 </script>
 

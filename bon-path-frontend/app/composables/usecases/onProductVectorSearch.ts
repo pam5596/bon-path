@@ -8,7 +8,7 @@ export default function () {
         vector_search_products,
         onProductVectorSearchDispatch: useAsyncOnEvent(
             async (query: ProductPayloads.VectorSearch.GET.Request['query']) => {
-                const products = await getProductsVectorSearch({ query })
+                const products = await getProductsVectorSearch({ query }).catch(()=>({products: []}))
                 vector_search_products.value = products.products.map(
                     product => new ProductModel(product)
                 )

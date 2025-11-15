@@ -1,24 +1,25 @@
 <template>
     <div class="content">
         <v-select
-            v-model="modelProduct"
+            v-model="modelProductImage"
+            :label="$t('receiptRegisterCheck.form.productSelector.image.label')"
             class="select"
-            :items="props.products"
+            :rules="rules.productImage"
+            :items="selectItems"
             :list-props="{ 
                 bgColor: 'white',
                 class: 'd-flex flex-row',
             }"
-            icon-color="transparent"
         > 
             <template #selection="{ item }">
-                <MoleculeReceiptRegisterCheckProductLabel 
-                    :product="item.value"
+                <AtomReceiptRegisterCheckProductAvatar 
+                    :src="item.value"
                 />
             </template>
             <template #item="{ props: itemProps, item }">
                 <MoleculeReceiptRegisterCheckProductOption
                     v-bind="itemProps"
-                    :product="item.value"
+                    :src="item.value"
                     no-title
                 />
             </template>
@@ -26,28 +27,43 @@
         <v-text-field
             v-model="modelProductName"
             :label="$t('receiptRegisterCheck.form.productSelector.name.label')"
-            class="text-field"
             variant="filled"
-            :rules="[(v: unknown) => !!v || $t('receiptRegisterCheck.form.productSelector.name.required')]"
+            append-inner-icon="mdi-image-search"
+            :rules="rules.productName"
+            @click:append-inner="emit('search')"
         />
     </div>
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
-    products: ProductModel[]
-}>()
+const { rules } = useReceiptRegisterCheckViewModel()
 
+const emit = defineEmits(['search'])
 const model = defineModel<PurchaseModel>()
-const modelProduct = computed({
-    get: () => model.value?.getValues.product,
+const originalProductName = ref(model.value!.product.getValues.name)
+
+const modelProductImage = computed({
+    get: () => model.value?.product.getValues.image,
     set: (value) => {
+        const target = model.value!.product.searchResults?.find(
+            result => result.image == value
+        )
+
         model.value = new PurchaseModel({
             ...model.value!.getValues,
-            product: value!
+            product: new ProductModel({
+                ...target!,
+                name: target?.id ? target.name : originalProductName.value,
+                price: model.value!.getValues.price,
+                searchResults: model.value!.product.searchResults
+            })
         })
     }
 })
+const selectItems = computed(()=>model.value?.product.searchResults?.map(
+    result => result.image
+))
+
 const modelProductName = computed({
     get: () => model.value!.product.getValues.name,
     set: (value) => {
@@ -61,21 +77,16 @@ const modelProductName = computed({
     }
 })
 
-
 </script>
 
 <style scoped>
 .content {
     display: flex;
-    gap: 1rem;
+    flex-direction: column;
 }
 
-.select {
-    width: 30%;
-}
-
-.text-field {
-    width: 80%
+.select :deep(.v-field__input) {
+    justify-content: center !important;
 }
 
 </style>

@@ -1,73 +1,63 @@
 export default function() {
     const config = useRuntimeConfig()
-
-    const collection = useState<STATE_TYPES['RECEIPT_REGISTER_CHECK_COLLECTION']>(
-        STATE_KEYS.RECEIPT_REGISTER_CHECK_COLLECTION,
-        () => ({
-            storesSearchResult: [],
-            productsSearchResult: []
-        })
-    )
-
     const form = useState<STATE_TYPES['RECEIPT_REGISTER_CHECK_FORM']>(
         STATE_KEYS.RECEIPT_REGISTER_CHECK_FORM, 
         () => ({
             purchases: []
         })
     )
-
+    
     const { data, execute } = renderReceiptRegisterCheck()
-    watch(data, 
-        (data) => {
-            form.value.store = data?.store
-            form.value.purchases = data?.purchases || []
-            collection.value.storesSearchResult = data?.store.searchResults || []
-            collection.value.productsSearchResult = data?.products || []
-        },
-    )
 
     const { vector_search_products, onProductVectorSearchDispatch } = onProductVectorSearch()
     const { google_search_products, onProductGoogleMapSearchDispatch } = onProductGoogleSearch()
-
-    watch(form.value.store!, async (store) => {
-        if (store.id) {
-            collection.value.productsSearchResult = await Promise.all(
-                collection.value.productsSearchResult.map(
-                    async (product) => {
-                        await onProductVectorSearchDispatch.event({
-                            keyword: product.getValues.name,
-                            storeId: store.id,
-                            limit: config.public.defaultLimitOfSearch
+    const onSearchProductEvent = async (index: number) => {
+        if (form.value.purchases[index]) {
+            await onProductVectorSearchDispatch.event({
+                keyword: form.value.purchases[index].product.getValues.name,
+                storeId: form.value.store?.id,
+                limit: config.public.defaultLimitOfSearch
+            })
+            await onProductGoogleMapSearchDispatch.event({
+                keyword: form.value.purchases[index].product.getValues.name,
+                limit: config.public.defaultLimitOfSearch,
+                price: form.value.purchases[index].getValues.price
+            })
+    
+            const searchResultProducts = Array.from(
+                new Map(
+                    [
+                        ...google_search_products.value,
+                        ...vector_search_products.value,
+                    ].map(
+                        product => [product.getValues.image, product]
+                    )
+                ).values()
+            ) as ProductModel[]
+    
+            form.value.purchases[index] = new PurchaseModel({
+                ...form.value.purchases[index].getValues,
+                product: new ProductModel({
+                    ...searchResultProducts[0]!.getValues,
+                    name: form.value.purchases[index].product.getValues.name,
+                    price: form.value.purchases[index].product.getValues.price,
+                    searchResults: searchResultProducts.map(
+                        result => ({
+                            categoryId: result.getValues.categoryId!,
+                            name: result.getValues.name,
+                            image: result.getValues.image,
+                            link: result.getValues.link
                         })
-                        await onProductGoogleMapSearchDispatch.event({
-                            keyword: product.getValues.name,
-                            limit: config.public.defaultLimitOfSearch,
-                            price: product.getValues.price
-                        })
-
-                        const mergedSearchResults = [
-                            ...google_search_products.value,
-                            ...vector_search_products.value,
-                        ] as ProductModel[]
-            
-                        return new ProductModel({
-                            ...product.getValues,
-                            searchResults: mergedSearchResults
-                        })
-                    }
-                )
-            )
+                    )
+                })
+            })
         }
-    })
+    }
 
     const onRemovePurchaseEvent = (index: number) => {
         form.value.purchases = form.value.purchases.filter(
             (_, i) => i !== index
         )
-        collection.value.productsSearchResult = 
-            collection.value.productsSearchResult.filter(
-                (_, i) => i !== index
-            )
     }
 
     const { isLoading: isSubmitting, event } = onSavePurchases()
@@ -79,19 +69,31 @@ export default function() {
         form.value = {
             purchases: []
         }
-        collection.value = {
-            storesSearchResult: [],
-            productsSearchResult: []
-        }
     }
+
+    watch(form.value.store!, async (store) => {
+        if (store.id) {
+            await Promise.all(
+                form.value.purchases.map(
+                    async (_, i) => await onSearchProductEvent(i)
+                )
+            )
+        }
+    })
 
     return {
         data,
         form,
-        collection,
         isSubmitting,
         execute,
         onRemovePurchaseEvent,
-        onSavePurchasesEvent
+        onSearchProductEvent,
+        onSavePurchasesEvent,
+        rules: {
+            productImage: [useRule(useProductImage())],
+            productName: [useRule(useProductName())],
+            purchasePrice: [useRule(usePurchasePrice())],
+            purchaseQuantity: [useRule(usePurchaseQuantity())]
+        }
     }
 }

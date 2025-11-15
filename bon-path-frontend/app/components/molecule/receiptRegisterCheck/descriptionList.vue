@@ -1,14 +1,16 @@
 <template>
     <v-list class="contents">
-        <MoleculeReceiptRegisterCheckDescriptionListItem 
-            :description="$t('receiptRegisterCheck.description.whenErrorRaised')"
-        />
-        <MoleculeReceiptRegisterCheckDescriptionListItem 
-            :description="$t('receiptRegisterCheck.description.disturbingKatakana')"
-        />
-        <MoleculeReceiptRegisterCheckDescriptionListItem 
-            :description="$t('receiptRegisterCheck.description.wrongReadProduct')"
-        />
+        <MoleculeReceiptRegisterCheckDescriptionListItem>
+            {{ $t('receiptRegisterCheck.description.howToPreviewReceipt') }}
+        </MoleculeReceiptRegisterCheckDescriptionListItem>
+        <MoleculeReceiptRegisterCheckDescriptionListItem>
+            {{ $t('receiptRegisterCheck.description.noProductImage-before') }}
+            <v-icon>mdi-image-search</v-icon>
+            {{ $t('receiptRegisterCheck.description.noProductImage-after') }}
+        </MoleculeReceiptRegisterCheckDescriptionListItem> 
+        <MoleculeReceiptRegisterCheckDescriptionListItem>
+            {{ $t('receiptRegisterCheck.description.dontForgetProductName') }}
+        </MoleculeReceiptRegisterCheckDescriptionListItem>
     </v-list>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
     <v-select
-        v-model="model"
-        :items="props.stores"
+        v-model="storeModel"
+        :items="form.store?.searchResults"
         :list-props="{ 
             bgColor: 'white',
             class: 'd-flex flex-column pd-10',
@@ -22,11 +22,16 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
-    stores: StoreModel[]
-}>()
+const { form } = useReceiptRegisterCheckViewModel()
 
-const model = defineModel<StoreModel>()
+const storeModel = computed({
+    get: () => form.value.store,
+    set: (value) => (form.value.store = new StoreModel({
+        ...value!.getValues,
+        searchResults: form.value.store?.searchResults
+    }))
+})
+
 </script>
 
 <style scoped>

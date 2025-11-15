@@ -32,6 +32,7 @@ export default function () {
                         if (!purchase.product.id) {
                             const { id: productId } = await postProduct({ 
                                 body: {
+                                    categoryId: 1,
                                     ...purchase.product.getModelValues,
                                     storeId: payloadStore.value!.id!,
                                 }
@@ -41,6 +42,7 @@ export default function () {
                                 ...purchase.getValues,
                                 productId,
                                 product: new ProductModel({
+                                    categoryId: 1,
                                     ...purchase.product.getModelValues,
                                     id: productId,
                                     storeId: payloadStore.value!.id

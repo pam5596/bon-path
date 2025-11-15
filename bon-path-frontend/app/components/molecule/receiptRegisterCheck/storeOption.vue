@@ -1,5 +1,5 @@
 <template>
-    <v-list-item>
+    <v-list-item no-title>
         <template #prepend>
             <v-avatar class="avatar">
                 <v-img 
@@ -8,7 +8,9 @@
             </v-avatar>
         </template>
         <template #title>
-            {{ props.store.getValues.name }}
+            <AtomTypography>
+                {{ props.store.getValues.name }}
+            </AtomTypography>
         </template>
     </v-list-item>
 </template>
@@ -17,6 +19,7 @@
 const props = defineProps<{
     store: StoreModel
 }>()
+
 </script>
 
 <style scoped>
