@@ -46,7 +46,7 @@ model ReceiptImage {
 
 model Store {
   id            Int       @id @default(autoincrement())
-  name          String    @unique
+  name          String    
   image         String?
   latitude      Float?
   longitude     Float?
@@ -72,7 +72,7 @@ model Product {
   id            Int       @id @default(autoincrement())
   storeId       Int
   categoryId    Int
-  name          String    @unique
+  name          String    
   image         String?
   link          String?
   price         Int

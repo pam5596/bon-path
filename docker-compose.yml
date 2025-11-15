@@ -21,7 +21,7 @@ services:
     ports:
       - "9090:9090"
       - "6060:6060"
-    command: sh -c "rm -rf logs  && npm run migrate:stage && npm run generate && npm run app:stage"
+    command: sh -c "rm -rf logs && npm run reset && npm run migrate:stage && npm run generate && npm run app:stage"
     depends_on:
       - database
       - storage
