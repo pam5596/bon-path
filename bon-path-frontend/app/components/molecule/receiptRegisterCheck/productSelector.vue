@@ -1,5 +1,8 @@
 <template>
     <div class="content">
+        <MoleculeReceiptRegisterCheckProductExtractedName 
+            :name="model!.product.getValues.extractedName"
+        />
         <v-select
             v-model="modelProductImage"
             :label="$t('receiptRegisterCheck.form.productSelector.image.label')"
@@ -20,6 +23,7 @@
                 <MoleculeReceiptRegisterCheckProductOption
                     v-bind="itemProps"
                     :src="item.value"
+                    :is-known="isKnown(item.value)"
                     no-title
                 />
             </template>
@@ -40,12 +44,13 @@ const { rules } = useReceiptRegisterCheckViewModel()
 
 const emit = defineEmits(['search'])
 const model = defineModel<PurchaseModel>()
-const originalProductName = ref(model.value!.product.getValues.name)
 
 const modelProductImage = computed({
     get: () => model.value?.product.getValues.image,
     set: (value) => {
-        const target = model.value!.product.searchResults?.find(
+        const target = model.value!.product.searchResults?.vector.find(
+            result => result.image == value
+        ) || model.value!.product.searchResults?.google.find(
             result => result.image == value
         )
 
@@ -53,16 +58,22 @@ const modelProductImage = computed({
             ...model.value!.getValues,
             product: new ProductModel({
                 ...target!,
-                name: target?.id ? target.name : originalProductName.value,
+                name: target?.id ? target.name : model.value!.product.getValues.extractedName!,
                 price: model.value!.getValues.price,
+                extractedName: model.value!.product.getValues.extractedName,
                 searchResults: model.value!.product.searchResults
             })
         })
     }
 })
-const selectItems = computed(()=>model.value?.product.searchResults?.map(
-    result => result.image
-))
+const selectItems = computed(()=>[
+    ...(model.value?.product.searchResults?.vector.map(
+        result => result.image
+    ) ?? []),
+    ...(model.value?.product.searchResults?.google.map(
+        result => result.image
+    ) ?? [])
+])
 
 const modelProductName = computed({
     get: () => model.value!.product.getValues.name,
@@ -77,12 +88,18 @@ const modelProductName = computed({
     }
 })
 
+const isKnown = (src?: string) => {
+    return model.value!.product.searchResults?.vector.some(
+        result => result.image == src
+    ) || false
+}
 </script>
 
 <style scoped>
 .content {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
 }
 
 .select :deep(.v-field__input) {

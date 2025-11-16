@@ -10,7 +10,10 @@ export interface Store {
     readonly createdAt?: Date;
 
     purchases?: PurchaseModel[]
-    searchResults?: StoreModel[]
+    searchResults?: {
+        vector: StoreModel[],
+        google: StoreModel[]
+    }
 }
 
 export class StoreModel extends BaseModel<Store> {

@@ -41,59 +41,77 @@ export default function() {
             //     ]
             // }
 
-            const googleSearchStores = await getStoresGoogleMapSearch({
+            const vectorSearchStores = (await getStoresVectorSearch({
+                query: {
+                    keyword: ocrResult.store.name,
+                    limit: config.public.defaultLimitOfSearch
+                }
+            })).stores
+
+            const googleSearchStores = (await getStoresGoogleMapSearch({
                 query: {
                     keyword: ocrResult.store.name,
                     limit: config.public.defaultLimitOfSearch,
                     latitude: location.value?.latitude,
                     longitude: location.value?.longitude
                 }
-            })
+            })).stores
 
-            const vectorSearchStores = await getStoresVectorSearch({
-                query: {
-                    keyword: ocrResult.store.name,
-                    limit: config.public.defaultLimitOfSearch
-                }
-            })
-
-            const searchResultStores = Array.from(
+            const priorityStore = Array.from(
                 new Map(
                     [
-                        ...googleSearchStores.stores,
-                        ...vectorSearchStores.stores,
+                        ...googleSearchStores,
+                        ...vectorSearchStores,
                     ].map(
-                        store => [store.name, store]
+                        result => [result.name, result]
                     )
                 ).values()
-            ) as Omit<Store, 'searchResults'|'purchases'>[]
+            )[0]
 
             const searchResultProducts = await Promise.all(
                 ocrResult.products.map(
-                    async (product) => Array.from(
-                        new Map([
-                                ...(await getProductsGoogleSearch({
-                                        query: {
-                                            keyword: product.name,
-                                            limit: config.public.defaultLimitOfSearch
-                                        }
-                                    }).catch(()=>({products: []}))
-                                ).products,
-                                ...(await getProductsVectorSearch({
-                                    query: {
-                                        keyword: product.name,
-                                        storeId: searchResultStores[0]?.id,
-                                        limit: config.public.defaultLimitOfSearch
-                                        }
-                                    }).catch(()=>({products: []}))
-                                ).products
-                            ].map(
-                                product => [product.image, product]
-                            )
-                        ).values()
-                    )
+                    async (product) => {
+                        const vectorSearchProducts = (await getProductsVectorSearch({
+                            query: {
+                                    keyword: product.name,
+                                    storeId: vectorSearchStores[0]?.id,
+                                    limit: config.public.defaultLimitOfSearch
+                                }
+                            }).catch(()=>({products: [] as Product[]}))
+                        ).products
+
+                        const googleSearchProducts = (await getProductsGoogleSearch({
+                                query: {
+                                    keyword: product.name,
+                                    limit: config.public.defaultLimitOfSearch
+                                }
+                            }).catch(()=>({products: [] as {
+                                categoryId: number;
+                                name: string;
+                                image?: string;
+                                link?: string;
+                            }[]}))
+                        ).products
+
+                        const priority = Array.from(
+                            new Map(
+                                [
+                                    ...googleSearchProducts,
+                                    ...vectorSearchProducts,
+                                ].map(
+                                    result => [result.link, result]
+                                )
+                            ).values()
+                        )[0]
+
+                        return {
+                            priority,
+                            vector: vectorSearchProducts,
+                            google: googleSearchProducts,
+                        }
+                    }
                 )
-            ) as Omit<Product, 'searchResults'>[][]
+            )
 
             return {
                 receipt: new ReceiptModel({
@@ -107,10 +125,11 @@ export default function() {
                     )
                 }),
                 store: new StoreModel({
-                    ...searchResultStores[0]!,
-                    searchResults: searchResultStores.map(
-                        result => new StoreModel(result)
-                    )
+                    ...priorityStore!,
+                    searchResults: {
+                        vector: vectorSearchStores.map(store => new StoreModel({...store})),
+                        google: googleSearchStores.map(store => new StoreModel({...store})),
+                    }
                 }),
                 purchases: ocrResult.products.map(
                     (product, i) => new PurchaseModel({
@@ -118,19 +137,29 @@ export default function() {
                         price: product.price,
                         quantity: product.quantity,
                         product: new ProductModel({
-                            ...searchResultProducts[i]![0],
-                            name: searchResultProducts[i]![0]?.id ? searchResultProducts[i]![0]?.name : product.name,
+                            ...(searchResultProducts[i]!.priority!),
                             price: product.price,
-                            image: searchResultProducts[i]![0]?.image,
-                            searchResults: searchResultProducts[i]?.map(
-                                (result) => ({
-                                    id: result.id,
-                                    categoryId: result.categoryId,
-                                    image: result.image,
-                                    link: result.link,
-                                    name: result.name
-                                })
-                            )
+                            name: product.name,
+                            extractedName: product.name,
+                            searchResults: {
+                                vector: searchResultProducts[i]!.vector.map(
+                                    (result) => ({
+                                        id: result.id,
+                                        categoryId: result.categoryId,
+                                        image: result.image,
+                                        link: result.link,
+                                        name: result.name
+                                    })
+                                ),
+                                google: searchResultProducts[i]!.google.map(
+                                    (result) => ({
+                                        categoryId: result.categoryId,
+                                        image: result.image,
+                                        link: result.link,
+                                        name: result.name
+                                    })
+                                )
+                            }
                         })
                     })
                 ),

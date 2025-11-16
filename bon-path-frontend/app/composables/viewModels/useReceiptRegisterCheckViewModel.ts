@@ -24,31 +24,33 @@ export default function() {
                 price: form.value.purchases[index].getValues.price
             })
     
-            const searchResultProducts = Array.from(
-                new Map(
-                    [
-                        ...google_search_products.value,
-                        ...vector_search_products.value,
-                    ].map(
-                        product => [product.getValues.image, product]
-                    )
-                ).values()
-            ) as ProductModel[]
-    
             form.value.purchases[index] = new PurchaseModel({
                 ...form.value.purchases[index].getValues,
                 product: new ProductModel({
-                    ...searchResultProducts[0]!.getValues,
+                    ...(vector_search_products.value[0]?.getValues || google_search_products.value[0]!.getValues),
                     name: form.value.purchases[index].product.getValues.name,
                     price: form.value.purchases[index].product.getValues.price,
-                    searchResults: searchResultProducts.map(
-                        result => ({
-                            categoryId: result.getValues.categoryId!,
-                            name: result.getValues.name,
-                            image: result.getValues.image,
-                            link: result.getValues.link
-                        })
-                    )
+                    extractedName: form.value.purchases[index].product.getValues.extractedName,
+                    searchResults: {
+                        vector: vector_search_products.value.map(
+                            result => ({
+                                id: result.id,
+                                categoryId: result.categoryId,
+                                name: result.getValues.name,
+                                image: result.getValues.image,
+                                link: result.getValues.link
+                            })
+                        ),
+                        google: google_search_products.value.map(
+                            result => ({
+                                id: result.id,
+                                categoryId: result.categoryId,
+                                name: result.getValues.name,
+                                image: result.getValues.image,
+                                link: result.getValues.link
+                            })
+                        )
+                    }
                 })
             })
         }
@@ -65,21 +67,14 @@ export default function() {
         await event({
             store: form.value.store!,
             purchases: form.value.purchases
-        })
-        form.value = {
-            purchases: []
-        }
+        }).finally(
+            () => {
+                form.value = {
+                    purchases: []
+                }
+            }
+        )
     }
-
-    watch(form.value.store!, async (store) => {
-        if (store.id) {
-            await Promise.all(
-                form.value.purchases.map(
-                    async (_, i) => await onSearchProductEvent(i)
-                )
-            )
-        }
-    })
 
     return {
         data,

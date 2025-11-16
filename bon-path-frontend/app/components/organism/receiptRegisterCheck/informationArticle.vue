@@ -1,9 +1,10 @@
 <template>
     <article>
-        <MoleculeReceiptRegisterCheckDescriptionList />
         <v-card class="wrapper">
             <v-card-title>
-                {{ createdAt }}
+                <OrganismReceiptRegisterCheckHelpSection 
+                    :created-at="data?.receipt.getValues.createdAt"
+                />
             </v-card-title>
             <v-divider />
             <v-card-text>
@@ -15,7 +16,6 @@
 
 <script setup lang="ts">
 const { data } = useReceiptRegisterCheckViewModel()
-const createdAt = computed(() => data.value?.receipt.getValues.createdAt?.toLocaleString())
 
 </script>
 
@@ -31,4 +31,5 @@ article {
     flex-direction: column;
     gap: 0.5rem;
 }
+
 </style>

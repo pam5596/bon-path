@@ -1,8 +1,14 @@
 <template>
     <v-dialog v-model="model">
-        <v-card>
-            <v-img :src="props.src"/>
-        </v-card>
+        <template #default="{ isActive }">
+            <v-card 
+                @click="isActive.value = false"
+            >
+                <v-img 
+                    :src="props.src" 
+                />
+            </v-card>
+        </template>
     </v-dialog>
 </template>
 

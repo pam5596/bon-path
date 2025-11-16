@@ -66,10 +66,6 @@ export const ERROR_MESSAGES = {
             detail: "商品検索処理で検索結果を取得できませんでした。このレシートは登録できません。",
             issue: "property of customsearch_v1.Schema$Search.items not found."
         },
-        searchStorePlace: {
-            detail: "店舗検索処理で検索結果を取得できませんでした。このレシートは登録できません。",
-            issue: "property of places_v1.Schema$GoogleMapsPlacesV1SearchTextResponse.places not found."
-        },
         productNameExtract: "商品の分析に失敗しまた。このレシートは登録できません。",
     },
     usecase: {
