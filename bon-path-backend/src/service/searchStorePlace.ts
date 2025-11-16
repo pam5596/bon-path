@@ -18,15 +18,8 @@ export class SearchStorePlaceService implements BaseService {
     }): Promise<StoreEntity[]> {
         const response = await this.client.searchPlaces(request.query.value, request.maxCount, request.location);
 
-        if (!response.data.places) throw new ServiceError(
-            ERROR_MESSAGES.service.searchStorePlace.detail,
-            ERROR_MESSAGES.service.searchStorePlace.issue,
-            this.constructor.name,
-            request
-        )
-
-        return await Promise.all(response.data.places
-            .filter((place) => place.displayName )
+        return await Promise.all(response.data.places ?
+            response.data.places.filter((place) => place.displayName )
             .map(async (place) => {
                 const image = place.photos ? 
                     await this.client.getPhotoUri(place.photos.filter(
@@ -40,7 +33,7 @@ export class SearchStorePlaceService implements BaseService {
                     latitude: place.location?.latitude,
                     longitude: place.location?.longitude
                 })
-            })
+            }) : []
         )
     }
 }
