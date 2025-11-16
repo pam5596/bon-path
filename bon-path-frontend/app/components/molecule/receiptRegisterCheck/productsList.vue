@@ -23,7 +23,6 @@ const modelItem = (index: number) => computed({
 <style scoped>
 .contents {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    gap: 2rem;
 }
 </style>

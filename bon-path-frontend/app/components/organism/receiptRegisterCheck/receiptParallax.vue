@@ -8,6 +8,9 @@
         v-model="modelDialog"
         :src="props.receiptImage?.getValues.url"
     />
+    <AtomReceiptRegisterCheckFloatingPreviewBtn
+        @preview="openDialog"
+    />
 </template>
 
 <script setup lang="ts">

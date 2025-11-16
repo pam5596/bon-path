@@ -111,10 +111,17 @@
                     "label": "数量",
                     "prefix": "x"
                 }
+            },
+            "productOption": {
+                "isKnownChip": "こちらですか？"
+            },
+            "productExtractedName": {
+                "chip": "読み取られた商品名："
             }
         },
-        "description": {
-            "howToPreviewReceipt": "上部のレシート画像をタップすることで、レシート画像をプレビューでみることができます。",
+        "help": {
+            "howToPreviewReceipt-before": "上部のレシート画像か、右下の",
+            "howToPreviewReceipt-after": "をタップすることで、レシート画像をプレビューでみることができます。",
             "noProductImage-before": "購入した商品と同じ画像が選択一覧にない場合、「レシート記載の商品名」にキーワードを入力して、",
             "noProductImage-after": "を押すことで再検索します。検索結果は再度選択一覧に反映されます。",
             "dontForgetProductName": "商品名の入力欄を検索で使用した後、商品名はレシートと同じ記載に直してください。"

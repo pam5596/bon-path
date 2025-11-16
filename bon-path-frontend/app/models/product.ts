@@ -1,5 +1,13 @@
 import BaseModel from "./_abstract";
 
+interface SearchResultProduct {
+    id?: number,
+    name: string,
+    categoryId?: number;
+    image?: string;
+    link?: string;
+}
+
 export interface Product {
     readonly id?: number;
     readonly storeId?: number;
@@ -10,13 +18,11 @@ export interface Product {
     price: number;
     readonly createdAt?: Date;
 
+    extractedName?: string
     searchResults?: {
-        id?: number,
-        name: string,
-        categoryId?: number;
-        image?: string;
-        link?: string;
-    }[]
+        vector: SearchResultProduct[],
+        google: SearchResultProduct[]
+    }
 }
 
 export class ProductModel extends BaseModel<Product> {
@@ -44,7 +50,7 @@ export class ProductModel extends BaseModel<Product> {
     }
 
     get getModelValues() {
-        const { searchResults, ...values } = this._values
+        const { searchResults, extractedName, ...values } = this._values
         return values
     }
 
