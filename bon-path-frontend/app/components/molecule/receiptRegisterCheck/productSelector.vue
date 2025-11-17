@@ -58,6 +58,7 @@ const modelProductImage = computed({
             ...model.value!.getValues,
             product: new ProductModel({
                 ...target!,
+                image: value,
                 name: target?.id ? target.name : model.value!.product.getValues.name,
                 price: model.value!.getValues.price,
                 extractedName: model.value!.product.getValues.extractedName,
@@ -66,14 +67,19 @@ const modelProductImage = computed({
         })
     }
 })
-const selectItems = computed(()=>[
-    ...(model.value?.product.searchResults?.vector.map(
-        result => result.image
-    ) ?? []),
-    ...(model.value?.product.searchResults?.google.map(
-        result => result.image
-    ) ?? [])
-])
+const selectItems = computed(()=>Array.from(
+    new Map(
+        [
+            ...(model.value?.product.searchResults?.vector.map(
+                result => result.image
+            ) ?? []),
+            ...(model.value?.product.searchResults?.google.map(
+                result => result.image
+            ) ?? [])
+        ].map(r => [r, r])
+    ).values()
+))
+console.log(selectItems)
 
 const modelProductName = computed({
     get: () => model.value!.product.getValues.name,
@@ -93,6 +99,8 @@ const isKnown = (src?: string) => {
         result => result.image == src
     ) || false
 }
+
+console.log(selectItems)
 </script>
 
 <style scoped>

@@ -48,9 +48,19 @@ export default function () {
                                     storeId: payloadStore.value!.id
                                 })
                             })
-                        } else {
-                            return purchase
                         }
+
+                        if (!purchase.product.storeId) {
+                            return new PurchaseModel({
+                                ...purchase.getValues,
+                                product: new ProductModel({
+                                    ...purchase.product.getModelValues,
+                                    storeId: payloadStore.value!.id
+                                })
+                            })
+                        }
+
+                        return purchase
                     }
                 )
             )
