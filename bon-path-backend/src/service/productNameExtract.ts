@@ -4,8 +4,6 @@ import BaseService from "./_interface";
 import { Id, ProductName } from "@models/valueObject";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { StructuredOutputParser } from "langchain/output_parsers";
-import { ServiceError } from "@lib/error";
-import { ERROR_MESSAGES } from "@lib/constants/errorMessages";
 import { CategoryEntity } from "@models/entity";
 import { JsonOutputParser } from "@langchain/core/output_parsers";
 import { OPEN_AI_PROMPTS } from "@lib/constants/openAiPrompts";
@@ -65,16 +63,10 @@ export class ProductNameExtractService implements BaseService {
                 name: new ProductName(json_response.name),
                 categoryId: new Id(json_response.categoryId)
             }
-        } catch (e) {
-            if (e instanceof Error) {
-                throw new ServiceError(
-                    ERROR_MESSAGES.service.productNameExtract,
-                    e.message,
-                    this.constructor.name,
-                    request
-                )
-            } else {
-                throw e
+        } catch {
+            return {
+                name: request.query,
+                categoryId: new Id(1)
             }
         }
     }

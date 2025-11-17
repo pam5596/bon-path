@@ -58,7 +58,7 @@ const modelProductImage = computed({
             ...model.value!.getValues,
             product: new ProductModel({
                 ...target!,
-                name: target?.id ? target.name : model.value!.product.getValues.extractedName!,
+                name: target?.id ? target.name : model.value!.product.getValues.name,
                 price: model.value!.getValues.price,
                 extractedName: model.value!.product.getValues.extractedName,
                 searchResults: model.value!.product.searchResults
