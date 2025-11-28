@@ -8,6 +8,7 @@ export const OPEN_AI_PROMPTS = {
             Extract text from each receipt image and return JSON only.
             
             The price of the product should be per item.
+            Calculate the unit price of a product by price/quantity.
             The store name should include the store place address.
             Does not include "合計", "小計", and "消費税".
             {format_instructions}
