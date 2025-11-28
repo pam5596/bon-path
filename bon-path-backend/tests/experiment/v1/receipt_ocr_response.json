@@ -1,0 +1,1175 @@
+[
+    {
+        "image": "1764163913111-IMG_20251126_133514.jpg",
+        "store": {
+            "name": "ダイレックス土庄店 T6-3000-0100-4245"
+        },
+        "products": [
+            {
+                "name": "メディファス子ねこチキン",
+                "price": 1190,
+                "quantity": 1
+            },
+            {
+                "name": "ポロポトバーべQ",
+                "price": 194,
+                "quantity": 2
+            },
+            {},
+            {
+                "name": "味の素",
+                "price": 128,
+                "quantity": 1
+            },
+            {
+                "name": "味噌",
+                "price": 199,
+                "quantity": 1
+            },
+            {
+                "name": "荒大豆",
+                "price": 299,
+                "quantity": 1
+            },
+            {
+                "name": "いりこ",
+                "price": 99,
+                "quantity": 1
+            },
+            {
+                "name": "ニューバーガー",
+                "price": 118,
+                "quantity": 1
+            },
+            {
+                "name": "サラダをべーコン",
+                "price": 208,
+                "quantity": 1
+            },
+            {
+                "name": "チキンコン",
+                "price": 118,
+                "quantity": 1
+            },
+            {
+                "name": "クルクルスライスチーズ",
+                "price": 149,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1764222417043-IMG_20251127_133414.jpg",
+        "store": {
+            "name": "AEON マルナカ新土庄店"
+        },
+        "products": [
+            {
+                "name": "テリアBREIP",
+                "price": 580,
+                "quantity": 3
+            },
+            {
+                "name": "かのか辛味噌",
+                "price": 2380,
+                "quantity": 1
+            },
+            {
+                "name": "カンタンナップル",
+                "price": 270,
+                "quantity": 1
+            },
+            {
+                "name": "極熟バナナ",
+                "price": 198,
+                "quantity": 1
+            },
+            {
+                "name": "ポテトサラダ（中）",
+                "price": 279,
+                "quantity": 1
+            },
+            {},
+            {
+                "name": "牛ハラミ",
+                "price": 500,
+                "quantity": 1
+            },
+            {
+                "name": "中国産うなぎ",
+                "price": 522,
+                "quantity": 1
+            },
+            {
+                "name": "なき小切れ",
+                "price": 1116,
+                "quantity": 1
+            },
+            {
+                "name": "ハンバーグ",
+                "price": 500,
+                "quantity": 1
+            },
+            {}
+        ]
+    },
+    {
+        "image": "1763796782089-image.jpg",
+        "store": {
+            "name": "AEON マルナカ東浦店 TEL0799-75-2235"
+        },
+        "products": [
+            {
+                "name": "バニラワッフル",
+                "price": 228,
+                "quantity": 1
+            },
+            {
+                "name": "あわびびーるピルスナー",
+                "price": 546,
+                "quantity": 1
+            },
+            {
+                "name": "華よい白桃",
+                "price": 350,
+                "quantity": 1
+            },
+            {
+                "name": "瀬戸内レモンサワー",
+                "price": 100,
+                "quantity": 1
+            },
+            {
+                "name": "有料レジ袋LL",
+                "price": 5,
+                "quantity": 1
+            },
+            {
+                "name": "BPホロットパインマン",
+                "price": 95,
+                "quantity": 1
+            },
+            {
+                "name": "TVBPビーフジャーキー",
+                "price": 98,
+                "quantity": 1
+            },
+            {
+                "name": "TVBPピリ辛焼きかま",
+                "price": 98,
+                "quantity": 1
+            },
+            {
+                "name": "炭火焼とり串かわ",
+                "price": 298,
+                "quantity": 1
+            },
+            {
+                "name": "まるごとイカから揚げ",
+                "price": 329,
+                "quantity": 1
+            },
+            {
+                "name": "魚屋の握り盛合せ（とろ）",
+                "price": 2980,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1764171006835-IMG_20251126_133327.jpg",
+        "store": {
+            "name": "ダイレックス工匠店"
+        },
+        "products": [
+            {
+                "name": "サッポロポテトバーベQ",
+                "price": 97,
+                "quantity": 1
+            },
+            {
+                "name": "GTマイルドブレンド",
+                "price": 528,
+                "quantity": 1
+            },
+            {
+                "name": "プチあげ丸しょうゆ",
+                "price": 78,
+                "quantity": 1
+            },
+            {
+                "name": "1日分の野菜紙パック",
+                "price": 88,
+                "quantity": 1
+            },
+            {
+                "name": "ブレンディSカロリ",
+                "price": 228,
+                "quantity": 1
+            },
+            {
+                "name": "荒さきいか",
+                "price": 299,
+                "quantity": 1
+            },
+            {
+                "name": "味ビ",
+                "price": 199,
+                "quantity": 1
+            },
+            {
+                "name": "おかめ仕立てミニ3",
+                "price": 89,
+                "quantity": 1
+            },
+            {
+                "name": "GBFWアクネフォーム",
+                "price": 261,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1764168765940-IMG_20251126_134516.jpg",
+        "store": {
+            "name": "マルヨシセンター 土庄店 0879-62-3615"
+        },
+        "products": [
+            {
+                "name": "小松菜（少量）",
+                "price": 138,
+                "quantity": 1
+            },
+            {
+                "name": "きざみ麺",
+                "price": 98,
+                "quantity": 1
+            },
+            {
+                "name": "ブロッコリー",
+                "price": 178,
+                "quantity": 1
+            },
+            {
+                "name": "ミツカン酢",
+                "price": 148,
+                "quantity": 1
+            },
+            {
+                "name": "ろし生しょうが",
+                "price": 108,
+                "quantity": 1
+            },
+            {
+                "name": "野菜ジュース",
+                "price": 198,
+                "quantity": 1
+            },
+            {
+                "name": "３まじ刺身",
+                "price": 796,
+                "quantity": 1
+            },
+            {
+                "name": "その他",
+                "price": 100,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1763649364666-IMG_20251120_141810.jpg",
+        "store": {
+            "name": "AEON マルナカ新土庄店"
+        },
+        "products": [
+            {
+                "name": "にら少量",
+                "price": 68,
+                "quantity": 1
+            },
+            {
+                "name": "キャベツ",
+                "price": 100,
+                "quantity": 1
+            },
+            {
+                "name": "BPブルーベリーYG4",
+                "price": 138,
+                "quantity": 1
+            },
+            {},
+            {
+                "name": "ニテレイ チキンライス",
+                "price": 398,
+                "quantity": 1
+            },
+            {
+                "name": "TV BPRマトチャ",
+                "price": 158,
+                "quantity": 1
+            },
+            {
+                "name": "新潟ねじめせんべい",
+                "price": 100,
+                "quantity": 1
+            },
+            {}
+        ]
+    },
+    {
+        "image": "1763343070141-image.jpg",
+        "store": {
+            "name": "OK お台場店"
+        },
+        "products": [
+            {
+                "name": "プロッシモケッキ 1.6mm 500g",
+                "price": 159,
+                "quantity": 2
+            },
+            {
+                "name": "ハウス オーザックアッサリオ",
+                "price": 106,
+                "quantity": 2
+            },
+            {
+                "name": "イトウハムトウジOHベーコン",
+                "price": 113,
+                "quantity": 2
+            },
+            {
+                "name": "abbワラカラジュクセイ",
+                "price": 183,
+                "quantity": 2
+            },
+            {
+                "name": "ドリトスソルト",
+                "price": 90,
+                "quantity": 2
+            }
+        ]
+    },
+    {
+        "image": "1764225076724-IMG_20251127_133630.jpg",
+        "store": {
+            "name": "イオン マルナカ新土庄店"
+        },
+        "products": [
+            {
+                "name": "とろ～りれんこん三味ホワ",
+                "price": 178,
+                "quantity": 1
+            },
+            {
+                "name": "ＴＶ北海海鮮バター",
+                "price": 438,
+                "quantity": 1
+            },
+            {
+                "name": "たまねぎバラ",
+                "price": 116,
+                "quantity": 2
+            },
+            {
+                "name": "洋人参バラ",
+                "price": 116,
+                "quantity": 2
+            },
+            {
+                "name": "さつまいもバラ",
+                "price": 98,
+                "quantity": 3
+            },
+            {
+                "name": "もちもちしたチョコロ",
+                "price": 98,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1764086267118-IMG_20251121_150813.jpg",
+        "store": {
+            "name": "マルヨシセンター 土庄店 0879-62-3615"
+        },
+        "products": [
+            {
+                "name": "ベビーリーフ（大）",
+                "price": 98,
+                "quantity": 1
+            },
+            {
+                "name": "ブロッコリー",
+                "price": 258,
+                "quantity": 1
+            },
+            {
+                "name": "ジョシのかぼちゃ",
+                "price": 100,
+                "quantity": 1
+            },
+            {
+                "name": "りんご",
+                "price": 78,
+                "quantity": 1
+            },
+            {
+                "name": "フルーツリスティ",
+                "price": 110,
+                "quantity": 1
+            },
+            {
+                "name": "パウケット",
+                "price": 240,
+                "quantity": 2
+            }
+        ]
+    },
+    {
+        "image": "1764085604526-IMG_20251121_150732.jpg",
+        "store": {
+            "name": "マルヨシセンター 土庄店 0879-62-3615"
+        },
+        "products": [
+            {
+                "name": "貝割れ大根（小ＰＫ）",
+                "price": 38,
+                "quantity": 1
+            },
+            {
+                "name": "きゅうり",
+                "price": 116,
+                "quantity": 2
+            },
+            {},
+            {
+                "name": "3宝かき大パック",
+                "price": 598,
+                "quantity": 1
+            },
+            {
+                "name": "みかん（ゆら早生）",
+                "price": 350,
+                "quantity": 1
+            },
+            {
+                "name": "特売たまご",
+                "price": 198,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1764084663558-IMG_20251121_150635.jpg",
+        "store": {
+            "name": "ダイレックス土庄店"
+        },
+        "products": [
+            {
+                "name": "ＧＴティップブレンド",
+                "price": 528,
+                "quantity": 1
+            },
+            {
+                "name": "シチューミックス濃厚仕立",
+                "price": 279,
+                "quantity": 1
+            },
+            {
+                "name": "野菜シャンタン粉末タイ",
+                "price": 149,
+                "quantity": 1
+            },
+            {},
+            {
+                "name": "クノール チキンコンソ",
+                "price": 118,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1763647409184-IMG_20251120_141320.jpg",
+        "store": {
+            "name": "ダイレックス土庄店"
+        },
+        "products": [
+            {
+                "name": "お茶漬けのり",
+                "price": 218,
+                "quantity": 1
+            },
+            {
+                "name": "S&B おろしわさび",
+                "price": 99,
+                "quantity": 1
+            },
+            {
+                "name": "九州食品 こんさいめん",
+                "price": 299,
+                "quantity": 1
+            },
+            {},
+            {
+                "name": "サッポロポテトバーベQ",
+                "price": 210,
+                "quantity": 2
+            },
+            {},
+            {
+                "name": "美食屋 新味えだまめ",
+                "price": 299,
+                "quantity": 1
+            },
+            {
+                "name": "新味えだまめ S",
+                "price": 199,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1764223633961-IMG_20251127_133614.jpg",
+        "store": {
+            "name": "AEON マルナカ新土庄店"
+        },
+        "products": [
+            {
+                "name": "キャベツ",
+                "price": 128,
+                "quantity": 1
+            },
+            {
+                "name": "ＴＶ飲料の皮大",
+                "price": 98,
+                "quantity": 1
+            },
+            {
+                "name": "ザク切り白ねぎ",
+                "price": 158,
+                "quantity": 1
+            },
+            {
+                "name": "小松菜",
+                "price": 198,
+                "quantity": 1
+            },
+            {
+                "name": "畑中農産物",
+                "price": 140,
+                "quantity": 1
+            },
+            {
+                "name": "ウィル",
+                "price": 368,
+                "quantity": 1
+            },
+            {
+                "name": "B P P I Y G 4 P",
+                "price": 138,
+                "quantity": 1
+            },
+            {
+                "name": "いも煮はるか",
+                "price": 358,
+                "quantity": 1
+            },
+            {
+                "name": "Cook D O 香味ペースト",
+                "price": 40,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1763652279477-IMG_20251120_141549.jpg",
+        "store": {
+            "name": "ドラッグストアコスモス 土庄店 TEL0879-62-5670"
+        },
+        "products": [
+            {
+                "name": "プリッツ",
+                "price": 98,
+                "quantity": 1
+            },
+            {
+                "name": "1日分の野菜",
+                "price": 79,
+                "quantity": 1
+            },
+            {
+                "name": "マシュマロ",
+                "price": 98,
+                "quantity": 1
+            },
+            {
+                "name": "彩香食パン",
+                "price": 198,
+                "quantity": 1
+            },
+            {
+                "name": "無添加野菜48種の濃い野菜",
+                "price": 199,
+                "quantity": 1
+            },
+            {
+                "name": "あじしゅい納豆",
+                "price": 69,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1763742912727-IMG_20251120_142639.jpg",
+        "store": {
+            "name": "AEON マルナカ新土庄店"
+        },
+        "products": [
+            {
+                "name": "GE ミニ豆腐 3個",
+                "price": 118,
+                "quantity": 1
+            },
+            {
+                "name": "TVBPカロリーハーフ",
+                "price": 218,
+                "quantity": 1
+            },
+            {
+                "name": "UC ささみあられ 4個",
+                "price": 98,
+                "quantity": 1
+            },
+            {
+                "name": "BP林檎と蜂蜜 YG4P",
+                "price": 138,
+                "quantity": 1
+            },
+            {
+                "name": "カナダ産豚肉小間切れ",
+                "price": 280,
+                "quantity": 1
+            },
+            {
+                "name": "カットねぎ",
+                "price": 98,
+                "quantity": 1
+            },
+            {
+                "name": "貝割れ",
+                "price": 38,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1763646938068-IMG_20251120_140557.jpg",
+        "store": {
+            "name": "AEON マルナカ新土庄店"
+        },
+        "products": [
+            {
+                "name": "レタス",
+                "price": 80,
+                "quantity": 1
+            },
+            {
+                "name": "マルコメ プラス糀",
+                "price": 398,
+                "quantity": 1
+            },
+            {
+                "name": "れんこん",
+                "price": 96,
+                "quantity": 1
+            },
+            {
+                "name": "国産ブロッコリー",
+                "price": 298,
+                "quantity": 1
+            },
+            {
+                "name": "カットバナナ",
+                "price": 90,
+                "quantity": 1
+            },
+            {
+                "name": "BPアロエYG4P",
+                "price": 138,
+                "quantity": 1
+            },
+            {
+                "name": "カナダ産豚ロース生姜",
+                "price": 282,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1763342857921-image.jpg",
+        "code": 500,
+        "path": "",
+        "detail": "レシートのOCR処理で予期せぬエラーが発生しました。撮影からやり直してみてください。",
+        "issue": "400 Timeout while downloading https://bon-path-storage.s3.ap-northeast-1.amazonaws.com/receipts/1763342857921-image.jpg.",
+        "stack": "Error: レシートのOCR処理で予期せぬエラーが発生しました。撮影からやり直してみてください。\n    at ReceiptOCRService.execute (/opt/render/project/src/bon-path-backend/src/service/receiptOcr.ts:59:23)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async GptOcrUseCase.execute (/opt/render/project/src/bon-path-backend/src/usecase/gptOcr.ts:20:27)\n    at async <anonymous> (/opt/render/project/src/bon-path-backend/src/routes/gptOcr.ts:21:34)\n    at async dispatch (file:///opt/render/project/src/bon-path-backend/node_modules/hono/dist/compose.js:22:17)\n    at async mw (file:///opt/render/project/src/bon-path-backend/node_modules/@hono/zod-openapi/dist/index.js:107:15)\n    at async dispatch (file:///opt/render/project/src/bon-path-backend/node_modules/hono/dist/compose.js:22:17)\n    at async logger2 (file:///opt/render/project/src/bon-path-backend/node_modules/hono/dist/middleware/logger/index.js:38:5)\n    at async dispatch (file:///opt/render/project/src/bon-path-backend/node_modules/hono/dist/compose.js:22:17)\n    at async verifySessionHandler (/opt/render/project/src/bon-path-backend/src/lib/middleware/verifySession.ts:28:5)",
+        "instance": "ReceiptOCRService",
+        "report": {
+            "query": [
+                {
+                    "_value": "/receipts/1763342857921-image.jpg"
+                }
+            ],
+            "parser": {
+                "lc": 1,
+                "type": "not_implemented",
+                "id": [
+                    "langchain",
+                    "output_parsers",
+                    "structured",
+                    "StructuredOutputParser"
+                ]
+            },
+            "prompt": {
+                "lc": 1,
+                "type": "constructor",
+                "id": [
+                    "langchain_core",
+                    "prompts",
+                    "chat",
+                    "ChatPromptTemplate"
+                ],
+                "kwargs": {
+                    "input_variables": [
+                        "format_instructions"
+                    ],
+                    "messages": [
+                        {
+                            "lc": 1,
+                            "type": "constructor",
+                            "id": [
+                                "langchain_core",
+                                "prompts",
+                                "chat",
+                                "SystemMessagePromptTemplate"
+                            ],
+                            "kwargs": {
+                                "prompt": {
+                                    "lc": 1,
+                                    "type": "constructor",
+                                    "id": [
+                                        "langchain_core",
+                                        "prompts",
+                                        "prompt",
+                                        "PromptTemplate"
+                                    ],
+                                    "kwargs": {
+                                        "input_variables": [
+                                            "format_instructions"
+                                        ],
+                                        "template_format": "f-string",
+                                        "template": "\n            You are an receipt OCR assistant.\n            Extract text from each receipt image and return JSON only.\n            \n            The price of the product should be per item.\n            The store name should include the store place address.\n            Does not include \"合計\", \"小計\", and \"消費税\".\n            {format_instructions}\n        "
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "lc": 1,
+                            "type": "constructor",
+                            "id": [
+                                "langchain_core",
+                                "prompts",
+                                "chat",
+                                "HumanMessagePromptTemplate"
+                            ],
+                            "kwargs": {
+                                "prompt": {
+                                    "lc": 1,
+                                    "type": "constructor",
+                                    "id": [
+                                        "langchain_core",
+                                        "prompts",
+                                        "prompt",
+                                        "PromptTemplate"
+                                    ],
+                                    "kwargs": {
+                                        "input_variables": [],
+                                        "template_format": "f-string",
+                                        "template": "Analyze these receipt images."
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "image": "1764221431850-IMG_20251127_133226.jpg",
+        "store": {
+            "name": "AEON マルナカ新土庄店"
+        },
+        "products": [
+            {
+                "name": "特製だし仕立てから揚げ",
+                "price": 500,
+                "quantity": 1
+            },
+            {},
+            {
+                "name": "TV チキンライス",
+                "price": 298,
+                "quantity": 1
+            },
+            {
+                "name": "大根 (半切れ)",
+                "price": 118,
+                "quantity": 1
+            },
+            {
+                "name": "TV 青じそドレッシング",
+                "price": 138,
+                "quantity": 1
+            },
+            {
+                "name": "BP アロエYG4P",
+                "price": 118,
+                "quantity": 1
+            },
+            {}
+        ]
+    },
+    {
+        "image": "1764164933836-IMG_20251126_133521.jpg",
+        "store": {
+            "name": "ダイレックス土庄店"
+        },
+        "products": [
+            {
+                "name": "レンノアシラス490",
+                "price": 229,
+                "quantity": 1
+            },
+            {
+                "name": "キング鯖",
+                "price": 324,
+                "quantity": 3
+            },
+            {
+                "name": "ココサンフラワー発酵バター",
+                "price": 99,
+                "quantity": 1
+            },
+            {},
+            {
+                "name": "野菜一日これ一本",
+                "price": 88,
+                "quantity": 1
+            },
+            {
+                "name": "味ビシ",
+                "price": 199,
+                "quantity": 1
+            },
+            {},
+            {
+                "name": "プリッツ",
+                "price": 89,
+                "quantity": 1
+            },
+            {
+                "name": "ウィナップ",
+                "price": 118,
+                "quantity": 5
+            },
+            {
+                "name": "ポテトバーべQ",
+                "price": 97,
+                "quantity": 1
+            },
+            {
+                "name": "ミガトSミント",
+                "price": 249,
+                "quantity": 1
+            },
+            {
+                "name": "トップ＋抗菌剤",
+                "price": 149,
+                "quantity": 1
+            },
+            {
+                "name": "ふくつと",
+                "price": 79,
+                "quantity": 1
+            },
+            {}
+        ]
+    },
+    {
+        "image": "1764083920507-IMG_20251121_150520.jpg",
+        "store": {
+            "name": "AEON マルナカ新土庄店"
+        },
+        "products": [
+            {
+                "name": "スパオウペスカート",
+                "price": 198,
+                "quantity": 1
+            },
+            {
+                "name": "スパオウナポリタン",
+                "price": 198,
+                "quantity": 1
+            },
+            {
+                "name": "カナダ産豚肉小間切れ",
+                "price": 285,
+                "quantity": 1
+            },
+            {
+                "name": "三元豚のロースかつ",
+                "price": 298,
+                "quantity": 1
+            },
+            {
+                "name": "BP ロースハム",
+                "price": 138,
+                "quantity": 1
+            },
+            {
+                "name": "ロッテ 枝豆バー",
+                "price": 30,
+                "quantity": 1
+            },
+            {
+                "name": "5色細巻盛合せ",
+                "price": 398,
+                "quantity": 1
+            },
+            {
+                "name": "麺香るやわらか食パン5",
+                "price": 128,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1764167568842-IMG_20251126_134139.jpg",
+        "store": {
+            "name": "AEON マルナカ新土庄店"
+        },
+        "products": [
+            {
+                "name": "生するめいか (店内)",
+                "price": 380,
+                "quantity": 1
+            },
+            {
+                "name": "豚ロースしゃぶしゃぶ",
+                "price": 368,
+                "quantity": 1
+            },
+            {
+                "name": "ＴＶ味噌",
+                "price": 128,
+                "quantity": 1
+            },
+            {
+                "name": "オーガニック緑豆もやし",
+                "price": 114,
+                "quantity": 1
+            },
+            {},
+            {
+                "name": "バイキングいちごクロワ",
+                "price": 98,
+                "quantity": 1
+            },
+            {
+                "name": "そのまま食いちくわ",
+                "price": 98,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1764133989249-IMG_20251126_132059.jpg",
+        "store": {
+            "name": "ダイレックス土庄店"
+        },
+        "products": [
+            {
+                "name": "キング播州鍋",
+                "price": 520,
+                "quantity": 4
+            },
+            {
+                "name": "ハピネスローズ特大",
+                "price": 399,
+                "quantity": 1
+            },
+            {
+                "name": "床キラL用ウェットG",
+                "price": 128,
+                "quantity": 1
+            },
+            {
+                "name": "オールレーズン",
+                "price": 159,
+                "quantity": 1
+            },
+            {
+                "name": "超極細歯クリア歯ブラシH",
+                "price": 297,
+                "quantity": 3
+            },
+            {
+                "name": "乾電池単3形6本パック",
+                "price": 119,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1763342814172-image.jpg",
+        "store": {
+            "name": "OK 高品質 Everyday Low Price, 札幌市"
+        },
+        "products": [
+            {
+                "name": "F・ロッシモッケッツ 1.6mm 500g",
+                "price": 159,
+                "quantity": 2
+            },
+            {
+                "name": "サトウミキサー ヒトボトル 200g",
+                "price": 410,
+                "quantity": 3
+            },
+            {
+                "name": "F・オリーブオイル 400g",
+                "price": 669,
+                "quantity": 1
+            },
+            {
+                "name": "F・ユカリバナナ",
+                "price": 209,
+                "quantity": 1
+            },
+            {
+                "name": "F・パスコチョコパン クマヤマ98マイ",
+                "price": 168,
+                "quantity": 1
+            },
+            {
+                "name": "F・イカトマトハウス OHヤマコーン",
+                "price": 226,
+                "quantity": 1
+            },
+            {
+                "name": "F・ドリトス",
+                "price": 100,
+                "quantity": 2
+            },
+            {
+                "name": "F・ハウス オー・ザックインソリシカ",
+                "price": 106,
+                "quantity": 2
+            }
+        ]
+    },
+    {
+        "image": "1764224457757-IMG_20251127_133622.jpg",
+        "store": {
+            "name": "マルナカ新土庄店 TEL0879-61-1131"
+        },
+        "products": [
+            {
+                "name": "BP うどん",
+                "price": 208,
+                "quantity": 1
+            },
+            {
+                "name": "BP 極小粒納豆",
+                "price": 78,
+                "quantity": 1
+            },
+            {
+                "name": "小判あげ",
+                "price": 98,
+                "quantity": 1
+            },
+            {
+                "name": "QP 深煎りごまハーフ",
+                "price": 328,
+                "quantity": 1
+            },
+            {
+                "name": "TV カット",
+                "price": 118,
+                "quantity": 1
+            },
+            {
+                "name": "TV BP",
+                "price": 98,
+                "quantity": 1
+            },
+            {
+                "name": "BP アロエYG4P",
+                "price": 138,
+                "quantity": 1
+            },
+            {
+                "name": "アスパラガス",
+                "price": 100,
+                "quantity": 1
+            },
+            {
+                "name": "チキンハラス",
+                "price": 398,
+                "quantity": 1
+            },
+            {
+                "name": "変香るやわらか食パン",
+                "price": 128,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1764168294273-IMG_20251126_134243.jpg",
+        "store": {
+            "name": "マルナカ新土庄店 TEL0879-61-1131"
+        },
+        "products": [
+            {},
+            {
+                "name": "カナダ産豚ロースカツ",
+                "price": 291,
+                "quantity": 1
+            },
+            {
+                "name": "カナダ産豚ロース生姜",
+                "price": 304,
+                "quantity": 1
+            },
+            {},
+            {
+                "name": "道南白口浜産こんぶだし",
+                "price": 128,
+                "quantity": 1
+            },
+            {
+                "name": "BPアロマY4P",
+                "price": 138,
+                "quantity": 1
+            },
+            {
+                "name": "恵香るやわらか食パン5",
+                "price": 128,
+                "quantity": 1
+            }
+        ]
+    }
+]
