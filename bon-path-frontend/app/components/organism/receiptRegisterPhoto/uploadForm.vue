@@ -4,7 +4,7 @@
             v-model="form"
             multiple
             clearable
-            accept="image/*"
+            accept="image/*;capture=camera"
             :title="$t('receiptRegisterPhoto.uploadForm.placeholder')"
             density="compact"
             variant="compact"
