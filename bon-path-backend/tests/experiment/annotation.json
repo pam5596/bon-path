@@ -1,0 +1,1192 @@
+[
+    {
+        "image": "1764163913111-IMG_20251126_133514.jpg",
+        "store": {
+            "name": "ダイレックス土庄店"
+        },
+        "products": [
+            {
+                "name": "メディファス子ねこチキ",
+                "price": 1190,
+                "quantity": 1
+            },
+            {
+                "name": "サッポロポテトバーべQ",
+                "price": 194,
+                "quantity": 2
+            },
+            {
+                "name": "いりごま白",
+                "price": 128,
+                "quantity": 1
+            },
+            {
+                "name": "味の素焙煎ごま香味油",
+                "price": 198,
+                "quantity": 1
+            },
+            {
+                "name": "味ビー",
+                "price": 199,
+                "quantity": 1
+            },
+            {
+                "name": "荒さきいか",
+                "price": 299,
+                "quantity": 1
+            },
+            {
+                "name": "丸大ニューバーガー",
+                "price": 99,
+                "quantity": 1
+            },
+            {
+                "name": "焼くだけ厚揚げ",
+                "price": 118,
+                "quantity": 1
+            },
+            {
+                "name": "サラダをべーコン",
+                "price": 208,
+                "quantity": 1
+            },
+            {
+                "name": "クノールチキンコンソ",
+                "price": 118,
+                "quantity": 1
+            },
+            {
+                "name": "トロケルスライスチーズ",
+                "price": 149,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1764222417043-IMG_20251127_133414.jpg",
+        "store": {
+            "name": "マルナカ新土庄店"
+        },
+        "products": [
+            {
+                "name": "テリアBREIP",
+                "price": 580,
+                "quantity": 3
+            },
+            {
+                "name": "かのか華やかすっきり芋",
+                "price": 2380,
+                "quantity": 1
+            },
+            {
+                "name": "カンタン酢",
+                "price": 278,
+                "quantity": 1
+            },
+            {
+                "name": "極熟パイナップル",
+                "price": 270,
+                "quantity": 1
+            },
+            {
+                "name": "ポテトサラダ（中）",
+                "price": 198,
+                "quantity": 1
+            },
+            {
+                "name": "鶏ももから揚げ",
+                "price": 279,
+                "quantity": 1
+            },
+            {
+                "name": "四国産若鳥健21もも切",
+                "price": 500,
+                "quantity": 1
+            },
+            {
+                "name": "牛ハラミ味付け焼肉用",
+                "price": 522,
+                "quantity": 1
+            },
+            {
+                "name": "中国産うなぎ小切れ",
+                "price": 1116,
+                "quantity": 1
+            },
+            {
+                "name": "特じゅわっと生ハンバー",
+                "price": 500,
+                "quantity": 1
+            },
+            {
+                "name": "鮭",
+                "price": 198,
+                "quantity": 3
+            }
+        ]
+    },
+    {
+        "image": "1763796782089-image.jpg",
+        "store": {
+            "name": "マルナカ東浦店"
+        },
+        "products": [
+            {
+                "name": "バニラワッフル",
+                "price": 228,
+                "quantity": 1
+            },
+            {
+                "name": "あわびびーるピルスナー",
+                "price": 546,
+                "quantity": 1
+            },
+            {
+                "name": "華よい白桃350",
+                "price": 118,
+                "quantity": 1
+            },
+            {
+                "name": "瀬戸内レモンサワー",
+                "price": 100,
+                "quantity": 1
+            },
+            {
+                "name": "有料レジ袋LL",
+                "price": 5,
+                "quantity": 1
+            },
+            {
+                "name": "BPホロットパインマン",
+                "price": 95,
+                "quantity": 1
+            },
+            {
+                "name": "TVBPビーフジャーキ",
+                "price": 98,
+                "quantity": 1
+            },
+            {
+                "name": "TVBPピリ辛焼きかま",
+                "price": 98,
+                "quantity": 1
+            },
+            {
+                "name": "炭火焼とり串かわ",
+                "price": 298,
+                "quantity": 1
+            },
+            {
+                "name": "まるごとイカから揚げ",
+                "price": 329,
+                "quantity": 1
+            },
+            {
+                "name": "魚屋の握り盛合せ（とろ",
+                "price": 2980,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1764171006835-IMG_20251126_133327.jpg",
+        "store": {
+            "name": "ダイレックス土庄店"
+        },
+        "products": [
+            {
+                "name": "サッポロポテトバーベQ",
+                "price": 97,
+                "quantity": 1
+            },
+            {
+                "name": "GTマイルドブレンド",
+                "price": 528,
+                "quantity": 1
+            },
+            {
+                "name": "プチあげ丸しょうゆ",
+                "price": 78,
+                "quantity": 1
+            },
+            {
+                "name": "1日分の野菜紙パック",
+                "price": 88,
+                "quantity": 1
+            },
+            {
+                "name": "ブレンディSカロハ",
+                "price": 228,
+                "quantity": 1
+            },
+            {
+                "name": "荒さきいか",
+                "price": 299,
+                "quantity": 1
+            },
+            {
+                "name": "味ビー",
+                "price": 199,
+                "quantity": 1
+            },
+            {
+                "name": "おかめ仕立てミニ3（西）",
+                "price": 89,
+                "quantity": 1
+            },
+            {
+                "name": "GBFWアクネフォーム",
+                "price": 261,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1764168765940-IMG_20251126_134516.jpg",
+        "store": {
+            "name": "マルヨシセンター土庄店"
+        },
+        "products": [
+            {
+                "name": "小松菜（少量）",
+                "price": 138,
+                "quantity": 1
+            },
+            {
+                "name": "きざみ葱",
+                "price": 98,
+                "quantity": 1
+            },
+            {
+                "name": "ブロッコリー",
+                "price": 178,
+                "quantity": 1
+            },
+            {
+                "name": "ミツカ穀物酢",
+                "price": 148,
+                "quantity": 1
+            },
+            {
+                "name": "おろし生しょうが",
+                "price": 108,
+                "quantity": 1
+            },
+            {
+                "name": "野菜ジュース",
+                "price": 198,
+                "quantity": 1
+            },
+            {
+                "name": "13まあじ刺身",
+                "price": 796,
+                "quantity": 1
+            },
+            {
+                "name": "青じそ",
+                "price": 100,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1763649364666-IMG_20251120_141810.jpg",
+        "store": {
+            "name": "マルナカ新土庄店"
+        },
+        "products": [
+            {
+                "name": "にら少量",
+                "price": 68,
+                "quantity": 1
+            },
+            {
+                "name": "キャベツ",
+                "price": 100,
+                "quantity": 1
+            },
+            {
+                "name": "BPブルーベリーYG4",
+                "price": 138,
+                "quantity": 1
+            },
+            {
+                "name": "カリフラワー",
+                "price": 158,
+                "quantity": 1
+            },
+            {
+                "name": "ニチレイチキンライス",
+                "price": 398,
+                "quantity": 1
+            },
+            {
+                "name": "TVBPマトケチャッ",
+                "price": 158,
+                "quantity": 1
+            },
+            {
+                "name": "新潟ぬれせんべい",
+                "price": 88,
+                "quantity": 1
+            },
+            {
+                "name": "貝割れ",
+                "price": 38,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1763343070141-image.jpg",
+        "store": {
+            "name": "オーケーお台場店"
+        },
+        "products": [
+            {
+                "name": "プロッシモケッソク1.6mm500g",
+                "price": 159,
+                "quantity": 2
+            },
+            {
+                "name": "ハウスオー・ザックアッサリシオ",
+                "price": 106,
+                "quantity": 2
+            },
+            {
+                "name": "イトウハムトウシツOHベーコン",
+                "price": 226,
+                "quantity": 2
+            },
+            {
+                "name": "qbbヤワラカジュクセイ",
+                "price": 183,
+                "quantity": 2
+            },
+            {
+                "name": "ドリトスソルト",
+                "price": 90,
+                "quantity": 2
+            }
+        ]
+    },
+    {
+        "image": "1764225076724-IMG_20251127_133630.jpg",
+        "store": {
+            "name": "マルナカ新土庄店"
+        },
+        "products": [
+            {
+                "name": "とろーりれん乳三味ホワ",
+                "price": 178,
+                "quantity": 1
+            },
+            {
+                "name": "ＴＶ北海海バター",
+                "price": 438,
+                "quantity": 1
+            },
+            {
+                "name": "たまねぎバラ",
+                "price": 58,
+                "quantity": 2
+            },
+            {
+                "name": "洋人参バラ",
+                "price": 58,
+                "quantity": 2
+            },
+            {
+                "name": "さつまいもバラ",
+                "price": 98,
+                "quantity": 1
+            },
+            {
+                "name": "もちもちとしたチョコロ",
+                "price": 98,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1764086267118-IMG_20251121_150813.jpg",
+        "store": {
+            "name": "マルヨシセンター土庄店"
+        },
+        "products": [
+            {
+                "name": "ベビーリーフ（大）",
+                "price": 98,
+                "quantity": 1
+            },
+            {
+                "name": "ブロッコリー",
+                "price": 258,
+                "quantity": 1
+            },
+            {
+                "name": "ホクセイコショクビガクバターヒ",
+                "price": 100,
+                "quantity": 1
+            },
+            {
+                "name": "りんご",
+                "price": 78,
+                "quantity": 1
+            },
+            {
+                "name": "フルーツリュスティ",
+                "price": 110,
+                "quantity": 1
+            },
+            {
+                "name": "バケット",
+                "price": 120,
+                "quantity": 2
+            }
+        ]
+    },
+    {
+        "image": "1764085604526-IMG_20251121_150732.jpg",
+        "store": {
+            "name": "マルヨシセンター土庄店"
+        },
+        "products": [
+            {
+                "name": "貝割れ大根（小ＰＫ）",
+                "price": 38,
+                "quantity": 1
+            },
+            {
+                "name": "キュウリ1ポン",
+                "price": 58,
+                "quantity": 2
+            },
+            {
+                "name": "3生するめいか",
+                "price": 380,
+                "quantity": 1
+            },
+            {
+                "name": "3宮島かき大パック",
+                "price": 598,
+                "quantity": 1
+            },
+            {
+                "name": "みかん（ゆら早生）",
+                "price": 350,
+                "quantity": 1
+            },
+            {
+                "name": "特売たまご",
+                "price": 198,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1764084663558-IMG_20251121_150635.jpg",
+        "store": {
+            "name": "ダイレックス土庄店"
+        },
+        "products": [
+            {
+                "name": "ＧＴリッチブレンド",
+                "price": 528,
+                "quantity": 1
+            },
+            {
+                "name": "シチューミックス濃厚仕立",
+                "price": 279,
+                "quantity": 1
+            },
+            {
+                "name": "創味シャンタン粉末タイ",
+                "price": 149,
+                "quantity": 1
+            },
+            {
+                "name": "野菜一日これ一本",
+                "price": 88,
+                "quantity": 1
+            },
+            {
+                "name": "クノールチキンコンソ",
+                "price": 118,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1763647409184-IMG_20251120_141320.jpg",
+        "store": {
+            "name": "ダイレックス土庄店"
+        },
+        "products": [
+            {
+                "name": "永谷園お茶漬けのり",
+                "price": 218,
+                "quantity": 1
+            },
+            {
+                "name": "S&Bおろしワサビ",
+                "price": 99,
+                "quantity": 1
+            },
+            {
+                "name": "九州食品くんさきいか",
+                "price": 298,
+                "quantity": 1
+            },
+            {
+                "name": "味ピー",
+                "price": 199,
+                "quantity": 1
+            },
+            {
+                "name": "サッポロポテトバーベQ",
+                "price": 105,
+                "quantity": 2
+            },
+            {
+                "name": "丸美屋新奴さん豆腐",
+                "price": 98,
+                "quantity": 1
+            },
+            {
+                "name": "ピュオラハミガキSミント",
+                "price": 299,
+                "quantity": 1
+            },
+            {
+                "name": "タクミカフェオレミル",
+                "price": 199,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1764223633961-IMG_20251127_133614.jpg",
+        "store": {
+            "name": "マルナカ新土庄店"
+        },
+        "products": [
+            {
+                "name": "キャベツ",
+                "price": 128,
+                "quantity": 1
+            },
+            {
+                "name": "ＴＶ餃子の皮大判",
+                "price": 98,
+                "quantity": 1
+            },
+            {
+                "name": "ザク切り白ねぎ",
+                "price": 158,
+                "quantity": 1
+            },
+            {
+                "name": "小松菜",
+                "price": 198,
+                "quantity": 1
+            },
+            {
+                "name": "畑中農園",
+                "price": 140,
+                "quantity": 1
+            },
+            {
+                "name": "ウィルキンソンタンサン",
+                "price": 68,
+                "quantity": 1
+            },
+            {
+                "name": "BPアロエYG4P",
+                "price": 138,
+                "quantity": 1
+            },
+            {
+                "name": "いも蒸しぱん（紅はるか",
+                "price": 108,
+                "quantity": 1
+            },
+            {
+                "name": "CookDo香味ペース",
+                "price": 358,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1763652279477-IMG_20251120_141549.jpg",
+        "store": {
+            "name": "ドラッグストアコスモス土庄店"
+        },
+        "products": [
+            {
+                "name": "プリッツおさつ",
+                "price": 98,
+                "quantity": 1
+            },
+            {
+                "name": "1日分の野菜",
+                "price": 79,
+                "quantity": 1
+            },
+            {
+                "name": "ソフトマシュマロ",
+                "price": 98,
+                "quantity": 1
+            },
+            {
+                "name": "彩香食パン",
+                "price": 99,
+                "quantity": 2
+            },
+            {
+                "name": "無添加野菜48種の濃い野",
+                "price": 199,
+                "quantity": 1
+            },
+            {
+                "name": "あじわい納豆",
+                "price": 69,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1763742912727-IMG_20251120_142639.jpg",
+        "store": {
+            "name": "マルナカ新土庄店"
+        },
+        "products": [
+            {
+                "name": "GEミニ豆腐3個",
+                "price": 118,
+                "quantity": 1
+            },
+            {
+                "name": "TVBPカロリーハーフ",
+                "price": 218,
+                "quantity": 1
+            },
+            {
+                "name": "ひとくちあべかわ餅4個",
+                "price": 98,
+                "quantity": 1
+            },
+            {
+                "name": "BP林檎と蜜柑YG4P",
+                "price": 138,
+                "quantity": 1
+            },
+            {
+                "name": "カナダ産豚肉小間切れ",
+                "price": 280,
+                "quantity": 1
+            },
+            {
+                "name": "カットねぎ",
+                "price": 98,
+                "quantity": 1
+            },
+            {
+                "name": "貝割れ",
+                "price": 38,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1763646938068-IMG_20251120_140557.jpg",
+        "store": {
+            "name": "マルナカ新土庄店"
+        },
+        "products": [
+            {
+                "name": "レタス",
+                "price": 80,
+                "quantity": 1
+            },
+            {
+                "name": "マルコメプラス糀糀",
+                "price": 398,
+                "quantity": 1
+            },
+            {
+                "name": "れんこん",
+                "price": 96,
+                "quantity": 1
+            },
+            {
+                "name": "国産ブロッコリー",
+                "price": 298,
+                "quantity": 1
+            },
+            {
+                "name": "カットバナナ",
+                "price": 90,
+                "quantity": 1
+            },
+            {
+                "name": "BPアロエYG4P",
+                "price": 138,
+                "quantity": 1
+            },
+            {
+                "name": "カナダ産豚ロース生姜",
+                "price": 282,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1763342857921-image.jpg",
+        "store": {
+            "name": "オーケーお台場店"
+        },
+        "products": [
+            {
+                "name": "オーケーモカブレンドコナ380",
+                "price": 860,
+                "quantity": 1
+            },
+            {
+                "name": "ドリトスソルト",
+                "price": 100,
+                "quantity": 2
+            },
+            {
+                "name": "ハウスオー・ザックアッサリシオ",
+                "price": 106,
+                "quantity": 2
+            },
+            {
+                "name": "パスコチョウジュク8マイ",
+                "price": 168,
+                "quantity": 1
+            },
+            {
+                "name": "ホクトブナシメジ",
+                "price": 98,
+                "quantity": 1
+            },
+            {
+                "name": "コマツナ",
+                "price": 138,
+                "quantity": 1
+            },
+            {
+                "name": "イトウハムトウシツOHベーコン",
+                "price": 226,
+                "quantity": 1
+            },
+            {
+                "name": "qbbヤワラカジュクセイ",
+                "price": 183,
+                "quantity": 2
+            }
+        ]
+    },
+    {
+        "image": "1764221431850-IMG_20251127_133226.jpg",
+        "store": {
+            "name": "マルナカ新土庄店"
+        },
+        "products": [
+            {
+                "name": "特旨だし仕立てから揚げ",
+                "price": 500,
+                "quantity": 1
+            },
+            {
+                "name": "田舎風手揚げ",
+                "price": 98,
+                "quantity": 1
+            },
+            {
+                "name": "TVチキンライス",
+                "price": 298,
+                "quantity": 1
+            },
+            {
+                "name": "大根 (半切れ)",
+                "price": 118,
+                "quantity": 1
+            },
+            {
+                "name": "TV青じそノンオイル",
+                "price": 138,
+                "quantity": 1
+            },
+            {
+                "name": "BPアロエYG4P",
+                "price": 138,
+                "quantity": 1
+            },
+            {
+                "name": "きゃべつ（半切れ）",
+                "price": 118,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1764164933836-IMG_20251126_133521.jpg",
+        "store": {
+            "name": "ダイレックス土庄店"
+        },
+        "products": [
+            {
+                "name": "レノアシトラス490",
+                "price": 229,
+                "quantity": 1
+            },
+            {
+                "name": "キング播州錦",
+                "price": 108,
+                "quantity": 3
+            },
+            {
+                "name": "ココサブ＜発酵バター＞",
+                "price": 99,
+                "quantity": 1
+            },
+            {
+                "name": "創味シャンタン粉末タイ",
+                "price": 149,
+                "quantity": 1
+            },
+            {
+                "name": "野菜一日これ一本",
+                "price": 88,
+                "quantity": 1
+            },
+            {
+                "name": "混ぜ込みわかめ鮭",
+                "price": 108,
+                "quantity": 1
+            },
+            {
+                "name": "味ビー",
+                "price": 199,
+                "quantity": 1
+            },
+            {
+                "name": "荒さきいか",
+                "price": 299,
+                "quantity": 1
+            },
+            {
+                "name": "プリッツロースト塩バター",
+                "price": 89,
+                "quantity": 1
+            },
+            {
+                "name": "ウインナー5本束",
+                "price": 118,
+                "quantity": 1
+            },
+            {
+                "name": "サッポロポテトバーべQ",
+                "price": 97,
+                "quantity": 1
+            },
+            {
+                "name": "ビュオラハミガキSミント",
+                "price": 249,
+                "quantity": 1
+            },
+            {
+                "name": "香りつづくトップ＋抗菌替",
+                "price": 149,
+                "quantity": 1
+            },
+            {
+                "name": "ふくっとレンジ＆冷蔵",
+                "price": 79,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1764083920507-IMG_20251121_150520.jpg",
+        "store": {
+            "name": "マルナカ新土庄店"
+        },
+        "products": [
+            {
+                "name": "スパオウペスカトーレ",
+                "price": 198,
+                "quantity": 1
+            },
+            {
+                "name": "スパオウナポリタン",
+                "price": 198,
+                "quantity": 1
+            },
+            {
+                "name": "カナダ産豚肉小間切れ",
+                "price": 285,
+                "quantity": 1
+            },
+            {
+                "name": "三元豚のロースかつ重小",
+                "price": 298,
+                "quantity": 1
+            },
+            {
+                "name": "BPロースハム",
+                "price": 198,
+                "quantity": 1
+            },
+            {
+                "name": "ロッテ爽バニラ",
+                "price": 138,
+                "quantity": 1
+            },
+            {
+                "name": "5色細巻盛合せ",
+                "price": 398,
+                "quantity": 1
+            },
+            {
+                "name": "麦香るやわらか食パン5",
+                "price": 128,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1764167568842-IMG_20251126_134139.jpg",
+        "store": {
+            "name": "マルナカ新土庄店"
+        },
+        "products": [
+            {
+                "name": "生するめいか(店内)",
+                "price": 380,
+                "quantity": 1
+            },
+            {
+                "name": "豚ロースしゃぶしゃぶ",
+                "price": 368,
+                "quantity": 1
+            },
+            {
+                "name": "ＴＶ味塩塩こしょう詰替",
+                "price": 128,
+                "quantity": 1
+            },
+            {
+                "name": "オーガニック緑豆もやし",
+                "price": 48,
+                "quantity": 1
+            },
+            {
+                "name": "焼そば／1食",
+                "price": 38,
+                "quantity": 3
+            },
+            {
+                "name": "バイカラーイチゴクロワ",
+                "price": 98,
+                "quantity": 1
+            },
+            {
+                "name": "そのままで旨いちくわ",
+                "price": 98,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1764133989249-IMG_20251126_132059.jpg",
+        "store": {
+            "name": "ダイレックス土庄店"
+        },
+        "products": [
+            {
+                "name": "キング播州錦",
+                "price": 130,
+                "quantity": 4
+            },
+            {
+                "name": "ハピネスローズ特大",
+                "price": 399,
+                "quantity": 1
+            },
+            {
+                "name": "床キラリFL用ウェットG",
+                "price": 128,
+                "quantity": 1
+            },
+            {
+                "name": "オールレーズン",
+                "price": 159,
+                "quantity": 1
+            },
+            {
+                "name": "超極細毛クリア歯ブラシH",
+                "price": 99,
+                "quantity": 3
+            },
+            {
+                "name": "乾電池単3形6本パック",
+                "price": 119,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1763342814172-image.jpg",
+        "store": {
+            "name": "オーケー札の辻店"
+        },
+        "products": [
+            {
+                "name": "プロッシモケッソク1.6mm500g",
+                "price": 159,
+                "quantity": 2
+            },
+            {
+                "name": "サトウミヤギヒトメボレ200g*3",
+                "price": 410,
+                "quantity": 3
+            },
+            {
+                "name": "Jオイルオリーブオイル400g",
+                "price": 669,
+                "quantity": 1
+            },
+            {
+                "name": "ユウキサイバイバナナ",
+                "price": 209,
+                "quantity": 1
+            },
+            {
+                "name": "パスコチョウジュクヤマガタ8マイ",
+                "price": 168,
+                "quantity": 1
+            },
+            {
+                "name": "イトウハムトウシツOHベーコン",
+                "price": 226,
+                "quantity": 1
+            },
+            {
+                "name": "ドリトスソルト",
+                "price": 100,
+                "quantity": 2
+            },
+            {
+                "name": "ハウスオー・ザックイソノリシオ",
+                "price": 106,
+                "quantity": 2
+            }
+        ]
+    },
+    {
+        "image": "1764224457757-IMG_20251127_133622.jpg",
+        "store": {
+            "name": "マルナカ新土庄店"
+        },
+        "products": [
+            {
+                "name": "BPうどん",
+                "price": 208,
+                "quantity": 1
+            },
+            {
+                "name": "BP極小粒納豆",
+                "price": 78,
+                "quantity": 1
+            },
+            {
+                "name": "小判あげ",
+                "price": 98,
+                "quantity": 1
+            },
+            {
+                "name": "QP深煎りごまハーフ",
+                "price": 328,
+                "quantity": 1
+            },
+            {
+                "name": "TVカットワカメ",
+                "price": 118,
+                "quantity": 1
+            },
+            {
+                "name": "TVBPワカメワカナ",
+                "price": 98,
+                "quantity": 1
+            },
+            {
+                "name": "BPアロエYG4P",
+                "price": 138,
+                "quantity": 1
+            },
+            {
+                "name": "アスパラガス",
+                "price": 100,
+                "quantity": 1
+            },
+            {
+                "name": "チキンカツ",
+                "price": 398,
+                "quantity": 1
+            },
+            {
+                "name": "麦香るやわらか食パン5",
+                "price": 128,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "image": "1764168294273-IMG_20251126_134243.jpg",
+        "store": {
+            "name": "マルナカ新土庄店"
+        },
+        "products": [
+            {
+                "name": "田舎風手揚げ",
+                "price": 88,
+                "quantity": 1
+            },
+            {
+                "name": "カナダ産豚ロースカツ3",
+                "price": 291,
+                "quantity": 1
+            },
+            {
+                "name": "カナダ産豚ロース生姜",
+                "price": 304,
+                "quantity": 1
+            },
+            {
+                "name": "森永北海道バター",
+                "price": 548,
+                "quantity": 1
+            },
+            {
+                "name": "道南白口浜産こんぶだし",
+                "price": 128,
+                "quantity": 1
+            },
+            {
+                "name": "BPアロエYG4P",
+                "price": 138,
+                "quantity": 1
+            },
+            {
+                "name": "麦香るやわらか食パン5",
+                "price": 128,
+                "quantity": 1
+            }
+        ]
+    }
+]
