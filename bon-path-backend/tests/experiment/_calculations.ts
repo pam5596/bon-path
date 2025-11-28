@@ -20,3 +20,11 @@ export function F1(TP: number, FP: number, FN: number) {
 export function average(numbers: number[]) {
     return numbers.reduce((sum, v) => sum + v, 0) / numbers.length
 }
+
+export function recallAK(query: number, presents: number) {
+    return presents / query
+}
+
+export function MRR(ranks: number[]) {
+    return average(ranks.map(r => 1/r))
+}

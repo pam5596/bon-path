@@ -7,7 +7,7 @@ import { average, F1, precision, recall, textSimilarity } from "./_calculations"
 
 import image_names from "./receipt_images.json"
 import annotations from "./annotation.json"
-import response from "./data/response.json"
+import response from "./data/receipt_ocr_response.json"
 
 describe('レシート解析機能の評価実験', () => {
     const match_base_score = 0.6
@@ -71,7 +71,7 @@ describe('レシート解析機能の評価実験', () => {
             )
         )
         
-        await writeFile(`./tests/experiment/data/response.json`, JSON.stringify(res, null, 4))
+        await writeFile(`./tests/experiment/data/receipt_ocr_response.json`, JSON.stringify(res, null, 4))
     })
 
     test('店舗名抽出の正解率・適合率・再現率・F1スコアの算出', async () => {
